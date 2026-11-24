@@ -49,3 +49,10 @@ python3 scripts/nations.py                # nationsgränser -> data/nations.json
 ## Källor
 
 Originalkartan är Westlands-kartan av Adam Whitehead. Texterna om karaktärer och slag är egna sammanfattningar baserade på böckerna, Wheel of Time-wikin, Dragonmount och Reactor/Tor.com. Projektet är för privat bruk.
+
+## Publicering
+
+Mappen `site/` publiceras automatiskt till GitHub Pages
+(https://oskarwikstrom85.github.io/wot_map/) vid varje push till `main`
+som ändrar `site/`. Flödet finns i `.github/workflows/pages.yml` och kan
+också startas manuellt under fliken Actions.
