@@ -25,6 +25,13 @@ anchors_all = np.load(ROOT + 'masks/anchors.npy')
 MH, MW = cls_all.shape
 water_all = np.asarray(cls_all == WATER)
 
+# Vattnets stil. OLD_STYLE är den ursprungliga gråolivtonen.
+OLD_STYLE = dict(lake=(180, 186, 160), sea_near=(152, 156, 120), sea_far=(66, 68, 44), glow=(222, 224, 204),
+                 river=(192, 196, 168), river_alpha=.6, river_edge=.3, river_grow=0)
+# Blå stil (nov 2026): dämpat stålblått hav och sjöar, bredare blå floder.
+STYLE = dict(lake=(132, 158, 164), sea_near=(110, 140, 148), sea_far=(42, 64, 78), glow=(198, 214, 212),
+             river=(84, 124, 144), river_alpha=.88, river_edge=.35, river_grow=1.6)
+
 def C(*rgb): return np.array(rgb, np.float32) / 255
 
 def smoothstep(e0, e1, x):
@@ -246,12 +253,13 @@ def render_chunk(cx0, cy0):
     canopy(blight, 6 * S, 2 * S, 3 * S, 61, C(40, 30, 18), C(150, 118, 64), C(84, 62, 34), .2)
 
     # ---------- vatten ----------
+    W_ = STYLE
     wm = blur(water.astype(np.float32), .7 * S)[..., None]
     d_in = edt_in(water)
-    lake_col = C(180, 186, 160) * (1 + .06 * (fbm(70 * S, 3, 41) - .5))[..., None]
+    lake_col = C(*W_['lake']) * (1 + .06 * (fbm(70 * S, 3, 41) - .5))[..., None]
     lake_col = lake_col * (1 - .07 * smoothstep(0, 40 * S, d_in))[..., None]
     far = smoothstep(0, 150, sea_d)[..., None]
-    sea_col = C(152, 156, 120) * (1 - far) + C(66, 68, 44) * far
+    sea_col = C(*W_['sea_near']) * (1 - far) + C(*W_['sea_far']) * far
     sea_col = sea_col * (.88 + .24 * fbm(140 * S, 4, 42)[..., None]) * (1 + .03 * st[..., None])
     seaw = blur(sea_up.astype(np.float32), 2 * S)[..., None]
     wcol = sea_col * seaw + lake_col * (1 - seaw)
@@ -259,15 +267,19 @@ def render_chunk(cx0, cy0):
     shore = blur(((edt_in(~water) <= 1.0 * S) & ~water).astype(np.float32), .6 * S)[..., None]
     img = img * (1 - .8 * shore) + C(46, 40, 26) * .8 * shore
     glow = blur(((d_in > 1.2 * S) & (d_in < 3.2 * S)).astype(np.float32), .7 * S)[..., None]
-    img = img * (1 - .3 * glow) + C(222, 224, 204) * .3 * glow
+    img = img * (1 - .3 * glow) + C(*W_['glow']) * .3 * glow
 
     # ---------- floder ----------
-    rv = up(river.astype(np.float32), 0, .3, cv2.INTER_LINEAR)
+    rsrc = river.astype(np.float32)
+    if W_['river_grow']:
+        rsrc = np.maximum(rsrc, blur(rsrc, W_['river_grow']) * 2.2)
+    rv = up(np.clip(rsrc, 0, 1), 0, .3, cv2.INTER_LINEAR)
     rv = np.clip(blur(rv, .8 * S) * 3.2, 0, 1)
     rv_edge = np.clip(blur(rv, 1.6 * S) * 1.6 - rv, 0, 1)
     rv = rv[..., None] * (1 - M * .8); rv_edge = rv_edge[..., None] * (1 - M * .8)
-    img *= 1 - .3 * rv_edge
-    img = img * (1 - .6 * rv) + C(192, 196, 168) * .6 * rv
+    img *= 1 - W_['river_edge'] * rv_edge
+    a_ = W_['river_alpha']
+    img = img * (1 - a_ * rv) + C(*W_['river']) * a_ * rv
 
     # ---------- bergstoppar ----------
     sp = 36 * S
