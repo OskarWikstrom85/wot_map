@@ -1,0 +1,30 @@
+id,namn,typ,land,x,y,beskrivning
+emonds-field,Emond's Field,by,Andor (Two Rivers),0.39763,0.54557,"By i Two Rivers där Rand, Mat, Perrin, Egwene och Nynaeve växer upp."
+baerlon,Baerlon,stad,Andor,0.41217,0.50214,"Gruvstad i västra Andor, första större staden sällskapet når."
+shadar-logoth,Shadar Logoth,ruin,,0.42744,0.49300,"Övergiven stad, tidigare Aridhol, förstörd av sin egen misstänksamhet. Mashadar finns kvar."
+whitebridge,Whitebridge,stad,Andor,0.53007,0.58876,Stad vid den vita bron över Arinelle.
+four-kings,Four Kings,by,Andor,0.6556,0.5909,Vägkorsning väster om Caemlyn.
+caemlyn,Caemlyn,huvudstad,Andor,0.68224,0.59240,"Andors huvudstad, säte för drottningen. I Tarmon Gai'don strömmar trollocs in genom stadens Waygate och staden brinner."
+tar-valon,Tar Valon,stad,Tar Valon,0.74611,0.37781,"Ö-stad i floden Erinin, hem för Vita tornet och Aes Sedai."
+dragonmount,Dragonmount,landmärke,,0.7358,0.3915,Berget som reste sig när Lews Therin dog. Rand föds på dess sluttning och når en vändpunkt på toppen. I Tarmon Gai'don öppnar Androl en port in i berget och häller lava över trollocs.
+dumais-wells,Dumai's Wells,landmärke,Cairhien,0.77750,0.40877,Brunnarna där slaget om Rands befrielse utkämpas.
+cairhien,Cairhien,huvudstad,Cairhien,0.80114,0.46729,"Cairhiens huvudstad, centrum för Daes Dae'mar. Utanför staden krossar Elaynes här en trollochär i Tarmon Gai'don."
+tear,Tear,huvudstad,Tear,0.75537,0.83033,"Tears huvudstad med fästningen Stenen i Tear, där Callandor förvaras."
+illian,Illian,huvudstad,Illian,0.61433,0.92409,Illians huvudstad och stora hamnstad.
+ebou-dar,Ebou Dar,huvudstad,Altara,0.43755,0.88264,Altaras huvudstad vid havet.
+amador,Amador,huvudstad,Amadicia,0.37540,0.75312,Amadicias huvudstad och fäste för Children of the Light.
+jehannah,Jehannah,huvudstad,Ghealdan,0.41401,0.63763,Ghealdans huvudstad.
+tanchico,Tanchico,huvudstad,Tarabon,0.21388,0.65908,Tarabons huvudstad vid kusten.
+falme,Falme,stad,Toman Head,0.18383,0.53484,Stad på Toman Head där Seanchan landstiger.
+bandar-eban,Bandar Eban,huvudstad,Arad Doman,0.22452,0.38823,Arad Domans huvudstad.
+maradon,Maradon,huvudstad,Saldaea,0.51882,0.19470,Saldaeas huvudstad.
+chachin,Chachin,huvudstad,Kandor,0.65378,0.20618,Kandors huvudstad.
+shol-arbela,Shol Arbela,huvudstad,Arafel,0.76542,0.20307,Arafels huvudstad.
+fal-moran,Fal Moran,huvudstad,Shienar,0.87714,0.20669,Shienars huvudstad.
+fal-dara,Fal Dara,stad,Shienar,0.89069,0.18200,Gränsfästning i Shienar nära Blighten.
+lugard,Lugard,huvudstad,Murandy,0.58077,0.68157,Murandys huvudstad.
+far-madding,Far Madding,stad,,0.69700,0.71518,Stadsstat där Guardians hindrar all kanalisering.
+mayene,Mayene,stad,Mayene,0.93361,0.92190,Liten stadsstat känd för sina oljelampor och sin First.
+shayol-ghul,Shayol Ghul,landmärke,Blasted Lands,0.8287,0.0427,Berget i Blasted Lands där Den Mörkes fängelse är som tunnast. Här möter Rand Den Mörke i Pit of Doom i Tarmon Gai'don.
+malden,Malden,by,Altara,0.49762,0.75360,Altaransk stad som Shaido tog som läger. Här befriade Perrin Faile i slaget vid Malden.
+field-of-merrilor,Field of Merrilor,landmärke,Shienar,0.78187,0.25579,"Fältet vid floden Mora där Rand samlar världens härskare inför Tarmon Gai'don, och där huvudslaget till slut står."

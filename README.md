@@ -1,0 +1,51 @@
+# Westlands-kartan
+
+En personlig, interaktiv karta över Wheel of Time-böckerna: zoombar karta i två lager (original och målad), klickbara nationer, ett karaktärsbibliotek, ett slagbibliotek och animerade slag i Rome: Total War-stil.
+
+Publicerad som Claude-artefakt (privat): https://claude.ai/artifact/UGm89igRE3woNnDP7DEdSi
+
+Delade slagsidor:
+- Slaget om Two Rivers: https://claude.ai/artifact/4dw4Ny1XEZcmQWZMNWGeTw
+- Andra slaget om Cairhien: https://claude.ai/artifact/NAz9wAZ2eFrfKTN2gf3UTF
+
+## Mappar
+
+| Mapp | Innehåll |
+|---|---|
+| `site/` | Den färdiga sidan: `index.html`, kartplattor (`tiles/`, `tiles-malad/`, `tiles-detaljer/`) och slagsanimationerna i `slag/` (HTML + video). Det är den här mappen som publiceras. |
+| `src/` | Källkod: sidmallen `index.template.html` och slagsanimationerna i `src/slag/`. Two Rivers är mallen; nya slag ligger i egna mappar (`src/slag/cairhien/`) med `paint.js`, `svg.js`, `scenes.js` och `config.json`. |
+| `data/` | Platser (`locations.csv`), nationsgränser (`nations.json`), karaktärer (`characters.json`) och slag (`battles.json`). |
+| `scripts/` | Byggskript, se nedan. |
+
+## Bygga
+
+Kräver Python 3 med Pillow, numpy, scipy, opencv och scikit-image, samt Playwright med Chrome för export och video.
+
+```bash
+# Sidan (läser data/ och src/index.template.html, kontrollerar alla länkar mellan karaktärer, slag och platser)
+python3 scripts/build_page.py
+
+# Ett nytt slag från Two Rivers-mallen
+python3 scripts/make_battle_page.py cairhien
+
+# Slagsida med bildberättelse (kräver att src/slag serveras på localhost:8765)
+python3 scripts/build_export.py two-rivers
+python3 scripts/build_export.py cairhien
+```
+
+Kartlagren (görs sällan, tar lång tid):
+
+```bash
+python3 scripts/make_tiles.py            # originalkartan -> site/tiles
+python3 scripts/prepare_masks.py          # analys av originalkartan -> out/masks
+python3 scripts/render_chunks.py 2 0 56   # det målade lagret i bitar -> out/chunks
+python3 scripts/make_tiles_from_chunks.py # -> site/tiles-malad
+python3 scripts/details_overlay.py && python3 scripts/make_overlay_tiles.py  # namn och detaljer -> site/tiles-detaljer
+python3 scripts/nations.py                # nationsgränser -> data/nations.json
+```
+
+`out/` (mellanresultat, ca 500 MB) och `package/` (Leaflet) ingår inte i repot och återskapas av skripten.
+
+## Källor
+
+Originalkartan är Westlands-kartan av Adam Whitehead. Texterna om karaktärer och slag är egna sammanfattningar baserade på böckerna, Wheel of Time-wikin, Dragonmount och Reactor/Tor.com. Projektet är för privat bruk.

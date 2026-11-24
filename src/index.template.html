@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Westlands-kartan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>/*LEAFLET_CSS*/</style>
+<style>
+/* VOICE: a reader's atlas, quiet and exact
+   IDEA: the endpaper map of the books, opened up so you can walk into it
+   PICTURE: the map itself, edge to edge; a slim parchment index floats over it
+   COLOUR and TYPE: sea blue from the map, parchment panel, oxblood for capitals (the map's own nation red); Cinzel titles, Alegreya Sans text
+   LAYOUT: full-screen map, index panel top-left (collapses to a bar on phones), coordinate bar at the bottom */
+:root{color-scheme:light dark;
+  --sea:#a7c0dc;
+  --paper:light-dark(#f6f0e1,#1f1c17);
+  --paper-2:light-dark(#ebe2cc,#2a261f);
+  --ink:light-dark(#2a2118,#efe6d2);
+  --muted:light-dark(#6b5d4a,#b9ab92);
+  --line:light-dark(#d6c8a8,#4a4236);
+  --capital:#8b1e1e;--city:#1f3b63;--ruin:#4b4b4b;--mark:#5b3f8c;--village:#2f6b3a;
+  --shadow:0 8px 28px rgb(0 0 0 / .22)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%;margin:0}
+body{background:var(--sea);color:var(--ink);font:16px/1.5 "Alegreya Sans",system-ui,sans-serif;overflow:hidden}
+#map{position:fixed;inset:0;background:var(--sea)}
+.leaflet-container{font:inherit;background:var(--sea)}
+.panel{position:fixed;z-index:1000;top:14px;left:14px;width:320px;max-height:calc(100% - 28px);display:flex;flex-direction:column;
+  background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.head{padding:16px 18px 10px}
+h1{font:700 26px/1.05 Cinzel,Georgia,serif;margin:0;letter-spacing:.02em}
+.sub{margin:4px 0 0;color:var(--muted);font-size:14px}
+.search{padding:0 18px 10px}
+input[type=search]{width:100%;font:16px "Alegreya Sans",sans-serif;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper-2);color:var(--ink)}
+input[type=search]:focus-visible,button:focus-visible{outline:2px solid var(--capital);outline-offset:2px}
+.list{list-style:none;margin:0;padding:0 8px 8px;overflow-y:auto}
+.list button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:6px 10px;border-radius:8px;cursor:pointer}
+.list button:hover,.list button:focus-visible{background:var(--paper-2)}
+.list .nm{font-weight:500}.list .ld{color:var(--muted);font-size:14px;margin-left:auto;text-align:right}
+.dot{flex:none;width:12px;height:12px;border-radius:50%;border:3px solid currentColor;background:#fff}
+.empty{padding:10px 12px;color:var(--muted)}
+.tools{display:flex;gap:8px;padding:10px 18px 14px;border-top:1px solid var(--line);flex-wrap:wrap;align-items:center}
+.btn{font:500 15px "Alegreya Sans",sans-serif;min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--paper-2);color:var(--ink);cursor:pointer}
+.btn[aria-pressed=true]{background:var(--capital);border-color:var(--capital);color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}.legend .dot{width:10px;height:10px;border-width:2px}
+.toggle{display:none}
+.layers{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:0 18px 10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:500 15px "Alegreya Sans",sans-serif;min-height:40px;padding:0 14px;border:0;background:var(--paper-2);color:var(--ink);cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-checked=true]{background:var(--capital);color:#fff}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:15px;min-height:40px;padding:0 4px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--capital)}
+.lbl{display:inline-block;white-space:nowrap;pointer-events:none;font:600 13px/1 Cinzel,Georgia,serif;color:#2a2012;
+  text-shadow:0 0 3px rgb(236 226 196 / .95),0 0 6px rgb(236 226 196 / .7);transform:translate(-50%,-150%)}
+.lbl.huvudstad{font-size:15px;color:#5e1414;letter-spacing:.03em}
+.lbl.landmärke,.lbl.ruin{font-style:italic;font-weight:600}
+#map.z-low .lbl.minor{display:none}
+body.malad{--sea:#4b4d33}
+.coord{position:fixed;z-index:1000;left:50%;bottom:16px;transform:translateX(-50%);display:none;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;
+  max-width:calc(100% - 28px);padding:10px 14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.coord.on{display:flex}
+.coord code{font:14px ui-monospace,Menlo,monospace;overflow-wrap:anywhere}
+.picking .leaflet-container{cursor:crosshair}
+.leaflet-popup-content-wrapper{background:var(--paper);color:var(--ink);border-radius:10px}
+.leaflet-popup-tip{background:var(--paper)}
+.leaflet-popup-content{margin:14px 16px;font-size:15px;line-height:1.45}
+.pop h2{font:700 19px/1.1 Cinzel,Georgia,serif;margin:0 0 2px}
+.pop .meta{color:var(--muted);font-size:13px;margin-bottom:6px}
+.pop p{margin:0 0 8px}.pop a{color:var(--capital);font-weight:500}
+.leaflet-control-zoom a{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.leaflet-control-attribution{background:rgb(246 240 225 / .85)!important;color:#5b4d3a;font-size:11px}
+.leaflet-control-attribution a{color:#5b4d3a}
+
+.lib-btn{display:inline-flex;align-items:center;gap:8px}
+.lib-btn svg{width:18px;height:18px}
+.lib{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;background:rgb(24 19 12 / .5);padding:20px}
+.lib[hidden]{display:none}
+.lib-card{width:min(1080px,100%);height:min(86vh,880px);display:flex;flex-direction:column;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 60px rgb(0 0 0 / .4);overflow:hidden}
+.lib-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.lib-head h2{font:700 26px/1.1 Cinzel,Georgia,serif;margin:0;margin-right:auto}
+.lib-head label{font-size:15px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.lib-head select{font:16px "Alegreya Sans",sans-serif;min-height:40px;padding:0 8px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.x{font:400 28px/1 Georgia,serif;width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.lib-body{flex:1;display:grid;grid-template-columns:300px minmax(0,1fr);min-height:0}
+.lib-side{display:flex;flex-direction:column;border-right:1px solid var(--line);min-height:0}
+.lib-side input{margin:14px 14px 8px;width:auto;font:16px "Alegreya Sans",sans-serif;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper-2);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px}
+.chip{font:500 14px "Alegreya Sans",sans-serif;min-height:32px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--capital);border-color:var(--capital);color:#fff}
+#clist,#blist{list-style:none;margin:0;padding:0 8px 12px;overflow-y:auto}
+#clist button,#blist button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 10px;border-radius:10px;cursor:pointer}
+#clist button:hover,#clist button:focus-visible,#clist button[aria-current=true],#blist button:hover,#blist button:focus-visible,#blist button[aria-current=true]{background:var(--paper-2)}
+#clist .t,#blist .t{display:block;font-size:13px;color:var(--muted)}
+#blist button[disabled]{cursor:default;opacity:.55}
+.swords{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#7a1a12;color:#f6e7b8;box-shadow:inset 0 0 0 2px rgb(255 255 255 / .3)}
+.swords svg{width:22px;height:22px}.swords.big{width:84px;height:84px}.swords.big svg{width:44px;height:44px}
+.sides{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;max-width:76ch;margin:0 0 6px}
+.side{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--paper-2)}
+.side h5{font:700 15px Cinzel,Georgia,serif;margin:0 0 6px}
+.side ul{margin:0 0 8px;padding-left:18px;font-size:15px}.side p{margin:0;font-size:14px;color:var(--muted)}
+.events b{display:block;font-weight:700}
+.outcome{max-width:66ch;padding:12px 16px;border-left:4px solid var(--capital);background:var(--paper-2);border-radius:0 8px 8px 0}
+.bat-actions{display:flex;flex-wrap:wrap;gap:8px}
+.exp{position:fixed;inset:0;z-index:3100;background:rgb(0 0 0 / .55);display:grid;place-items:center;padding:16px}
+.exp[hidden]{display:none}
+.exp-card{position:relative;width:min(520px,100%);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:22px 24px 18px;box-shadow:0 18px 50px rgb(0 0 0 / .45)}
+.exp-card h3{margin:0 0 14px;font:700 20px Cinzel,Georgia,serif;padding-right:36px}
+.exp-card .x{position:absolute;top:12px;right:12px}
+.exp-l{display:block;font-size:14px;color:var(--muted);margin-bottom:4px}
+.exp-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.exp-row input{flex:1;min-width:200px;font:15px/1.3 system-ui,sans-serif;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);color:var(--ink)}
+.exp-note{font-size:14px;color:var(--muted);margin:4px 0 14px}
+.exp-note a{color:var(--capital)}
+.exp-msg{min-height:1.3em;margin:0;font-size:14px;font-weight:600}
+.anim-btn{background:#7a1a12;border-color:#7a1a12;color:#f6e7b8}
+.anim{position:fixed;inset:0;z-index:3000;background:#0d0a08}
+.anim[hidden]{display:none}
+.anim iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.anim-x{position:absolute;top:14px;left:16px;z-index:2;background:#2a1f17;color:#e0c27a;border-color:#7a6033}
+.src{margin:0;padding-left:18px}.src a{color:var(--capital)}
+.bwrap{position:relative;width:0;height:0}
+.bmark{position:absolute;box-sizing:border-box;display:grid;place-items:center;width:var(--bs,16px);height:var(--bs,16px);left:calc(var(--bs,16px) * .2);top:calc(var(--bs,16px) * -1.1);border-radius:50%;background:#7a1a12;color:#f6e7b8;border:1.5px solid #f6e7b8;box-shadow:0 1px 4px rgb(0 0 0 / .45);cursor:pointer}
+.bwrap.left .bmark{left:calc(var(--bs,16px) * -1.2)}
+.bmark svg{width:64%;height:64%}
+.bmark.on{animation:bpulse 1.4s ease-out 3}
+@keyframes bpulse{0%{box-shadow:0 0 0 0 rgb(246 231 184 / .9)}100%{box-shadow:0 0 0 22px rgb(246 231 184 / 0)}}
+@media(prefers-reduced-motion:reduce){.bmark.on{animation:none}}
+.mono{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#fff;font:700 15px/1 Cinzel,Georgia,serif;letter-spacing:.02em;box-shadow:inset 0 0 0 2px rgb(255 255 255 / .35)}
+.mono.big{width:84px;height:84px;font-size:30px}
+.lib-art{overflow-y:auto;padding:26px clamp(18px,4vw,44px) 40px}
+.art-head{display:flex;gap:18px;align-items:center;margin-bottom:14px}
+.art-head h3{font:700 clamp(28px,4vw,40px)/1.05 Cinzel,Georgia,serif;margin:0}
+.art-head .ti{font-style:italic;color:var(--muted);font-size:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 16px;padding:12px 0;border-block:1px solid var(--line);font-size:15px}
+.facts dt{color:var(--muted);font-size:13px}.facts dd{margin:0}
+.lead{font-size:19px;line-height:1.45;font-weight:500;margin:0 0 12px;max-width:62ch}
+.lib-art p{max-width:66ch}
+.lib-art h4{font:700 18px Cinzel,Georgia,serif;margin:26px 0 10px}
+.events{list-style:none;margin:0;padding:0;border-left:2px solid var(--line);max-width:70ch}
+.events li{position:relative;padding:0 0 14px 22px}
+.events li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--capital)}
+.bk{display:inline-block;font:700 12px "Alegreya Sans",sans-serif;color:var(--capital);margin-right:6px;white-space:nowrap}
+.linkbtn{all:unset;cursor:pointer;color:var(--capital);font-weight:500;text-decoration:underline;text-underline-offset:2px}
+.linkbtn:focus-visible{outline:2px solid var(--capital);outline-offset:2px}
+.hidden-note{color:var(--muted);font-size:14px;font-style:italic}
+.rels{display:flex;flex-wrap:wrap;gap:8px}
+.rel{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border:1px solid var(--line);border-radius:999px;font-size:15px}
+.rel .mono{width:28px;height:28px;font-size:11px}
+.rel small{color:var(--muted)}
+.back{display:none}
+@media(max-width:760px){
+  .lib{padding:0}.lib-card{height:100%;border-radius:0}
+  .lib-body{grid-template-columns:1fr}
+  .lib-side{border-right:0}
+  .lib-art{display:none}
+  .lib.show-art .lib-side{display:none}.lib.show-art .lib-art{display:block}
+  .back{display:inline-flex;align-items:center;margin-bottom:14px}
+  .lib-head{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px 14px}
+  .lib-head .x{grid-row:1;grid-column:2}
+  .lib-head label{grid-column:1/-1}
+  .lib-head select{flex:1}
+}
+@media(max-width:600px){
+  .panel{top:auto;bottom:0;left:0;right:0;width:auto;border-radius:14px 14px 0 0;max-height:62%}
+  .panel.closed .search,.panel.closed .list,.panel.closed .tools{display:none}
+  .head{display:flex;align-items:center;gap:10px;padding:12px 14px}
+  h1{font-size:21px}.sub{display:none}
+  .toggle{display:inline-flex;align-items:center;margin-left:auto}
+  .coord{bottom:auto;top:12px}
+  .leaflet-bottom.leaflet-right{display:none}
+}
+@media (prefers-reduced-motion:reduce){.leaflet-zoom-anim .leaflet-zoom-animated{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="map" role="application" aria-label="Zoombar karta över Westlands"></div>
+
+<aside class="panel" id="panel">
+  <div class="head">
+    <div>
+      <h1>Westlands</h1>
+      <p class="sub">The Wheel of Time · <span id="count"></span> platser</p>
+    </div>
+    <button class="btn toggle" id="toggle" aria-expanded="true" aria-controls="panel">Platser</button>
+  </div>
+  <div class="search"><input type="search" id="q" placeholder="Sök plats, t.ex. Caemlyn" autocomplete="off" aria-label="Sök plats"></div>
+  <div class="layers">
+    <div class="seg" role="radiogroup" aria-label="Kartlager">
+      <button role="radio" data-layer="malad" aria-checked="true">Målad</button>
+      <button role="radio" data-layer="original" aria-checked="false">Original</button>
+    </div>
+    <label class="chk"><input type="checkbox" id="names" checked> Namn och detaljer</label>
+  </div>
+  <div class="layers">
+    <button class="btn lib-btn" id="openLib" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>Karaktärer</button>
+    <button class="btn lib-btn" id="openBat" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l11 11M15 15l3 3M17 13l-4 4M20 20l-2-2"/><path d="M20 4L9 15M9 15l-3 3M7 13l4 4M4 20l2-2"/></svg>Slag</button>
+    <label class="chk"><input type="checkbox" id="showBat" checked> Slag på kartan</label>
+  </div>
+  <ul class="list" id="list"></ul>
+  <div class="tools">
+    <button class="btn" id="pick" aria-pressed="false">Mät koordinat</button>
+    <div class="legend">
+      <span><i class="dot" style="color:var(--capital)"></i>Huvudstad</span>
+      <span><i class="dot" style="color:var(--city)"></i>Stad</span>
+      <span><i class="dot" style="color:var(--village)"></i>By</span>
+      <span><i class="dot" style="color:var(--mark)"></i>Landmärke</span>
+      <span><i class="dot" style="color:var(--ruin)"></i>Ruin</span>
+    </div>
+  </div>
+</aside>
+
+
+<div class="lib" id="lib" hidden role="dialog" aria-modal="true" aria-labelledby="libTitle">
+  <div class="lib-card">
+    <header class="lib-head">
+      <h2 id="libTitle">Karaktärer</h2>
+      <label>Läst till och med <select id="readTo"></select></label>
+      <button class="x" id="closeLib" aria-label="Stäng biblioteket">&times;</button>
+    </header>
+    <div class="lib-body">
+      <aside class="lib-side">
+        <input type="search" id="cq" placeholder="Sök karaktär" aria-label="Sök karaktär" autocomplete="off">
+        <div class="chips" id="chips" role="group" aria-label="Filtrera på grupp"></div>
+        <ul id="clist"></ul>
+      </aside>
+      <article class="lib-art" id="cart" aria-live="polite"></article>
+    </div>
+  </div>
+</div>
+<div class="lib" id="blib" hidden role="dialog" aria-modal="true" aria-labelledby="blibTitle">
+  <div class="lib-card">
+    <header class="lib-head">
+      <h2 id="blibTitle">Slag</h2>
+      <label>Läst till och med <select id="readToB"></select></label>
+      <button class="x" id="closeBat" aria-label="Stäng slagen">&times;</button>
+    </header>
+    <div class="lib-body">
+      <aside class="lib-side">
+        <input type="search" id="bq" placeholder="Sök slag, plats eller person" aria-label="Sök slag" autocomplete="off">
+        <ul id="blist"></ul>
+      </aside>
+      <article class="lib-art" id="bart" aria-live="polite"></article>
+    </div>
+  </div>
+</div>
+<div class="exp" id="exp" hidden role="dialog" aria-modal="true" aria-labelledby="expTitle">
+  <div class="exp-card">
+    <button class="x" id="closeExp" aria-label="Stäng">&times;</button>
+    <h3 id="expTitle">Exportera</h3>
+    <label class="exp-l" for="expUrl">Länk att dela</label>
+    <div class="exp-row"><input id="expUrl" readonly><button class="btn" id="expCopy">Kopiera länk</button></div>
+    <p class="exp-note">Sidan visar bara slagets animation, inte din karta. Den är privat tills du delar den: <a id="expOpen" target="_blank" rel="noopener">öppna sidan</a> i Claude och välj att dela den.</p>
+    <div class="exp-row"><button class="btn" id="expHtml">Ladda ner HTML</button><button class="btn" id="expVideo">Ladda ner video (MP4)</button></div>
+    <p class="exp-note">HTML-filen fungerar i vilken webbläsare som helst, även utan internet. <span id="expVidNote"></span></p>
+    <p id="expMsg" class="exp-msg" role="status"></p>
+  </div>
+</div>
+<div class="anim" id="anim" hidden role="dialog" aria-modal="true" aria-label="Animation av slaget">
+  <iframe id="animFrame" title="Animation av slaget" src="about:blank"></iframe>
+  <button class="x anim-x" id="closeAnim" aria-label="Stäng animationen">&times;</button>
+</div>
+<div class="coord" id="coord" role="status" aria-live="polite">
+  <code id="coordText">Klicka på kartan</code>
+  <button class="btn" id="copy">Kopiera rad</button>
+</div>
+
+<script type="application/json" id="locations">/*LOCATIONS*/</script>
+<script type="application/json" id="nations">/*NATIONS*/</script>
+<script type="application/json" id="characters">/*CHARACTERS*/</script>
+<script type="application/json" id="battles">/*BATTLES*/</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+{
+  const W = 8000, H = 6177, NATIVE = 4;
+  const COLORS = {huvudstad:'#8b1e1e', stad:'#1f3b63', by:'#2f6b3a', landmärke:'#5b3f8c', ruin:'#4b4b4b'};
+  const places = JSON.parse(document.getElementById('locations').textContent);
+
+  const map = L.map('map', {crs: L.CRS.Simple, minZoom: 0, maxZoom: 7, zoomSnap: 0.25, zoomDelta: 0.5, wheelPxPerZoomLevel: 90, zoomControl: false});
+  L.control.zoom({position: 'topright'}).addTo(map);
+  const toLL = (px, py) => map.unproject([px, py], NATIVE);
+  const fromLL = ll => map.project(ll, NATIVE);
+  const bounds = L.latLngBounds(toLL(0, H), toLL(W, 0));
+
+  const credit = 'Grund: <a href="https://atlasoficeandfireblog.wordpress.com/2020/01/13/a-new-wheel-of-time-map/">Adam Whitehead</a>';
+  const LAYERS = {
+    original: L.tileLayer('tiles/{z}/{x}/{y}.webp', {tileSize: 1024, noWrap: true, bounds, minZoom: 0, maxNativeZoom: NATIVE, maxZoom: 7, zIndex: 1, attribution: credit.replace('Grund: ', 'Karta: ')}),
+    malad: L.tileLayer('tiles-malad/{z}/{x}/{y}.webp', {tileSize: 1024, noWrap: true, bounds, minZoom: 0, maxNativeZoom: NATIVE + 1, maxZoom: 7, zIndex: 1, attribution: 'Målat lager byggt på kartan av ' + credit.replace('Grund: ', '')}),
+  };
+  // originalets texter, symboler, vägar, gränser och flaggor som genomskinligt lager över målningen
+  const DETAILS = L.tileLayer('tiles-detaljer/{z}/{x}/{y}.webp', {tileSize: 1024, noWrap: true, bounds, minZoom: 0, maxNativeZoom: NATIVE, maxZoom: 7, zIndex: 5});
+  let current = 'malad';
+  try { const saved = localStorage.getItem('wot-layer'); if (LAYERS[saved]) current = saved; } catch (e) {}
+  LAYERS[current].addTo(map);
+  const wide = matchMedia('(min-width:601px)').matches;
+  map.fitBounds(bounds, wide ? {paddingTopLeft: [340, 10], paddingBottomRight: [10, 10]} : {paddingBottomRight: [0, 70]});
+  map.setMinZoom(map.getZoom() - 0.5);
+  map.setMaxBounds(bounds.pad(0.6));
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const wiki = n => 'https://wot.fandom.com/wiki/' + encodeURIComponent(n.replace(/ /g, '_'));
+  const markers = {};
+
+  for (const p of places) {
+    const big = p.typ === 'huvudstad';
+    const m = L.circleMarker(toLL(p.x * W, p.y * H), {radius: big ? 6 : 5, color: COLORS[p.typ] || '#333', weight: 3, fillColor: '#fff', fillOpacity: 1})
+      .bindPopup(`<div class="pop"><h2>${esc(p.namn)}</h2><div class="meta">${esc(p.typ)}${p.land ? ' · ' + esc(p.land) : ''}</div><p>${esc(p.beskrivning)}</p><a href="${wiki(p.namn)}" target="_blank" rel="noopener">Läs mer på wikin</a></div>`, {maxWidth: 280})
+      .bindTooltip(p.namn, {direction: 'top', offset: [0, -8]})
+      .on('popupopen', () => { try { history.replaceState(null, '', '#' + p.id); } catch (e) {} })
+      .addTo(map);
+    markers[p.id] = m;
+  }
+
+  const namesBox = document.getElementById('names');
+  try { const n = localStorage.getItem('wot-names'); if (n !== null) namesBox.checked = n === '1'; } catch (e) {}
+  function syncLabels() {
+    const show = namesBox.checked && current === 'malad';
+    if (show && !map.hasLayer(DETAILS)) DETAILS.addTo(map);
+    if (!show && map.hasLayer(DETAILS)) DETAILS.remove();
+  }
+  namesBox.addEventListener('change', () => { try { localStorage.setItem('wot-names', namesBox.checked ? '1' : '0'); } catch (e) {} syncLabels(); });
+  const segBtns = document.querySelectorAll('.seg button');
+  function setLayer(name) {
+    if (name === current) return;
+    LAYERS[current].remove(); LAYERS[name].addTo(map); current = name;
+    segBtns.forEach(b => b.setAttribute('aria-checked', b.dataset.layer === name));
+    try { localStorage.setItem('wot-layer', name); } catch (e) {}
+    syncLabels();
+    document.body.classList.toggle('malad', name === 'malad');
+    if (selected) selected.setStyle(hiStyle());
+  }
+  segBtns.forEach(b => { b.setAttribute('aria-checked', b.dataset.layer === current); b.addEventListener('click', () => setLayer(b.dataset.layer)); });
+  syncLabels();
+  document.body.classList.toggle('malad', current === 'malad');
+
+  // Nationer: klicka för att markera hela nationen inom gränserna
+  var picking = false;
+  const nations = JSON.parse(document.getElementById('nations').textContent);
+  map.createPane('nations').style.zIndex = 350;
+  const hiStyle = () => current === 'malad'
+    ? {fillColor: '#f1d58a', fillOpacity: .24, stroke: true, color: '#f6e7b8', weight: 2, opacity: .85, dashArray: '7 6'}
+    : {fillColor: '#b8862b', fillOpacity: .16, stroke: true, color: '#7a1a12', weight: 2, opacity: .8, dashArray: '7 6'};
+  const offStyle = {fillOpacity: 0, stroke: false};
+  let selected = null, curPop = null;
+  function selectNation(poly, n, at) {
+    if (selected === poly) { clearNation(); return; }
+    if (selected) selected.setStyle(offStyle);
+    selected = poly; poly.setStyle(hiStyle());
+    const pop = L.popup({autoPan: false}).setLatLng(at)
+      .setContent(`<div class="pop"><h2>${esc(n.namn)}</h2><div class="meta">Nation · huvudstad ${esc(n.huvudstad)}</div><a href="${wiki(n.namn)}" target="_blank" rel="noopener">Läs mer på wikin</a></div>`);
+    curPop = pop;
+    pop.on('remove', () => { if (curPop === pop) { if (selected) selected.setStyle(offStyle); selected = null; curPop = null; } });
+    pop.openOn(map);
+  }
+  function clearNation() { if (curPop) map.closePopup(curPop); else if (selected) { selected.setStyle(offStyle); selected = null; } }
+  for (const n of nations) {
+    const latlngs = n.polygoner.map(ring => ring.map(([x, y]) => toLL(x * W, y * H)));
+    const poly = L.polygon(latlngs, {pane: 'nations', fillColor: '#f1d58a', ...offStyle, interactive: true, smoothFactor: 1.5});
+    poly.on('click', e => { if (picking) return; L.DomEvent.stopPropagation(e); selectNation(poly, n, e.latlng); });
+    poly.addTo(map);
+  }
+  map.on('click', () => { if (!picking) clearNation(); });
+
+  // Större markörer när man zoomar in
+  map.on('zoomend', () => { const z = map.getZoom(); for (const p of places) markers[p.id].setRadius((p.typ === 'huvudstad' ? 6 : 5) + Math.max(0, z - 2) * 1.5); });
+
+  const list = document.getElementById('list'), q = document.getElementById('q');
+  document.getElementById('count').textContent = places.length;
+  const sorted = [...places].sort((a, b) => a.namn.localeCompare(b.namn, 'sv'));
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ']/g, '');
+
+  function render() {
+    const t = norm(q.value.trim());
+    const hits = sorted.filter(p => !t || norm(p.namn).includes(t) || norm(p.land).includes(t));
+    list.innerHTML = hits.length ? hits.map(p => `<li><button data-id="${p.id}"><i class="dot" style="color:${COLORS[p.typ]}"></i><span class="nm">${esc(p.namn)}</span><span class="ld">${esc(p.land)}</span></button></li>`).join('')
+      : '<li class="empty">Ingen plats matchar.</li>';
+    return hits;
+  }
+  function go(id) {
+    const m = markers[id]; if (!m) return;
+    map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 4), {duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.8});
+    map.once('moveend', () => m.openPopup());
+    if (matchMedia('(max-width:600px)').matches) setOpen(false);
+  }
+  list.addEventListener('click', e => { const b = e.target.closest('button[data-id]'); if (b) go(b.dataset.id); });
+  q.addEventListener('input', render);
+  q.addEventListener('keydown', e => { if (e.key === 'Enter') { const h = render(); if (h[0]) go(h[0].id); } });
+  render();
+
+  const panel = document.getElementById('panel'), toggle = document.getElementById('toggle');
+  function setOpen(open) { panel.classList.toggle('closed', !open); toggle.setAttribute('aria-expanded', open); }
+  toggle.addEventListener('click', () => setOpen(panel.classList.contains('closed')));
+  if (matchMedia('(max-width:600px)').matches) setOpen(false);
+
+  // Koordinatverktyg: klicka på kartan för att få normaliserade x/y för nya platser
+  const pick = document.getElementById('pick'), coord = document.getElementById('coord'), coordText = document.getElementById('coordText');
+  let probe = null, lastRow = '';
+  pick.addEventListener('click', () => {
+    picking = !picking;
+    pick.setAttribute('aria-pressed', picking);
+    document.body.classList.toggle('picking', picking);
+    coord.classList.toggle('on', picking);
+    if (!picking && probe) { probe.remove(); probe = null; }
+  });
+  map.on('click', e => {
+    if (!picking) return;
+    const pt = fromLL(e.latlng);
+    if (pt.x < 0 || pt.y < 0 || pt.x > W || pt.y > H) return;
+    const x = (pt.x / W).toFixed(4), y = (pt.y / H).toFixed(4);
+    lastRow = `ny-plats,Ny plats,stad,,${x},${y},`;
+    coordText.textContent = `x ${x} · y ${y}  (px ${Math.round(pt.x)}, ${Math.round(pt.y)})`;
+    if (probe) probe.setLatLng(e.latlng); else probe = L.circleMarker(e.latlng, {radius: 7, color: '#8b1e1e', weight: 2, dashArray: '3 3', fillOpacity: 0}).addTo(map);
+  });
+  const copy = document.getElementById('copy');
+  copy.addEventListener('click', async () => {
+    if (!lastRow) return;
+    try { await navigator.clipboard.writeText(lastRow); copy.textContent = 'Kopierad'; }
+    catch (e) { copy.textContent = 'Markera texten'; }
+    setTimeout(() => copy.textContent = 'Kopiera rad', 1500);
+  });
+
+
+  // ---------- Karaktärsbiblioteket ----------
+  const chars = JSON.parse(document.getElementById('characters').textContent);
+  const BOOKS = ['New Spring', 'The Eye of the World', 'The Great Hunt', 'The Dragon Reborn', 'The Shadow Rising', 'The Fires of Heaven', 'Lord of Chaos', 'A Crown of Swords', 'The Path of Daggers', "Winter's Heart", 'Crossroads of Twilight', 'Knife of Dreams', 'The Gathering Storm', 'Towers of Midnight', 'A Memory of Light'];
+  const byId = Object.fromEntries(chars.map(c => [c.id, c]));
+  const placeById = Object.fromEntries(places.map(p => [p.id, p]));
+  const lib = document.getElementById('lib'), clist = document.getElementById('clist'), cart = document.getElementById('cart');
+  const cq = document.getElementById('cq'), chipsEl = document.getElementById('chips'), readTo = document.getElementById('readTo');
+  const initials = n => n.replace(/^al'/, '').split(/\s+/).map(w => w.replace(/^al'/, '')[0]).join('').slice(0, 2).toUpperCase();
+  const mono = (c, cls = '') => `<span class="mono ${cls}" style="background:${c.farg}" aria-hidden="true">${esc(initials(c.namn))}</span>`;
+  readTo.innerHTML = BOOKS.slice(1).map((b, i) => `<option value="${i + 1}">Bok ${i + 1}: ${esc(b)}</option>`).join('');
+  let maxBook = 14, group = 'Alla', openId = null, lastFocus = null;
+  try { const v = +localStorage.getItem('wot-readto'); if (v >= 1 && v <= 14) maxBook = v; } catch (e) {}
+  readTo.value = maxBook;
+  const groups = ['Alla', ...[...new Set(chars.flatMap(c => c.grupper))].sort((a, b) => a.localeCompare(b, 'sv'))];
+  chipsEl.innerHTML = groups.map(g => `<button class="chip" data-g="${esc(g)}" aria-pressed="${g === group}">${esc(g)}</button>`).join('');
+
+  function renderChars() {
+    const t = norm(cq.value.trim());
+    const hits = chars.filter(c => (group === 'Alla' || c.grupper.includes(group)) && (!t || norm(c.namn + ' ' + c.titel).includes(t)));
+    clist.innerHTML = hits.length ? hits.map(c => `<li><button data-c="${c.id}" aria-current="${c.id === openId}">${mono(c)}<span><span class="nm">${esc(c.namn)}</span><span class="t">${esc(c.titel)}</span></span></button></li>`).join('')
+      : '<li class="empty">Ingen karaktär matchar.</li>';
+  }
+  const placeBtn = id => placeById[id] ? `<button class="linkbtn" data-place="${id}">${esc(placeById[id].namn)}</button>` : '';
+  function openChar(id) {
+    const c = byId[id]; if (!c) return;
+    openId = id;
+    const shown = c.handelser.filter(h => h.bok <= maxBook), hidden = c.handelser.length - shown.length;
+    const origin = c.ursprung ? placeBtn(c.ursprung) : '';
+    const raised = c.uppvuxen && c.uppvuxen !== c.ursprung ? placeBtn(c.uppvuxen) : '';
+    cart.innerHTML = `
+      <button class="btn back" id="backList">&larr; Alla karaktärer</button>
+      <div class="art-head">${mono(c, 'big')}<div><h3>${esc(c.namn)}</h3><div class="ti">${esc(c.titel)}</div></div></div>
+      <dl class="facts">
+        ${origin ? `<div><dt>Född</dt><dd>${origin}</dd></div>` : ''}
+        ${raised ? `<div><dt>Uppvuxen</dt><dd>${raised}</dd></div>` : ''}
+        <div><dt>Första gången</dt><dd>Bok ${c.forsta_bok}: ${esc(BOOKS[c.forsta_bok])}</dd></div>
+        <div><dt>Grupper</dt><dd>${c.grupper.map(esc).join(', ')}</dd></div>
+      </dl>
+      <p class="lead">${esc(c.ingress)}</p>
+      <p>${esc(c.om)}</p>
+      <h4>Viktiga händelser</h4>
+      ${shown.length ? `<ol class="events">${shown.map(h => `<li><span class="bk">${h.bok ? 'Bok ' + h.bok : 'Före serien'}</span>${esc(h.text)}${h.plats && placeById[h.plats] ? ` <button class="linkbtn" data-place="${h.plats}">Visa på kartan</button>` : ''}${h.slag ? ` <button class="linkbtn" data-openbattle="${h.slag}">Läs om slaget</button>` : ''}</li>`).join('')}</ol>` : ''}
+      ${hidden ? `<p class="hidden-note">${hidden} ${hidden === 1 ? 'händelse' : 'händelser'} från senare böcker är dolda.</p>` : ''}
+      <h4>Relationer</h4>
+      <div class="rels">${c.relationer.filter(r => byId[r.id]).map(r => `<button class="rel" data-c="${r.id}">${mono(byId[r.id])}<span>${esc(byId[r.id].namn)} <small>${esc(r.text)}</small></span></button>`).join('')}</div>
+      <h4>Läs mer</h4>
+      <a href="${wiki(c.namn)}" target="_blank" rel="noopener">${esc(c.namn)} på Wheel of Time-wikin</a>`;
+    cart.scrollTop = 0;
+    lib.classList.add('show-art');
+    renderChars();
+  }
+  function openLib(id) {
+    lastFocus = document.activeElement;
+    lib.hidden = false;
+    renderChars();
+    openChar(id || openId || chars[0].id);
+    if (matchMedia('(max-width:760px)').matches && !id) lib.classList.remove('show-art');
+    cq.focus({preventScroll: true});
+    try { history.replaceState(null, '', '#karaktarer'); } catch (e) {}
+  }
+  function closeLib() {
+    lib.hidden = true;
+    try { if (location.hash === '#karaktarer') history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (lastFocus) lastFocus.focus({preventScroll: true});
+  }
+  document.getElementById('openLib').addEventListener('click', () => openLib());
+  document.getElementById('closeLib').addEventListener('click', closeLib);
+  lib.addEventListener('click', e => {
+    if (e.target === lib) return closeLib();
+    const cb = e.target.closest('[data-c]'); if (cb) return openChar(cb.dataset.c);
+    const pb = e.target.closest('[data-place]'); if (pb) { closeLib(); go(pb.dataset.place); return; }
+    const ob = e.target.closest('[data-openbattle]'); if (ob) { openBat(ob.dataset.openbattle); return; }
+    if (e.target.closest('#backList')) lib.classList.remove('show-art');
+  });
+  chipsEl.addEventListener('click', e => {
+    const b = e.target.closest('[data-g]'); if (!b) return;
+    group = b.dataset.g;
+    chipsEl.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x.dataset.g === group));
+    renderChars();
+  });
+  cq.addEventListener('input', renderChars);
+  function setMaxBook(v) { maxBook = v; readTo.value = v; readToB.value = v; try { localStorage.setItem('wot-readto', v); } catch (e) {} if (openId && !lib.hidden) openChar(openId); renderBattles(); if (bOpenId && !blib.hidden) openBattle(bOpenId); syncBattleMarkers(); }
+  readTo.addEventListener('change', () => setMaxBook(+readTo.value));
+  document.addEventListener('keydown', e => { if (e.key !== 'Escape' || !document.getElementById('anim').hidden) return; if (!lib.hidden) closeLib(); if (!blib.hidden) closeBat(); });
+  if (location.hash === '#karaktarer') setTimeout(() => openLib(), 200);
+
+
+  // ---------- Slagen ----------
+  const battles = JSON.parse(document.getElementById('battles').textContent);
+  const bById = Object.fromEntries(battles.map(b => [b.id, b]));
+  const blib = document.getElementById('blib'), blist = document.getElementById('blist'), bart = document.getElementById('bart');
+  const bq = document.getElementById('bq'), readToB = document.getElementById('readToB');
+  readToB.innerHTML = readTo.innerHTML; readToB.value = maxBook;
+  readToB.addEventListener('change', () => setMaxBook(+readToB.value));
+  const SW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l11 11M15 15l3 3M17 13l-4 4M20 20l-2-2"/><path d="M20 4L9 15M9 15l-3 3M7 13l4 4M4 20l2-2"/></svg>';
+  const swords = (cls = '') => `<span class="swords ${cls}" aria-hidden="true">${SW}</span>`;
+  const bokTxt = n => n === 0 ? 'Före serien (New Spring)' : `Bok ${n}: ${BOOKS[n]}`;
+  const bVisible = b => b.bok <= maxBook;
+  let bOpenId = null, bLastFocus = null;
+
+  // Kartlager: markör + diskret slagområde per slag
+  map.createPane('battles'); map.getPane('battles').style.zIndex = 640;
+  map.createPane('battleArea'); map.getPane('battleArea').style.zIndex = 360;
+  const showBat = document.getElementById('showBat');
+  try { const v = localStorage.getItem('wot-battles'); if (v !== null) showBat.checked = v === '1'; } catch (e) {}
+  const bMarkers = {}, bAreas = {};
+  for (const b of battles) {
+    const ll = toLL(b.xy[0] * W, b.xy[1] * H);
+    bAreas[b.id] = L.circle(ll, {pane: 'battleArea', radius: b.radie / 16, color: '#7a1a12', weight: 2, dashArray: '6 6', fillColor: '#b8862b', fillOpacity: .14, interactive: false});
+    const side = battles.filter(o => o.plats === b.plats).indexOf(b) % 2 ? 'left' : '';
+    const icon = L.divIcon({className: '', html: `<span class="bwrap ${side}"><span class="bmark">${SW}</span></span>`, iconSize: [0, 0], iconAnchor: [0, 0], popupAnchor: [0, -14]});
+    const m = L.marker(ll, {icon, pane: 'battles', keyboard: true, title: b.sv, alt: b.sv});
+    m.bindTooltip(esc(b.sv), {direction: 'top', offset: [0, -16]});
+    m.bindPopup(() => `<div class="pop"><b>${esc(b.sv)}</b><div class="meta">${esc(b.datum)} · ${esc(bokTxt(b.bok))}</div><p>${esc(b.ingress)}</p><button class="linkbtn" data-battle="${b.id}">Läs om slaget</button></div>`, {maxWidth: 300});
+    m.on('popupopen', () => bAreas[b.id].addTo(map));
+    m.on('popupclose', () => bAreas[b.id].remove());
+    bMarkers[b.id] = m;
+  }
+  // Samma storlek som städernas ikoner: följer cirkelmarkörernas radie vid varje zoomnivå
+  const sizeBattles = () => { const r = 6 + Math.max(0, map.getZoom() - 2) * 1.5; map.getContainer().style.setProperty('--bs', Math.round(2 * r + 4) + 'px'); };
+  map.on('zoomend', sizeBattles); sizeBattles();
+  function syncBattleMarkers() {
+    for (const b of battles) {
+      const on = showBat.checked && bVisible(b);
+      if (on && !map.hasLayer(bMarkers[b.id])) bMarkers[b.id].addTo(map);
+      if (!on && map.hasLayer(bMarkers[b.id])) { bMarkers[b.id].remove(); bAreas[b.id].remove(); }
+    }
+  }
+  showBat.addEventListener('change', () => { try { localStorage.setItem('wot-battles', showBat.checked ? '1' : '0'); } catch (e) {} syncBattleMarkers(); });
+  syncBattleMarkers();
+  document.getElementById('map').addEventListener('click', e => { const b = e.target.closest('[data-battle]'); if (b) openBat(b.dataset.battle); });
+
+  function showBattle(id) {
+    const b = bById[id]; if (!b) return;
+    if (!showBat.checked) { showBat.checked = true; syncBattleMarkers(); }
+    const m = bMarkers[id], area = bAreas[id];
+    area.addTo(map);
+    const z = Math.max(3, Math.min(5, map.getBoundsZoom(area.getBounds().pad(.6))));
+    map.flyTo(m.getLatLng(), z, {duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 0.9});
+    map.once('moveend', () => {
+      m.openPopup();
+      const el = m.getElement()?.querySelector('.bmark');
+      if (el) { el.classList.remove('on'); void el.offsetWidth; el.classList.add('on'); }
+    });
+    if (matchMedia('(max-width:600px)').matches) setOpen(false);
+  }
+
+  function renderBattles() {
+    const t = norm(bq.value.trim());
+    const hits = [...battles].sort((a, b) => a.bok - b.bok).filter(b => !t || norm([b.sv, b.namn, b.andranamn, placeById[b.plats]?.namn || '', ...b.parter.flatMap(p => p.befal)].join(' ')).includes(t));
+    blist.innerHTML = hits.length ? hits.map(b => bVisible(b)
+      ? `<li><button data-b="${b.id}" aria-current="${b.id === bOpenId}">${swords()}<span><span class="nm">${esc(b.sv)}</span><span class="t">${esc(bokTxt(b.bok))}</span></span></button></li>`
+      : `<li><button disabled>${swords()}<span><span class="nm">Dolt slag</span><span class="t">Bok ${b.bok}, efter din läsgräns</span></span></button></li>`).join('')
+      : '<li class="empty">Inget slag matchar.</li>';
+  }
+  function openBattle(id) {
+    const b = bById[id]; if (!b) return;
+    if (!bVisible(b)) { bart.innerHTML = '<p class="hidden-note">Det här slaget ligger efter din läsgräns.</p>'; return; }
+    bOpenId = id;
+    const pl = placeById[b.plats];
+    const people = b.karaktarer.filter(c => byId[c]);
+    bart.innerHTML = `
+      <button class="btn back" id="backBList">&larr; Alla slag</button>
+      <div class="art-head">${swords('big')}<div><h3>${esc(b.sv)}</h3><div class="ti">${esc(b.namn)}${b.andranamn ? ' · ' + esc(b.andranamn) : ''}</div></div></div>
+      <dl class="facts">
+        <div><dt>När</dt><dd>${esc(b.datum)}</dd></div>
+        ${pl ? `<div><dt>Var</dt><dd><button class="linkbtn" data-show="${b.id}">${esc(pl.namn)}</button></dd></div>` : ''}
+        <div><dt>Bok</dt><dd>${esc(bokTxt(b.bok))}</dd></div>
+        <div><dt>Kapitel</dt><dd>${esc(b.kapitel)}</dd></div>
+      </dl>
+      <p class="lead">${esc(b.ingress)}</p>
+      <div class="bat-actions"><button class="btn lib-btn" data-show="${b.id}">${SW}Visa på kartan</button>${b.animation ? `<button class="btn lib-btn anim-btn" data-anim="${esc(b.animation)}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Se slaget</button>` : ''}${b.export ? `<button class="btn lib-btn" data-export="${b.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 14v6h14v-6"/></svg>Exportera</button>` : ''}</div>
+      <h4>Bakgrund</h4>
+      <p>${esc(b.bakgrund)}</p>
+      <h4>Parterna</h4>
+      <div class="sides">${b.parter.map(p => `<div class="side"><h5>${esc(p.sida)}</h5><ul>${p.befal.map(x => `<li>${esc(x)}</li>`).join('')}</ul><p>${esc(p.styrka)}</p></div>`).join('')}</div>
+      <h4>Slagets förlopp</h4>
+      <ol class="events">${b.forlopp.map(f => `<li><b>${esc(f.rubrik)}</b>${esc(f.text)}</li>`).join('')}</ol>
+      <h4>Utfall</h4>
+      <p class="outcome">${esc(b.utfall)}</p>
+      <h4>Betydelse för berättelsen</h4>
+      <p>${esc(b.betydelse)}</p>
+      ${(() => { const all = b.senare || [], sh = all.filter(x => x.bok <= maxBook), hid = all.length - sh.length;
+        return (sh.length ? `<h4>Senare i serien</h4><ol class="events">${sh.map(x => `<li><span class="bk">Bok ${x.bok}</span>${esc(x.text)}</li>`).join('')}</ol>` : '')
+          + (hid ? `<p class="hidden-note">${hid === 1 ? 'En senare följd' : hid + ' senare följder'} från böcker efter din läsgräns är dolda.</p>` : ''); })()}
+      ${people.length ? `<h4>Karaktärer i slaget</h4><div class="rels">${people.map(c => `<button class="rel" data-c="${c}">${mono(byId[c])}<span>${esc(byId[c].namn)}</span></button>`).join('')}</div>` : ''}
+      <h4>Källor</h4>
+      <ul class="src">${b.kallor.map(k => `<li><a href="${esc(k.url)}" target="_blank" rel="noopener">${esc(k.titel)}</a></li>`).join('')}</ul>`;
+    bart.scrollTop = 0;
+    blib.classList.add('show-art');
+    renderBattles();
+  }
+  function openBat(id) {
+    if (!lib.hidden) closeLib();
+    bLastFocus = document.activeElement;
+    blib.hidden = false;
+    renderBattles();
+    const first = [...battles].sort((a, b) => a.bok - b.bok).find(bVisible);
+    const target = (id && bVisible(bById[id] || {bok: 99})) ? id : (bOpenId || first?.id);
+    if (target) openBattle(target);
+    if (matchMedia('(max-width:760px)').matches && !id) blib.classList.remove('show-art');
+    bq.focus({preventScroll: true});
+    try { history.replaceState(null, '', '#slag'); } catch (e) {}
+  }
+  function closeBat() {
+    blib.hidden = true;
+    try { if (location.hash === '#slag') history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (bLastFocus && document.contains(bLastFocus)) bLastFocus.focus({preventScroll: true});
+  }
+  document.getElementById('openBat').addEventListener('click', () => openBat());
+  document.getElementById('closeBat').addEventListener('click', closeBat);
+  blib.addEventListener('click', e => {
+    if (e.target === blib) return closeBat();
+    const bb = e.target.closest('[data-b]'); if (bb) return openBattle(bb.dataset.b);
+    const sb = e.target.closest('[data-show]'); if (sb) { closeBat(); showBattle(sb.dataset.show); return; }
+    const ab = e.target.closest('[data-anim]'); if (ab) { openAnim(ab.dataset.anim); return; }
+    const xb = e.target.closest('[data-export]'); if (xb) { openExport(xb.dataset.export); return; }
+    const cb = e.target.closest('[data-c]'); if (cb) { closeBat(); openLib(cb.dataset.c); return; }
+    if (e.target.closest('#backBList')) blib.classList.remove('show-art');
+  });
+  bq.addEventListener('input', renderBattles);
+
+  // ---------- Slagsanimationer ----------
+  const anim = document.getElementById('anim'), animFrame = document.getElementById('animFrame');
+  let animLast = null;
+  function openAnim(src) { animLast = document.activeElement; animFrame.src = src; anim.hidden = false; setTimeout(() => { try { animFrame.focus(); } catch (e) {} }, 50); }
+  function closeAnim() { anim.hidden = true; animFrame.src = 'about:blank'; if (animLast && document.contains(animLast)) animLast.focus({preventScroll: true}); }
+  document.getElementById('closeAnim').addEventListener('click', closeAnim);
+
+  // ---------- Export av slag ----------
+  const exp = document.getElementById('exp'), expMsg = document.getElementById('expMsg'), expUrl = document.getElementById('expUrl');
+  const dlCap = (async () => { try { return window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { return null; } })();
+  let expB = null, expLast = null;
+  function openExport(id) {
+    expB = bById[id]; if (!expB || !expB.export) return;
+    expLast = document.activeElement;
+    document.getElementById('expTitle').textContent = 'Exportera: ' + expB.sv;
+    document.getElementById('expVidNote').textContent = expB.export.minuter ? `Videon är en inspelning av hela slaget (cirka ${expB.export.minuter} minuter).` : '';
+    expUrl.value = expB.export.url; document.getElementById('expOpen').href = expB.export.url;
+    expMsg.textContent = ''; exp.hidden = false; document.getElementById('expCopy').focus();
+  }
+  function closeExport() { exp.hidden = true; if (expLast && document.contains(expLast)) expLast.focus({preventScroll: true}); }
+  async function expSave(url, filename) {
+    expMsg.textContent = 'Förbereder ' + filename + ' …';
+    try {
+      const blob = await (await fetch(url)).blob(), d = await dlCap;
+      if (d) await d.save({filename, data: blob});
+      else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); a.remove(); }
+      expMsg.textContent = '';
+    } catch (e) {
+      const c = e && e.code;
+      expMsg.textContent = c === 'declined' ? '' : c === 'rate_limited' ? 'Vänta en stund och försök igen.' : c === 'host_unavailable' ? 'Öppna kartan i en webbläsare för att spara filen.' : 'Nedladdningen gick inte här.';
+    }
+  }
+  document.getElementById('expCopy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(expUrl.value); expMsg.textContent = 'Länken är kopierad.'; }
+    catch (e) { expUrl.focus(); expUrl.select(); expMsg.textContent = 'Länken är markerad – kopiera den med Ctrl+C (Cmd+C).'; }
+  });
+  document.getElementById('expHtml').addEventListener('click', () => expSave(expB.export.html, expB.export.namn + '.html'));
+  document.getElementById('expVideo').addEventListener('click', () => expSave(expB.export.video, expB.export.namn + '.mp4'));
+  document.getElementById('closeExp').addEventListener('click', closeExport);
+  exp.addEventListener('click', e => { if (e.target === exp) closeExport(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !exp.hidden) { e.stopImmediatePropagation(); closeExport(); } }, true);
+  window.addEventListener('message', e => {
+    const d = e.data || {};
+    if (d.type === 'wot-open-char' && byId[d.id]) { closeAnim(); closeBat(); openLib(d.id); }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !anim.hidden) closeAnim(); });
+  if (location.hash === '#slag') setTimeout(() => openBat(), 200);
+
+  const fromHash = () => { const id = location.hash.slice(1); if (markers[id]) go(id); };
+  window.addEventListener('hashchange', fromHash);
+  setTimeout(fromHash, 300);
+}
+</script>
+</body>
+</html>

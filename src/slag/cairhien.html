@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andra slaget om Cairhien</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+/* VOICE: a general's war table, quiet and grave
+   IDEA: Rome: Total War — painted campaign map, then a battle field seen from above, units under standards
+   COLOUR and TYPE: bronze and dark wood UI, parchment text, crimson for Two Rivers, black-rust for the Shadow, white-gold for the Children; Cinzel titles, Alegreya Sans text */
+:root{--wood:#1c1410;--wood-2:#2a1f17;--bronze:#a8843f;--gold:#e0c27a;--parch:#efe3c4;--ink:#efe3c4;--muted:#bba987;--tr:#a8221c;--shadow:#2b1d1a;--wc:#f3efe2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0d0a08;color:var(--ink);font:16px/1.45 "Alegreya Sans",system-ui,sans-serif;overflow:hidden}
+#stage{position:fixed;inset:0;overflow:hidden;background:#0d0a08}
+.world{position:absolute;left:0;top:0;width:2000px;height:1250px;transform-origin:0 0;transition:opacity .9s ease}
+.world canvas{position:absolute;inset:0;width:2000px;height:1250px}
+.world svg{position:absolute;inset:0;width:2000px;height:1250px;overflow:visible}
+.world.off{opacity:0;pointer-events:none}
+.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgb(0 0 0 / .55) 100%)}
+.lbl{font:700 22px Cinzel,Georgia,serif;fill:#f6ead0;stroke:#1d140c;stroke-width:5px;paint-order:stroke;letter-spacing:.06em}
+.lbl.s{font-size:15px;stroke-width:4px}.lbl.xs{font-size:12px;stroke-width:3.5px;font-family:"Alegreya Sans",sans-serif;font-weight:700;letter-spacing:.02em}
+.lbl.region{font-size:30px;fill:#f0dfb2;opacity:.85;letter-spacing:.3em}
+.unit{cursor:pointer}
+.unit .sel{fill:none;pointer-events:none;stroke:#f6e7b8;stroke-width:2.5;opacity:0}
+.unit.hl .sel{opacity:1;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{stroke-width:5;opacity:.5}}
+.fade{transition:opacity .7s ease}
+.hidden{opacity:0;pointer-events:none}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flame .45s ease-in-out infinite alternate}
+.flame.b{animation-duration:.6s;animation-delay:-.2s}.flame.c{animation-duration:.38s;animation-delay:-.1s}
+@keyframes flame{from{transform:scale(.85,.8)}to{transform:scale(1.08,1.15) skewX(-4deg)}}
+.glow{animation:glow 1.3s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.35}to{opacity:.6}}
+.smoke circle{transform-box:fill-box;transform-origin:center;animation:smoke 3.6s linear infinite;opacity:0}
+@keyframes smoke{0%{transform:translate(0,0) scale(.5);opacity:0}15%{opacity:.55}100%{transform:translate(26px,-70px) scale(1.9);opacity:0}}
+#rain line{stroke:#bcd2e0;stroke-width:1.4;opacity:.55;animation:fall .6s linear infinite}
+@keyframes fall{from{transform:translate(0,-60px)}to{transform:translate(-14px,60px)}}
+@media(prefers-reduced-motion:reduce){.unit.hl .sel,.flame,.glow,#rain line{animation:none}.smoke circle{animation:none;opacity:.35}}
+
+/* ---------- UI i Total War-anda ---------- */
+.plate{background:linear-gradient(#2c2119,#18110c);border:1px solid #5d4726;box-shadow:inset 0 0 0 1px #0c0806,inset 0 1px 0 #6b5634,0 8px 24px rgb(0 0 0 / .6);border-radius:4px}
+.plate::before{content:"";position:absolute;inset:3px;border:1px solid rgb(224 194 122 / .35);border-radius:2px;pointer-events:none}
+#title{position:fixed;top:14px;left:50%;transform:translateX(-50%);padding:10px 34px 12px;text-align:center;min-width:min(520px,80vw)}
+#title .k{font:600 12px Cinzel,Georgia,serif;letter-spacing:.32em;color:var(--bronze);text-transform:uppercase}
+#title h1{margin:2px 0 0;font:700 clamp(20px,2.6vw,30px)/1.1 Cinzel,Georgia,serif;color:var(--gold);letter-spacing:.04em;text-shadow:0 2px 0 #000}
+#title .d{font-size:14px;color:var(--muted);margin-top:2px}
+#advisor{position:fixed;left:16px;bottom:16px;width:min(430px,calc(100vw - 32px));display:flex;gap:14px;padding:14px 16px 14px 14px}
+#advisor .face{flex:none;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#7a2a20,#3a0f0b);border:2px solid var(--bronze);display:grid;place-items:center;box-shadow:inset 0 0 8px #000}
+#advisor .face svg{width:34px;height:34px;color:var(--gold)}
+#advisor .who{font:700 13px Cinzel,Georgia,serif;color:var(--bronze);letter-spacing:.12em;text-transform:uppercase}
+#advisor p{margin:3px 0 0;font-size:16.5px;color:var(--parch);min-height:5.6em}
+#cards{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;display:flex;gap:8px;padding:8px;max-width:calc(100vw - 940px);min-width:120px;overflow-x:auto}
+.card{position:relative;flex:none;width:78px;height:104px;border-radius:3px;border:1px solid #7a6033;background:linear-gradient(#3a2b1e,#1a120c);color:var(--parch);cursor:pointer;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;font:600 11px/1.15 "Alegreya Sans",sans-serif;text-align:center;box-shadow:inset 0 0 0 1px #000}
+.card .art{position:absolute;inset:4px 4px 30px;border-radius:2px;display:grid;place-items:center;overflow:hidden}
+.card .art svg{width:46px;height:46px}
+.card .nm{position:relative;padding:0 4px 6px}
+.card[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 0 14px rgb(224 194 122 / .5)}
+.card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.card.new{animation:cardIn .5s ease-out}
+@keyframes cardIn{from{transform:translateY(20px);opacity:0}}
+#info{position:fixed;left:50%;transform:translateX(-50%);bottom:142px;width:min(420px,calc(100vw - 32px));padding:14px 18px 16px}
+#info[hidden]{display:none}
+#info h2{margin:0;font:700 19px Cinzel,Georgia,serif;color:var(--gold)}
+#info .side{font-size:13px;color:var(--bronze);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+#info dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
+#info dt{color:var(--muted)}#info dd{margin:0}
+#info p{margin:10px 0 0;font-size:15px}
+#info .links{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+#info .links button{font:600 14px "Alegreya Sans",sans-serif;color:var(--wood);background:var(--gold);border:0;border-radius:3px;padding:5px 10px;cursor:pointer}
+#info .x{position:absolute;right:8px;top:6px;background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+#ctrl{position:fixed;right:16px;bottom:16px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;width:min(440px,calc(100vw - 32px))}
+#ctrl .row{display:flex;align-items:center;gap:8px}
+.cb{width:44px;height:40px;display:grid;place-items:center;border-radius:3px;border:1px solid #7a6033;background:linear-gradient(#4a3826,#251a11);color:var(--gold);cursor:pointer}
+.cb svg{width:18px;height:18px}
+.cb.big{width:56px}
+.cb:hover{border-color:var(--gold)}.cb:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.cb[disabled]{opacity:.4;cursor:default}
+.speed{margin-left:auto;display:flex;border:1px solid #7a6033;border-radius:3px;overflow:hidden}
+.speed button{font:600 13px "Alegreya Sans",sans-serif;min-width:38px;height:40px;border:0;background:#241a12;color:var(--muted);cursor:pointer}
+.speed button+button{border-left:1px solid #4d3b22}
+.speed button[aria-pressed=true]{background:var(--bronze);color:#1a120b}
+#scnRow{display:flex;gap:4px;align-items:center}
+.rl{flex:none;width:40px;font:700 10px Cinzel,Georgia,serif;color:var(--bronze);letter-spacing:.12em;text-transform:uppercase}
+#scnRow button{flex:1;height:30px;min-width:0;border:1px solid #5d4726;border-radius:2px;background:#241a12;color:var(--muted);font:700 12px Cinzel,Georgia,serif;cursor:pointer;padding:0}
+#scnRow button.done{background:#3d2e1c;color:var(--parch)}
+#scnRow button[aria-current=true]{background:var(--bronze);color:#1a120b;border-color:var(--gold)}
+#scnRow button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#pips{display:flex;gap:4px;align-items:center}
+#clock{position:fixed;left:16px;top:74px;padding:8px 16px;font:700 15px Cinzel,Georgia,serif;color:var(--gold);letter-spacing:.08em}
+#clock[hidden]{display:none}
+.boom{transform-box:fill-box;transform-origin:center;animation:boom .9s ease-out forwards}
+@keyframes boom{0%{transform:scale(.2);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.scn{display:flex;gap:3px;flex:1;align-items:center}
+.scn+.scn{margin-left:8px}
+.scn b{font:700 11px Cinzel,Georgia,serif;color:var(--bronze);margin-right:4px;white-space:nowrap}
+.pip{flex:1;height:22px;min-width:14px;border:0;padding:0;border-radius:3px;background:#3a2c1d;cursor:pointer;box-shadow:inset 0 0 0 1px #5d4726;font:700 11px Cinzel,Georgia,serif;color:var(--muted)}
+.pip:hover{box-shadow:inset 0 0 0 1px var(--gold)}
+.pip.done{background:#8a6c34;color:#f3e2b8}.pip.cur{background:var(--gold);color:#1a120b}
+.pip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#note{font-size:12.5px;color:var(--muted)}
+#compass{position:fixed;top:18px;right:20px;width:64px;height:64px;opacity:.9}
+#dl{position:fixed;right:94px;top:22px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding:0;background:none;border:0;box-shadow:none}
+#dl::before{display:none}
+#dl:not(.open) #dlVideo,#dl:not(.open) #dlHtml{display:none}
+#dl.open #dlVideo,#dl.open #dlHtml{background:#2a1f17;box-shadow:0 6px 18px rgb(0 0 0 / .55)}
+#dl[hidden]{display:none}
+#dl a,#dl button{display:flex;align-items:center;gap:8px;font:600 14px "Alegreya Sans",sans-serif;color:var(--gold);background:linear-gradient(#4a3826,#251a11);border:1px solid #7a6033;border-radius:3px;padding:7px 12px;cursor:pointer;text-decoration:none}
+#dl a:hover,#dl button:hover{border-color:var(--gold)}
+#dl svg{width:16px;height:16px}
+#info .links a{font:600 14px "Alegreya Sans",sans-serif;color:var(--wood);background:var(--gold);border-radius:3px;padding:5px 10px;text-decoration:none}
+body.video #ctrl,body.video #cards,body.video #info,body.video #dl{display:none!important}
+body.video #advisor{width:min(620px,46vw)}body.video #advisor p{font-size:20px;min-height:0}
+@media (max-width:1100px){#cards{left:16px;right:16px;transform:none;max-width:none;bottom:auto;top:110px;justify-content:flex-start}#info{bottom:auto;top:230px}}
+#dlToggle{display:grid!important;place-items:center;width:44px;height:40px;padding:0!important}#dlToggle svg{width:18px;height:18px}
+/* Mobil: panelerna staplas, kartan får ytan mellan dem (positioner sätts av layout()) */
+body.m #stage{left:0;right:0}
+body.m #title{top:8px;left:8px;right:8px;transform:none;min-width:0;padding:6px 52px 7px 12px;text-align:left}
+body.m #title .k{font-size:10px;letter-spacing:.2em}body.m #title h1{font-size:19px}body.m #title .d{display:none}
+body.m #compass{display:none}
+body.m #advisor{left:8px;right:8px;width:auto;bottom:auto;padding:8px 10px;gap:10px}
+body.m #advisor .face{width:30px;height:30px;border-width:1.5px}body.m #advisor .face svg{width:18px;height:18px}
+body.m #advisor .who{font-size:10px}body.m #advisor p{font-size:14.5px;line-height:1.35;min-height:0;margin-top:1px}
+body.m #clock{left:14px;padding:3px 10px;font-size:12px}
+body.m #cards{left:8px;right:8px;transform:none;max-width:none;min-width:0;top:auto;padding:5px;gap:5px;justify-content:flex-start}
+body.m .card{width:60px;height:66px}body.m .card .art{inset:3px 3px 24px}body.m .card .art svg{width:24px;height:24px}
+body.m .card .nm{font-size:9.5px;line-height:1.05;padding:0 2px 4px}
+body.m #ctrl{left:8px;right:8px;bottom:8px;width:auto;padding:8px 10px;gap:7px}
+body.m .cb{width:42px;height:34px}body.m .cb.big{width:50px}body.m .speed button{height:34px;min-width:34px}
+body.m #scnRow button{height:28px;font-size:12px}body.m .pip{height:26px}body.m #note{display:none}
+body.m #info{left:8px;right:8px;transform:none;width:auto;top:auto;max-height:42vh;overflow:auto;padding:10px 14px 12px}
+body.m #info h2{font-size:17px}body.m #info dl,body.m #info p{font-size:14px}
+body.m #dl{top:12px;right:12px}body.m #dlToggle{width:38px;height:34px}
+body.m #dlMsg{background:#1c1410;border-radius:3px;padding:0 4px}
+/* Liggande mobil (låg höjd): krönika nere till vänster, kontroller nere till höger, korten döljs (klicka på trupperna) */
+body.ms #title{padding:5px 22px 6px}body.ms #title .d{display:none}body.ms #title h1{font-size:18px}body.ms #title .k{font-size:10px}
+body.ms #compass,body.ms #note,body.ms #cards{display:none!important}
+body.ms #advisor{left:8px;bottom:8px;width:calc(50vw - 14px);padding:7px 10px;gap:8px}body.ms #advisor p{font-size:13.5px;line-height:1.3;min-height:0}body.ms #advisor .face{width:28px;height:28px}body.ms #advisor .face svg{width:17px;height:17px}body.ms #advisor .who{font-size:10px}
+body.ms #ctrl{right:8px;bottom:8px;width:calc(50vw - 14px);padding:7px 9px;gap:6px}
+body.ms .cb{height:30px;width:38px}body.ms .cb.big{width:44px}body.ms .speed button{height:30px;min-width:32px}body.ms #scnRow button{height:24px;font-size:11px}body.ms .pip{height:20px}
+body.ms #clock{top:10px;left:8px;padding:3px 9px;font-size:12px}
+body.ms #info{left:auto;right:8px;transform:none;top:8px;bottom:auto;width:min(360px,48vw);max-height:calc(100vh - 120px);overflow:auto;padding:10px 12px}
+body.ms #dl{top:8px;right:8px}body.ms #dlToggle{width:38px;height:32px}
+body.m .unit text{display:none}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+<style>
+html:not(.js) #stage,html:not(.js) .vignette,html:not(.js) #title,html:not(.js) #advisor,html:not(.js) #cards,html:not(.js) #ctrl,html:not(.js) #compass,html:not(.js) #clock,html:not(.js) #info,html:not(.js) #dl{display:none!important}
+html:not(.js),html:not(.js) body{overflow:auto!important;height:auto}
+html.js .sb{display:none}
+.sb{max-width:900px;margin:0 auto;padding:24px 16px 48px}
+.sb h1{font:700 30px/1.15 Cinzel,Georgia,serif;color:#e0c27a;margin:8px 0 4px;text-align:center}
+.sb .lead{color:#bba987;text-align:center;margin:0 0 20px}
+.sb .tip{background:#2a1f17;border:1px solid #7a6033;border-radius:6px;padding:12px 14px;color:#efe3c4;margin:0 0 26px;font-size:15px}
+.sb section{margin:0 0 34px}
+.sb .k{font:600 12px Cinzel,Georgia,serif;letter-spacing:.28em;color:#a8843f;text-transform:uppercase}
+.sb h2{font:700 22px Cinzel,Georgia,serif;color:#e0c27a;margin:2px 0 2px}
+.sb .d{color:#bba987;font-size:14px;margin:0 0 10px}
+.sb img{width:100%;height:auto;display:block;border:1px solid #5d4726;border-radius:4px;margin:0 0 12px}
+.sb ol{margin:0;padding-left:22px;color:#efe3c4}.sb li{margin:0 0 8px}
+</style>
+</head>
+<body>
+<!--STORYBOARD-->
+<div id="stage">
+  <div class="world" id="w-campaign"><canvas id="cv-campaign"></canvas><svg id="sv-campaign" viewBox="0 0 2000 1250"></svg></div>
+  <div class="world off" id="w-battle"><canvas id="cv-battle"></canvas><svg id="sv-battle" viewBox="0 0 2000 1250"></svg></div>
+</div>
+<div class="vignette"></div>
+<svg id="compass" viewBox="-32 -32 64 64" aria-hidden="true"><circle r="29" fill="#1c1410" stroke="#a8843f" stroke-width="2"/><circle r="24" fill="none" stroke="#5d4726"/><path d="M0-22L5 0 0 4-5 0Z" fill="#e0c27a"/><path d="M0 22L5 0 0-4-5 0Z" fill="#6b5634"/><text y="-9" x="0" font-size="9" text-anchor="middle" fill="#1c1410" font-family="Cinzel,Georgia,serif" font-weight="700" transform="translate(0,-15)">N</text></svg>
+
+<header id="title" class="plate"><div class="k" id="tk">Scen 1</div><h1 id="th">Andra slaget om Cairhien</h1><div class="d" id="td"></div></header>
+
+<section id="advisor" class="plate" aria-live="polite">
+  <div class="face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c4-1 6-4 6-9 0-3 2-6 5-7-1 3 0 5 2 6s2 4 0 6-5 3-9 4z"/><path d="M8 17l-3 3"/></svg></div>
+  <div><div class="who" id="who">Krönikan</div><p id="say"></p></div>
+</section>
+
+<nav id="cards" class="plate" aria-label="Styrkor i scenen"></nav>
+<div id="clock" class="plate" hidden aria-live="polite"></div>
+<div id="dl" class="plate" hidden>
+  <button id="dlToggle" aria-label="Ladda ner" title="Ladda ner video eller HTML" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg></button>
+  <button id="dlVideo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>Ladda ner video</button>
+  <span id="dlMsg" role="status" style="font-size:13px;color:var(--muted);max-width:220px"></span>
+  <button id="dlHtml"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>Ladda ner HTML</button>
+</div>
+<section id="info" class="plate" hidden aria-live="polite"></section>
+
+<section id="ctrl" class="plate" aria-label="Uppspelning">
+  <div class="row">
+    <button class="cb" id="bPrev" aria-label="Föregående steg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+    <button class="cb big" id="bPlay" aria-label="Spela"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></button>
+    <button class="cb" id="bNext" aria-label="Nästa steg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+    <div class="speed" role="group" aria-label="Hastighet"><button data-s=".5" aria-pressed="false">½×</button><button data-s="1" aria-pressed="true">1×</button><button data-s="2" aria-pressed="false">2×</button></div>
+  </div>
+  <div id="scnRow" role="group" aria-label="Scener"></div>
+  <div id="pips"></div>
+  <div id="note">Stadens och slagfältets utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.</div>
+</section>
+
+<script>
+'use strict';
+// ================= Hjälpfunktioner =================
+const W = 2000, H = 1250, RES = 1.6;
+const NS = 'http://www.w3.org/2000/svg';
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function smoothPath(pts, closed = false) {
+  // Catmull-Rom -> Bézier
+  const p = closed ? [pts[pts.length - 1], ...pts, pts[0], pts[1]] : [pts[0], ...pts, pts[pts.length - 1]];
+  let d = `M${p[1][0]},${p[1][1]}`;
+  for (let i = 1; i < p.length - 2; i++) {
+    const [x0, y0] = p[i - 1], [x1, y1] = p[i], [x2, y2] = p[i + 1], [x3, y3] = p[i + 2];
+    d += `C${x1 + (x2 - x0) / 6},${y1 + (y2 - y0) / 6} ${x2 - (x3 - x1) / 6},${y2 - (y3 - y1) / 6} ${x2},${y2}`;
+  }
+  return d + (closed ? 'Z' : '');
+}
+function blob(cx, cy, rx, ry, seed, amp = .22, n = 28) {
+  const r = rng(seed), ph = [r() * 6.3, r() * 6.3, r() * 6.3], pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = i / n * Math.PI * 2;
+    const k = 1 + amp * (Math.sin(a * 2 + ph[0]) * .5 + Math.sin(a * 3 + ph[1]) * .3 + Math.sin(a * 5 + ph[2]) * .2);
+    pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]);
+  }
+  return pts;
+}
+function polyPath2D(pts) { return new Path2D(smoothPath(pts, true)); }
+
+// ================= Målade kartor (canvas) =================
+function setupCanvas(id) {
+  const c = document.getElementById(id); c.width = W * RES; c.height = H * RES;
+  const g = c.getContext('2d'); g.scale(RES, RES); return g;
+}
+function noise(g, cell, alpha, op, seed) {
+  const r = rng(seed), w = Math.ceil(W / cell) + 2, h = Math.ceil(H / cell) + 2;
+  const n = document.createElement('canvas'); n.width = w; n.height = h;
+  const ng = n.getContext('2d'), im = ng.createImageData(w, h);
+  for (let i = 0; i < w * h; i++) { const v = r() * 255; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; }
+  ng.putImageData(im, 0, 0);
+  g.save(); g.globalAlpha = alpha; g.globalCompositeOperation = op; g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+  g.drawImage(n, -cell, -cell, w * cell, h * cell); g.restore();
+}
+function grain(g, seed) { noise(g, 2.2, .10, 'overlay', seed); noise(g, 9, .16, 'soft-light', seed + 1); noise(g, 60, .30, 'soft-light', seed + 2); noise(g, 220, .35, 'soft-light', seed + 3); }
+function river(g, pts, w) {
+  const p = new Path2D(smoothPath(pts));
+  g.save(); g.lineCap = 'round'; g.lineJoin = 'round';
+  g.strokeStyle = 'rgba(58,52,30,.55)'; g.lineWidth = w + 10; g.stroke(p);
+  g.strokeStyle = '#4a6a70'; g.lineWidth = w; g.stroke(p);
+  g.strokeStyle = 'rgba(160,196,196,.45)'; g.lineWidth = Math.max(1.5, w * .22); g.setLineDash([w * 2, w * 1.4]); g.stroke(p);
+  g.restore();
+}
+function road(g, pts, w) {
+  const p = new Path2D(smoothPath(pts));
+  g.save(); g.lineCap = 'round'; g.lineJoin = 'round';
+  g.strokeStyle = 'rgba(60,44,24,.45)'; g.lineWidth = w + 4; g.stroke(p);
+  g.strokeStyle = '#b79c66'; g.lineWidth = w; g.stroke(p);
+  g.strokeStyle = 'rgba(240,220,170,.35)'; g.lineWidth = w * .35; g.stroke(p);
+  g.restore();
+}
+function forest(g, pts, seed, spacing, size, opts = {}) {
+  const r = rng(seed), path = polyPath2D(pts);
+  g.save(); g.fillStyle = opts.base || '#2c3d1b'; g.globalAlpha = .9; g.fill(path); g.restore();
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const trees = [];
+  for (let y = Math.min(...ys); y < Math.max(...ys); y += spacing) for (let x = Math.min(...xs); x < Math.max(...xs); x += spacing) {
+    const tx = x + (r() - .5) * spacing, ty = y + (r() - .5) * spacing;
+    if (g.isPointInPath(path, tx * RES, ty * RES)) trees.push([tx, ty, size * (.7 + r() * .6), r()]);
+  }
+  trees.sort((a, b) => a[1] - b[1]);
+  for (const [x, y, s] of trees) { g.fillStyle = 'rgba(10,14,4,.38)'; g.beginPath(); g.ellipse(x + s * .35, y + s * .3, s * 1.05, s * .8, 0, 0, 7); g.fill(); }
+  for (const [x, y, s, v] of trees) {
+    const gr = g.createRadialGradient(x - s * .35, y - s * .4, s * .1, x, y, s * 1.05);
+    const lt = opts.light || [112, 138, 62], dk = opts.dark || [38, 56, 22];
+    const k = .85 + v * .3;
+    gr.addColorStop(0, `rgb(${lt[0] * k | 0},${lt[1] * k | 0},${lt[2] * k | 0})`); gr.addColorStop(1, `rgb(${dk[0]},${dk[1]},${dk[2]})`);
+    g.fillStyle = gr; g.beginPath(); g.arc(x, y, s, 0, 7); g.fill();
+  }
+  return path;
+}
+function mountains(g, region, seed, spacing, hmin, hmax) {
+  const r = rng(seed), path = polyPath2D(region);
+  g.save(); g.fillStyle = '#6d6150'; g.fill(path); g.restore();
+  const xs = region.map(p => p[0]), ys = region.map(p => p[1]), peaks = [];
+  for (let y = Math.min(...ys) - 40; y < Math.max(...ys) + 40; y += spacing * .8) for (let x = Math.min(...xs); x < Math.max(...xs); x += spacing) {
+    const px = x + (r() - .5) * spacing, py = y + (r() - .5) * spacing * .8;
+    if (!g.isPointInPath(path, px * RES, py * RES)) continue;
+    const depth = Math.max(0, 1 - (px - Math.min(...xs)) / (Math.max(...xs) - Math.min(...xs)));
+    const h = lerp(hmin, hmax, .3 + .7 * depth) * (.45 + r() * .8);
+    peaks.push([px, py, h, h * (1.3 + r() * .6)]);
+  }
+  peaks.sort((a, b) => a[1] - b[1]);
+  for (const [x, y, h, w] of peaks) {
+    g.fillStyle = 'rgba(25,18,10,.35)'; g.beginPath(); g.ellipse(x + w * .25, y + 4, w * .62, h * .13, 0, 0, 7); g.fill();
+    const top = y - h, l = x - w / 2, rr = x + w / 2;
+    const shape = new Path2D(`M${l},${y} Q${x - w * .2},${y - h * .62} ${x - w * .05},${top + h * .04} Q${x},${top - h * .02} ${x + w * .05},${top + h * .04} Q${x + w * .2},${y - h * .62} ${rr},${y} Q${x},${y + h * .08} ${l},${y}Z`);
+    const gd = g.createLinearGradient(0, top, 0, y); gd.addColorStop(0, '#6c5f4c'); gd.addColorStop(1, '#3f3426');
+    g.fillStyle = gd; g.fill(shape);
+    g.save(); g.clip(shape);
+    const gl = g.createLinearGradient(0, top, 0, y); gl.addColorStop(0, '#d9c9a4'); gl.addColorStop(.5, '#a89270'); gl.addColorStop(1, '#7d6a4e');
+    g.fillStyle = gl; g.beginPath(); g.moveTo(l - 4, y + 6); g.lineTo(x - w * .02, top - 4); g.lineTo(x + w * .04, y + 8); g.closePath(); g.fill();
+    g.restore();
+    g.strokeStyle = 'rgba(30,22,14,.5)'; g.lineWidth = 1.2; g.stroke(shape);
+  }
+}
+// Åkrar som ett ordnat lapptäcke: rutnät i vägens riktning, häckar emellan, inga överlapp
+const FIELD_COLS = ['#a7a35c', '#8e9b50', '#bba968', '#7e8f47', '#c4b273', '#9aa65a', '#b39b5c', '#8a8a4a'];
+function farmland(g, cx, cy, ang, cols, rows, cw, ch, seed, opts = {}) {
+  const r = rng(seed), taken = opts.taken || [], avoid = opts.avoid;
+  const ca = Math.cos(ang), sa = Math.sin(ang), gap = opts.gap ?? Math.max(2, cw * .06);
+  for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+    if (r() < (opts.skip ?? .14)) continue;
+    const lx = (i - (cols - 1) / 2) * cw, ly = (j - (rows - 1) / 2) * ch;
+    const x = cx + lx * ca - ly * sa, y = cy + lx * sa + ly * ca;
+    if (avoid && avoid(x, y)) continue;
+    if (taken.some(([tx, ty, tr]) => Math.hypot(tx - x, ty - y) < tr + Math.min(cw, ch) * .55)) continue;
+    taken.push([x, y, Math.min(cw, ch) * .5]);
+    const w = cw - gap, h = ch - gap;
+    g.save(); g.translate(x, y); g.rotate(ang);
+    g.fillStyle = FIELD_COLS[(r() * FIELD_COLS.length) | 0]; g.globalAlpha = .9; g.fillRect(-w / 2, -h / 2, w, h);
+    // fåror, åt ena eller andra hållet
+    g.globalAlpha = .16; g.strokeStyle = '#3c3a1c'; g.lineWidth = Math.max(.6, cw / 60);
+    const step = Math.max(2.2, cw / 10), along = r() < .5;
+    g.beginPath();
+    if (along) for (let k = -w / 2 + step / 2; k < w / 2; k += step) { g.moveTo(k, -h / 2); g.lineTo(k, h / 2); }
+    else for (let k = -h / 2 + step / 2; k < h / 2; k += step) { g.moveTo(-w / 2, k); g.lineTo(w / 2, k); }
+    g.stroke();
+    // häck runt fältet
+    g.globalAlpha = .75; g.strokeStyle = '#3e4c22'; g.lineWidth = Math.max(1.2, gap * .7); g.strokeRect(-w / 2 - gap / 2, -h / 2 - gap / 2, w + gap, h + gap);
+    if (opts.bushes) {
+      g.globalAlpha = .85; g.fillStyle = '#34431c';
+      for (let t = 0; t < 2 * (w + h); t += opts.bushes) {
+        const q = t < w ? [-w / 2 + t, -h / 2 - gap / 2] : t < w + h ? [w / 2 + gap / 2, -h / 2 + (t - w)] : t < 2 * w + h ? [w / 2 - (t - w - h), h / 2 + gap / 2] : [-w / 2 - gap / 2, h / 2 - (t - 2 * w - h)];
+        if (r() < .55) { g.beginPath(); g.arc(q[0], q[1], gap * (.6 + r() * .6), 0, 7); g.fill(); }
+      }
+    }
+    g.restore();
+  }
+}
+// Fält i band längs en väg (på båda sidor)
+function roadFields(g, pts, from, to, depth, cw, ch, seed, opts) {
+  for (let k = from; k < to; k++) {
+    const [x1, y1] = pts[k], [x2, y2] = pts[k + 1], L = Math.hypot(x2 - x1, y2 - y1), ang = Math.atan2(y2 - y1, x2 - x1);
+    const n = Math.max(1, Math.round(L / cw)), nx = -Math.sin(ang), ny = Math.cos(ang);
+    for (const side of [-1, 1]) {
+      const off = opts.road + depth * ch / 2;
+      farmland(g, (x1 + x2) / 2 + nx * off * side, (y1 + y2) / 2 + ny * off * side, ang, n, depth, cw, ch, seed + k * 13 + (side > 0 ? 7 : 0), opts);
+    }
+  }
+}
+
+function houses(g, list) {
+  for (const [x, y, w, h, rot, big] of list) {
+    g.save(); g.translate(x, y); g.rotate(rot);
+    g.fillStyle = 'rgba(20,14,6,.45)'; g.fillRect(-w / 2 + w * .12, -h / 2 + h * .2, w, h);
+    g.fillStyle = big ? '#8d6a3f' : '#a8844c'; g.fillRect(-w / 2, -h / 2, w, h);
+    g.fillStyle = big ? '#6e5131' : '#82653a'; g.fillRect(-w / 2, 0, w, h / 2);
+    g.strokeStyle = 'rgba(60,40,18,.8)'; g.lineWidth = 1; g.beginPath(); g.moveTo(-w / 2, 0); g.lineTo(w / 2, 0); g.stroke();
+    g.strokeStyle = 'rgba(30,20,8,.6)'; g.strokeRect(-w / 2, -h / 2, w, h);
+    g.restore();
+  }
+}
+
+// ---------- Kampanjkartan: Cairhien och floderna ----------
+const C = {
+  city: [770, 650],
+  alg: [[640, -20], [672, 260], [700, 520], [712, 600], [702, 700], [660, 900], [610, 1100], [590, 1270]],
+  gaelin: [[2020, 360], [1750, 420], [1450, 470], [1150, 520], [930, 560], [790, 585], [712, 600]],
+  east: [[822, 645], [1000, 625], [1300, 585], [1600, 545], [1850, 515], [2020, 505]],
+  north: [[770, 598], [760, 540], [700, 420], [630, 250], [580, -20]],
+  south: [[770, 702], [790, 800], [770, 950], [740, 1270]],
+  eianrod: [1850, 505], tsofu: [930, 800], sabinel: [800, 950], tremonsien: [1300, 300]
+};
+function hills(g, list, seed) {
+  // Kullar: ljus sluttning mot nordväst, skugga mot sydost, svaga höjdkurvor
+  const r = rng(seed);
+  for (const [x, y, rx, ry] of list) {
+    const pts = blob(x, y, rx, ry, (r() * 1e6) | 0, .18);
+    const p = polyPath2D(pts);
+    const gr = g.createRadialGradient(x - rx * .35, y - ry * .45, rx * .1, x, y, Math.max(rx, ry) * 1.1);
+    gr.addColorStop(0, 'rgba(236,224,160,.42)'); gr.addColorStop(.55, 'rgba(150,150,80,.12)'); gr.addColorStop(1, 'rgba(40,40,12,.38)');
+    g.fillStyle = gr; g.fill(p);
+    g.save(); g.strokeStyle = 'rgba(60,56,24,.28)'; g.lineWidth = 1.2;
+    for (const k of [.7, .42]) { g.stroke(polyPath2D(pts.map(([px, py]) => [x + (px - x) * k - rx * .06 * (1 - k), y + (py - y) * k - ry * .08 * (1 - k)]))); }
+    g.restore();
+  }
+}
+function cityPlan(g, x0, y0, s, opts = {}) {
+  // Fyrkantig stad med rutnät av gator, Topless Towers och Solpalatset (tolkning)
+  const r = rng(opts.seed || 5);
+  g.fillStyle = '#8f8670'; g.fillRect(x0, y0, s, s);
+  const n = opts.blocks || 8, b = s / n, st = Math.max(2, b * .16);
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+    const bx = x0 + i * b + st / 2, by = y0 + j * b + st / 2, bw = b - st, bh = b - st;
+    g.fillStyle = 'rgba(20,14,8,.35)'; g.fillRect(bx + 2, by + 2, bw, bh);
+    g.fillStyle = ['#a9946a', '#9c8862', '#b19c70', '#8f7e5c'][(r() * 4) | 0]; g.fillRect(bx, by, bw, bh);
+    g.strokeStyle = 'rgba(50,36,20,.55)'; g.lineWidth = 1; g.strokeRect(bx, by, bw, bh);
+    if (b > 30) { g.strokeStyle = 'rgba(60,44,24,.4)'; g.beginPath(); g.moveTo(bx + bw / 2, by); g.lineTo(bx + bw / 2, by + bh); g.moveTo(bx, by + bh / 2); g.lineTo(bx + bw, by + bh / 2); g.stroke(); }
+  }
+  if (opts.palace) { const [px, py, pw] = opts.palace; g.fillStyle = 'rgba(20,14,8,.4)'; g.fillRect(px + 4, py + 4, pw, pw * .8); g.fillStyle = '#c9a54a'; g.fillRect(px, py, pw, pw * .8); g.strokeStyle = '#5a4214'; g.lineWidth = 2; g.strokeRect(px, py, pw, pw * .8); g.fillStyle = '#e8cf7a'; g.fillRect(px + pw * .3, py + pw * .2, pw * .4, pw * .4); }
+  for (const [tx, ty, ts] of opts.towers || []) {
+    // höga fyrkantiga torn med lång skugga åt sydost
+    g.fillStyle = 'rgba(15,10,5,.45)'; g.beginPath(); g.moveTo(tx, ty); g.lineTo(tx + ts, ty); g.lineTo(tx + ts * 4, ty + ts * 3.2); g.lineTo(tx + ts * 3, ty + ts * 4.2); g.lineTo(tx, ty + ts); g.closePath(); g.fill();
+    g.fillStyle = '#d8ccb0'; g.fillRect(tx, ty, ts, ts); g.fillStyle = '#a8987a'; g.fillRect(tx + ts * .5, ty, ts * .5, ts); g.strokeStyle = '#4a3c28'; g.lineWidth = 1.2; g.strokeRect(tx, ty, ts, ts);
+  }
+  // muren
+  const w = opts.wall || 6;
+  g.strokeStyle = '#3a3226'; g.lineWidth = w + 3; g.strokeRect(x0, y0, s, s);
+  g.strokeStyle = '#cfc4a8'; g.lineWidth = w; g.strokeRect(x0, y0, s, s);
+  g.fillStyle = '#e2d8bc';
+  const tw = w * 2.2;
+  for (let k = 0; k <= 6; k++) for (const [ax, ay] of [[x0 + s * k / 6, y0], [x0 + s * k / 6, y0 + s], [x0, y0 + s * k / 6], [x0 + s, y0 + s * k / 6]]) { g.fillRect(ax - tw / 2, ay - tw / 2, tw, tw); g.strokeStyle = '#3a3226'; g.lineWidth = 1.2; g.strokeRect(ax - tw / 2, ay - tw / 2, tw, tw); }
+}
+function foregate(g, x0, y0, s, depth, seed, burnt) {
+  // Förstaden utanför murarna: en oregelbunden zon av kojor runt staden, eller brandrester
+  const r = rng(seed), ph = [r() * 6.3, r() * 6.3, r() * 6.3], N = 120, pts = [];
+  const cx = x0 + s / 2, cy = y0 + s / 2;
+  for (let i = 0; i < N; i++) {
+    const t = i / N * 4, side = Math.floor(t), u = t - side;
+    const p = [[x0 + u * s, y0, 0, -1], [x0 + s, y0 + u * s, 1, 0], [x0 + s - u * s, y0 + s, 0, 1], [x0, y0 + s - u * s, -1, 0]][side];
+    const a = i / N * Math.PI * 2, k = .5 + .5 * (.5 + .5 * Math.sin(a * 3 + ph[0])) * (.6 + .4 * Math.sin(a * 7 + ph[1])) + .15 * Math.sin(a * 13 + ph[2]);
+    // hörnen rundas av genom att dra punkten lite mot mitten
+    const corner = Math.min(u, 1 - u) < .12 ? .5 : 1;
+    pts.push([p[0] + p[2] * depth * k * corner + (p[0] - cx) * .02, p[1] + p[3] * depth * k * corner + (p[1] - cy) * .02]);
+  }
+  const outer = polyPath2D(pts), zone = new Path2D(outer); zone.rect(x0 + s, y0, -s, s);
+  g.save(); g.fillStyle = burnt ? 'rgba(42,34,26,.72)' : 'rgba(140,110,70,.5)'; g.fill(zone, 'evenodd'); g.restore();
+  const bx = [x0 - depth * 1.6, x0 + s + depth * 1.6], by = [y0 - depth * 1.6, y0 + s + depth * 1.6];
+  for (let i = 0; i < 900; i++) {
+    const x = bx[0] + r() * (bx[1] - bx[0]), y = by[0] + r() * (by[1] - by[0]);
+    if (x > x0 - 3 && x < x0 + s + 3 && y > y0 - 3 && y < y0 + s + 3) continue;
+    if (!g.isPointInPath(outer, x * RES, y * RES)) continue;
+    const sz = 3 + r() * 6;
+    g.fillStyle = burnt ? (r() < .5 ? '#1c1511' : r() < .5 ? '#3a2c22' : '#55402e') : (r() < .5 ? '#9a7a4a' : '#7d6038');
+    g.save(); g.translate(x, y); g.rotate(r() * 1.5); g.fillRect(-sz / 2, -sz * .35, sz, sz * .7); g.restore();
+  }
+}
+function paintCampaign() {
+  const g = setupCanvas('cv-campaign');
+  const bg = g.createLinearGradient(0, 0, W, H); bg.addColorStop(0, '#7f8a4a'); bg.addColorStop(.5, '#8c8f50'); bg.addColorStop(1, '#78824a');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  noise(g, 140, .5, 'soft-light', 511);
+  hills(g, [[1050, 760, 120, 70], [1250, 880, 140, 80], [1500, 760, 130, 70], [1150, 420, 110, 60], [1400, 640, 120, 60], [980, 980, 120, 70], [1700, 880, 150, 80], [1600, 300, 120, 60]], 512);
+  const taken = [], noC = (x, y) => Math.abs(x - C.city[0]) < 90 && Math.abs(y - C.city[1]) < 90;
+  farmland(g, 900, 560, -.15, 5, 3, 30, 22, 513, {taken, avoid: noC, skip: .25, bushes: 5});
+  farmland(g, 880, 760, .2, 5, 4, 30, 22, 514, {taken, avoid: noC, skip: .25, bushes: 5});
+  farmland(g, 600, 700, .1, 3, 6, 30, 22, 515, {taken, avoid: (x, y) => noC(x, y) || x > 690, skip: .3, bushes: 5});
+  farmland(g, ...C.eianrod, -.1, 4, 3, 28, 21, 516, {taken, skip: .25});
+  farmland(g, ...C.tsofu, .3, 3, 3, 28, 21, 517, {taken, skip: .25});
+  farmland(g, ...C.sabinel, .1, 3, 3, 28, 21, 518, {taken, skip: .25});
+  river(g, C.alg, 18); river(g, C.gaelin, 14);
+  mountains(g, [[1150, 0], [2020, 0], [2020, 160], [1800, 240], [1550, 330], [1350, 380], [1230, 360], [1300, 250], [1500, 170]], 519, 46, 40, 110);
+  forest(g, blob(1050, 300, 120, 70, 21, .3), 520, 13, 8);
+  forest(g, blob(1350, 1050, 170, 90, 22, .3), 521, 14, 8.5);
+  forest(g, blob(480, 400, 130, 120, 23, .3), 522, 14, 8.5);
+  forest(g, blob(1800, 1100, 160, 100, 24, .3), 523, 14, 8.5);
+  forest(g, blob(380, 1000, 140, 110, 25, .3), 524, 14, 8.5);
+  road(g, C.east, 4.5); road(g, C.north, 4); road(g, C.south, 4);
+  foregate(g, 722, 602, 96, 22, 525, false);
+  cityPlan(g, 722, 602, 96, {blocks: 6, wall: 3, seed: 526, towers: [[742, 618, 6], [790, 640, 6], [752, 680, 6]], palace: [770, 625, 18]});
+  const hs = [], r = rng(527);
+  const village = (x, y, n, s) => { for (let i = 0; i < n; i++) { const a = r() * 6.3, d = r() * s * 3; hs.push([x + Math.cos(a) * d, y + Math.sin(a) * d * .8, s * (.8 + r() * .5), s * (.6 + r() * .3), r() * .8 - .4, i === 0]); } };
+  village(...C.eianrod, 12, 6); village(...C.tsofu, 8, 5); village(...C.sabinel, 8, 5); village(...C.tremonsien, 6, 5);
+  houses(g, hs);
+  grain(g, 530);
+}
+
+// ---------- Slagfältet: kullarna öster om Cairhien ----------
+const B = {
+  city: [70, 400, 400],               // x, y, sida (tolkning)
+  gaelin: [[2020, 230], [1700, 180], [1300, 205], [900, 160], [560, 190], [300, 170], [-20, 140]],
+  alg: [[30, -20], [36, 380], [24, 820], [40, 1270]],
+  east: [[470, 600], [700, 610], [1000, 590], [1350, 610], [1700, 640], [2020, 620]],
+  north: [[270, 400], [272, 300], [270, 172], [262, -20]],
+  north2: [[700, 610], [760, 420], [820, 165], [850, -20]],
+  south: [[270, 800], [280, 1000], [300, 1270]],
+  bridges: [[270, 172], [820, 166]],
+  tower: [920, 420], camp: [1760, 650], heal: [1470, 560], glass: [1180, 700],
+  matHill: [1000, 780], gapA: [1190, 735], gapB: [1190, 905], colValley: [600, 990], highHill: [790, 880]
+};
+function paintBattle() {
+  const g = setupCanvas('cv-battle');
+  const bg = g.createLinearGradient(0, 0, W, H); bg.addColorStop(0, '#76803f'); bg.addColorStop(1, '#6f7a3c');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  noise(g, 90, .55, 'soft-light', 601);
+  const [cx0, cy0, cs] = B.city;
+  hills(g, [[920, 440, 140, 95], [1180, 700, 120, 85], [1520, 380, 170, 105], [1650, 860, 180, 115], [1000, 780, 120, 80], [1190, 735, 100, 62], [1190, 905, 105, 66], [790, 880, 125, 85], [460, 940, 120, 80], [1380, 1100, 160, 90], [1250, 330, 120, 70], [1850, 400, 120, 90], [620, 300, 100, 70]], 602);
+  const segDist = (x, y, pts) => { let d = 1e9; for (let k = 0; k < pts.length - 1; k++) { const [x1, y1] = pts[k], [x2, y2] = pts[k + 1], dx = x2 - x1, dy = y2 - y1, t = Math.max(0, Math.min(1, ((x - x1) * dx + (y - y1) * dy) / (dx * dx + dy * dy))); d = Math.min(d, Math.hypot(x - x1 - t * dx, y - y1 - t * dy)); } return d; };
+  const no = (x, y) => (x < cx0 + cs + 150 && y > cy0 - 150 && y < cy0 + cs + 150) || segDist(x, y, B.east) < 50 || segDist(x, y, B.gaelin) < 60 || segDist(x, y, B.north2) < 45 || segDist(x, y, B.south) < 45
+    || [[920, 440, 150], [1180, 700, 120], [1000, 780, 120], [1190, 820, 150], [790, 880, 130]].some(([hx, hy, hr]) => Math.hypot(x - hx, y - hy) < hr);
+  farmland(g, 1250, 640, -.06, 14, 13, 104, 78, 603, {taken: [], avoid: no, skip: .45, bushes: 9});
+  river(g, B.gaelin, 24); river(g, B.alg, 30);
+  forest(g, blob(650, 760, 90, 60, 31, .35), 604, 26, 16);
+  forest(g, blob(1350, 470, 110, 70, 32, .35), 605, 26, 16);
+  forest(g, blob(1430, 920, 120, 70, 33, .35), 606, 26, 16);
+  forest(g, blob(1900, 1100, 160, 110, 34, .35), 607, 26, 17);
+  forest(g, blob(1100, 330, 90, 55, 35, .35), 608, 26, 16);
+  forest(g, blob(560, 1180, 120, 60, 36, .35), 609, 26, 16);
+  forest(g, blob(1880, 260, 120, 90, 37, .35), 610, 26, 17);
+  forest(g, blob(880, 1180, 110, 60, 38, .35), 611, 26, 16);
+  road(g, B.east, 14); road(g, B.north, 14); road(g, B.north2, 11); road(g, B.south, 12);
+  // broar över Gaelin
+  for (const [bx, by] of B.bridges) { g.save(); g.translate(bx, by); g.fillStyle = 'rgba(0,0,0,.4)'; g.fillRect(-14, -26, 32, 56); g.fillStyle = '#8a7a5c'; g.fillRect(-16, -28, 32, 56); g.strokeStyle = '#3a2e1c'; g.lineWidth = 2; g.strokeRect(-16, -28, 32, 56); g.restore(); }
+  foregate(g, cx0, cy0, cs, 80, 612, true);
+  cityPlan(g, cx0, cy0, cs, {blocks: 9, wall: 9, seed: 613, palace: [230, 540, 90], towers: [[120, 450, 20], [360, 440, 18], [150, 680, 20], [380, 700, 18], [260, 470, 16], [420, 560, 18]]});
+  // glaskullen ritas i SVG (syns först när den smälts)
+  grain(g, 614);
+}
+
+// ================= SVG-lager =================
+const SV = {campaign: document.getElementById('sv-campaign'), battle: document.getElementById('sv-battle')};
+const defs = el('defs', {}, SV.campaign);
+defs.innerHTML = `
+  <marker id="ah-g" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#7fd36a"/></marker>
+  <marker id="ah-r" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#e0553a"/></marker>
+  <marker id="ah-w" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#efe6cc"/></marker>`;
+// Emblem för fanor och kort
+const EMB = {
+  wolf: '<path d="M3 4l3 3 4-1 4 1 3-3-1 6 2 3-4 2-4 3-4-3-4-2 2-3z" fill="currentColor"/><circle cx="8" cy="10" r=".9" fill="#000"/><circle cx="12" cy="10" r=".9" fill="#000"/>',
+  bow: '<path d="M6 2c8 4 8 12 0 16" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 2v16M6 10h11M14 8l3 2-3 2" fill="none" stroke="currentColor" stroke-width="1.5"/>',
+  sun: '<circle cx="10" cy="10" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="1.6"><path d="M10 1v4M10 15v4M1 10h4M15 10h4M3.6 3.6l2.8 2.8M13.6 13.6l2.8 2.8M3.6 16.4l2.8-2.8M13.6 6.4l2.8-2.8"/></g>',
+  horn: '<path d="M3 16c1-6 3-10 7-12-2 4-2 7 0 9 2-2 2-5 0-9 4 2 6 6 7 12-3-2-5-2-7 0-2-2-4-2-7 0z" fill="currentColor"/>',
+  flame: '<path d="M10 2c3 4 6 6 6 10a6 6 0 0 1-12 0c0-3 2-4 3-7 1 2 1 3 2 4 1-2 1-4 1-7z" fill="currentColor"/>',
+  people: '<circle cx="6" cy="6" r="2.4" fill="currentColor"/><circle cx="14" cy="6" r="2.4" fill="currentColor"/><path d="M2 17c0-4 2-7 4-7s4 3 4 7zM10 17c0-4 2-7 4-7s4 3 4 7z" fill="currentColor"/>',
+  cata: '<path d="M2 16h16M4 16l3-8h6l3 8M7 8l8-6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="15.5" cy="2.5" r="2" fill="currentColor"/>',
+  gate: '<path d="M3 18V8a7 7 0 0 1 14 0v10" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M7 18v-8a3 3 0 0 1 6 0v8" fill="currentColor" opacity=".5"/>',
+  wagon: '<path d="M2 6h16v7H2z" fill="currentColor"/><circle cx="6" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+  stake: '<path d="M3 17l7-14M8 17l6-12M13 17l5-10" stroke="currentColor" stroke-width="2"/>',
+  eagle: '<path d="M10 3l2 3 6-2-3 5 3 1-6 2-2 6-2-6-6-2 3-1-3-5 6 2z" fill="currentColor"/>',
+  fade: '<path d="M10 2c-3 0-5 3-5 6v10h10V8c0-3-2-6-5-6z" fill="currentColor"/><path d="M7 8h6" stroke="#000" stroke-width="1.5"/>',
+  wagonC: '<path d="M2 12c2-6 14-6 16 0z" fill="currentColor"/><circle cx="6" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+  oak: '<circle cx="10" cy="8" r="6" fill="currentColor"/><path d="M10 12v6" stroke="currentColor" stroke-width="2.5"/>',
+  msg: '<path d="M3 5h14v10H3z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 5l7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.8"/>'
+};
+const SIDE = {
+  tr: {name: 'Two Rivers', flag: '#a8221c', fg: '#f3e2b8', troop: '#7a2a1c', card: 'linear-gradient(#7a1f19,#3a0d0a)'},
+  aes: {name: 'Aes Sedai', flag: '#f2efe6', fg: '#2f5f8e', troop: '#e8e2d2', card: 'linear-gradient(#5b7da3,#20354d)'},
+  wc: {name: 'Children of the Light', flag: '#f3efe2', fg: '#c79a2a', troop: '#ece7da', card: 'linear-gradient(#cbbf9c,#5d5641)'},
+  sh: {name: 'Skuggan', flag: '#1a1412', fg: '#c0502e', troop: '#3a2a22', card: 'linear-gradient(#4a2a20,#140c09)'},
+  civ: {name: 'Civila', flag: '#8a7a58', fg: '#f3e2b8', troop: '#b49a6a', card: 'linear-gradient(#7a6a4a,#2f281c)'},
+  tink: {name: "Tuatha'an", flag: '#d98a2b', fg: '#2a1a0c', troop: '#d6a13c', card: 'linear-gradient(#c7862f,#4a2c10)'},
+  man: {name: 'Two Rivers', flag: '#b0201a', fg: '#e8e8ea', troop: '#6e3a24', card: 'linear-gradient(#9b1d17,#3a0d0a)'}
+};
+
+// ---------- Enheter ----------
+const units = {};
+function makeUnit(map, u) {
+  const sv = SV[map], s = SIDE[u.side];
+  const g = el('g', {class: 'unit fade hidden', 'data-id': u.id, tabindex: 0, role: 'button', 'aria-label': u.name}, sv);
+  const body = el('g', {}, g);
+  if (u.kind === 'token') {
+    el('ellipse', {cx: 0, cy: 2, rx: 20, ry: 7, fill: 'rgba(0,0,0,.45)'}, body);
+    el('circle', {class: 'sel', r: 26}, g);
+    el('ellipse', {cx: 0, cy: 0, rx: 15, ry: 5.5, fill: s.troop, stroke: '#1a120b', 'stroke-width': 1.5}, body);
+  } else if (u.kind === 'cata') {
+    el('rect', {class: 'sel', x: -30, y: -26, width: 60, height: 52, rx: 6}, g);
+    const k = el('g', {transform: `rotate(${u.rot || 0}) scale(1.5)`}, body);
+    el('rect', {x: -14, y: -9, width: 28, height: 18, rx: 2, fill: '#5a4026', stroke: '#21160c', 'stroke-width': 1.5}, k);
+    el('line', {x1: -10, y1: 0, x2: 16, y2: -12, stroke: '#3a2816', 'stroke-width': 4, 'stroke-linecap': 'round'}, k);
+    el('circle', {cx: 17, cy: -13, r: 4, fill: '#8a8070'}, k);
+  } else if (u.kind === 'fade') {
+    el('circle', {class: 'sel', r: 18}, g);
+    el('ellipse', {cx: 3, cy: 4, rx: 10, ry: 5, fill: 'rgba(0,0,0,.45)'}, body);
+    el('path', {d: 'M0-14c-6 0-9 6-9 12v10h18V-2c0-6-3-12-9-12z', fill: '#0c0a0a', stroke: '#3a2a22', 'stroke-width': 1.5}, body);
+    el('path', {d: 'M-4-6h8', stroke: '#6a5a50', 'stroke-width': 1.6}, body);
+  } else if (u.kind === 'wagon') {
+    el('rect', {class: 'sel', x: -36, y: -20, width: 72, height: 40, rx: 4}, g);
+    const k = el('g', {transform: `rotate(${u.rot || 0}) scale(1.3)`}, body);
+    for (const dx of [-13, 13]) { el('rect', {x: dx - 11, y: -8, width: 22, height: 16, rx: 2, fill: '#7a5a33', stroke: '#2a1a0c', 'stroke-width': 1.5}, k); el('line', {x1: dx - 9, y1: 0, x2: dx + 9, y2: 0, stroke: '#4a3418', 'stroke-width': 1.2}, k); }
+  } else {
+    const cols = u.cols || 10, rows = u.rows || 3, sp = u.sp || 7;
+    const fw = cols * sp, fh = rows * sp;
+    const f = el('g', {class: 'form', transform: `rotate(${u.rot || 0})`}, body);
+    el('rect', {class: 'sel', x: -fw / 2 - 8, y: -fh / 2 - 8, width: fw + 16, height: fh + 16, rx: 5}, f);
+    el('rect', {x: -fw / 2 - 3, y: -fh / 2 - 3, width: fw + 6, height: fh + 6, rx: 3, fill: 'rgba(0,0,0,.28)'}, f);
+    const r = rng(u.id.length * 97 + cols);
+    for (let i = 0; i < rows; i++) for (let j = 0; j < cols; j++) {
+      const jit = u.loose ? sp * .55 : 1.6;
+      const x = -fw / 2 + sp / 2 + j * sp + (r() - .5) * jit, y = -fh / 2 + sp / 2 + i * sp + (r() - .5) * jit;
+      el('circle', {cx: x + .8, cy: y + .9, r: sp * .36, fill: 'rgba(0,0,0,.45)'}, f);
+      el('circle', {cx: x, cy: y, r: sp * (u.big ? .44 : .36), fill: s.troop, stroke: '#140d08', 'stroke-width': .7}, f);
+      if (u.hats) el('circle', {cx: x - .5, cy: y - .6, r: sp * .14, fill: u.hats}, f);
+    }
+  }
+  if (u.banner !== false) {
+    const sc = u.kind === 'token' ? 1.7 : 1.15, top = u.kind === 'token' ? -58 : -((u.rows || 3) * (u.sp || 7)) / 2 - 36;
+    const bn = el('g', {transform: `translate(0,${top}) scale(${sc})`}, g);
+    el('line', {x1: 0, y1: 0, x2: 0, y2: 30 / sc * (u.kind === 'token' ? 1.6 : 1) , stroke: '#2a1a0c', 'stroke-width': 2}, bn);
+    el('path', {d: 'M0 0h22l-3 7 3 7H0z', fill: s.flag, stroke: '#1a120b', 'stroke-width': 1.2}, bn);
+    const e = el('g', {transform: 'translate(2.5,1) scale(.6)', style: `color:${s.fg}`}, bn); e.innerHTML = EMB[u.emb] || '';
+    el('circle', {cx: 0, cy: -1.5, r: 2, fill: '#e0c27a'}, bn);
+  }
+  if (u.label) {
+    const t = el('text', {class: 'lbl xs', x: 0, y: u.kind === 'token' ? 26 : ((u.rows || 3) * (u.sp || 7)) / 2 + 20, 'text-anchor': 'middle'}, g); t.textContent = u.label;
+  }
+  const o = {...u, g, body, map, x: u.at[0], y: u.at[1], visible: false};
+  units[u.id] = o; place(o);
+  g.addEventListener('click', e => { e.stopPropagation(); selectGroup(u.group || u.id); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectGroup(u.group || u.id); } });
+  return o;
+}
+function place(u) { u.g.setAttribute('transform', `translate(${u.x},${u.y})`); }
+
+// ---------- Övriga SVG-element (etiketter, pilar, pålar, effekter) ----------
+const things = {};
+function label(map, id, x, y, text, cls = 'lbl', extra = {}) { const t = el('text', {class: cls + ' fade', x, y, 'text-anchor': 'middle', ...extra}, SV[map]); t.textContent = text; if (id) things[id] = t; return t; }
+function arrow(map, id, pts, kind = 'g', w = 12) {
+  const col = {g: 'rgba(110,200,90,.72)', r: 'rgba(220,70,45,.75)', w: 'rgba(240,232,210,.8)'}[kind];
+  const p = el('path', {d: smoothPath(pts), fill: 'none', stroke: col, 'stroke-width': w, 'stroke-linecap': 'round', 'marker-end': `url(#ah-${kind})`, class: 'fade hidden'}, SV[map]);
+  things[id] = p; p.dataset.arrow = 1; return p;
+}
+function group(map, id, cls = 'fade hidden') { const g = el('g', {class: cls}, SV[map]); things[id] = g; return g; }
+
+
+// ================= Enheter och kort =================
+Object.assign(EMB, {
+  dragon: '<path d="M3 13c2-6 7-9 12-8-3 1-4 3-3 5 3-1 5 1 5 3-2-1-4-1-6 1-2 2-5 3-8 2 2-1 3-2 3-3-1 1-2 1-3 0z" fill="currentColor"/>',
+  spear: '<path d="M10 1l2 5h-1.2v12H9.2V6H8z" fill="currentColor"/>',
+  crescent: '<path d="M6 4a5 5 0 1 0 0 6 4 4 0 1 1 0-6zM12 9a5 5 0 1 0 0 6 4 4 0 1 1 0-6zM16 3a4 4 0 1 0 0 5 3.2 3.2 0 1 1 0-5z" fill="currentColor"/>',
+  hand: '<path d="M6 18v-7L4 7c-.6-1 1-1.8 1.6-.8L7 9V3c0-1.2 1.8-1.2 1.8 0v5h.4V2c0-1.2 1.8-1.2 1.8 0v6h.4V3c0-1.2 1.8-1.2 1.8 0v6h.4V5c0-1.2 1.8-1.2 1.8 0v8c0 3-2 5-5 5z" fill="currentColor"/>',
+  pike: '<path d="M4 18L15 3M8 18L17 6M12 18l7-9" stroke="currentColor" stroke-width="1.8"/><path d="M15 3l1-2 1 2zM17 6l1-2 1 2z" fill="currentColor"/>',
+  bolt: '<path d="M11 1L4 11h5l-2 8 9-11h-5l2-7z" fill="currentColor"/>'
+});
+Object.assign(SIDE, {
+  aiel: {name: "Rands Aiel", flag: '#b5562a', fg: '#f6e7c4', troop: '#a2845a', card: 'linear-gradient(#a24e26,#3d1c0c)'},
+  shaido: {name: 'Shaido', flag: '#2a1a14', fg: '#d0603a', troop: '#6e5638', card: 'linear-gradient(#4a2a1c,#140c09)'},
+  tear: {name: 'Tear', flag: '#8e1b17', fg: '#f3efe2', troop: '#7a2c22', card: 'linear-gradient(#8e1b17,#2e0907)'},
+  cair: {name: 'Cairhien', flag: '#1f4e9c', fg: '#f2c230', troop: '#33507e', card: 'linear-gradient(#2a5fae,#0f2142)'},
+  wise: {name: 'Visa kvinnor och Aes Sedai', flag: '#e9e3d2', fg: '#2f5f8e', troop: '#e2dccb', card: 'linear-gradient(#8fa5bd,#2a3c52)'},
+  rand: {name: 'Draken', flag: '#f3efe2', fg: '#a8221c', troop: '#c0a070', card: 'linear-gradient(#e9e2cf,#6a5c40)'},
+  band: {name: 'Band of the Red Hand', flag: '#f3efe2', fg: '#b0201a', troop: '#6a2a20', card: 'linear-gradient(#e7e0cc,#5a1a12)'}
+});
+
+function buildCampaignSVG() {
+  const m = 'campaign';
+  label(m, null, 850, 690, 'CAIRHIEN');
+  label(m, null, 1700, 170, "KINSLAYER'S DAGGER", 'lbl region', {transform: 'rotate(-14 1700 170)', style: 'font-size:24px'});
+  label(m, null, 600, 860, 'Alguenya', 'lbl s', {style: 'letter-spacing:.2em;fill:#cfe0e0', transform: 'rotate(-70 600 860)'});
+  label(m, null, 1300, 470, 'Gaelin', 'lbl s', {style: 'letter-spacing:.2em;fill:#cfe0e0', transform: 'rotate(-10 1300 470)'});
+  label(m, null, C.eianrod[0], C.eianrod[1] + 44, 'EIANROD', 'lbl s');
+  label(m, null, C.tsofu[0] + 10, C.tsofu[1] + 40, 'Tsofu', 'lbl xs');
+  label(m, null, C.sabinel[0], C.sabinel[1] + 40, 'Sabinel', 'lbl xs');
+  label(m, null, 1960, 470, 'mot Jangai Pass →', 'lbl xs', {'text-anchor': 'end'});
+  label(m, null, 560, 30, '↑ mot Tar Valon', 'lbl xs');
+  // Foregate brinner
+  const fg = group(m, 'foregateFire');
+  for (const [x, y] of [[700, 600], [840, 600], [830, 700], [700, 705], [770, 585], [845, 650]]) campFire(fg, x, y, .7);
+  label(m, 'fgLbl', 770, 560, 'Foregate brinner', 'lbl xs');
+  arrow(m, 'aEstean', [[830, 640], [1100, 610], [1450, 565], [1780, 520]], 'g', 9);
+  arrow(m, 'aRand', [[2000, 505], [1700, 540], [1400, 575], [1080, 615]], 'g', 14);
+  arrow(m, 'aZoom', [[1050, 625], [950, 640]], 'w', 6);
+}
+// Eld med lågor och rök (samma som i Two Rivers)
+function campFire(parent, x, y, k = 1) {
+  const f = el('g', {transform: `translate(${x},${y}) scale(${k})`}, parent);
+  el('ellipse', {cx: 0, cy: 3, rx: 20, ry: 9, fill: 'rgba(30,18,10,.6)'}, f);
+  el('circle', {cx: 0, cy: -2, r: 22, fill: 'rgba(255,130,40,.35)', class: 'glow'}, f);
+  const sm = el('g', {class: 'smoke'}, f);
+  for (let i = 0; i < 5; i++) el('circle', {cx: (i % 2 ? 3 : -3), cy: -14, r: 6 + i, fill: 'rgba(70,62,56,.8)', style: `animation-delay:${-i * .72}s`}, sm);
+  el('path', {d: 'M-9 2c-2-8 2-10 1-17 4 5 6 8 5 17z', fill: '#e0531e', class: 'flame b'}, f);
+  el('path', {d: 'M-3 2c-3-10 3-14 2-24 6 7 9 13 6 24z', fill: '#f2862a', class: 'flame'}, f);
+  el('path', {d: 'M3 2c-1-7 3-9 3-15 4 5 5 10 2 15z', fill: '#e0531e', class: 'flame c'}, f);
+  el('path', {d: 'M-1 2c-1-6 2-8 2-12 3 4 3 8 1 12z', fill: '#ffd36b', class: 'flame c'}, f);
+}
+
+function buildBattleSVG() {
+  const m = 'battle', [cx0, cy0, cs] = B.city;
+  label(m, null, cx0 + cs / 2, cy0 + cs / 2 - 70, 'CAIRHIEN', 'lbl region', {style: 'font-size:30px'});
+  label(m, null, 280, 615, 'Solpalatset', 'lbl xs');
+  label(m, null, 470, 640, 'Dragonwall-porten', 'lbl xs', {'text-anchor': 'start', x: 482});
+  label(m, null, 270, 392, 'Jangai-porten', 'lbl xs');
+  label(m, null, cx0 + cs / 2, cy0 + cs + 60, 'Foregate (nedbränd)', 'lbl xs', {style: 'font-style:italic'});
+  label(m, null, 1450, 150, 'Gaelin', 'lbl s', {style: 'letter-spacing:.2em;fill:#cfe0e0'});
+  label(m, null, 1990, 600, 'Rands läger →', 'lbl xs', {'text-anchor': 'end'});
+  // Utsiktstornet av timmer
+  const tw = group(m, 'tower', 'fade');
+  const [tx, ty] = B.tower;
+  el('rect', {x: tx - 16 + 8, y: ty - 16 + 10, width: 34, height: 34, fill: 'rgba(0,0,0,.4)'}, tw);
+  el('rect', {x: tx - 16, y: ty - 16, width: 32, height: 32, fill: '#7a5a33', stroke: '#2a1a0c', 'stroke-width': 2}, tw);
+  for (let i = -12; i <= 12; i += 6) el('line', {x1: tx - 16, y1: ty + i, x2: tx + 16, y2: ty + i, stroke: '#4a3418', 'stroke-width': 1.4}, tw);
+  el('path', {d: `M${tx - 16} ${ty - 16}L${tx + 16} ${ty + 16}M${tx + 16} ${ty - 16}L${tx - 16} ${ty + 16}`, stroke: '#3a2614', 'stroke-width': 2}, tw);
+  label(m, 'towerLbl', tx, ty - 30, 'Rands utsiktstorn', 'lbl xs');
+  const ruin = group(m, 'towerRuin');
+  for (let i = 0; i < 9; i++) el('rect', {x: tx - 30 + (i * 17) % 50, y: ty - 10 + (i * 11) % 30, width: 30, height: 5, fill: '#5a4026', stroke: '#2a1a0c', transform: `rotate(${(i * 37) % 80 - 40} ${tx} ${ty})`}, ruin);
+  el('circle', {cx: tx, cy: ty, r: 40, fill: 'rgba(30,20,10,.35)'}, ruin);
+  // Glaskullen
+  const gl = group(m, 'glass');
+  el('ellipse', {cx: B.glass[0], cy: B.glass[1] - 6, rx: 70, ry: 46, fill: 'rgba(170,220,230,.5)', stroke: 'rgba(230,250,255,.9)', 'stroke-width': 2}, gl);
+  el('ellipse', {cx: B.glass[0] - 20, cy: B.glass[1] - 20, rx: 26, ry: 10, fill: 'rgba(255,255,255,.55)'}, gl);
+  label(m, 'glassLbl', B.glass[0], B.glass[1] + 62, 'Kullen smält till glas', 'lbl xs');
+  // Åskmoln
+  const cl = group(m, 'clouds');
+  for (const [x, y, r] of [[700, 80, 160], [1000, 60, 200], [1350, 90, 180], [500, 120, 150], [1650, 80, 160]]) el('ellipse', {cx: x, cy: y, rx: r, ry: r * .38, fill: 'rgba(40,44,52,.55)'}, cl);
+  // Sammaels blixt västerifrån
+  const sm = group(m, 'sammael');
+  el('path', {d: `M-20 300L300 340L560 380L760 400L${tx - 10} ${ty - 8}`, fill: 'none', stroke: 'rgba(190,120,255,.85)', 'stroke-width': 4, 'stroke-dasharray': '14 10'}, sm);
+  const st = el('text', {x: 80, y: 285, class: 'lbl s', style: 'fill:#e2c2ff'}, sm); st.textContent = 'Sammael, västerut';
+  // Läkarlägret
+  const hl = group(m, 'healCamp');
+  el('circle', {cx: B.heal[0], cy: B.heal[1], r: 58, fill: 'rgba(150,200,255,.16)', stroke: 'rgba(200,230,255,.85)', 'stroke-width': 2, 'stroke-dasharray': '6 6'}, hl);
+  for (const [dx, dy] of [[-22, -10], [14, -18], [20, 14], [-12, 18], [0, 0]]) el('path', {d: `M${B.heal[0] + dx - 8} ${B.heal[1] + dy + 6}l8-12 8 12z`, fill: '#e6dcc4', stroke: '#5a4a30'}, hl);
+  label(m, 'healLbl', B.heal[0], B.heal[1] + 78, 'Läkarlägret', 'lbl xs');
+  // Kommandotältet
+  const ct = group(m, 'cmdTent');
+  el('path', {d: `M${B.camp[0] - 34} ${B.camp[1] + 16}l34-38 34 38z`, fill: '#c8b48a', stroke: '#3a2a16', 'stroke-width': 2}, ct);
+  label(m, null, B.camp[0], B.camp[1] + 40, 'Stabstältet', 'lbl xs').classList.add('hidden'); things.ctLbl = SV[m].lastChild;
+  // Kartor på bordet (Mats planering)
+  const mp = group(m, 'mapPlan');
+  el('path', {d: 'M560 780C760 720 900 640 1000 600M560 780C700 880 900 880 1100 830', fill: 'none', stroke: 'rgba(246,231,184,.8)', 'stroke-width': 3, 'stroke-dasharray': '4 8'}, mp);
+  // Bakhållet i dalen
+  const amb = group(m, 'ambushMark');
+  el('ellipse', {cx: B.colValley[0], cy: B.colValley[1], rx: 150, ry: 70, fill: 'rgba(160,30,20,.18)', stroke: 'rgba(224,80,50,.85)', 'stroke-width': 2.5, 'stroke-dasharray': '8 6'}, amb);
+  label(m, 'ambLbl', B.colValley[0], B.colValley[1] - 82, 'Bakhåll i dalen', 'lbl xs');
+  // Luckan mellan kullarna (fällan)
+  const gap = group(m, 'gapMark');
+  el('path', {d: `M${B.gapA[0] - 60} ${B.gapA[1] + 30}Q${B.gapA[0] + 20} ${B.gapA[1] + 90} ${B.gapB[0] - 60} ${B.gapB[1] - 30}`, fill: 'none', stroke: 'rgba(246,231,184,.85)', 'stroke-width': 3, 'stroke-dasharray': '10 8'}, gap);
+  label(m, 'gapLbl', B.gapA[0] + 110, (B.gapA[1] + B.gapB[1]) / 2, 'Luckan mellan kullarna', 'lbl xs', {'text-anchor': 'start'});
+  // Envig
+  const duel = group(m, 'duel');
+  el('circle', {cx: 1100, cy: 815, r: 26, fill: 'rgba(140,20,10,.6)', stroke: '#ffcf6a', 'stroke-width': 2.5}, duel);
+  el('path', {d: 'M1088 803l24 24M1112 803l-24 24', stroke: '#ffe7b0', 'stroke-width': 4, 'stroke-linecap': 'round'}, duel);
+  // Brinnande broar
+  const bb = group(m, 'bridgesBurn');
+  for (const [bx, by] of B.bridges) campFire(bb, bx, by, 1);
+  // Portstrid
+  const gateF = group(m, 'gateFight');
+  el('circle', {cx: 480, cy: 600, r: 30, fill: 'rgba(140,20,10,.5)', stroke: '#ffcf6a', 'stroke-width': 2}, gateF);
+  // Pilar
+  arrow(m, 'aClan1', [[1760, 650], [1600, 470], [1420, 390]], 'g', 14);
+  arrow(m, 'aClan2', [[1760, 650], [1550, 640], [1340, 650]], 'g', 14);
+  arrow(m, 'aClan3', [[1760, 650], [1600, 820], [1420, 860]], 'g', 14);
+  arrow(m, 'aMatS', [[1180, 640], [1220, 760], [1160, 960]], 'g', 7);
+  arrow(m, 'a1000', [[1260, 1240], [1220, 1110], [1180, 1000]], 'r', 10);
+  arrow(m, 'aMatW', [[1150, 960], [980, 930], [810, 890]], 'g', 7);
+  arrow(m, 'aMatDown', [[800, 890], [700, 960], [640, 985]], 'g', 7);
+  arrow(m, 'aCavN', [[610, 870], [500, 870], [470, 900]], 'g', 10);
+  arrow(m, 'aCavS', [[620, 1110], [730, 1090], [740, 1070]], 'g', 10);
+  arrow(m, 'aGate', [[620, 560], [520, 590], [490, 600]], 'r', 12);
+  arrow(m, 'aCoul', [[560, 720], [760, 760], [930, 790]], 'r', 14);
+  arrow(m, 'aNal', [[960, 720], [820, 620], [640, 660], [600, 720]], 'g', 10);
+  arrow(m, 'aTal', [[980, 850], [820, 940], [640, 850], [610, 780]], 'g', 10);
+  arrow(m, 'aFeint', [[1000, 780], [1100, 810], [1190, 820]], 'w', 9);
+  arrow(m, 'aFlee1', [[700, 380], [500, 260], [290, 180], [270, 40]], 'r', 12);
+  arrow(m, 'aFlee2', [[1100, 560], [950, 350], [830, 180], [840, 40]], 'r', 12);
+  arrow(m, 'aFlee3', [[560, 900], [520, 700], [560, 420], [300, 190]], 'r', 10);
+  arrow(m, 'aRandIn', [[1700, 640], [1300, 610], [900, 595], [490, 600], [330, 590]], 'w', 9);
+}
+
+// ================= Enheter och kort =================
+const GROUPS = {
+  city: {name: 'Tairenska försvarare i staden', side: 'tear', emb: 'crescent', lead: 'Tairenska lorder', size: 'Okänt', text: 'Tairener som Rand skickat för att dela ut hjälp håller staden. De har stängt portarna mot Shaido.'},
+  shaido: {name: 'Shaido', side: 'shaido', emb: 'spear', lead: 'Couladin, Sevanna', size: 'Okänt, i tiotusental', text: 'Couladin utgav sig för att vara Car\'a\'carn och förde Shaido över Dragonwall. De belägrar Cairhien och har bränt Foregate, men har inte tagit staden.'},
+  estean: {name: 'Estean och hans tairener', side: 'tear', emb: 'crescent', lead: 'Estean', size: 'En mindre ryttarstyrka', text: 'Bryter sig ut ur den belägrade staden för att be Rand om hjälp. De cairhieniska lorderna i följet svär honom trohet.'},
+  rands: {name: 'Rands Aiel', side: 'aiel', emb: 'spear', lead: 'Rand al\'Thor och klanhövdingarna, bland dem Rhuarc och Han', size: 'Flera klaner', text: 'Klanerna som följer Rand som Car\'a\'carn marscherar mot Cairhien för att bryta belägringen.', chars: ['rand']},
+  undecided: {name: 'Klaner som inte valt sida', side: 'aiel', emb: 'spear', lead: '–', size: 'Okänt', text: 'Några klaner har ännu inte bestämt om de följer Rand. Under slaget rör de sig tillsammans, och Han, Dhearic och Erim går för att stoppa dem.'},
+  tower: {name: 'Rand, Egwene och Aviendha', side: 'rand', emb: 'dragon', lead: 'Rand al\'Thor', size: 'Tre kanaliserare', text: 'Från utsiktstornet ser Rand slagfältet i kikare. Egwene och Aviendha kanaliserar blixtar mot Shaido, och Rand smälter en kulle till glas.', chars: ['rand', 'egwene', 'aviendha']},
+  maidens: {name: 'Jungfrur av spjutet', side: 'aiel', emb: 'spear', lead: 'Sulin', size: 'Rands livvakt', text: 'Jungfrurna hindrar Rand från att gå ner i striden och vaktar tornet. När blixtarna slår ner vid tornets fot dör flera av dem, bland dem Jolien.'},
+  mat: {name: 'Mat Cauthon', side: 'band', emb: 'hand', lead: 'Mat Cauthon', size: 'En ryttare', text: 'Mat ville egentligen lämna Rand före slaget. Ändå hamnar han, med minnena från andra mäns liv, mitt i striden som fältherre.', chars: ['mat']},
+  column: {name: 'Tairener och cairhieniner', side: 'cair', emb: 'pike', lead: 'Melanril (tairenskt rytteri), Daerid (cairhieniska pikenerare), Talmanes (cairhieniskt rytteri)', size: 'Omkring 3 000 efter bakhållet', text: 'En kolonn på väg in i ett bakhåll som Aiel inte kunnat se. Mat ställer pikenerarna i en ihålig fyrkant med tairenerna inuti.'},
+  nalesean: {name: 'Naleseans tairener', side: 'tear', emb: 'crescent', lead: 'Nalesean', size: 'Tairenskt rytteri', text: 'Skickas runt norrut för att anfalla Couladins styrka bakifrån.'},
+  talmanes: {name: 'Talmanes cairhieniner', side: 'cair', emb: 'sun', lead: 'Talmanes Delovinde', size: 'Cairhieniskt rytteri', text: 'Skickas runt söderut. Efter slaget utropar Talmanes och Nalesean Mat till sin general.'},
+  couladin: {name: 'Couladins styrka', side: 'shaido', emb: 'spear', lead: 'Couladin', size: 'Närmare 5 000', text: 'Couladin leder själv omkring 5 000 Aiel mot Mats kulle, troligen utan att veta att Mats trupper står där.'},
+  heal: {name: 'Läkarlägret', side: 'wise', emb: 'flame', lead: 'Moiraine, visa kvinnor', size: '–', text: 'Visa kvinnor och gai\'shain tar hand om de sårade. Moiraine helar, och efter slaget helar hon Rand.', chars: ['moiraine', 'lan']},
+  band: {name: 'Band of the Red Hand', side: 'band', emb: 'hand', lead: 'Mat Cauthon', size: 'Tairenskt och cairhieniskt rytteri och fotfolk', text: 'Soldaterna Mat räddat utropar honom till general och tar namnet efter Manetherens sista försvarare.', chars: ['mat']},
+  prisoners: {name: 'Tillfångatagna Shaido', side: 'shaido', emb: 'spear', lead: '–', size: 'Omkring 20 000', text: 'Tjugotusen Shaido tas till fånga. Resten flyr norrut med Sevanna och bränner broarna bakom sig.'},
+  procession: {name: 'Rand rider in i Cairhien', side: 'rand', emb: 'dragon', lead: 'Rand al\'Thor', size: 'Rand med följe', text: 'Rand rider in i staden, avböjer tronen och får de cairhieniska och tairenska adelsmännen att svära honom trohet.', chars: ['rand']}
+};
+function buildUnits() {
+  // kampanjkartan
+  makeUnit('campaign', {id: 'cityT', group: 'city', side: 'tear', kind: 'token', emb: 'crescent', at: [770, 650], name: 'Tairener i staden', label: 'Tairener'});
+  makeUnit('campaign', {id: 'shN', group: 'shaido', side: 'shaido', kind: 'token', emb: 'spear', at: [760, 470], name: 'Shaido', label: 'Shaido'});
+  makeUnit('campaign', {id: 'shE', group: 'shaido', side: 'shaido', kind: 'token', emb: 'spear', at: [960, 660], name: 'Shaido'});
+  makeUnit('campaign', {id: 'shS', group: 'shaido', side: 'shaido', kind: 'token', emb: 'spear', at: [790, 820], name: 'Shaido'});
+  makeUnit('campaign', {id: 'estean', group: 'estean', side: 'tear', kind: 'token', emb: 'crescent', at: [830, 640], name: 'Estean', label: 'Estean'});
+  makeUnit('campaign', {id: 'randA', group: 'rands', side: 'aiel', kind: 'token', emb: 'dragon', at: [2040, 505], name: 'Rand', label: 'Rand'});
+  makeUnit('campaign', {id: 'clanA', group: 'rands', side: 'aiel', kind: 'token', emb: 'spear', at: [2060, 470], name: 'Klaner'});
+  makeUnit('campaign', {id: 'clanB', group: 'rands', side: 'aiel', kind: 'token', emb: 'spear', at: [2060, 545], name: 'Klaner'});
+  makeUnit('campaign', {id: 'und1', group: 'undecided', side: 'aiel', kind: 'token', emb: 'spear', at: [1550, 300], name: 'Oavgjorda klaner'});
+  makeUnit('campaign', {id: 'und2', group: 'undecided', side: 'aiel', kind: 'token', emb: 'spear', at: [1550, 900], name: 'Oavgjorda klaner'});
+  // slagfältet
+  const sh = {side: 'shaido', cols: 13, rows: 4, sp: 9, big: true, loose: true, emb: 'spear', group: 'shaido', name: 'Shaido', hats: '#3a2a1a'};
+  makeUnit('battle', {...sh, id: 'sH1', at: [700, 380], rot: 0});
+  makeUnit('battle', {...sh, id: 'sH2', at: [1120, 540], rot: 90});
+  makeUnit('battle', {...sh, id: 'sH3', at: [900, 760], rot: 20});
+  makeUnit('battle', {...sh, id: 'sH4', at: [1350, 330], rot: 90, cols: 11});
+  makeUnit('battle', {...sh, id: 'sH5', at: [1330, 850], rot: 90, cols: 11});
+  makeUnit('battle', {...sh, id: 'sGate', at: [640, 560], rot: 90, cols: 11});
+  makeUnit('battle', {...sh, id: 's1000', at: [1260, 1290], rot: 0, cols: 12, rows: 3});
+  makeUnit('battle', {...sh, id: 'sAmb1', at: [470, 925], rot: 80, cols: 10, rows: 3});
+  makeUnit('battle', {...sh, id: 'sAmb2', at: [740, 1060], rot: -10, cols: 10, rows: 3});
+  makeUnit('battle', {...sh, id: 'coul', group: 'couladin', at: [470, 720], rot: 80, cols: 15, rows: 5, label: 'Couladin'});
+  const cl = {side: 'aiel', cols: 14, rows: 4, sp: 9, big: true, loose: true, emb: 'spear', group: 'rands', name: 'Rands Aiel', hats: '#5a3a1a'};
+  makeUnit('battle', {...cl, id: 'cl1', at: [1760, 600], rot: 90});
+  makeUnit('battle', {...cl, id: 'cl2', at: [1780, 650], rot: 90});
+  makeUnit('battle', {...cl, id: 'cl3', at: [1760, 700], rot: 90});
+  makeUnit('battle', {id: 'randT', group: 'tower', side: 'rand', cols: 3, rows: 1, sp: 12, at: [B.tower[0] + 46, B.tower[1] + 6], emb: 'dragon', name: 'Rand, Egwene och Aviendha', label: 'Rand'});
+  makeUnit('battle', {id: 'maid', group: 'maidens', side: 'aiel', cols: 10, rows: 2, sp: 8, at: [B.tower[0], B.tower[1] + 52], emb: 'spear', hats: '#b02a1a', name: 'Jungfrur'});
+  makeUnit('battle', {id: 'matU', group: 'mat', side: 'band', cols: 1, rows: 1, sp: 14, at: [1180, 640], emb: 'hand', name: 'Mat', label: 'Mat'});
+  makeUnit('battle', {id: 'pike', group: 'column', side: 'cair', cols: 7, rows: 7, sp: 8, at: [B.colValley[0] + 10, B.colValley[1]], emb: 'pike', hats: '#c9c2a8', name: 'Daerids pikenerare'});
+  makeUnit('battle', {id: 'tH', group: 'column', side: 'tear', cols: 4, rows: 3, sp: 8, at: [B.colValley[0] + 10, B.colValley[1]], emb: 'crescent', name: 'Melanrils tairener', banner: false});
+  makeUnit('battle', {id: 'cH', group: 'column', side: 'cair', cols: 9, rows: 2, sp: 8, at: [B.colValley[0] - 90, B.colValley[1] + 20], emb: 'sun', name: 'Talmanes ryttare'});
+  makeUnit('battle', {id: 'nal', group: 'nalesean', side: 'tear', cols: 10, rows: 2, sp: 8, at: [950, 690], emb: 'crescent', name: 'Naleseans tairener', label: 'Nalesean'});
+  makeUnit('battle', {id: 'tal', group: 'talmanes', side: 'cair', cols: 10, rows: 2, sp: 8, at: [950, 880], emb: 'sun', name: 'Talmanes cairhieniner', label: 'Talmanes'});
+  makeUnit('battle', {id: 'heal', group: 'heal', side: 'wise', cols: 4, rows: 2, sp: 9, at: [B.heal[0], B.heal[1] - 4], emb: 'flame', name: 'Läkarlägret', banner: false});
+  makeUnit('battle', {id: 'band', group: 'band', side: 'band', cols: 14, rows: 3, sp: 8, at: [1000, 780], emb: 'hand', name: 'Band of the Red Hand', label: 'Band of the Red Hand'});
+  makeUnit('battle', {id: 'pris', group: 'prisoners', side: 'shaido', cols: 16, rows: 4, sp: 7, at: [1640, 1030], emb: 'spear', banner: false, name: 'Fångar'});
+  makeUnit('battle', {id: 'proc', group: 'procession', side: 'rand', cols: 3, rows: 2, sp: 11, at: [1700, 640], emb: 'dragon', name: 'Rand', label: 'Rand'});
+}
+// Blixtar: korta, ljusa zickzack-streck från himlen
+function bolt(points) {
+  if (!fx) fx = el('g', {}, SV.battle);
+  points.forEach(([x, y], i) => pending.push(setTimeout(() => {
+    const r = Math.random, pts = [[x + (r() - .5) * 60, y - 420]];
+    for (let k = 1; k < 7; k++) pts.push([x + (r() - .5) * 40 * (1 - k / 7), y - 420 + k * 60]);
+    pts.push([x, y]);
+    const g2 = el('g', {}, fx);
+    el('polyline', {points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: 'rgba(200,220,255,.5)', 'stroke-width': 9, 'stroke-linejoin': 'round'}, g2);
+    el('polyline', {points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: '#ffffff', 'stroke-width': 3, 'stroke-linejoin': 'round'}, g2);
+    el('circle', {cx: x, cy: y, r: 30, fill: 'rgba(220,235,255,.7)', class: 'boom'}, g2);
+    setTimeout(() => g2.remove(), 450);
+  }, i * 130)));
+}
+
+let fx = null;
+function volley(fromIds, targets, dur) {
+  if (!fx) fx = el('g', {}, SV.battle);
+  const r = Math.random, shots = [];
+  for (const id of fromIds) { const u = units[id]; if (!u) continue;
+    for (let i = 0; i < 9; i++) { const [tx, ty] = targets[(r() * targets.length) | 0];
+      shots.push({x0: u.x + (r() - .5) * 60, y0: u.y + (r() - .5) * 14, x1: tx + (r() - .5) * 110, y1: ty + (r() - .5) * 70, d: r() * .35}); } }
+  const lines = shots.map(() => el('line', {stroke: '#f3e7c4', 'stroke-width': 1.6, 'stroke-linecap': 'round', opacity: 0}, fx));
+  tween(dur, k => shots.forEach((s2, i) => {
+    const t = Math.max(0, Math.min(1, (k - s2.d) / .6)), ln = lines[i];
+    if (t <= 0 || t >= 1) { ln.setAttribute('opacity', 0); return; }
+    const x = lerp(s2.x0, s2.x1, t), y = lerp(s2.y0, s2.y1, t) - Math.sin(t * Math.PI) * 120;
+    const t2 = Math.max(0, t - .05), x2 = lerp(s2.x0, s2.x1, t2), y2 = lerp(s2.y0, s2.y1, t2) - Math.sin(t2 * Math.PI) * 120;
+    ln.setAttribute('x1', x2); ln.setAttribute('y1', y2); ln.setAttribute('x2', x); ln.setAttribute('y2', y); ln.setAttribute('opacity', .9);
+  }), () => lines.forEach(l => l.remove()));
+}
+function boom(points) {
+  if (!fx) fx = el('g', {}, SV.battle);
+  points.forEach(([x, y], i) => pending.push(setTimeout(() => {
+    const b = el('g', {}, fx);
+    el('circle', {cx: x, cy: y, r: 26, fill: 'rgba(255,150,40,.75)', class: 'boom'}, b);
+    el('circle', {cx: x, cy: y, r: 14, fill: '#fff1b0', class: 'boom'}, b);
+    setTimeout(() => b.remove(), 1000);
+  }, i * 160)));
+}
+const clock = document.getElementById('clock');
+const cardsEl = document.getElementById('cards'), infoEl = document.getElementById('info');
+let selected = null;
+function renderCards(fresh = []) {
+  requestAnimationFrame(() => typeof layout === 'function' && layout());
+  const vis = [...new Set(Object.values(units).filter(u => u.visible && u.map === curMap).map(u => u.group))];
+  if (things.stakes && curMap === 'battle' && things.stakes.dataset.shown === '1') vis.push('stakes');
+  cardsEl.innerHTML = vis.map(gid => { const gi = GROUPS[gid], s = SIDE[gi.side];
+    return `<button class="card${fresh.includes(gid) ? ' new' : ''}" data-g="${gid}" aria-pressed="${selected === gid}" title="${esc(gi.name)}"><span class="art" style="background:${s.card};color:${s.fg}"><svg viewBox="0 0 20 20">${EMB[gi.emb]}</svg></span><span class="nm">${esc(gi.name)}</span></button>`; }).join('');
+  cardsEl.style.display = vis.length ? '' : 'none';
+}
+cardsEl.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) selectGroup(b.dataset.g); });
+function selectGroup(gid) {
+  if (selected === gid) gid = null;
+  selected = gid;
+  for (const u of Object.values(units)) u.g.classList.toggle('hl', !!gid && u.group === gid);
+  cardsEl.querySelectorAll('.card').forEach(c => c.setAttribute('aria-pressed', c.dataset.g === gid));
+  if (!gid) { infoEl.hidden = true; return; }
+  const gi = GROUPS[gid], s = SIDE[gi.side];
+  infoEl.innerHTML = `<button class="x" aria-label="Stäng">&times;</button><div class="side" style="color:${gi.side === 'sh' ? '#e0553a' : 'var(--bronze)'}">${esc(s.name)}</div><h2>${esc(gi.name)}</h2>
+    <dl><dt>Ledare</dt><dd>${esc(gi.lead)}</dd><dt>Styrka</dt><dd>${esc(gi.size)}</dd></dl><p>${esc(gi.text)}</p>
+    ${gi.chars ? `<div class="links">${gi.chars.map(c => EMBED
+      ? `<button data-char="${c}">Läs om ${esc(CHAR_NAMES[c] || c)}</button>`
+      : `<a href="https://wot.fandom.com/wiki/${encodeURIComponent(WIKI[c] || c)}" target="_blank" rel="noopener">Läs om ${esc(CHAR_NAMES[c] || c)} (wiki)</a>`).join('')}</div>` : ''}`;
+  infoEl.hidden = false;
+}
+const CHAR_NAMES = {"rand": "Rand", "mat": "Mat", "egwene": "Egwene", "aviendha": "Aviendha", "moiraine": "Moiraine", "lan": "Lan"};
+const WIKI = {"rand": "Rand_al'Thor", "mat": "Matrim_Cauthon", "egwene": "Egwene_al'Vere", "aviendha": "Aviendha", "moiraine": "Moiraine_Damodred", "lan": "Lan_Mandragoran"};
+// Inbäddad i kartan (iframe) eller fristående export. #video = inspelningsläge utan kontroller.
+let EMBED = false; try { EMBED = window.parent !== window && !!window.parent.document; } catch (e) { EMBED = false; }
+const VIDEO = location.hash === '#video';
+infoEl.addEventListener('click', e => {
+  if (e.target.closest('.x')) return selectGroup(selected);
+  const b = e.target.closest('[data-char]');
+  if (b) { try { parent.postMessage({type: 'wot-open-char', id: b.dataset.char}, '*'); } catch (err) {} }
+});
+
+// ================= Kamera =================
+const stage = document.getElementById('stage');
+let cam = {x: 1000, y: 625, w: 2000}, camTarget = null, curMap = 'campaign';
+function applyCam() {
+  const vw = stage.clientWidth, vh = stage.clientHeight;
+  // Liggande skärm: kartan fyller ytan. Stående (mobil): hela bredden får synas, med mörka band ovanför och under.
+  const portrait = vh > vw, maxW = portrait ? W : Math.min(W, H * vw / vh);
+  const w = Math.min(cam.w, maxW), s = vw / w, h = vh / s;
+  const x = Math.max(w / 2, Math.min(W - w / 2, cam.x)), y = h >= H ? H / 2 : Math.max(h / 2, Math.min(H - h / 2, cam.y));
+  const tf = `translate(${vw / 2 - x * s}px,${vh / 2 - y * s}px) scale(${s})`;
+  document.getElementById('w-campaign').style.transform = tf; document.getElementById('w-battle').style.transform = tf;
+}
+// Mobil layout: titel, krönika och kontroller staplas; kartan placeras i ytan mellan dem.
+const ui = id => document.getElementById(id);
+function layout() {
+  const M = innerWidth <= 700 && !document.body.classList.contains('video');
+  document.body.classList.toggle('m', M);
+  document.body.classList.toggle('ms', !M && innerHeight <= 500 && !document.body.classList.contains('video'));
+  const st = stage.style, adv = ui('advisor'), cards = ui('cards'), info = ui('info'), ctl = ui('ctrl');
+  if (!M) { st.top = st.bottom = adv.style.top = cards.style.bottom = info.style.bottom = clock.style.top = ''; applyCam(); return; }
+  const titleB = ui('title').getBoundingClientRect().bottom;
+  adv.style.top = (titleB + 6) + 'px';
+  const advB = adv.getBoundingClientRect().bottom, ctlH = ctl.getBoundingClientRect().height;
+  cards.style.bottom = (8 + ctlH + 6) + 'px';
+  const cardsTop = cards.style.display === 'none' ? innerHeight - 8 - ctlH : cards.getBoundingClientRect().top;
+  st.top = (advB + 6) + 'px'; st.bottom = (innerHeight - cardsTop + 6) + 'px';
+  clock.style.top = (advB + 14) + 'px';
+  info.style.bottom = (innerHeight - cardsTop + 6) + 'px';
+  applyCam();
+}
+window.addEventListener('resize', () => requestAnimationFrame(layout));
+
+// ================= Animationsmotor =================
+let tweens = [], pending = [];
+function tween(dur, fn, done) { const t = {start: performance.now(), dur, fn, done}; tweens.push(t); if (dur <= 0) { fn(1); done && done(); tweens = tweens.filter(x => x !== t); } }
+function frame(now) {
+  for (const t of [...tweens]) { const k = Math.min(1, (now - t.start) / t.dur); t.fn(ease(k)); if (k >= 1) { tweens = tweens.filter(x => x !== t); t.done && t.done(); } }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+// Chrome ritar ibland inte om SVG-text som legat i ett dolt lager – knuffa texten när kartan byts
+function repaintText(map) {
+  const ts = SV[map].querySelectorAll('text');
+  ts.forEach(t => { t.style.fill = '#fff'; });
+  requestAnimationFrame(() => requestAnimationFrame(() => ts.forEach(t => { t.style.fill = ''; })));
+}
+function setShown(e, on) { e.classList.toggle('hidden', !on); }
+function drawArrow(p, dur) {
+  const L = p.getTotalLength(); p.style.strokeDasharray = `${L} ${L}`;
+  setShown(p, true);
+  if (dur <= 0) { p.style.strokeDashoffset = 0; return; }
+  p.style.strokeDashoffset = L; tween(dur, k => p.style.strokeDashoffset = L * (1 - k));
+}
+function pathPoint(pts, k) {
+  // längs en polyline
+  let tot = 0; const seg = []; for (let i = 1; i < pts.length; i++) { const l = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); seg.push(l); tot += l; }
+  let d = k * tot; for (let i = 0; i < seg.length; i++) { if (d <= seg[i] || i === seg.length - 1) { const t = seg[i] ? Math.min(1, d / seg[i]) : 1; return [lerp(pts[i][0], pts[i + 1][0], t), lerp(pts[i][1], pts[i + 1][1], t)]; } d -= seg[i]; }
+  return pts[pts.length - 1];
+}
+function run(acts, dur, fresh) {
+  for (const a of acts) {
+    if (a.clock !== undefined) { clock.textContent = a.clock; clock.hidden = !a.clock; }
+    if (a.volley && dur > 0) volley(a.volley[0], a.volley[1], dur);
+    if (a.boom && dur > 0) boom(a.boom);
+    if (a.bolt && dur > 0 && typeof bolt === 'function') bolt(a.bolt);
+    if (a.map && a.map !== curMap) setTimeout(() => repaintText(a.map), 950);
+    if (a.map) { curMap = a.map; document.getElementById('w-campaign').classList.toggle('off', a.map !== 'campaign'); document.getElementById('w-battle').classList.toggle('off', a.map !== 'battle'); }
+    if (a.cam) { const from = {...cam}, to = {x: a.cam[0], y: a.cam[1], w: a.cam[2]}; tween(dur, k => { cam = {x: lerp(from.x, to.x, k), y: lerp(from.y, to.y, k), w: lerp(from.w, to.w, k)}; applyCam(); }); }
+    for (const id of [].concat(a.show || [])) {
+      if (units[id]) { units[id].visible = true; setShown(units[id].g, true); fresh && fresh.push(units[id].group); }
+      else if (things[id]) { if (things[id].dataset.arrow) drawArrow(things[id], dur * .9); else setShown(things[id], true); }
+    }
+    for (const id of [].concat(a.hide || [])) {
+      if (units[id]) { units[id].visible = false; setShown(units[id].g, false); }
+      else if (things[id]) setShown(things[id], false);
+    }
+    for (const [id, ...pts] of a.move || []) {
+      const u = units[id], path = [[u.x, u.y], ...pts];
+      tween(dur, k => { const [x, y] = pathPoint(path, k); u.x = x; u.y = y; place(u); });
+    }
+    if (a.seq) { // visa barn i tur och ordning (pålarna)
+      const kids = [...things[a.seq].children]; things[a.seq].dataset.shown = '1';
+      if (!dur) kids.forEach(k => setShown(k, true));
+      else kids.forEach((k, i) => pending.push(setTimeout(() => setShown(k, true), (i / kids.length) * dur * .9)));
+      fresh && fresh.push(a.seq);
+    }
+  }
+}
+
+// ================= Manus =================
+// Gemensamma lägen som scenerna börjar från
+const SH_ALL = ['sH1', 'sH2', 'sH3', 'sH4', 'sH5', 'sGate'];
+const CL_ENGAGED = [['cl1', [1430, 390]], ['cl2', [1300, 620]], ['cl3', [1430, 860]]];
+const BASE = ['tower', 'towerLbl', 'cmdTent', 'ctLbl'];
+const SCENES = [
+  {k: 'Scen 1 · Kampanjkartan', t: 'Shaido vid Cairhien', d: 'Choren 999 NE · The Fires of Heaven, kapitel 30–42',
+   init: [{map: 'campaign', cam: [1100, 640, 2000], clock: 'Choren 999 NE'}],
+   beats: [
+    {say: "Cairhien ligger på Alguenyas östra strand, strax söder om där floden Gaelin rinner ut. Vägen österut leder längs Gaelin mot Eianrod och bergspasset Jangai. Couladin, som utger sig för att vara Car'a'carn, har fört Shaido över Dragonwall.", acts: [{cam: [1150, 600, 1900]}]},
+    {say: 'Shaido omringar staden och bränner förstaden Foregate. Men staden faller inte: tairener som Rand skickat dit håller portarna stängda.', dur: 2600, acts: [{cam: [900, 640, 1100], show: ['shN', 'shE', 'shS', 'foregateFire', 'fgLbl', 'cityT']}]},
+    {say: 'Choren 1: en grupp tairener under Estean bryter sig ut ur staden och rider österut för att be Rand om hjälp. De cairhieniska lorderna i följet svär honom trohet.', dur: 3400, acts: [{clock: 'Choren 1', cam: [1300, 600, 1600], show: ['estean', 'aEstean'], move: [['estean', [1100, 610], [1450, 565], [1780, 520]]]}]},
+    {say: 'Rand marscherar västerut längs vägen med de klaner som följer honom. I närheten väntar klaner som ännu inte bestämt sig för vem de ska följa.', dur: 3800, acts: [{cam: [1300, 640, 1900], hide: ['estean', 'aEstean'], show: ['randA', 'clanA', 'clanB', 'aRand', 'und1', 'und2'], move: [['randA', [1700, 540], [1150, 610]], ['clanA', [1700, 505], [1180, 575]], ['clanB', [1700, 575], [1180, 650]]]}]},
+    {say: 'Choren 9: Rands Aiel slår läger bland kullarna öster om staden. I morgon ska belägringen brytas.', dur: 2600, acts: [{clock: 'Choren 9', cam: [1000, 640, 460], hide: ['aRand']}]}
+   ]},
+  {k: 'Scen 2 · Slagfältet', t: 'Planen', d: 'Choren 9 · The Fires of Heaven, kapitel 41–42',
+   init: [{map: 'battle', cam: [1000, 640, 650], clock: 'Choren 9', show: [...BASE, ...SH_ALL, 'cl1', 'cl2', 'cl3']}],
+   beats: [
+    {say: 'Kullarna öster om Cairhien. I väster staden med sina murar och Topless Towers, omgiven av den nedbrända förstaden. Shaido har gömt sig bland kullarna och dungarna runt staden.', acts: [{cam: [1000, 640, 2000]}]},
+    {say: 'Rand har låtit bygga ett utsiktstorn av timmer på en kulle. Därifrån följer han Shaido genom en kikare, och Egwene ska strida från samma torn, där hon ser tillräckligt för att väva blixtar.', dur: 2200, acts: [{cam: [960, 480, 1100], show: ['randT']}]},
+    {say: 'Mat har tänkt ge sig av före slaget. I stället hamnar han i stabstältet med kartorna framför sig. När Lan frågar vad han tror, löser han problemet nästan utan att tänka – med minnena från andra mäns liv. Rand önskar honom lycka till på resan och skäms över att ha utnyttjat honom.', dur: 3000, acts: [{cam: [1250, 720, 1500], show: ['matU', 'mapPlan'], move: [['matU', [1740, 615]]]}]}
+   ]},
+  {k: 'Scen 3 · Slaget börjar', t: 'Åskan', d: 'Choren 10 · The Fires of Heaven, kapitel 43',
+   init: [{map: 'battle', cam: [1100, 620, 2000], clock: 'Choren 10', show: [...BASE, ...SH_ALL, 'cl1', 'cl2', 'cl3', 'randT'], move: [['randT', [B.tower[0] + 46, B.tower[1] + 6]]]}],
+   beats: [
+    {say: 'I gryningen går klanerna till anfall mot Shaido bland kullarna.', dur: 3800, acts: [{show: ['aClan1', 'aClan2', 'aClan3'], move: CL_ENGAGED}]},
+    {say: 'Rand vill ner i striden, men Jungfrurna omringar honom och tvingar honom upp i tornet hos Egwene. Aviendha följer med. Lan anklagar honom för att ha tänkt slåss mot Couladin själv.', dur: 2000, acts: [{hide: ['aClan1', 'aClan2', 'aClan3'], cam: [960, 470, 1000], show: ['maid']}]},
+    {say: 'Egwene och Aviendha kanaliserar. Åskmoln tornar upp sig över Cairhien ur en klar himmel, och blixtar slår ner gång på gång där Shaido gömmer sig.', dur: 3800, acts: [{cam: [1050, 600, 1900], show: ['clouds'], bolt: [[700, 380], [1120, 540], [900, 760], [1350, 330], [1330, 850], [760, 420], [1150, 600], [940, 720], [1300, 300], [1360, 880]]}]},
+    {say: 'Rand griper saidin, sätter eld på en kulle och smälter den till glas. Lews Therins närvaro väller upp, och han håller nästan på att tappa kontrollen.', dur: 2400, acts: [{cam: [1080, 620, 1200], bolt: [[1180, 700], [1170, 690], [1190, 710]]}, {t: .3, show: ['glass', 'glassLbl']}]}
+   ]},
+  {k: 'Scen 4 · Söder om slaget', t: 'Mats ritt', d: 'Choren 10 · The Fires of Heaven, kapitel 43',
+   init: [{map: 'battle', cam: [950, 820, 1500], clock: 'Choren 10', show: [...BASE, ...SH_ALL, 'cl1', 'cl2', 'cl3', 'randT', 'maid', 'clouds', 'glass', 'glassLbl', 'matU'], move: [...CL_ENGAGED, ['matU', [1180, 640]]]}],
+   beats: [
+    {say: 'Mat rider söderut för att komma bort från slaget och tar skydd i en dunge. Då närmar sig tusen Aiel söderifrån.', dur: 3200, acts: [{show: ['aMatS', 's1000', 'a1000'], move: [['matU', [1220, 760], [1160, 960]], ['s1000', [1210, 1040]]]}]},
+    {say: 'Mat tvingas västerut. Från en hög kulle ser han ett bakhåll från Shaido i nästa dal – riktat mot en kolonn tairener och cairhieniner, som Aiel inte kunde ha sett.', dur: 3000, acts: [{hide: ['aMatS', 'a1000'], show: ['aMatW', 'pike', 'tH', 'cH', 'sAmb1', 'sAmb2', 'ambushMark', 'ambLbl'], move: [['matU', [980, 930], [810, 890]]]}]},
+    {say: 'Han rider ner och varnar dem. Tairenernas rytteri leds av Melanril och de cairhieniska pikenerarna av Daerid. Talmanes leder det cairhieniska rytteriet.', dur: 2400, acts: [{hide: ['aMatW'], show: ['aMatDown'], cam: [640, 960, 1000], move: [['matU', [700, 960], [640, 985]]]}]},
+    {say: 'Mat ställer pikenerarna i en ihålig fyrkant – en "igelkott" – med tairenerna inuti. Han och Talmanes leder var sin halva av rytteriet över krönet från norr och söder, och Shaido hamnar mellan dem. Melanril stupar.', dur: 4000, acts: [{hide: ['aMatDown', 'ambushMark', 'ambLbl'], show: ['aCavN', 'aCavS'], move: [['cH', [500, 870], [470, 900]], ['matU', [730, 1090], [740, 1070]]]}, {t: .55, hide: ['sAmb1', 'sAmb2']}, {t: .7, hide: ['aCavN', 'aCavS']}]}
+   ]},
+  {k: 'Scen 5 · Vid tornet', t: 'Tornet faller', d: 'Choren 10 · The Fires of Heaven, kapitel 44',
+   init: [{map: 'battle', cam: [820, 500, 1500], clock: 'Choren 10', show: [...BASE, ...SH_ALL, 'cl1', 'cl2', 'cl3', 'randT', 'maid', 'clouds', 'glass', 'glassLbl'], move: CL_ENGAGED}],
+   beats: [
+    {say: 'Shaido försöker forcera stadsportarna. Rand slår till med en blixt som träffar både Shaido och försvararna.', dur: 3000, acts: [{show: ['aGate', 'gateFight'], move: [['sGate', [520, 595]]]}, {t: .6, bolt: [[500, 600], [520, 580]]}]},
+    {say: 'Plötsligt slår blixtar ner bland Jungfrurna vid tornets fot. Rand känner att de är vävda med saidin. Först tror han att det är Asmodean, men han följer vävningen västerut och förstår: det är Sammael.', dur: 2800, acts: [{hide: ['aGate'], cam: [700, 420, 1500], bolt: [[B.tower[0] - 20, B.tower[1] + 50], [B.tower[0] + 20, B.tower[1] + 56]]}, {t: .4, show: ['sammael']}]},
+    {say: 'Tornet rasar. Rand skyddar Egwene och Aviendha, förlorar medvetandet och vaknar sårad. Döda och sårade Jungfrur ligger överallt, bland dem Jolien.', dur: 2400, acts: [{cam: [920, 450, 900], bolt: [[B.tower[0], B.tower[1]]]}, {t: .25, hide: ['tower', 'towerLbl', 'maid'], show: ['towerRuin']}]},
+    {say: 'Klanhövdingen Han rapporterar att de klaner som inte valt sida rör sig tillsammans, och att han gått med Dhearic och Erim för att stoppa dem. Ingen kommer att hindra Shaido från att dra sig tillbaka norrut. Rand rider med Egwene och Aviendha till en plats där han kan se staden.', dur: 3200, acts: [{hide: ['sammael'], cam: [900, 520, 1600], move: [['randT', [900, 520], [820, 560]]]}]}
+   ]},
+  {k: 'Scen 6 · Mats kulle', t: 'Fällan för Couladin', d: 'Choren 10 · The Fires of Heaven, kapitel 44–45',
+   init: [{map: 'battle', cam: [900, 780, 1300], clock: 'Choren 10', show: ['towerRuin', 'cmdTent', 'ctLbl', 'sH1', 'sH2', 'sH4', 'cl1', 'cl2', 'cl3', 'clouds', 'glass', 'glassLbl', 'pike', 'matU', 'nal', 'tal'],
+     move: [...CL_ENGAGED, ['pike', B.matHill], ['matU', [1000, 750]]]}],
+   beats: [
+    {say: 'Mat står på en kulle i regnet med omkring 3 000 man som fortfarande följer honom. Nalesean rapporterar att närmare 5 000 Aiel närmar sig, troligen utan att veta att de står där. Daerid ser att Couladin själv leder dem. Talmanes uppskattar tiden till en halvtimme.', dur: 3200, acts: [{show: ['coul', 'aCoul'], move: [['coul', [560, 740], [700, 760]]]}]},
+    {say: 'Mat skickar Naleseans tairener runt norrut för att anfalla bakifrån, och Talmanes cairhieniner runt söderut. Själv stannar han med fotfolket.', dur: 3600, acts: [{hide: ['aCoul'], show: ['aNal', 'aTal'], move: [['nal', [820, 620], [640, 660], [600, 700]], ['tal', [820, 940], [640, 850], [610, 790]]]}]},
+    {say: 'Fotfolket låtsas retirera in i luckan mellan två kullar. Aiel följer efter – rakt in i fällan. Mat håller sina män bakom pikarna.', dur: 3600, acts: [{hide: ['aNal', 'aTal'], show: ['aFeint', 'gapMark', 'gapLbl'], move: [['pike', [1100, 810], [1190, 820]], ['matU', [1180, 800]], ['coul', [900, 790], [1080, 810]]]}]},
+    {say: 'Tairenerna och cairhieninerna sluter tången bakifrån. Mat tar sig genom pikenerarna fram till Couladin och dödar honom i envig.', dur: 3400, acts: [{hide: ['aFeint', 'gapLbl'], move: [['nal', [800, 730], [980, 770]], ['tal', [800, 850], [990, 850]]]}, {t: .5, show: ['duel']}, {t: .8, hide: ['coul']}]}
+   ]},
+  {k: 'Scen 7 · Efter stormen', t: 'Shaido flyr', d: 'Choren 10–11 · The Fires of Heaven, kapitel 44–45',
+   init: [{map: 'battle', cam: [1000, 620, 2000], clock: 'Choren 10', show: ['towerRuin', 'cmdTent', 'ctLbl', 'sH1', 'sH2', 'sH3', 'sH4', 'sH5', 'sGate', 'cl1', 'cl2', 'cl3', 'glass', 'glassLbl', 'pike', 'matU', 'nal', 'tal', 'randT', 'healCamp', 'healLbl', 'heal'],
+     move: [...CL_ENGAGED, ['pike', [1190, 820]], ['matU', [1180, 800]], ['nal', [980, 770]], ['tal', [990, 850]], ['randT', [820, 560]], ['sGate', [520, 595]]]}],
+   beats: [
+    {say: 'Shaido flyr norrut i tiotusental. De tar cairhieniska fångar med sig och bränner broarna över Gaelin bakom sig.', dur: 4400, acts: [{show: ['aFlee1', 'aFlee2', 'aFlee3'], move: [['sH1', [500, 260], [290, 180], [270, 30]], ['sH2', [950, 350], [830, 180], [840, 30]], ['sGate', [520, 700], [560, 420], [300, 190], [270, 30]]]}, {t: .6, show: ['bridgesBurn']}, {t: .9, hide: ['sH1', 'sH2', 'sGate', 'aFlee1', 'aFlee2', 'aFlee3']}]},
+    {say: 'Rand stannar på ett krön, tömd och med värk i hela kroppen. Han minns knappt sitt eget namn. Jungfrurna leder hans häst till läkarlägret, där Moiraine helar de sårade. Lan säger att slaget är vunnet och att klanerna kommer till honom. Rand faller ur sadeln.', dur: 3400, acts: [{cam: [1300, 560, 1300], move: [['randT', [1100, 560], [B.heal[0] - 60, B.heal[1]]]]}]},
+    {say: 'Choren 11. Shaido som inte hann fly har tagits till fånga. Talmanes och Nalesean svär Mat trohet som sin anförare och bestämmer att han behöver en fana. Snart kallar de sig Band of the Red Hand, efter Manetherens sista försvarare.', dur: 3200, acts: [{clock: 'Choren 11', cam: [1200, 780, 1400], hide: ['pike', 'nal', 'tal', 'matU', 'sH3', 'sH4', 'sH5'], show: ['band', 'pris'], move: [['band', [1060, 800]]]}]},
+    {say: 'Rand vaknar i sitt tält, helad av Moiraine. Aviendha skäller på honom för att han nästan dött. Han får veta att Shaido kommit undan i tiotusental.', dur: 2000, acts: [{cam: [1450, 600, 1000]}]}
+   ]},
+  {k: 'Scen 8 · Staden', t: 'Draken i Cairhien', d: 'Choren 11 · The Fires of Heaven, kapitel 46',
+   init: [{map: 'battle', cam: [1200, 700, 1800], clock: 'Choren 11', show: ['towerRuin', 'cmdTent', 'ctLbl', 'cl1', 'cl2', 'cl3', 'glass', 'glassLbl', 'band', 'pris', 'healCamp', 'healLbl', 'heal', 'bridgesBurn'], move: [...CL_ENGAGED, ['band', [1060, 800]]]}],
+   beats: [
+    {say: 'Tjugotusen Shaido har tagits till fånga. Bland Rands Aiel har några börjat bära röda pannband med Drakens tecken.', dur: 2200, acts: [{cam: [1550, 900, 1200]}]},
+    {say: 'Trots Aviendhas protester rider Rand in i staden.', dur: 5200, acts: [{cam: [900, 600, 2000], show: ['proc', 'aRandIn'], move: [['proc', [1300, 610], [900, 595], [490, 600], [330, 590]]]}]},
+    {say: 'Vid palatsportarna använder han Moiraines lektioner i Daes Dae\'mar för att få de tairenska lorderna ur balans. Han avböjer Cairhiens tron, ställer upp de cairhieniska och tairenska adelsmännen efter rang – och låter dem svära honom trohet.', dur: 2600, acts: [{hide: ['aRandIn'], cam: [300, 600, 800]}]}
+   ]}
+];
+
+// ================= Uppspelning =================
+const say = document.getElementById('say'), tk = document.getElementById('tk'), th = document.getElementById('th'), td = document.getElementById('td');
+let si = 0, bi = -1, playing = false, timer = null, speed = 1;
+function resetAll() {
+  tweens = []; pending.forEach(clearTimeout); pending = [];
+  for (const u of Object.values(units)) { u.x = u.at[0]; u.y = u.at[1]; place(u); u.visible = false; setShown(u.g, false); }
+  for (const t of Object.values(things)) { if (t.dataset.arrow || t.classList.contains('fade')) setShown(t, false); }
+  if (things.stakes) { [...things.stakes.children].forEach(k => setShown(k, false)); things.stakes.dataset.shown = '0'; }
+  selected = null; infoEl.hidden = true; clock.hidden = true;
+  if (fx) fx.innerHTML = '';
+}
+function goTo(s, b, animate = true) {
+  clearTimeout(timer);
+  // Tidsresor: återskapa läget genom att spela upp allt tidigare direkt
+  resetAll();
+  const fresh = [];
+  for (let i = 0; i <= s; i++) {
+    const sc = SCENES[i];
+    if (i < s) continue;
+    runBeat({acts: sc.init}, 0);
+    for (let j = 0; j < b; j++) runBeat(sc.beats[j], 0);
+  }
+  si = s; bi = b;
+  const sc = SCENES[s], beat = sc.beats[b];
+  tk.textContent = sc.k; th.textContent = sc.t; td.textContent = sc.d;
+  runBeat(beat, animate ? (beat.dur || 1600) / speed : 0, fresh);
+  say.textContent = beat.say;
+  requestAnimationFrame(layout);
+  renderCards(fresh); renderPips();
+  document.getElementById('bPrev').disabled = s === 0 && b === 0;
+  document.getElementById('bNext').disabled = s === SCENES.length - 1 && b === sc.beats.length - 1;
+  if (playing) schedule();
+}
+function runBeat(beat, dur, fresh) {
+  for (const a0 of beat.acts) {
+    const a = {...a0, move: typeof a0.move === 'function' ? a0.move() : a0.move};
+    // t = när i steget handlingen börjar (0–1), len = hur stor del av steget den tar
+    const t = a.t || 0, len = a.len || (1 - t);
+    if (dur > 0 && t > 0) pending.push(setTimeout(() => { const f2 = []; run([a], dur * len, f2); renderCards(f2); }, dur * t));
+    else run([a], dur * len, fresh);
+  }
+}
+function schedule() {
+  // Animation och läsning löper samtidigt: steget varar så länge som den längsta av dem
+  const beat = SCENES[si].beats[bi], anim = (beat.dur || 1600) + 900, read = 1800 + beat.say.length * 32;
+  timer = setTimeout(() => { if (!next()) { setPlay(false); window.__done = true; } }, Math.max(anim, read) / speed);
+}
+function next() { const sc = SCENES[si]; if (bi < sc.beats.length - 1) { goTo(si, bi + 1); return true; } if (si < SCENES.length - 1) { goTo(si + 1, 0); return true; } return false; }
+function prev() { if (bi > 0) goTo(si, bi - 1, false); else if (si > 0) goTo(si - 1, SCENES[si - 1].beats.length - 1, false); }
+const bPlay = document.getElementById('bPlay');
+function setPlay(on) {
+  playing = on; bPlay.setAttribute('aria-label', on ? 'Pausa' : 'Spela');
+  bPlay.innerHTML = on ? '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>' : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>';
+  clearTimeout(timer); if (on) { if (si === SCENES.length - 1 && bi === SCENES[si].beats.length - 1) goTo(0, 0); else schedule(); }
+}
+bPlay.addEventListener('click', () => setPlay(!playing));
+document.getElementById('bNext').addEventListener('click', () => { next(); });
+document.getElementById('bPrev').addEventListener('click', prev);
+document.querySelectorAll('.speed button').forEach(b => b.addEventListener('click', () => { speed = +b.dataset.s; document.querySelectorAll('.speed button').forEach(x => x.setAttribute('aria-pressed', x === b)); if (playing) { clearTimeout(timer); schedule(); } }));
+const pips = document.getElementById('pips');
+const scnRow = document.getElementById('scnRow');
+function renderPips() {
+  scnRow.innerHTML = '<span class="rl">Scen</span>' + SCENES.map((sc, i) => `<button class="${i < si ? 'done' : ''}" aria-current="${i === si}" data-s="${i}" title="${esc(sc.t)}" aria-label="Scen ${i + 1}: ${esc(sc.t)}">${i + 1}</button>`).join('');
+  pips.innerHTML = `<span class="rl">Steg</span><div class="scn">${SCENES[si].beats.map((_, j) => `<button class="pip ${j < bi ? 'done' : ''} ${j === bi ? 'cur' : ''}" data-s="${si}" data-b="${j}" aria-label="Steg ${j + 1}">${j + 1}</button>`).join('')}</div>`;
+}
+scnRow.addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) goTo(+b.dataset.s, 0); });
+function renderPipsOld() {
+  pips.innerHTML = SCENES.map((sc, i) => `<div class="scn"><b>${i + 1}</b>${sc.beats.map((_, j) => `<button class="pip ${i < si || (i === si && j < bi) ? 'done' : ''} ${i === si && j === bi ? 'cur' : ''}" data-s="${i}" data-b="${j}" aria-label="Scen ${i + 1}, steg ${j + 1}"></button>`).join('')}</div>`).join('');
+}
+pips.addEventListener('click', e => { const p = e.target.closest('.pip'); if (p) goTo(+p.dataset.s, +p.dataset.b, false); });
+document.addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('.unit')) return;
+  if (e.key === ' ') { e.preventDefault(); setPlay(!playing); }
+  else if (e.key === 'ArrowRight') next(); else if (e.key === 'ArrowLeft') prev();
+  else if (e.key === 'Escape' && selected) selectGroup(selected);
+});
+document.getElementById('stage').addEventListener('click', () => { if (selected) selectGroup(selected); });
+
+// ================= Start =================
+paintCampaign(); paintBattle(); buildCampaignSVG(); buildBattleSVG(); buildUnits();
+// SVG-text ritas ibland inte om när webbtypsnitten laddats klart – tvinga en ny layout då
+const refreshText = () => { repaintText('campaign'); repaintText('battle'); };
+if (document.fonts) { document.fonts.ready.then(refreshText); document.fonts.addEventListener && document.fonts.addEventListener('loadingdone', refreshText); }
+setTimeout(refreshText, 400);
+setTimeout(() => {
+  applyCam();
+  const m = /^#scen(\d)$/.exec(location.hash), start = m ? Math.min(SCENES.length, +m[1]) - 1 : 0;
+  if (VIDEO) { document.body.classList.add('video'); goTo(0, 0); setPlay(true); return; }
+  goTo(start, 0);
+  // Fristående export: nedladdning via sidans downloads-förmåga (fallback: vanlig länk utanför Claude)
+  if (!EMBED && location.protocol !== 'file:') {
+    document.getElementById('dl').hidden = false;
+    const msg = document.getElementById('dlMsg'), dlBox = document.getElementById('dl'), tg = document.getElementById('dlToggle');
+    const setOpen = o => { dlBox.classList.toggle('open', o); tg.setAttribute('aria-expanded', o); };
+    tg.addEventListener('click', e => { e.stopPropagation(); setOpen(!dlBox.classList.contains('open')); });
+    document.addEventListener('click', e => { if (!dlBox.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    const cap = (async () => { try { return window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { return null; } })();
+    async function offer(url, filename) {
+      msg.textContent = 'Förbereder ' + filename + ' …';
+      try {
+        const blob = await (await fetch(url)).blob();
+        const d = await cap;
+        if (d) { await d.save({filename, data: blob}); msg.textContent = ''; }
+        else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); a.remove(); msg.textContent = ''; }
+      } catch (e) {
+        const c = e && e.code;
+        msg.textContent = c === 'declined' ? '' : c === 'rate_limited' ? 'Vänta en stund och försök igen.' : c === 'host_unavailable' ? 'Öppna sidan i en webbläsare för att spara filen.' : 'Nedladdningen gick inte här.';
+      }
+    }
+    document.getElementById('dlVideo').addEventListener('click', () => offer('cairhien.mp4', 'andra-slaget-om-cairhien.mp4'));
+    document.getElementById('dlHtml').addEventListener('click', () => offer(location.href.split('#')[0], 'andra-slaget-om-cairhien.html'));
+  }
+}, 30);
+</script>
+</body>
+</html>

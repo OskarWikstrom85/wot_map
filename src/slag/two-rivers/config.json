@@ -1,0 +1,45 @@
+{
+ "storyboard": {
+  "title": "Slaget om Two Rivers",
+  "lead": "The Shadow Rising · Amadaine 999 NE",
+  "pick": [
+   [
+    7,
+    0.9
+   ],
+   [
+    6,
+    0.95
+   ],
+   [
+    2,
+    0.5
+   ],
+   [
+    3,
+    0.95
+   ],
+   [
+    0,
+    0.2
+   ],
+   [
+    2,
+    0.95
+   ],
+   [
+    2,
+    0.95
+   ],
+   [
+    2,
+    0.25
+   ],
+   [
+    1,
+    0.9
+   ]
+  ],
+  "note": "Byns och bygdens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."
+ }
+}

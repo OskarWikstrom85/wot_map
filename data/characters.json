@@ -1,0 +1,1540 @@
+[
+ {
+  "id": "rand",
+  "namn": "Rand al'Thor",
+  "titel": "Dragon Reborn",
+  "farg": "#b3261e",
+  "grupper": [
+   "Emond's Field",
+   "Kanaliserare",
+   "Ledare"
+  ],
+  "ursprung": "dragonmount",
+  "uppvuxen": "emonds-field",
+  "forsta_bok": 1,
+  "ingress": "Fåraherde från Two Rivers som visar sig vara den återfödde Draken, profeterad att möta den Mörke i Tarmon Gai'don.",
+  "om": "Rand föds på Dragonmounts sluttningar under Aielkriget och växer upp hos Tam al'Thor i Emond's Field. Han är ta'veren och kan kanalisera saidin, som är besudlad av den Mörke och driver män till vansinne. Han bär minnen av sitt tidigare liv som Lews Therin Telamon och samlar under seriens gång nationer, Aiel och Asha'man bakom sig, ofta mot deras vilja.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Föds på Dragonmounts sluttning under slaget vid De skinande murarna och hittas av Tam al'Thor.",
+    "plats": "dragonmount",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 1,
+    "text": "Trollocs anfaller Emond's Field på Winternight och han flyr med Moiraine. Vid Eye of the World besegrar han två av de förlorade med den Enda kraften.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 2,
+    "text": "Strider mot Ba'alzamon i himlen över Falme och utropas som Dragon Reborn.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 3,
+    "text": "Intar Stenen i Tear och tar svärdet Callandor.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Går in i Rhuidean och blir Car'a'carn, hövding för alla Aiel."
+   },
+   {
+    "bok": 5,
+    "text": "Dödar den förlorade Rahvin i Caemlyn.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 5,
+    "text": "Kastar blixtar och eld mot Shaido från ett utsiktstorn i andra slaget om Cairhien.",
+    "plats": "cairhien",
+    "slag": "cairhien"
+   },
+   {
+    "bok": 6,
+    "text": "Tas till fånga av Aes Sedai och befrias i slaget vid Dumai's Wells.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 7,
+    "text": "Kröns till kung av Illian.",
+    "plats": "illian"
+   },
+   {
+    "bok": 9,
+    "text": "Renar saidin från den Mörkes besudling i Shadar Logoth.",
+    "plats": "shadar-logoth"
+   },
+   {
+    "bok": 12,
+    "text": "Når en vändpunkt på toppen av Dragonmount och finner en ny ro.",
+    "plats": "dragonmount"
+   },
+   {
+    "bok": 13,
+    "text": "Går ensam ut mot en trollochär vid Maradon och förintar den.",
+    "plats": "maradon",
+    "slag": "maradon"
+   },
+   {
+    "bok": 14,
+    "text": "Samlar världens härskare vid Field of Merrilor och kräver att de skriver under Dragon's Peace.",
+    "plats": "field-of-merrilor"
+   },
+   {
+    "bok": 14,
+    "text": "Går in i Pit of Doom, griper Den Mörke och smider fängelset på nytt. Han dör i sin egen kropp men vaknar i Moridins och rider bort i hemlighet.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "egwene",
+    "text": "barndomsvän och tidigare trolovad"
+   },
+   {
+    "id": "elayne",
+    "text": "älskar henne"
+   },
+   {
+    "id": "min",
+    "text": "älskar henne"
+   },
+   {
+    "id": "moiraine",
+    "text": "hans första vägledare"
+   },
+   {
+    "id": "lan",
+    "text": "lär honom svärdskonst"
+   },
+   {
+    "id": "aviendha",
+    "text": "älskar henne, bunden till henne"
+   },
+   {
+    "id": "gawyn",
+    "text": "Elaynes bror, misstror honom"
+   },
+   {
+    "id": "galad",
+    "text": "halvbror, utan att de vet det"
+   },
+   {
+    "id": "tam",
+    "text": "fosterfar"
+   },
+   {
+    "id": "loial",
+    "text": "vän"
+   },
+   {
+    "id": "tuon",
+    "text": "motpart"
+   },
+   {
+    "id": "mat",
+    "text": "barndomsvän"
+   },
+   {
+    "id": "perrin",
+    "text": "barndomsvän"
+   }
+  ]
+ },
+ {
+  "id": "egwene",
+  "namn": "Egwene al'Vere",
+  "titel": "Amyrlin Seat",
+  "farg": "#3a5ba0",
+  "grupper": [
+   "Emond's Field",
+   "Aes Sedai",
+   "Kanaliserare",
+   "Ledare"
+  ],
+  "ursprung": "emonds-field",
+  "uppvuxen": "emonds-field",
+  "forsta_bok": 1,
+  "ingress": "Värdshusvärdens dotter från Emond's Field som blir drömgångare och till slut Amyrlin Seat.",
+  "om": "Egwene är dotter till Bran al'Vere och växer upp i Emond's Field. Hon lämnar byn med Moiraine, utbildas i Vita tornet och lär sig vandra i Tel'aran'rhiod av Aiels visa kvinnor. Som Amyrlin för de upproriska Aes Sedai arbetar hon för att ena det splittrade tornet. Hon är envis, snabblärd och van att ta ansvar.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Lämnar Emond's Field tillsammans med Moiraine och de andra.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 2,
+    "text": "Tas till fånga av Seanchan och hålls som damane i Falme innan hon befrias.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 3,
+    "text": "Hålls fången av Black Ajah i Stenen i Tear men skärmar av en av sina fångvaktare i drömmen.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Studerar drömvandring hos Aiels visa kvinnor i Aieliska ödemarken."
+   },
+   {
+    "bok": 5,
+    "text": "Kastar blixtar mot Shaido från tornet tillsammans med Rand och Aviendha i slaget om Cairhien.",
+    "plats": "cairhien",
+    "slag": "cairhien"
+   },
+   {
+    "bok": 6,
+    "text": "Upphöjs till Amyrlin Seat av de upproriska Aes Sedai i Salidar."
+   },
+   {
+    "bok": 12,
+    "text": "Försvarar Vita tornet mot Seanchans anfall och erkänns som Amyrlin av hela tornet.",
+    "plats": "tar-valon",
+    "slag": "tar-valon"
+   },
+   {
+    "bok": 13,
+    "text": "Räddas från Seanchans lönnmördare av Gawyn, som blir hennes väktare.",
+    "plats": "tar-valon"
+   },
+   {
+    "bok": 14,
+    "text": "Gifter sig med Gawyn. Vid Merrilor upptäcker hon Flame of Tar Valon, dödar Taim och offrar sig för att krossa Sharas kanaliserare.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "barndomsvän"
+   },
+   {
+    "id": "nynaeve",
+    "text": "Visdomen från hennes by"
+   },
+   {
+    "id": "elayne",
+    "text": "nära vän"
+   },
+   {
+    "id": "aviendha",
+    "text": "vän och lärlingssyster"
+   },
+   {
+    "id": "siuan",
+    "text": "hennes rådgivare"
+   },
+   {
+    "id": "gawyn",
+    "text": "väktare och make"
+   },
+   {
+    "id": "verin",
+    "text": "gav henne förteckningen över Black Ajah"
+   },
+   {
+    "id": "perrin",
+    "text": "barndomsvän"
+   }
+  ]
+ },
+ {
+  "id": "mat",
+  "namn": "Mat Cauthon",
+  "titel": "Son of Battles",
+  "farg": "#c27c1a",
+  "grupper": [
+   "Emond's Field",
+   "Ledare"
+  ],
+  "ursprung": "emonds-field",
+  "uppvuxen": "emonds-field",
+  "forsta_bok": 1,
+  "ingress": "Skojaren från Emond's Field som får tusentals gamla fältherrars minnen och blir en av tidens främsta befälhavare.",
+  "om": "Mat är en spelglad och rastlös ung man som helst slipper ansvar men ändå hamnar mitt i allt. Han är ta'veren, har en omåttlig tur och bär ett rävhuvudsmedaljong som skyddar mot den Enda kraften. Minnen från gamla krigare gör honom till en lysande strateg, och han leder Band of the Red Hand.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Tar en förbannad dolk från de övergivna skatterna i Shadar Logoth.",
+    "plats": "shadar-logoth"
+   },
+   {
+    "bok": 2,
+    "text": "Blåser i Horn of Valere i slaget vid Falme.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 3,
+    "text": "Helas från dolkens grepp i Tar Valon och tar sig sedan till Tear.",
+    "plats": "tar-valon"
+   },
+   {
+    "bok": 3,
+    "text": "Spränger av misstag upp Stenen i Tear med fyrverkerier och befriar Egwene, Nynaeve och Elayne.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Går genom den vridna dörrkarmen i Rhuidean och får medaljongen, spjutet ashandarei och främmande minnen."
+   },
+   {
+    "bok": 5,
+    "text": "Leder ett hopkommet rytteri till seger utanför Cairhien, dödar Couladin och bildar Band of the Red Hand.",
+    "slag": "cairhien",
+    "plats": "cairhien"
+   },
+   {
+    "bok": 7,
+    "text": "Hamnar i Ebou Dar när Seanchan tar staden.",
+    "plats": "ebou-dar"
+   },
+   {
+    "bok": 11,
+    "text": "Gifter sig med Tuon, Seanchans tronarvinge."
+   },
+   {
+    "bok": 13,
+    "text": "Befriar Moiraine ur Tower of Ghenjei men förlorar ett öga."
+   },
+   {
+    "bok": 14,
+    "text": "Tar över befälet för Ljusets härar och vinner slaget vid Merrilor.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   },
+   {
+    "bok": 14,
+    "text": "Dödar Padan Fain med hans egen dolk i Thakan'dar.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "barndomsvän"
+   },
+   {
+    "id": "perrin",
+    "text": "barndomsvän"
+   },
+   {
+    "id": "thom",
+    "text": "vän och reskamrat"
+   },
+   {
+    "id": "moiraine",
+    "text": "räddar henne"
+   },
+   {
+    "id": "birgitte",
+    "text": "dryckesbroder"
+   },
+   {
+    "id": "tuon",
+    "text": "hustru"
+   }
+  ]
+ },
+ {
+  "id": "perrin",
+  "namn": "Perrin Aybara",
+  "titel": "Lord of the Two Rivers",
+  "farg": "#6b4a2b",
+  "grupper": [
+   "Emond's Field",
+   "Ledare"
+  ],
+  "ursprung": "emonds-field",
+  "uppvuxen": "emonds-field",
+  "forsta_bok": 1,
+  "ingress": "Smedlärling från Emond's Field som kan tala med vargar och blir Two Rivers ledare.",
+  "om": "Perrin är eftertänksam, stark och rädd för sin egen kraft. Han är vargbroder och får gula ögon och skarpa sinnen. Han är ta'veren liksom Rand och Mat. Han dras till yxan men längtar efter hammaren och leder motvilligt folket från Two Rivers.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Möter Elyas Machera och upptäcker att han kan tala med vargar."
+   },
+   {
+    "bok": 2,
+    "text": "Lyfter Drakens fana när Hjältarna från hornet rider vid Falme.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 3,
+    "text": "Befriar Faile ur en drömfälla medan Stenen i Tear faller.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Återvänder till Two Rivers, försvarar bygden mot trollocs och gifter sig med Faile Bashere.",
+    "plats": "emonds-field",
+    "slag": "two-rivers"
+   },
+   {
+    "bok": 6,
+    "text": "Leder Two Rivers män i slaget vid Dumai's Wells.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 8,
+    "text": "Faile tas till fånga av Shaido och han börjar jaga dem."
+   },
+   {
+    "bok": 11,
+    "text": "Befriar Faile i Malden.",
+    "slag": "malden",
+    "plats": "malden"
+   },
+   {
+    "bok": 13,
+    "text": "Smider hammaren Mah'alleinir och accepterar sin roll som ledare."
+   },
+   {
+    "bok": 14,
+    "text": "Strider i Braem Wood i början av Tarmon Gai'don.",
+    "plats": "caemlyn",
+    "slag": "caemlyn-fall"
+   },
+   {
+    "bok": 14,
+    "text": "Skyddar Rand i vargdrömmen, dödar Slayer och Lanfear och hittar Faile efter slaget.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "barndomsvän"
+   },
+   {
+    "id": "mat",
+    "text": "barndomsvän"
+   },
+   {
+    "id": "egwene",
+    "text": "från samma by"
+   },
+   {
+    "id": "faile",
+    "text": "hustru"
+   },
+   {
+    "id": "galad",
+    "text": "motståndare i rättegången"
+   },
+   {
+    "id": "tam",
+    "text": "rådgivare"
+   },
+   {
+    "id": "loial",
+    "text": "vän och reskamrat"
+   },
+   {
+    "id": "verin",
+    "text": "hjälpte honom i Two Rivers"
+   }
+  ]
+ },
+ {
+  "id": "nynaeve",
+  "namn": "Nynaeve al'Meara",
+  "titel": "Visdomen från Emond's Field",
+  "farg": "#c9a227",
+  "grupper": [
+   "Emond's Field",
+   "Aes Sedai",
+   "Kanaliserare"
+  ],
+  "ursprung": "emonds-field",
+  "uppvuxen": "emonds-field",
+  "forsta_bok": 1,
+  "ingress": "Byns unga Visdom, en av de starkaste kanaliserarna på generationer och en enastående helare.",
+  "om": "Nynaeve är Visdom i Emond's Field och följer efter Moiraine för att skydda ungdomarna från byn. Hon kanaliserar instinktivt men har länge ett block som bara släpper när hon är arg. Hon är stridslysten, omtänksam och ofta otålig, och hon hittar sätt att hela det som andra Aes Sedai anser omöjligt.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Följer efter Moiraine och de unga från Emond's Field.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 2,
+    "text": "Tar sig till Falme för att befria Egwene.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 3,
+    "text": "Lockas i en fälla av Black Ajah och hålls fången i Stenen i Tear.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Jagar Svarta ajah i Tanchico.",
+    "plats": "tanchico"
+   },
+   {
+    "bok": 6,
+    "text": "Helar Siuan och Leane, som fått förmågan att kanalisera avskuren, i Salidar."
+   },
+   {
+    "bok": 7,
+    "text": "Gifter sig med Lan ombord på ett Sea Folk-skepp."
+   },
+   {
+    "bok": 9,
+    "text": "Hjälper Rand att rena saidin i Shadar Logoth.",
+    "plats": "shadar-logoth"
+   },
+   {
+    "bok": 14,
+    "text": "Följer Rand in i Pit of Doom och tar med Moiraine kontroll över Moridin genom Callandor.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "lan",
+    "text": "hennes make"
+   },
+   {
+    "id": "egwene",
+    "text": "byns Visdom vakar över henne"
+   },
+   {
+    "id": "elayne",
+    "text": "reskamrat"
+   },
+   {
+    "id": "siuan",
+    "text": "helade henne"
+   },
+   {
+    "id": "birgitte",
+    "text": "vän"
+   }
+  ]
+ },
+ {
+  "id": "moiraine",
+  "namn": "Moiraine Damodred",
+  "titel": "Aes Sedai av Blå ajah",
+  "farg": "#2f6ea5",
+  "grupper": [
+   "Aes Sedai",
+   "Kanaliserare",
+   "Adel"
+  ],
+  "ursprung": "cairhien",
+  "uppvuxen": "cairhien",
+  "forsta_bok": 1,
+  "ingress": "Aes Sedai från Cairhiens kungahus som ägnat sitt liv åt att hitta och vägleda den återfödde Draken.",
+  "om": "Moiraine tillhör huset Damodred i Cairhien. Efter en förutsägelse under Aielkriget letar hon i tjugo år efter barnet som föddes på Dragonmount, tillsammans med sin väktare Lan. Hon är behärskad, hemlighetsfull och slug, och hennes råd till Rand är ofta ovälkomna men avgörande.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Hör Gitara Morosos förutsägelse om Drakens födelse och börjar leta efter barnet.",
+    "plats": "tar-valon",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 1,
+    "text": "Kommer till Emond's Field med Lan och för bort de unga från byn.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 3,
+    "text": "Dödar den förlorade Be'lal med balefire i Heart of the Stone.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Går genom en ter'angreal i Rhuidean och ser vad som väntar henne."
+   },
+   {
+    "bok": 5,
+    "text": "Brottas med Lanfear vid hamnen i Cairhien och faller genom en dörrkarm-ter'angreal.",
+    "plats": "cairhien"
+   },
+   {
+    "bok": 5,
+    "text": "Helar Rand efter slaget om Cairhien.",
+    "plats": "cairhien",
+    "slag": "cairhien"
+   },
+   {
+    "bok": 13,
+    "text": "Räddas ur Tower of Ghenjei av Mat, Thom och Noal."
+   },
+   {
+    "bok": 14,
+    "text": "Får Rand att godta Elayne som överbefälhavare vid Merrilor.",
+    "plats": "field-of-merrilor"
+   },
+   {
+    "bok": 14,
+    "text": "Följer Rand in i Pit of Doom och tar med Nynaeve kontroll över Moridin genom Callandor.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "lan",
+    "text": "hennes väktare"
+   },
+   {
+    "id": "rand",
+    "text": "den hon sökt"
+   },
+   {
+    "id": "thom",
+    "text": "nära band"
+   },
+   {
+    "id": "siuan",
+    "text": "bästa vän sedan novistiden"
+   },
+   {
+    "id": "mat",
+    "text": "räddade henne"
+   }
+  ]
+ },
+ {
+  "id": "lan",
+  "namn": "al'Lan Mandragoran",
+  "titel": "Okrönt kung av Malkier",
+  "farg": "#4a5560",
+  "grupper": [
+   "Väktare",
+   "Adel"
+  ],
+  "ursprung": null,
+  "uppvuxen": "fal-moran",
+  "forsta_bok": 1,
+  "ingress": "Moiraines väktare och den siste kungen av Malkier, landet som slukades av Blighten.",
+  "om": "Lan räddades som spädbarn när Malkier föll och växte upp i Shienar med en ed att föra krig mot Skuggan. Han är en av världens främsta svärdsmän, sparsam med ord och fullständigt pålitlig. Han lär Rand att slåss och gifter sig senare med Nynaeve.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Strider i slaget vid De skinande murarna, strax innan han möter Moiraine.",
+    "plats": "tar-valon",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 1,
+    "text": "Leder sällskapet från Two Rivers genom faror tillsammans med Moiraine.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 3,
+    "text": "Följer Moiraine in i Stenen i Tear.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 5,
+    "text": "När Moiraine försvinner går hans väktarband över till Myrelle."
+   },
+   {
+    "bok": 5,
+    "text": "Ger Mat och Rand råd inför slaget om Cairhien.",
+    "plats": "cairhien",
+    "slag": "cairhien"
+   },
+   {
+    "bok": 7,
+    "text": "Gifter sig med Nynaeve."
+   },
+   {
+    "bok": 13,
+    "text": "Rider mot Tarwin's Gap, och Malkieri samlas under Gyllene tranan."
+   },
+   {
+    "bok": 14,
+    "text": "Håller Tarwin's Gap med sina Malkieri tills Borderland-härarna kommer genom portar."
+   },
+   {
+    "bok": 14,
+    "text": "Dödar Demandred vid Merrilor genom att låta sig träffas för att komma nära.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "moiraine",
+    "text": "hans Aes Sedai"
+   },
+   {
+    "id": "nynaeve",
+    "text": "hans hustru"
+   },
+   {
+    "id": "rand",
+    "text": "hans elev"
+   }
+  ]
+ },
+ {
+  "id": "elayne",
+  "namn": "Elayne Trakand",
+  "titel": "Drottning av Andor",
+  "farg": "#9b2c4a",
+  "grupper": [
+   "Aes Sedai",
+   "Kanaliserare",
+   "Adel",
+   "Ledare"
+  ],
+  "ursprung": "caemlyn",
+  "uppvuxen": "caemlyn",
+  "forsta_bok": 1,
+  "ingress": "Andors tronarvinge, stark kanaliserare och den första på årtusenden som kan tillverka ter'angreal.",
+  "om": "Elayne är dotter till drottning Morgase och växer upp i palatset i Caemlyn. Hon utbildas i Vita tornet och väljer Gröna ajah. Hon är modig, ofta dristig, och har en ovanlig begåvning för att förstå och skapa föremål av den Enda kraften. Hon vinner Andors tron i en hård tronföljdsstrid.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Möter Rand i palatsträdgården i Caemlyn.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 2,
+    "text": "Hjälper Nynaeve och Min att befria Egwene ur Seanchans kennlar i Falme.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 3,
+    "text": "Hålls fången av Black Ajah i Stenen i Tear tills Mat befriar henne.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Jagar Svarta ajah i Tanchico med Nynaeve och Thom.",
+    "plats": "tanchico"
+   },
+   {
+    "bok": 5,
+    "text": "Binder Birgitte som sin väktare."
+   },
+   {
+    "bok": 8,
+    "text": "Använder Bowl of the Winds nära Ebou Dar för att återställa vädret.",
+    "plats": "ebou-dar"
+   },
+   {
+    "bok": 11,
+    "text": "Vinner tronföljdsstriden och blir drottning av Andor.",
+    "plats": "caemlyn",
+    "slag": "caemlyn"
+   },
+   {
+    "bok": 14,
+    "text": "Blir överbefälhavare för Ljusets härar. Caemlyn faller och hennes här drar sig tillbaka till Cairhien.",
+    "plats": "caemlyn",
+    "slag": "caemlyn-fall"
+   },
+   {
+    "bok": 14,
+    "text": "Tas till fånga av Mellar vid Merrilor men räddas när Birgitte återvänder som hjälte.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "älskar honom"
+   },
+   {
+    "id": "nynaeve",
+    "text": "reskamrat"
+   },
+   {
+    "id": "thom",
+    "text": "lärare och vän"
+   },
+   {
+    "id": "egwene",
+    "text": "nära vän"
+   },
+   {
+    "id": "aviendha",
+    "text": "förstasyster"
+   },
+   {
+    "id": "gawyn",
+    "text": "bror"
+   },
+   {
+    "id": "galad",
+    "text": "halvbror"
+   },
+   {
+    "id": "birgitte",
+    "text": "hennes väktare"
+   },
+   {
+    "id": "min",
+    "text": "delar Rand med henne"
+   }
+  ]
+ },
+ {
+  "id": "min",
+  "namn": "Min Farshaw",
+  "titel": "Ser syner",
+  "farg": "#7a5c99",
+  "grupper": [
+   "Rådgivare"
+  ],
+  "ursprung": null,
+  "uppvuxen": "baerlon",
+  "forsta_bok": 1,
+  "ingress": "Ung kvinna som ser bilder och auror kring människor, syner som alltid besannas.",
+  "om": "Min arbetar på ett värdshus i Baerlon när hon träffar sällskapet från Two Rivers. Hennes syner visar vad som väntar människor, men inte när. Hon är skarpsynt och rakt på sak och blir en av Rands närmaste rådgivare. Hon studerar Herid Fels böcker för att förstå vad Rand måste göra.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Ser syner kring Rand och hans vänner i Baerlon.",
+    "plats": "baerlon"
+   },
+   {
+    "bok": 2,
+    "text": "Följer med Egwene, Nynaeve och Elayne från Tar Valon och hjälper till att befria Egwene ur Seanchans kennlar i Falme.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 6,
+    "text": "Är med Rand när han tas till fånga och befrias vid Dumai's Wells.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 12,
+    "text": "Fortsätter tolka Herid Fels anteckningar om den Mörkes fängelse och sigillen."
+   },
+   {
+    "bok": 14,
+    "text": "Blir Fortuonas Doomseer, räddar henne från en Sharansk kanaliserare och upphöjs till Blodet.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "älskar honom"
+   },
+   {
+    "id": "elayne",
+    "text": "vän"
+   },
+   {
+    "id": "aviendha",
+    "text": "delar Rand med henne"
+   },
+   {
+    "id": "siuan",
+    "text": "hjälpte henne att fly"
+   }
+  ]
+ },
+ {
+  "id": "thom",
+  "namn": "Thom Merrilin",
+  "titel": "Gycklare",
+  "farg": "#3f7a5a",
+  "grupper": [
+   "Rådgivare"
+  ],
+  "ursprung": null,
+  "uppvuxen": "caemlyn",
+  "forsta_bok": 1,
+  "ingress": "Gycklare med brokig mantel och ett förflutet vid hovet i Caemlyn.",
+  "om": "Thom kommer till Emond's Field som underhållare på Winternight och följer med de unga när de flyr. Bakom berättarrösten finns en före detta hovbarde, skolad i Daes Dae'mar, som en gång var drottning Morgases älskare. Han är cynisk men lojal och blir lärare för både Rand och Elayne.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Uppträder på Winternight och flyr med de unga från byn.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 1,
+    "text": "Möter en Myrddraal vid Whitebridge för att ge de andra tid att fly.",
+    "plats": "whitebridge"
+   },
+   {
+    "bok": 2,
+    "text": "Hittas i Cairhien, där han lever ett tillbakadraget liv.",
+    "plats": "cairhien"
+   },
+   {
+    "bok": 4,
+    "text": "Följer med Elayne och Nynaeve till Tanchico.",
+    "plats": "tanchico"
+   },
+   {
+    "bok": 13,
+    "text": "Är med när Moiraine räddas ur Tower of Ghenjei."
+   },
+   {
+    "bok": 14,
+    "text": "Vaktar grottans ingång vid Shayol Ghul och dödar en Darkfriend förklädd till Cadsuane.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "elayne",
+    "text": "elev"
+   },
+   {
+    "id": "mat",
+    "text": "vän och reskamrat"
+   },
+   {
+    "id": "moiraine",
+    "text": "nära band"
+   }
+  ]
+ },
+ {
+  "id": "aviendha",
+  "namn": "Aviendha",
+  "titel": "Jungfru av spjutet, sedan visa kvinnornas lärling",
+  "farg": "#b5562a",
+  "grupper": [
+   "Aiel",
+   "Kanaliserare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 3,
+  "ingress": "Taardad-Aiel ur Nine Valleys-septen som tvingas lägga ner spjutet och bli visa kvinnornas lärling. Hon blir en av de tre kvinnor Rand älskar.",
+  "om": "Aviendha är stolt, stridbar och har svårt med våtlandsbornas seder. Hon kan kanalisera starkt och har talang för att se vävar i ter'angreal. Hon får i uppdrag att vaka över Rand, blir förälskad i honom mot sin vilja och knyts till Elayne som förstasyster.",
+  "handelser": [
+   {
+    "bok": 3,
+    "text": "Möter Egwene, Elayne och Nynaeve på vägen till Tear och är med när Aiel tar Stenen.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Kallas till Rhuidean, får veta att hon kan kanalisera och måste bli visa kvinnornas lärling."
+   },
+   {
+    "bok": 5,
+    "text": "Kastar blixtar mot Shaido från tornet i slaget om Cairhien och skyddar Rand när tornet rasar.",
+    "plats": "cairhien",
+    "slag": "cairhien"
+   },
+   {
+    "bok": 7,
+    "text": "Följer med Elayne och Nynaeve till Ebou Dar på jakt efter Bowl of the Winds och blir Elaynes förstasyster.",
+    "plats": "ebou-dar"
+   },
+   {
+    "bok": 9,
+    "text": "Binder Rand som väktare tillsammans med Elayne och Min i Caemlyn.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 13,
+    "text": "Går genom glaskolonnerna i Rhuidean igen och ser en mörk framtid för sitt folk."
+   },
+   {
+    "bok": 14,
+    "text": "Leder cirklar i Thakan'dar, tvingas döda den tvingade Rhuarc och får Graendal bunden vid sig när hennes tvång studsar tillbaka.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "älskar honom, bunden till honom"
+   },
+   {
+    "id": "elayne",
+    "text": "förstasyster"
+   },
+   {
+    "id": "egwene",
+    "text": "vän"
+   },
+   {
+    "id": "min",
+    "text": "delar Rand med henne"
+   }
+  ]
+ },
+ {
+  "id": "faile",
+  "namn": "Faile Bashere",
+  "titel": "Lady av Saldaea, Perrins hustru",
+  "farg": "#2e6b6b",
+  "grupper": [
+   "Adel",
+   "Ledare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 3,
+  "ingress": "Saldaeisk adelsdam och kusin till drottning Tenobia, som rymt hemifrån som Hunter for the Horn och i stället hittar Perrin.",
+  "om": "Faile heter egentligen Zarine och är dotter till Davram Bashere. Hon är snabbtänkt, svartsjuk och skicklig på politik och spioneri. Som Perrins hustru hjälper hon honom att bli den herre folket förväntar sig, och hon samlar ett eget nätverk, Cha Faile, av unga adelsmän.",
+  "handelser": [
+   {
+    "bok": 3,
+    "text": "Möter Perrin som Hunter for the Horn och följer med till Tear, där hon fastnar i en drömfälla.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Följer Perrin till Two Rivers, hämtar hjälp från Watch Hill i slutstriden och gifter sig med honom.",
+    "plats": "emonds-field",
+    "slag": "two-rivers"
+   },
+   {
+    "bok": 9,
+    "text": "Tas till fånga av Shaido och blir gai'shain hos Sevanna."
+   },
+   {
+    "bok": 11,
+    "text": "Planerar sin flykt inifrån Malden och befrias när Perrin anfaller.",
+    "plats": "malden",
+    "slag": "malden"
+   },
+   {
+    "bok": 14,
+    "text": "Smugglar Horn of Valere i en försörjningskonvoj, tas till fånga i Blighten och räddas av Vanin och Harnin."
+   },
+   {
+    "bok": 14,
+    "text": "Hornet når fram till Merrilor, där Olver blåser i det.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "perrin",
+    "text": "make"
+   }
+  ]
+ },
+ {
+  "id": "siuan",
+  "namn": "Siuan Sanche",
+  "titel": "Amyrlin Seat, sedan Egwenes rådgivare",
+  "farg": "#1f4e79",
+  "grupper": [
+   "Aes Sedai",
+   "Kanaliserare",
+   "Ledare",
+   "Rådgivare"
+  ],
+  "ursprung": "tear",
+  "uppvuxen": "tear",
+  "forsta_bok": 1,
+  "ingress": "Fiskardottern från Tear som blir Amyrlin, avsätts av Elaida och kämpar sig tillbaka som Egwenes skarpaste rådgivare.",
+  "om": "Siuan tillhör Blue Ajah och har ett sjömansspråk som skrämmer de flesta. Tillsammans med Moiraine bar hon i tjugo år hemligheten om Draken. Efter att ha avsatts och stillats går hon under jorden, bygger upp rebellernas Aes Sedai och styr dem bakom kulisserna.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Hör, som Accepted, Gitara Morosos förutsägelse om Drakens födelse under slaget vid De skinande murarna.",
+    "plats": "tar-valon",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 2,
+    "text": "Besöker Fal Dara som Amyrlin och träffar Rand i hemlighet.",
+    "plats": "fal-dara"
+   },
+   {
+    "bok": 4,
+    "text": "Avsätts och stillas av Elaida, men flyr med Leane, Min och Logain.",
+    "plats": "tar-valon"
+   },
+   {
+    "bok": 6,
+    "text": "Helas av Nynaeve i Salidar och hjälper till att upphöja Egwene till Amyrlin."
+   },
+   {
+    "bok": 12,
+    "text": "Leder räddningsgruppen in i Vita tornet under Seanchans anfall och får ut Egwene.",
+    "plats": "tar-valon",
+    "slag": "tar-valon"
+   },
+   {
+    "bok": 14,
+    "text": "Dör vid Merrilor när Mats kommandoplats anfalls, samtidigt som hennes väktare Gareth Bryne.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "moiraine",
+    "text": "bästa vän sedan novistiden"
+   },
+   {
+    "id": "egwene",
+    "text": "Amyrlin hon tjänar"
+   },
+   {
+    "id": "min",
+    "text": "hjälpte henne att fly ur tornet"
+   },
+   {
+    "id": "nynaeve",
+    "text": "helade henne"
+   }
+  ]
+ },
+ {
+  "id": "gawyn",
+  "namn": "Gawyn Trakand",
+  "titel": "Prins av Andor, Egwenes väktare",
+  "farg": "#8a3a2f",
+  "grupper": [
+   "Adel",
+   "Väktare"
+  ],
+  "ursprung": "caemlyn",
+  "uppvuxen": "caemlyn",
+  "forsta_bok": 1,
+  "ingress": "Elaynes bror, en lysande svärdsman som slits mellan sin plikt mot familjen, sin misstro mot Rand och sin kärlek till Egwene.",
+  "om": "Gawyn tränades i Vita tornet och väljer Elaidas sida när tornet splittras. Han leder de unga väktarlärlingarna, Younglings, men blir aldrig riktigt trygg i något läger. Till slut finner han sin plats som Egwenes väktare.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Möter Rand i palatsträdgården i Caemlyn tillsammans med Elayne och Galad.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 4,
+    "text": "Ställer sig på Elaidas sida när Siuan avsätts och tar befälet över Younglings.",
+    "plats": "tar-valon"
+   },
+   {
+    "bok": 6,
+    "text": "Leder Younglings vid Dumai's Wells och tar sig därifrån med några av tornets systrar.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 12,
+    "text": "Tar sig in i Vita tornet under Seanchans anfall och dödar en Bloodknife.",
+    "plats": "tar-valon",
+    "slag": "tar-valon"
+   },
+   {
+    "bok": 13,
+    "text": "Skyddar Egwene mot Seanchans lönnmördare och blir hennes väktare.",
+    "plats": "tar-valon"
+   },
+   {
+    "bok": 14,
+    "text": "Gifter sig med Egwene. Bär Bloodknives ringar, angriper Demandred vid Merrilor och såras dödligt.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "elayne",
+    "text": "syster"
+   },
+   {
+    "id": "egwene",
+    "text": "hustru och Amyrlin"
+   },
+   {
+    "id": "galad",
+    "text": "halvbror"
+   },
+   {
+    "id": "rand",
+    "text": "misstror honom"
+   }
+  ]
+ },
+ {
+  "id": "galad",
+  "namn": "Galad Damodred",
+  "titel": "Lord Captain Commander för Children of the Light",
+  "farg": "#8a7f5c",
+  "grupper": [
+   "Adel",
+   "Ledare",
+   "Children of the Light"
+  ],
+  "ursprung": null,
+  "uppvuxen": "caemlyn",
+  "forsta_bok": 1,
+  "ingress": "Elaynes och Gawyns halvbror, en mästerlig svärdsman som alltid gör det han anser rätt, oavsett vad det kostar.",
+  "om": "Galad är son till Taringail Damodred och Tigraine, och därmed Rands halvbror utan att någon av dem vet det. Hans stränga rättskänsla för honom till Children of the Light, där han så småningom tar över ledningen och försöker göra rörelsen till vad den borde vara.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Möter Rand i palatsträdgården i Caemlyn.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 5,
+    "text": "Har gått med i Children of the Light och hjälper Elayne och Nynaeve vidare mot Salidar."
+   },
+   {
+    "bok": 11,
+    "text": "Dödar Eamon Valda i en duell och blir Lord Captain Commander."
+   },
+   {
+    "bok": 13,
+    "text": "Möter Perrin i en rättegång om Whitecloaks som Perrin dödat, och räddas själv från inkvisitorn Asunawa."
+   },
+   {
+    "bok": 14,
+    "text": "Leder Whitecloaks på Andorfronten och lider svåra förluster.",
+    "plats": "caemlyn",
+    "slag": "caemlyn-fall"
+   },
+   {
+    "bok": 14,
+    "text": "Får veta att Rand är hans halvbror. Duellerar med Demandred vid Merrilor och förlorar sin högra arm.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "gawyn",
+    "text": "halvbror"
+   },
+   {
+    "id": "elayne",
+    "text": "halvsyster"
+   },
+   {
+    "id": "rand",
+    "text": "halvbror, utan att de vet det"
+   },
+   {
+    "id": "perrin",
+    "text": "motståndare i rättegången"
+   }
+  ]
+ },
+ {
+  "id": "tam",
+  "namn": "Tam al'Thor",
+  "titel": "Fåraherde och före detta blademästare",
+  "farg": "#5d6b3a",
+  "grupper": [
+   "Emond's Field",
+   "Ledare"
+  ],
+  "ursprung": "emonds-field",
+  "uppvuxen": "emonds-field",
+  "forsta_bok": 1,
+  "ingress": "Rands fosterfar, en lugn fåraherde som en gång var blademästare och andre kapten i Illians Companions.",
+  "om": "Tam lämnade Two Rivers som ung och kom tillbaka efter Aielkriget med ett heronmärkt svärd, en hustru från utlandet och en nyfödd son. Han lär Rand tomrummet och svärdet. Senare blir han en klippa för Perrin, och hans råd hjälper Rand att hitta tillbaka till sig själv.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Hittar en nyfödd pojke i snön på Dragonmounts sluttning och tar honom som sin son.",
+    "plats": "dragonmount",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 1,
+    "text": "Såras av en trolloc på Winternight och ligger i feber medan han berättar om barnet han hittade.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 4,
+    "text": "Leder bågskyttarna när Emond's Field försvaras mot trollocs.",
+    "plats": "emonds-field",
+    "slag": "two-rivers"
+   },
+   {
+    "bok": 11,
+    "text": "Kommer med förstärkningar genom en port till Perrins här vid Malden.",
+    "plats": "malden",
+    "slag": "malden"
+   },
+   {
+    "bok": 12,
+    "text": "Möter Rand igen och blir nästan dödad av honom.",
+    "plats": "bandar-eban"
+   },
+   {
+    "bok": 14,
+    "text": "Avslöjar att Basheres spaningsrapporter är förfalskade på Andorfronten.",
+    "plats": "cairhien",
+    "slag": "caemlyn-fall"
+   },
+   {
+    "bok": 14,
+    "text": "Leder bågskyttar vid floden Mora i slaget vid Merrilor och tänder senare Rands bål.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "fosterson"
+   },
+   {
+    "id": "perrin",
+    "text": "följer honom"
+   }
+  ]
+ },
+ {
+  "id": "loial",
+  "namn": "Loial",
+  "titel": "Ogier och författare",
+  "farg": "#7a6a3c",
+  "grupper": [
+   "Ogier"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 1,
+  "ingress": "En ung Ogier från Stedding Shangtai som rymt för att se världen och skriva en bok om Draken.",
+  "om": "Loial är lång, vänlig och ständigt orolig för att vara förhastad, men orädd när det gäller. Han kan hitta i Ways och följer Rand och Perrin genom de flesta av deras faror. Hans mor Covril och hans tilltänkta Erith jagar honom för att han ska gifta sig.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Möter Rand i Caemlyn och leder sällskapet genom Ways till Fal Dara.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 4,
+    "text": "Tar Perrin genom Ways till Two Rivers och stänger Waygate vid Manetheren.",
+    "plats": "emonds-field",
+    "slag": "two-rivers"
+   },
+   {
+    "bok": 6,
+    "text": "Är med i räddningsstyrkan vid Dumai's Wells.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 13,
+    "text": "Gifter sig med Erith och talar inför Ogiers Great Stump för att de ska strida i Tarmon Gai'don."
+   },
+   {
+    "bok": 14,
+    "text": "Leder Ogier mot trollocs i Braem Wood.",
+    "plats": "caemlyn",
+    "slag": "caemlyn-fall"
+   },
+   {
+    "bok": 14,
+    "text": "Strider vid Merrilor och hjälper Lan i kampen mot Demandred.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "vän"
+   },
+   {
+    "id": "perrin",
+    "text": "vän och reskamrat"
+   }
+  ]
+ },
+ {
+  "id": "verin",
+  "namn": "Verin Mathwin",
+  "titel": "Aes Sedai av Brown Ajah",
+  "farg": "#8b5a2b",
+  "grupper": [
+   "Aes Sedai",
+   "Kanaliserare"
+  ],
+  "ursprung": "far-madding",
+  "uppvuxen": "far-madding",
+  "forsta_bok": 2,
+  "ingress": "Den till synes tankspridda bruna systern som i över sjuttio år spelat ett eget spel och vet mer än någon anar.",
+  "om": "Verin verkar förstrött och ofarlig, men hon iakttar allt och antecknar ännu mer. Hon dyker upp när de unga från Two Rivers behöver det som mest, och hon drar sig inte för att använda tvång för att få sin vilja igenom. Hennes verkliga lojalitet avslöjas först i slutet.",
+  "handelser": [
+   {
+    "bok": 2,
+    "text": "Följer jakten på Horn of Valere och skickar in Rand och de andra i Falme.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 4,
+    "text": "Hjälper Perrin att försvara Emond's Field och letar efter flickor som kan kanalisera.",
+    "plats": "emonds-field",
+    "slag": "two-rivers"
+   },
+   {
+    "bok": 6,
+    "text": "Strider vid Dumai's Wells och svär sedan trohet till Rand.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 12,
+    "text": "Avslöjar för Egwene att hon varit Black Ajah, lämnar över en förteckning över dem och dör av gift.",
+    "plats": "tar-valon"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "egwene",
+    "text": "gav henne förteckningen över Black Ajah"
+   },
+   {
+    "id": "perrin",
+    "text": "hjälpte honom i Two Rivers"
+   }
+  ]
+ },
+ {
+  "id": "birgitte",
+  "namn": "Birgitte Silverbow",
+  "titel": "Hjälte från hornet, Elaynes väktare",
+  "farg": "#6f7390",
+  "grupper": [
+   "Väktare",
+   "Ledare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 2,
+  "ingress": "En av legendens hjältar, bunden till hjulet, som rycks ut ur drömvärlden och blir Elaynes väktare.",
+  "om": "Birgitte är en mästerlig bågskytt som har levt otaliga liv, alltid tillsammans med Gaidal Cain. Efter att ha slitits ut ur Tel'aran'rhiod lever hon som en vanlig människa och glömmer långsamt sina tidigare liv. Hon blir befälhavare för drottninggardet i Caemlyn.",
+  "handelser": [
+   {
+    "bok": 2,
+    "text": "Rider som en av hjältarna när Mat blåser i Horn of Valere vid Falme.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 4,
+    "text": "Hjälper Nynaeve i drömvärlden under jakten i Tanchico.",
+    "plats": "tanchico"
+   },
+   {
+    "bok": 5,
+    "text": "Slits ut ur drömvärlden av Moghedien och räddas genom att Elayne binder henne som väktare."
+   },
+   {
+    "bok": 11,
+    "text": "Leder försvaret av Caemlyn och räddar Elayne när staden stormas.",
+    "plats": "caemlyn",
+    "slag": "caemlyn"
+   },
+   {
+    "bok": 14,
+    "text": "Dödas av Mellar vid Merrilor, återvänder som hjälte när Olver blåser i hornet och skjuter honom.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "elayne",
+    "text": "binder henne som väktare"
+   },
+   {
+    "id": "nynaeve",
+    "text": "vän"
+   },
+   {
+    "id": "mat",
+    "text": "dryckesbroder"
+   }
+  ]
+ },
+ {
+  "id": "tuon",
+  "namn": "Tuon",
+  "titel": "Daughter of the Nine Moons, sedan kejsarinna",
+  "farg": "#3b3b3b",
+  "grupper": [
+   "Seanchan",
+   "Ledare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 9,
+  "ingress": "Arvtagaren till Seanchans kristalltron. Mat rövar bort henne från Ebou Dar och slutar med att gifta sig med henne.",
+  "om": "Tuon är liten till växten men skarp, tålmodig och van vid att se omen överallt. Hon är uppvuxen i Seanchans livsfarliga hovintriger. Under resan med Mat lär hon sig mer om Westlands än någon annan i hennes folk, men hon släpper aldrig sin övertygelse om att världen ska ena under kristalltronen.",
+  "handelser": [
+   {
+    "bok": 9,
+    "text": "Kommer till Ebou Dar och rövas bort av Mat när han flyr ur staden.",
+    "plats": "ebou-dar"
+   },
+   {
+    "bok": 11,
+    "text": "Fullbordar giftermålet med Mat och återvänder till Ebou Dar."
+   },
+   {
+    "bok": 12,
+    "text": "Utropar sig till kejsarinnan Fortuona och möter Rand i Falme utan att de kommer överens.",
+    "plats": "falme"
+   },
+   {
+    "bok": 14,
+    "text": "Skriver under Dragon's Peace och utnämner Min till sin Doomseer."
+   },
+   {
+    "bok": 14,
+    "text": "Leder Seanchan tillbaka in i slaget vid Merrilor och sätter sin vakt mot fiendens kanaliserare.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "mat",
+    "text": "make"
+   },
+   {
+    "id": "rand",
+    "text": "motpart"
+   }
+  ]
+ }
+]

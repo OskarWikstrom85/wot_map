@@ -1,0 +1,79 @@
+{
+ "charNames": {
+  "rand": "Rand",
+  "mat": "Mat",
+  "egwene": "Egwene",
+  "aviendha": "Aviendha",
+  "moiraine": "Moiraine",
+  "lan": "Lan"
+ },
+ "wiki": {
+  "rand": "Rand_al'Thor",
+  "mat": "Matrim_Cauthon",
+  "egwene": "Egwene_al'Vere",
+  "aviendha": "Aviendha",
+  "moiraine": "Moiraine_Damodred",
+  "lan": "Lan_Mandragoran"
+ },
+ "replace": [
+  [
+   "<title>Slaget om Two Rivers</title>",
+   "<title>Andra slaget om Cairhien</title>"
+  ],
+  [
+   "<h1 id=\"th\">Slaget om Two Rivers</h1>",
+   "<h1 id=\"th\">Andra slaget om Cairhien</h1>"
+  ],
+  [
+   "Byns och bygdens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.",
+   "Stadens och slagfältets utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."
+  ],
+  [
+   "offer('two-rivers.mp4', 'slaget-om-two-rivers.mp4')",
+   "offer('cairhien.mp4', 'andra-slaget-om-cairhien.mp4')"
+  ],
+  [
+   "'slaget-om-two-rivers.html'",
+   "'andra-slaget-om-cairhien.html'"
+  ]
+ ],
+ "storyboard": {
+  "title": "Andra slaget om Cairhien",
+  "lead": "The Fires of Heaven · Choren 999 NE",
+  "pick": [
+   [
+    1,
+    0.95
+   ],
+   [
+    1,
+    0.95
+   ],
+   [
+    2,
+    0.7
+   ],
+   [
+    3,
+    0.95
+   ],
+   [
+    2,
+    0.6
+   ],
+   [
+    2,
+    0.95
+   ],
+   [
+    0,
+    0.7
+   ],
+   [
+    1,
+    0.95
+   ]
+  ],
+  "note": "Stadens och slagfältets utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."
+ }
+}

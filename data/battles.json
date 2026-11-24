@@ -1,0 +1,1047 @@
+[
+ {
+  "id": "shining-walls",
+  "namn": "Battle of the Shining Walls",
+  "sv": "Slaget vid De skinande murarna",
+  "andranamn": "Även kallat Blood Snow och Slaget om Tar Valon",
+  "datum": "Sent år 978 NE, under några dagar i snö",
+  "bok": 0,
+  "kapitel": "New Spring (inledningen). Återberättas i flera av huvudböckerna.",
+  "plats": "tar-valon",
+  "xy": [
+   0.74613,
+   0.38854
+  ],
+  "radie": 230,
+  "ingress": "Aielkrigets avgörande slag, utkämpat i snön kring Tar Valon. Det är samma dagar som Rand föds på Dragonmounts sluttning.",
+  "bakgrund": "Aiel hade gett Cairhien en planta av livets träd, Avendesora. Kung Laman lät hugga ner trädet, kallat Avendoraldera, för att göra en tron av det. Janduin, ledare för Taardad-klanens Iron Mountain-sept, krävde hämnd. Bara fyra av tolv klaner följde honom: Taardad, Reyn, Nakai och Shaarad. Våren 976 NE gick de över Dragonwall med över 90 000 krigare. Cairhiens här slogs på flykten inom fyra månader, och delar av staden brändes, bland annat Topless Towers. Kriget drog sedan vidare genom Tear och Andor. Under tiden förföljde Aiel Laman norrut, tills de stod vid Tar Valons murar.",
+  "parter": [
+   {
+    "sida": "Aiel",
+    "befal": [
+     "Janduin (Taardad)"
+    ],
+    "styrka": "Omkring 80 000 vid slaget, av cirka 100 000 väster om Dragonwall"
+   },
+   {
+    "sida": "Den stora alliansen",
+    "befal": [
+     "Agelmar Jagad (Shienar)",
+     "Pedron Niall (Children of the Light)",
+     "Aranvor Naldwinn, sedan Gareth Bryne (Andor)",
+     "Hirare Nachiman, sedan Ishigari Terasian (Arafel)",
+     "Mattin Stepaneos (Illian)"
+    ],
+    "styrka": "Omkring 167 500 man från tio nationer, Tower Guard och Children of the Light, plus cirka 5 000 legosoldater"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "En allians mot Aiel",
+    "text": "Aes Sedai och Children of the Light samlade tio nationer till en gemensam här. Störst var kontingenterna från Shienar, Andor, Illian, Tear och Arafel. Cairhien krävde att få föra befälet men nekades. I stället turades ledarna om, en dag i taget."
+   },
+   {
+    "rubrik": "Dag 1: striderna vid broarna",
+    "text": "Aiel anföll från söder och längs båda sidor om floden Erinin. Striderna stod kring broarna till ön, men Aiel försökte aldrig ta själva staden. De ville inte skada Aes Sedai."
+   },
+   {
+    "rubrik": "Dag 2: snön",
+    "text": "Tung snö föll över slagfältet, men den hindrade knappt Aiel."
+   },
+   {
+    "rubrik": "Dag 3: Laman faller",
+    "text": "Janduins styrka hittade och förstörde Cairhiens läger. Laman och hans bröder dödades, och bara omkring 500 cairhieniner överlevde. Lamans huvud och hans svärd, smitt med den Enda kraften, fördes tillbaka till ödemarken. Samma dag stred Jungfrur mot andoraner nära Dragonmount. Där hittade Tam al'Thor, då soldat i Illians tjänst, ett nyfött barn i en död kvinnas famn."
+   },
+   {
+    "rubrik": "Dag 4 och förföljelsen",
+    "text": "Alliansen drev Aiel bort från Tar Valon. Rytteriet förföljde dem i ungefär tjugo dagar, tills de försvann genom Kinslayer's Dagger."
+   }
+  ],
+  "utfall": "Alliansen förklarade sig segrare. Befälhavarna insåg senare att Aiel bara hade velat döda Laman, och det målet hade de nått.",
+  "betydelse": "I Vita tornet fick Gitara Moroso samma dag en förutsägelse om att Draken just dragit sitt första andetag på Dragonmount. Hon dog direkt efteråt. Därmed började Aes Sedais sökande efter barnet, och Moiraine och Siuan drogs in i jakten. Tam tog med sig pojken hem till Two Rivers och gav honom namnet Rand. I Cairhien förlorade huset Damodred makten efter Lamans fall.",
+  "kallor": [
+   {
+    "titel": "A History of the Wheel of Time, del 12: The Aiel War (The Wertzone)",
+    "url": "https://thewertzone.blogspot.com/2018/12/a-history-of-wheel-of-time-part-12-aiel.html"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Den pojke som föddes under slaget är den som till slut möter Den Mörke i Shayol Ghul. Han lagar fängelset och överlever i en annan kropp."
+   }
+  ]
+ },
+ {
+  "id": "falme",
+  "namn": "Battle of Falme",
+  "sv": "Slaget vid Falme",
+  "andranamn": "",
+  "datum": "Nesan 26, 998 NE",
+  "bok": 2,
+  "kapitel": "The Great Hunt, kapitel 40–50",
+  "plats": "falme",
+  "xy": [
+   0.18388,
+   0.53489
+  ],
+  "radie": 90,
+  "ingress": "Seanchans första nederlag i Westlands. Mat blåser i Horn of Valere, och Rands duell med Ba'alzamon syns i himlen över staden.",
+  "bakgrund": "Seanchan, ättlingar till Artur Hawkwings arméer, hade landstigit på Toman Head och tagit Falme. Deras förtrupp kallades Hailene och leddes av High Lord Turak och High Lady Suroth. Horn of Valere och Mats dolk från Shadar Logoth hade hamnat hos Turak. Egwene hade lurats i fångenskap av Liandrin och hölls som damane, kopplad med en a'dam. Rand drogs mot Falme av sin ta'veren-natur.",
+  "parter": [
+   {
+    "sida": "Seanchan",
+    "befal": [
+     "High Lord Turak",
+     "High Lady Suroth"
+    ],
+    "styrka": "Förtruppen Hailene med soldater och damane"
+   },
+   {
+    "sida": "Children of the Light",
+    "befal": [
+     "Lord Captain Geofram Bornhald",
+     "Jaret Byar"
+    ],
+    "styrka": "Bornhalds legion av Whitecloaks"
+   },
+   {
+    "sida": "Rand och hans följeslagare",
+    "befal": [
+     "Rand al'Thor",
+     "Mat Cauthon",
+     "Perrin Aybara",
+     "Ingtar Shinowa",
+     "Verin Mathwin"
+    ],
+    "styrka": "En liten grupp shienarer, senare förstärkt av Hjältarna från hornet under Artur Hawkwing"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "In i staden",
+    "text": "Verin skickade in Rand, Mat, Perrin, Ingtar och Hurin i Falme. I Turaks hus hämtade de hornet och dolken. Turak kom tillbaka och utmanade Rand, som besegrade blademästaren i en duell med hjälp av tomrummet."
+   },
+   {
+    "rubrik": "Egwene befrias",
+    "text": "Nynaeve, Elayne och Min satte en a'dam på sul'dam Seta och tog sig in i kenneln. Rands uppståndelse gav dem tillfälle att befria Egwene. Seta och Renna lämnades själva kopplade."
+   },
+   {
+    "rubrik": "Whitecloaks anfaller",
+    "text": "Geofram Bornhald anföll Seanchans här utanför staden. Byar beordrades att hålla sig undan och berätta för Bornhalds son vad som hänt. Ingtar erkände att han varit Darkfriend och stannade för att hålla stånd ensam, som bot."
+   },
+   {
+    "rubrik": "Hornet ljuder",
+    "text": "Instängd mellan Whitecloaks och Seanchan blåste Mat i Horn of Valere. Legendens hjältar trädde fram, bland dem Artur Hawkwing och Birgitte, och slöt upp under Drakens fana."
+   },
+   {
+    "rubrik": "Duellen i himlen",
+    "text": "Rand mötte Ba'alzamon i en strid som hela Falme kunde se i skyn. För att locka honom nära lät Rand sig bli sårad i sidan. Under tiden drev Hjältarna Seanchan ut i havet."
+   }
+  ],
+  "utfall": "Seanchans förtrupp krossades och drevs ut ur Falme. Bornhald stupade. Hornet, dolken och Egwene räddades. Rand fick ett sår i sidan som aldrig läker helt.",
+  "betydelse": "Alla i Falme hade sett duellen, och shienarerna erkände Rand som Dragon Reborn. Ryktet spreds över världen. Mat är sedan dess bunden till hornet så länge han lever. Dain Bornhald gav Perrin skulden för sin fars död. Ännu ett sigill på den Mörkes fängelse hade brustit.",
+  "kallor": [
+   {
+    "titel": "The Great Hunt, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Great_Hunt/chapter-recaps/"
+   },
+   {
+    "titel": "Battle of Falme (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Battle_of_Falme"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Mat är inte längre bunden till hornet efter att ha dött och återupplivats i Rhuidean. I Tarmon Gai'don blåser i stället pojken Olver i det, och Hjältarna rider igen. Birgitte är bland dem."
+   }
+  ]
+ },
+ {
+  "id": "two-rivers",
+  "namn": "Battle of the Two Rivers",
+  "sv": "Slaget om Two Rivers",
+  "andranamn": "Även kallat Slaget vid Emond's Field",
+  "datum": "Från Sunday (midsommar) till Amadaine 22, 999 NE",
+  "bok": 4,
+  "kapitel": "The Shadow Rising, kapitel 29–56",
+  "plats": "emonds-field",
+  "xy": [
+   0.39763,
+   0.54557
+  ],
+  "radie": 110,
+  "ingress": "Perrin återvänder hem och samlar bönderna i Two Rivers till försvar mot tusentals trollocs. Han blir Perrin Goldeneyes.",
+  "bakgrund": "Perrin återvände genom Ways tillsammans med Faile, Loial och Gaul. Han fann Two Rivers ockuperat av Children of the Light under Dain Bornhald. Padan Fain följde med dem under namnet Ordeith. Perrins familj hade mördats, enligt ryktet av trollocs men i själva verket av Fain. Trollocs strömmade in i bygden genom Waygate vid Manetheren.",
+  "parter": [
+   {
+    "sida": "Two Rivers",
+    "befal": [
+     "Perrin Aybara",
+     "Tam al'Thor",
+     "Abell Cauthon",
+     "Bran al'Vere",
+     "Faile Bashere"
+    ],
+    "styrka": "Bönder med långbågar, hjälpta av Aes Sedai Verin och Alanna, Loial, Gaul och senare Tuatha'an"
+   },
+   {
+    "sida": "Skuggan",
+    "befal": [
+     "Myrddraal",
+     "Slayer (i bakgrunden)"
+    ],
+    "styrka": "Omkring 500 trollocs vid första anfallet, tusentals vid slutstriden"
+   },
+   {
+    "sida": "Children of the Light",
+    "befal": [
+     "Dain Bornhald"
+    ],
+    "styrka": "En styrka Whitecloaks som släpptes innanför palissaden men vägrade strida"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Hemkomsten",
+    "text": "Perrin och Faile letade upp Tam och Abell, som gömde sig med Verin och Alanna. Perrin smög in i Whitecloaks läger och befriade fångarna från Emond's Field, medan Verin lät det regna för att dölja flykten."
+   },
+   {
+    "rubrik": "Trollocjakten",
+    "text": "Perrins grupp jagade trollocs på landsbygden. Ett bakhåll vändes mot dem efter att Lord Luc lämnat gruppen, och de sårade fick vård hos Tuatha'an. I vargdrömmen upptäckte Perrin att Waygate hade öppnats igen."
+   },
+   {
+    "rubrik": "Byn befästs",
+    "text": "När Perrin kom tillbaka var Emond's Field befäst med pålar och palissader under en röd fana med ett vargshuvud. Folket började motvilligt kalla honom Lord Perrin."
+   },
+   {
+    "rubrik": "Första anfallet",
+    "text": "Omkring 500 trollocs anföll. Bågskyttar under Tam och stenar från katapulter, med hjälp av Aes Sedai, drev tillbaka dem. Loial och Gaul gav sig av för att stänga Waygate."
+   },
+   {
+    "rubrik": "En veckas belägring",
+    "text": "Anfallen fortsatte dag efter dag. Tuatha'an och Whitecloaks släpptes innanför försvaret. Tinkern Aram tog upp ett svärd, precis som Min hade sett. Perrin sköt Slayer i vargdrömmen och fick Faile att lämna byn under förevändning att hon skulle bära bud till drottningen."
+   },
+   {
+    "rubrik": "Slutstriden",
+    "text": "Tusentals trollocs anföll, och Whitecloaks vägrade gå in i striden. Kvinnorna lämnade barnen hos Tuatha'an och slogs själva. Faile kom tillbaka med folk från Watch Hill, och män från Deven Ride anföll från en tredje sida. Trollocs bröts och flydde."
+   }
+  ],
+  "utfall": "Seger för Two Rivers. Perrin tillrättavisade Bornhald, och Whitecloaks utvisades ur bygden. Ordeith drog vidare för att ställa till ofog på annat håll.",
+  "betydelse": "Two Rivers vaknade som Manetherens arvtagare. Perrin blev bygdens erkände ledare, Goldeneyes, och Faile fick hans löfte om giftermål. Senare kommer män från Two Rivers att följa honom i flera av seriens stora slag.",
+  "kallor": [
+   {
+    "titel": "The Shadow Rising, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Shadow_Rising/chapter-recaps/"
+   },
+   {
+    "titel": "The Shadow Rising, sammanfattning (Dragonmount)",
+    "url": "https://dragonmount.com/books/shadow_rising/summary/"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Two Rivers män följer Perrin och Tam in i Tarmon Gai'don, och deras långbågar gör nytta på flera fronter."
+   }
+  ],
+  "animation": "slag/two-rivers.html",
+  "export": {
+   "url": "https://claude.ai/artifact/4dw4Ny1XEZcmQWZMNWGeTw",
+   "html": "slag/two-rivers.html",
+   "video": "slag/two-rivers.mp4",
+   "namn": "slaget-om-two-rivers",
+   "minuter": 7
+  }
+ },
+ {
+  "id": "cairhien",
+  "namn": "Second Battle of Cairhien",
+  "sv": "Andra slaget om Cairhien",
+  "andranamn": "Slaget mot Couladins Shaido",
+  "datum": "Choren 9–11, 999 NE",
+  "bok": 5,
+  "kapitel": "The Fires of Heaven, kapitel 30 och 41–46",
+  "plats": "cairhien",
+  "xy": [
+   0.80112,
+   0.46722
+  ],
+  "radie": 140,
+  "ingress": "Rands Aiel möter Couladins Shaido utanför den belägrade staden. Mat leder ett slumpmässigt hopkommet rytteri till seger och dödar Couladin.",
+  "bakgrund": "Couladin, ledare för Shaido, utgav sig för att vara Car'a'carn och tog klanen över Dragonwall. Shaido belägrade Cairhien och brände förstaden Foregate, men tog aldrig själva staden. En tairensk grupp under Estean tog sig ut för att be Rand om hjälp.",
+  "parter": [
+   {
+    "sida": "Rand al'Thor",
+    "befal": [
+     "Rand al'Thor",
+     "Klanhövdingarna, bland dem Rhuarc"
+    ],
+    "styrka": "Sju Aielklaner, nästan dubbelt så många som Couladins omkring 160 000 spjut"
+   },
+   {
+    "sida": "Shaido",
+    "befal": [
+     "Couladin",
+     "Sevanna"
+    ],
+    "styrka": "Omkring 160 000 spjut"
+   },
+   {
+    "sida": "Mats rytteri",
+    "befal": [
+     "Mat Cauthon",
+     "Talmanes",
+     "Nalesean"
+    ],
+    "styrka": "Tairenska och cairhieniska ryttare och fotsoldater som Mat räddade ur ett bakhåll"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Planen",
+    "text": "Rand följde slagfältet genom en kikare från ett utsiktstorn. Mat ville egentligen ge sig av, men hamnade i stabstältet med kartorna framför sig. När Lan bad om hans syn på striden löste han problemet med hjälp av minnena från andra mäns liv."
+   },
+   {
+    "rubrik": "Blixtar från tornet",
+    "text": "Jungfrurna tvingade Rand att stanna i tornet hos Egwene och Aviendha. De tre kastade blixtar och eld mot Shaido tills de nästan var utmattade."
+   },
+   {
+    "rubrik": "Sammael slår till",
+    "text": "Rand kände saidin vävas strax innan blixtar fällde tornet. Flera av Jungfrurna krossades. Rand förstod att det var den förlorade Sammael."
+   },
+   {
+    "rubrik": "Mats tångmanöver",
+    "text": "Mat red söderut och stötte på tairenska och cairhieniska soldater på väg in i ett bakhåll. Han vände striden åt dem. När han fick veta att Couladin var på väg mot honom utan att ana något, gillrade han en fälla och slöt tången. Mat besegrade Couladin i envig."
+   },
+   {
+    "rubrik": "Slutet",
+    "text": "Rand fick veta att slaget var över och att de sista klanerna var på väg till honom. Utmattad och blödande från det gamla såret i sidan föll han ihop. Moiraine helade honom."
+   }
+  ],
+  "utfall": "Shaido besegrades och belägringen hävdes. Omkring 20 000 Shaido togs till fånga, och resten flydde med Sevanna.",
+  "betydelse": "Rand tog kontroll över Cairhien. Han avböjde tronen men lät adeln svära honom trohet. Soldaterna Mat räddat började kalla sig Band of the Red Hand efter Manetherens sista försvarare och utropade honom till general. Sammael hade visat sin hand, och de sista Aielklanerna anslöt sig till Rand.",
+  "kallor": [
+   {
+    "titel": "The Fires of Heaven, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Fires_of_Heaven/chapter-recaps/"
+   },
+   {
+    "titel": "Wheel of Time FAQ: arméer och styrkor (steelypips.org)",
+    "url": "https://steelypips.org/wotfaq/2_nondark/2.6_what-up-nondark/2.6.6_armies.html"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "I Tarmon Gai'don tvingas Elaynes här tillbaka mot Cairhien, där en trollochär krossas när Androl öppnar en port in i Dragonmount."
+   }
+  ],
+  "animation": "slag/cairhien.html",
+  "export": {
+   "url": "https://claude.ai/artifact/NAz9wAZ2eFrfKTN2gf3UTF",
+   "html": "slag/cairhien.html",
+   "video": "slag/cairhien.mp4",
+   "namn": "andra-slaget-om-cairhien",
+   "minuter": 3
+  }
+ },
+ {
+  "id": "dumais-wells",
+  "namn": "Battle of Dumai's Wells",
+  "sv": "Slaget vid Dumai's Wells",
+  "andranamn": "",
+  "datum": "Taisham 11, 1000 NE",
+  "bok": 6,
+  "kapitel": "Lord of Chaos, kapitel 49–55",
+  "plats": "dumais-wells",
+  "xy": [
+   0.7775,
+   0.40877
+  ],
+  "radie": 80,
+  "ingress": "Ett tretrådigt slag där en räddningsstyrka, Shaido och tornets Aes Sedai möts kring vagnen där Rand hålls fången. Asha'man visar för första gången vad de kan.",
+  "bakgrund": "Elaida hade skickat en ambassad till Cairhien. När Rand vägrade följa med till Vita tornet tog Aes Sedai under Galina Casban honom till fånga och skärmade av honom från saidin. Han fördes mot Tar Valon i en kista, slogs och straffades. Ambassaden hade avtalat med Shaido om eskort, men Sevanna tänkte ta Rand för egen räkning. I Cairhien hittade Berelain Rands svärd och bälte och förstod vad som hänt.",
+  "parter": [
+   {
+    "sida": "Räddningsstyrkan",
+    "befal": [
+     "Perrin Aybara",
+     "Rhuarc",
+     "Sorilea",
+     "Mazrim Taim",
+     "Dobraine"
+    ],
+    "styrka": "Omkring 300 män från Two Rivers, 500 cairhieniner, 200 Winged Guards, cirka 1 000 vargar, 9 Aes Sedai från Salidar, 94 visa kvinnor, tusentals Aiel och 200 Asha'man"
+   },
+   {
+    "sida": "Tornets Aes Sedai",
+    "befal": [
+     "Galina Casban",
+     "Gawyn Trakand (Younglings)"
+    ],
+    "styrka": "39 Aes Sedai, varav sex Svarta ajah, med väktare och 582 Younglings"
+   },
+   {
+    "sida": "Shaido",
+    "befal": [
+     "Sevanna"
+    ],
+    "styrka": "Omkring 40 000 krigare och 300 visa kvinnor som kan kanalisera"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Kidnappningen",
+    "text": "Coiren kom till audiens med Galina, Katerine och tolv tjänarinnor som bar två kistor. Tjänarinnorna var förklädda Aes Sedai. En sköld av saidar skar av Rand, och han vaknade inlåst. Sex systrar höll skölden, och han kände sex svaga punkter i den."
+   },
+   {
+    "rubrik": "Räddningen samlas",
+    "text": "Perrin, Rhuarc, Sorilea och Dobraine samlade en liten styrka i hemlighet, av rädsla för att fler Aiel annars skulle ge upp. Vargar ledde dem, och de nio systrarna från Salidar anslöt motvilligt."
+   },
+   {
+    "rubrik": "Shaido anfaller",
+    "text": "Shaido omringade tornets vagnar vid Dumai's Wells och anföll med både spjut och den Enda kraften."
+   },
+   {
+    "rubrik": "Perrins anfall",
+    "text": "Perrin red in i Shaidos rygg med män från Two Rivers, cairhieniner, Aiel och Winged Guards, medan vargarna anföll samtidigt. Salidar-systrarna skulle hålla åsen men rusade i stället in i striden."
+   },
+   {
+    "rubrik": "Rand bryter sig fri",
+    "text": "Fyra av systrarna som höll skölden knöt fast sina vävar för att försvara lägret. Med Lews Therins råd löste Rand upp skölden, sprängde kistan och fann Min. Sedan skärmade han av tornets systrar en efter en. Eftersom han använde saidin kunde de inte känna honom."
+   },
+   {
+    "rubrik": "Asha'man",
+    "text": "När räddarna höll på att bli överrända kom omkring 200 Asha'man under Taim genom portar. De byggde en kupol av Luft kring vagnarna och dödade sedan Shaido i tusental."
+   }
+  ],
+  "utfall": "Shaido krossades och flydde in i Kinslayer's Dagger. Av tornets systrar togs 19 till fånga, 3 stillades och lämnades till de visa kvinnorna och 3 dödades. 12 flydde, och Galina fördes bort av Shaido. 151 Jungfrur stupade.",
+  "betydelse": "Rand tvingade Aes Sedai att knäböja och svära honom trohet. Det förändrade för alltid hur Aes Sedai förhöll sig till Draken. Slaget visade vad Asha'man förmådde och skrämde även de som stod på Rands sida. Gawyn ledde de överlevande Younglings och några systrar tillbaka. Rand själv bar fångenskapen i kistan med sig länge.",
+  "kallor": [
+   {
+    "titel": "Battle of Dumai's Wells (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Battle_of_Dumai%27s_Wells"
+   },
+   {
+    "titel": "Lord of Chaos, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Lord_of_Chaos/chapter-recaps/"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Taim, som ledde Asha'man vid Dumai's Wells, visar sig vara Darkfriend. I Tarmon Gai'don strider han för Skuggan som M'Hael och dödas av Egwene."
+   }
+  ]
+ },
+ {
+  "id": "stone-of-tear",
+  "namn": "Fall of the Stone of Tear",
+  "sv": "Stenens fall i Tear",
+  "andranamn": "Stormningen av Stone of Tear",
+  "datum": "Saven 9, 999 NE, en natt",
+  "bok": 3,
+  "kapitel": "The Dragon Reborn, kapitel 49–56",
+  "plats": "tear",
+  "radie": 70,
+  "ingress": "Den fästning som aldrig fallit tas på en enda natt av några hundra Aiel. Samtidigt drar Rand Callandor ur Heart of the Stone.",
+  "bakgrund": "Stone of Tear hade belägrats och stormats över hundra gånger utan att falla. Enligt profetian skulle den inte falla förrän Draken kom och tog Callandor, det kristallsvärd som bara Dragon Reborn kan röra. Rand drogs dit, och efter honom kom Moiraine, Lan och Perrin. Den förlorade Be'lal styrde i hemlighet staden förklädd till High Lord. Black Ajah under Liandrin hade lurat Egwene, Nynaeve och Elayne i en fälla och höll dem som lockbete inne i fästningen. Samtidigt hade Aiel under Rhuarc tagit sig in i staden. De letade efter He Who Comes With The Dawn, eftersom Stenens fall skulle tillkännage hans ankomst.",
+  "parter": [
+   {
+    "sida": "Aiel och Rands följeslagare",
+    "befal": [
+     "Rhuarc",
+     "Rand al'Thor",
+     "Moiraine Damodred",
+     "Lan Mandragoran",
+     "Mat Cauthon",
+     "Perrin Aybara"
+    ],
+    "styrka": "Några hundra Aiel samt en liten grupp kring Rand och Moiraine"
+   },
+   {
+    "sida": "Stenens försvarare",
+    "befal": [
+     "High Lords i Tear",
+     "Be'lal (förklädd)"
+    ],
+    "styrka": "Defenders of the Stone, Tears elitstyrka, tusentals man"
+   },
+   {
+    "sida": "Black Ajah och Skuggan",
+    "befal": [
+     "Liandrin",
+     "Ba'alzamon"
+    ],
+    "styrka": "Svarta systrar som höll de tre kvinnorna fångna, och Myrddraal"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Fällan",
+    "text": "Tjuvfångaren Juilin Sandar ledde, under tvång, Nynaeve rakt in i en fälla. Liandrin skärmade av henne, och alla tre kvinnorna fördes till celler i Stenen."
+   },
+   {
+    "rubrik": "Mats fyrverkerier",
+    "text": "Mat hade spanat på Stenen från hustaken och slöt sig samman med Juilin och några Aiel. Han tände fyrverkerier i en skottglugg för att skapa förvirring. Laddningen sprängde i stället upp ett hål i muren."
+   },
+   {
+    "rubrik": "Aiel stormar",
+    "text": "Genom kaoset tog sig Aiel in. Försvararna, vana vid att fästningen aldrig föll, drevs tillbaka korridor för korridor."
+   },
+   {
+    "rubrik": "Kampen i vargdrömmen",
+    "text": "Perrin följde efter Faile in i en drömfälla som var gillrad för Moiraine. Som varg slogs han igenom Stenen i Tel'aran'rhiod och befriade till slut Faile. Där fick han också veta att Rand var inne i fästningen. Egwene, som också gick i drömmen, skärmade av en av de svarta systrarna."
+   },
+   {
+    "rubrik": "Heart of the Stone",
+    "text": "Rand nådde Heart of the Stone och möttes av Be'lal, som försökte locka honom att ta svärdet. Moiraine kom mitt i duellen och dödade Be'lal med balefire. Då dök Ba'alzamon upp. Rand grep Callandor, förföljde honom och besegrade honom."
+   },
+   {
+    "rubrik": "Fångarna befrias",
+    "text": "Mat och Juilin tog sig fram till cellerna och befriade Egwene, Nynaeve och Elayne, som skällde ut dem för att de dröjt."
+   }
+  ],
+  "utfall": "Stenen föll till Aiel och Draken. Be'lal och Ba'alzamon, som visade sig vara Ishamael, var döda. Rand bar Callandor.",
+  "betydelse": "Dagen efter utropades Rand till Draken på Tears gator. Rhuarc förklarade att Aiel en gång kallades People of the Dragon. Med Stenen och Callandor i sin hand kunde ingen längre förneka att Dragon Reborn hade kommit. Det öppnade vägen till Rhuidean och Aiel i nästa bok.",
+  "kallor": [
+   {
+    "titel": "The Dragon Reborn, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Dragon_Reborn/chapter-recaps/"
+   },
+   {
+    "titel": "Defenders of the Stone (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Defenders_of_the_Stone"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Callandor visar sig ha en brist: kvinnor kan styra en man genom svärdet. I Shayol Ghul vänder Rand, Moiraine och Nynaeve den bristen mot Moridin."
+   }
+  ]
+ },
+ {
+  "id": "malden",
+  "namn": "Battle of Malden",
+  "sv": "Slaget vid Malden",
+  "andranamn": "",
+  "datum": "Tidigt år 1000 NE",
+  "bok": 11,
+  "kapitel": "Knife of Dreams, kapitel 4–30",
+  "plats": "malden",
+  "radie": 90,
+  "ingress": "Perrin sluter förbund med Seanchan för att krossa Shaido och befria Faile. Hans plan bygger på forkroot i stadens akvedukt.",
+  "bakgrund": "Efter Dumai's Wells hade Shaido spridits över landet genom portar som Sammael gav dem. Sevannas del av klanen, med omkring 400 visa kvinnor, tog den altaranska staden Malden. Till våren hade över 100 000 människor samlats där. Under förhandlingarna med profeten Masema hade Shaido rövat bort Faile, Maighdin och flera andra. Perrin följde dem i månader. Seanchan i Ebou Dar ville också få bort Shaido och skickade Banner-General Tylee Khirgan.",
+  "parter": [
+   {
+    "sida": "Perrins allians",
+    "befal": [
+     "Perrin Aybara",
+     "Tylee Khirgan (Seanchan)",
+     "Masema Dagar (Dragonsworn)",
+     "Elyas Machera"
+    ],
+    "styrka": "Omkring 15 000 Seanchan med 12 damane, 20 000 Dragonsworn, 900 Winged Guards, 1 000 från Ghealdans legion, 3 000–4 000 bågskyttar från Two Rivers, Asha'man, Aes Sedai och visa kvinnor"
+   },
+   {
+    "sida": "Shaido",
+    "befal": [
+     "Sevanna",
+     "Therava"
+    ],
+    "styrka": "Omkring 100 000 människor och över 400 visa kvinnor, med fler Aiel i närheten"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Förbundet",
+    "text": "Perrin och Tylee kom överens. Seanchan skulle få ta Shaidos visa kvinnor som damane, gai'shain skulle släppas fria, och Seanchan lovade att inte koppla Perrins egna kanaliserare."
+   },
+   {
+    "rubrik": "Forkroot",
+    "text": "Med hjälp av ett brev från Suroth fick de ut all forkroot från ett manufaktur. Drogen hälldes i Maldens akvedukt så att Shaidos visa kvinnor inte kunde kanalisera."
+   },
+   {
+    "rubrik": "Inifrån staden",
+    "text": "En liten styrka tog sig in genom akvedukten. Inne i Malden planerade Faile och hennes följe att fly med Galinas hjälp. Galina tog Oath Rod och svek dem, så att de blev instängda i en källare."
+   },
+   {
+    "rubrik": "Ur dimman",
+    "text": "Perrins här kom fram ur en dimvägg på åsen ovanför staden och lockade ut Shaidos krigare. Bågskyttar och kanaliserare tillfogade dem svåra förluster. En flankstyrka omringades av Seanchan och förintades eller gav upp."
+   },
+   {
+    "rubrik": "Faile befrias",
+    "text": "Rolan och hans vänner hjälpte Faile ut ur källaren. Aram försökte döda Perrin på Masemas order men träffades själv av en Shaidopil. Perrin dödade Rolan, och Faile och hennes följe var fria."
+   }
+  ],
+  "utfall": "Shaido krossades. Seanchan tog de visa kvinnorna som damane. Bara några hundra Shaido flydde med Therava tillbaka mot ödemarken, och Galina fördes med som slav.",
+  "betydelse": "Shaido upphörde i praktiken att vara ett hot i Westlands. Dragonsworn förlorade nästan hela sin styrka och Masema dödades kort därefter. Tylee befordrades och upphöjdes till Blodet. Perrin och Faile var återförenade, och Perrin stod nu i spetsen för en stor här.",
+  "kallor": [
+   {
+    "titel": "Battle of Malden (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Battle_of_Malden"
+   },
+   {
+    "titel": "Knife of Dreams, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Knife_of_Dreams/chapter-recaps/"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Perrins här, med många före detta gai'shain, strider i Braem Wood i början av Tarmon Gai'don."
+   }
+  ]
+ },
+ {
+  "id": "caemlyn",
+  "namn": "Siege of Caemlyn",
+  "sv": "Belägringen av Caemlyn",
+  "andranamn": "Slutstriden om Andors tron",
+  "datum": "Våren 1000 NE",
+  "bok": 11,
+  "kapitel": "Knife of Dreams, kapitel 13–35",
+  "plats": "caemlyn",
+  "radie": 80,
+  "ingress": "Elayne försvarar Caemlyn mot Arymilla Marne i kampen om Lejontronen. Avgörandet kommer samma dag som hon själv tas till fånga av Black Ajah.",
+  "bakgrund": "Efter Morgases försvinnande gjorde Elayne anspråk på Lejontronen. Arymilla Marne och hennes allierade, bland dem Naean och Elenia, belägrade Caemlyn. Elayne hade färre soldater men stöddes av Kinswomen som kunde öppna portar, av Sea Folk och av legosoldater. Hon misstänkte att någon i hennes närhet var förrädare.",
+  "parter": [
+   {
+    "sida": "Elayne Trakand",
+    "befal": [
+     "Elayne Trakand",
+     "Birgitte Trahelion",
+     "Dyelin Taravin",
+     "Charlz Guybon"
+    ],
+    "styrka": "Drottninggardet, legosoldater, Kinswomen och Windfinders från Sea Folk. Guybon kom med 10 000 trogna soldater"
+   },
+   {
+    "sida": "Arymilla Marne",
+    "befal": [
+     "Arymilla Marne",
+     "Naean Arawn",
+     "Elenia Sarand"
+    ],
+    "styrka": "En större belägringshär från flera andoranska hus"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Belägringen",
+    "text": "Elaynes trupper använde portar för att möta anfall var de än kom, trots att de var underlägsna. Kinswomen hittade Guybon och hans 10 000 man och förde in dem."
+   },
+   {
+    "rubrik": "Hotet utifrån",
+    "text": "En Borderlander-här på 200 000 man och en fristående andoransk styrka på 60 000 närmade sig. Arymilla bestämde sig för att storma staden inom en vecka."
+   },
+   {
+    "rubrik": "Full Moon Street",
+    "text": "Elayne gick med bara tre Aes Sedai för att gripa förrädaren Mellar i ett hus på Full Moon Street. Careane avslöjades som Black Ajah och dödades av Vandene, men de andra systrarna mördades och Elayne fördes bort."
+   },
+   {
+    "rubrik": "Stormningen",
+    "text": "Birgitte kände genom bandet vad som hänt. Samtidigt som hon ledde försvaret mot Arymillas stormning fick hon Windfinders att ingripa. Elayne räddades, men förlusterna var stora."
+   },
+   {
+    "rubrik": "Slaget i ryggen",
+    "text": "Elayne använde Windfinders portar och anföll Arymillas trupper bakifrån medan de stormade murarna. Arymilla och de flesta av hennes allierade tillfångatogs."
+   }
+  ],
+  "utfall": "Seger för Elayne. Nio hus ställde sig bakom henne och hon utropades till drottning av Andor.",
+  "betydelse": "Andor fick en drottning som stod på Rands sida inför Tarmon Gai'don. Elayne använde Borderlander-hären som påtryckning, och de flesta oberoende husen anslöt sig. Samtidigt hade hon visat hur portar kan vända ett slag, något som blir avgörande senare.",
+  "kallor": [
+   {
+    "titel": "Knife of Dreams, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Knife_of_Dreams/chapter-recaps/"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Bara några månader senare väller trollocs in genom stadens Waygate i början av Tarmon Gai'don, och Caemlyn brinner."
+   }
+  ]
+ },
+ {
+  "id": "tar-valon",
+  "namn": "Battle of Tar Valon",
+  "sv": "Seanchans anfall mot Vita tornet",
+  "andranamn": "Slaget om Tar Valon",
+  "datum": "Våren 1000 NE, en natt",
+  "bok": 12,
+  "kapitel": "The Gathering Storm, kapitel 39–46",
+  "plats": "tar-valon",
+  "radie": 60,
+  "ingress": "Seanchan anfaller Vita tornet från luften. Egwene, fortfarande fånge och drogad, leder försvaret och vinner tornet på kuppen.",
+  "bakgrund": "Aes Sedai var splittrade sedan Siuan avsatts och Elaida tagit makten. Egwene hade tillfångatagits och degraderats till novis, men vägrade böja sig och fick många av tornets systrar att lyssna. Hon hade drömt att Seanchan skulle anfalla tornet, men Elaida avfärdade varningen. Seanchan trodde att Aes Sedai hade ett fruktansvärt vapen, och Tuon godkände anfallet efter att samtalen med Rand misslyckats.",
+  "parter": [
+   {
+    "sida": "Vita tornet",
+    "befal": [
+     "Egwene al'Vere",
+     "Saerin Asnobar",
+     "Adelorna Bastine"
+    ],
+    "styrka": "Omkring 300 Aes Sedai, några dussin Accepted och över 100 noviser"
+   },
+   {
+    "sida": "Rebellernas räddningsstyrka",
+    "befal": [
+     "Gareth Bryne",
+     "Siuan Sanche",
+     "Gawyn Trakand"
+    ],
+    "styrka": "En mindre grupp från rebellhären på 50 000 man som belägrade staden"
+   },
+   {
+    "sida": "Seanchan",
+    "befal": [
+     "Okänd befälhavare"
+    ],
+    "styrka": "Omkring 100 to'raken med eskort, cirka 300 man: 200 Fists of Heaven, 50 par sul'dam och damane samt 5 Bloodknives"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Inflygningen",
+    "text": "To'raken flög i etapper från Ebou Dar och vilade på avlägsna slätter för att inte upptäckas. Natten efter att Verin avslöjat sig och dött vaknade Egwene av anfallet."
+   },
+   {
+    "rubrik": "Anfall från tre håll",
+    "text": "Damane sprängde hål i tornets väggar högt upp. To'raken landade på taket och på torget framför huvudingången. Falska rykten om Skuggans varelser skapade panik innan systrarna tog sig samman."
+   },
+   {
+    "rubrik": "Nedervåningarna",
+    "text": "Ajaherna slogs först var för sig, tills Saerin tog befälet. Bryne, Siuan och Gawyn tog sig in, skingrade Seanchanstyrkor och dödade en Bloodknife."
+   },
+   {
+    "rubrik": "Egwene och novisernas cirklar",
+    "text": "Egwene kunde bara kanalisera en strimma på grund av forkroot. Hon samlade noviserna i cirklar som Seanchan inte kunde skärma av, hämtade sa'angreal ur förråden med Adelorna och frigjorde damane. Med en mäktig sa'angreal sköt hon ner to'raken efter to'raken."
+   },
+   {
+    "rubrik": "Reträtten",
+    "text": "Sedan omkring en tredjedel av styrkan förintats drog sig Seanchan tillbaka. I förvirringen fördes Egwene, mot sin vilja, ut av Siuans grupp."
+   }
+  ],
+  "utfall": "Anfallet slogs tillbaka. Över 30 to'raken förstördes och 10 damane befriades. Tornet förlorade 20 systrar och 3 noviser, och nästan 40 kvinnor fördes bort, bland dem Elaida.",
+  "betydelse": "Tornets Hall erkände Egwene som Amyrlin, och Aes Sedai enades igen. Med Verins böcker kunde Egwene avslöja och avrätta större delen av Black Ajah. Några Bloodknives stannade gömda i tornet och fortsatte mörda systrar.",
+  "kallor": [
+   {
+    "titel": "Battle of Tar Valon (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Battle_of_Tar_Valon"
+   },
+   {
+    "titel": "The Gathering Storm, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Gathering_Storm/chapter-recaps/"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "Egwene leder Aes Sedai in i Tarmon Gai'don. Hon upptäcker Flame of Tar Valon, motvävnaden mot balefire, och offrar sig för att besegra Taim och Sharas kanaliserare."
+   }
+  ]
+ },
+ {
+  "id": "maradon",
+  "namn": "Battle of Maradon",
+  "sv": "Slaget vid Maradon",
+  "andranamn": "",
+  "datum": "År 1000 NE",
+  "bok": 13,
+  "kapitel": "Towers of Midnight, avslutas i kapitel 32 (A Storm of Light)",
+  "plats": "maradon",
+  "radie": 110,
+  "ingress": "Rodel Ituralde försvarar Saldaea mot en jättelik trollochär. När allt verkar förlorat kliver en förändrad Rand in och förintar hela hären.",
+  "bakgrund": "Ituralde hade kämpat för att driva ut Seanchan ur Arad Doman. Rand övertalade honom att i stället försvara Borderlands, mot löfte om fred med Seanchan. Ituralde hade aldrig slagits mot trollocs. Maradons befälhavare Torkumen vägrade släppa in hans här i staden.",
+  "parter": [
+   {
+    "sida": "Ljusets styrkor",
+    "befal": [
+     "Rodel Ituralde",
+     "Yoeli",
+     "Deepe Bhadar (Asha'man)",
+     "Davram Bashere",
+     "Rand al'Thor"
+    ],
+    "styrka": "Domani- och taraboner-trupper, saldaeiska rådgivare och 100 Asha'man. Senare Basheres saldaeier"
+   },
+   {
+    "sida": "Skuggan",
+    "befal": [
+     "Myrddraal"
+    ],
+    "styrka": "En väldig trollochär från Blighten, med Draghkar och manliga kanaliserare"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Kullfortet",
+    "text": "Trollocs måste vada över Arinelle nedanför ett befäst fort med skyttegravar och skyttetorn. Ituralde slog tillbaka anfall efter anfall. Myrddraal kastade lik i stället för sten med belägringsmaskiner, och Draghkar kom med en av vågorna och dödade hans löjtnant Rajabi. Till slut föll fortet."
+   },
+   {
+    "rubrik": "Reträtten blir flykt",
+    "text": "Ituralde ställde upp tre pikled med bågskyttar bakom och Asha'man i reserv. En hetsig chef bröt linjen, signalerna blandades ihop och halva hären retirerade medan resten stod kvar. Det blev en flykt."
+   },
+   {
+    "rubrik": "Yoelis utfall",
+    "text": "Den saldaeiske kaptenen Yoeli trotsade Torkumen, red ut ur staden och räddade den sårade Ituralde från en Myrddraal. Han höll trollocs borta tills de överlevande hunnit in."
+   },
+   {
+    "rubrik": "Gatustrider",
+    "text": "Fiendens kanaliserare bröt upp muren. Asha'man höll bräschen medan försvararna lade bakhåll i gatorna, med bågskyttar i övervåningar och ryttare i sidogator. Ituraldes egen grupp krympte från 200 till 50 man."
+   },
+   {
+    "rubrik": "Rand ingriper",
+    "text": "Bashere kom med undsättning och tog tillbaka staden, men en ännu större trollochär samlades. När Bashere och Ituralde ville ge upp staden steg Rand fram, gick ensam ut mot hären och förintade den med den Enda kraften. Torkumen, som var Darkfriend, hade stuckit ut sina egna ögon för att slippa se ljuset."
+   }
+  ],
+  "utfall": "Trollocanfallet stoppades och Maradon räddades, även om stora delar av staden gick förlorade.",
+  "betydelse": "Slaget visade den nye Rand efter Dragonmount, lugn och fruktansvärt stark. Han erkände efteråt att han var försvagad och att Tarmon Gai'don inte var hans att leda; andra skulle föra striden medan han själv mötte den Mörke. Kort därefter återförenades Ituralde med Arad Domans kung.",
+  "kallor": [
+   {
+    "titel": "Battle of Maradon (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Battle_of_Maradon"
+   },
+   {
+    "titel": "Towers of Midnight, kapitel 32 (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Towers_of_Midnight/Chapter_32"
+   }
+  ],
+  "senare": [
+   {
+    "bok": 14,
+    "text": "I Tarmon Gai'don leder Ituralde fronten vid Shayol Ghul. Han och de andra stora fältherrarna visar sig ha stått under Graendals tvång."
+   }
+  ]
+ },
+ {
+  "id": "caemlyn-fall",
+  "namn": "Fall of Caemlyn",
+  "sv": "Caemlyns fall och Andorfronten",
+  "andranamn": "Med striderna i Braem Wood och vid Cairhien",
+  "datum": "Våren 1000 NE",
+  "bok": 14,
+  "kapitel": "A Memory of Light, prologen och kapitel 1–24",
+  "plats": "caemlyn",
+  "radie": 120,
+  "ingress": "Tarmon Gai'don börjar mitt i Andor. Trollocs väller in genom Caemlyns Waygate, staden brinner, och Elaynes här tvingas på reträtt ända till Cairhien.",
+  "bakgrund": "Skuggan anföll på fyra håll samtidigt för att splittra Ljusets styrkor: Kandor, Saldaea, Tarwin's Gap och Caemlyn. Elayne hade just vunnit tronen och var gravid. Hennes armé och de flesta kanaliserare var borta från staden när anfallet kom genom Ways.",
+  "parter": [
+   {
+    "sida": "Ljusets styrkor",
+    "befal": [
+     "Elayne Trakand (överbefälhavare)",
+     "Davram Bashere",
+     "Talmanes Delovinde",
+     "Charlz Guybon",
+     "Galad Damodred",
+     "Perrin Aybara"
+    ],
+    "styrka": "Andoraner, cairhieniner, Band of the Red Hand med Aludras drakar, Whitecloaks, Perrins här och Ogier"
+   },
+   {
+    "sida": "Skuggan",
+    "befal": [
+     "Myrddraal och Darkfriends"
+    ],
+    "styrka": "Två stora trollochärar, en från Caemlyn och en från söder"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Anfallet genom Waygate",
+    "text": "Trollocs kom in genom Waygate i staden. Bara fyra kanaliserare fanns kvar, och två av dem mördades av en Darkfriend. Guybon höll palatset medan staden föll."
+   },
+   {
+    "rubrik": "Bandet räddar flyktingar",
+    "text": "Talmanes och Band of the Red Hand tog sig in, räddade flyktingar och sköt hål i stadsmuren med Aludras drakar så att försvararna kunde ta sig ut."
+   },
+   {
+    "rubrik": "Elden",
+    "text": "Basheres folk hade lagt olja i källarna. När staden sattes i brand drevs trollocs ut ur ruinerna."
+   },
+   {
+    "rubrik": "Braem Wood",
+    "text": "Planen var att locka in trollocs i skogen och slåss med bakhåll. Drakarna förintade en trollocstyrka på vägen, men inne i skogen anpassade sig fienden och drakarna gjorde liten nytta. Ogier anföll trollocs i skogen."
+   },
+   {
+    "rubrik": "Reträtt mot Cairhien",
+    "text": "Hären drog sig österut över Erinin och Alguenya. Bandet byggde broar och drakarna skyddade övergångarna. En andra trollochär spärrade vägen, och Elayne var fångad mellan två fiender."
+   },
+   {
+    "rubrik": "Lava från Dragonmount",
+    "text": "Den södra hären kom en hel dag för tidigt. Tam upptäckte att Basheres spaningsrapporter var förfalskade, och Elayne avsatte honom. Sedan kom Asha'man. Androl öppnade med en stor cirkel en port in i Dragonmount, och lavan krossade den anstormande trollochären."
+   }
+  ],
+  "utfall": "Caemlyn gick förlorat, men båda trollochärarna i Andor förintades. Bashere avsattes som fältherre och Galads Whitecloaks led svåra förluster.",
+  "betydelse": "Andorfronten frigjordes, och Elaynes styrkor kunde dra vidare mot Field of Merrilor. Avslöjandet om Bashere var första tecknet på att Ljusets fältherrar stod under tvång.",
+  "kallor": [
+   {
+    "titel": "Tarmon Gai'don (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Tarmon_Gai%27don"
+   },
+   {
+    "titel": "A Memory of Light, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Memory_of_Light/chapter-recaps/"
+   }
+  ]
+ },
+ {
+  "id": "merrilor",
+  "namn": "Battle of the Field of Merrilor",
+  "sv": "Slaget vid Merrilor",
+  "andranamn": "Tarmon Gai'dons huvudslag",
+  "datum": "Våren 1000 NE",
+  "bok": 14,
+  "kapitel": "A Memory of Light, kapitel 29–43 (huvudsakligen kapitel 37, The Last Battle)",
+  "plats": "field-of-merrilor",
+  "radie": 150,
+  "ingress": "Det sista och största slaget. Mat tar över befälet, Ljusets härar samlas vid floden Mora, och mot dem står Demandred med Sharas arméer.",
+  "bakgrund": "Vid Field of Merrilor hade Rand samlat världens härskare och fått dem att skriva under Dragon's Peace. Elayne blev överbefälhavare. Kriget gick ändå allt sämre på alla fronter. Egwene insåg att de fyra stora fältherrarna, Bashere, Bryne, Agelmar och Ituralde, stod under Graendals tvång och gav medvetet dåliga order. Hon lade då befälet hos Mat, som samlade alla härar till ett avgörande slag vid Merrilor. Där väntade Demandred, som hade blivit ledare för Shara under namnet Bao.",
+  "parter": [
+   {
+    "sida": "Ljusets styrkor",
+    "befal": [
+     "Mat Cauthon (fältherre)",
+     "Elayne Trakand",
+     "Egwene al'Vere",
+     "Lan Mandragoran",
+     "Tuon (Fortuona)"
+    ],
+    "styrka": "Nästan alla Westlands nationer, Aes Sedai, Asha'man, Aiel, Ogier, Whitecloaks och Seanchan"
+   },
+   {
+    "sida": "Skuggan",
+    "befal": [
+     "Demandred",
+     "M'Hael (Taim)"
+    ],
+    "styrka": "Väldiga trollochärar och Sharas arméer med hundratals kanaliserare"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "Mats uppställning",
+    "text": "Mat placerade Ljusets styrkor kring floden Mora, Polov Heights och Dashar Knob. Talmanes och Aludra ställde drakarna på höjderna, och Lan ledde rytteriet över Hawal Ford mot Sharas trupper."
+   },
+   {
+    "rubrik": "Demandred",
+    "text": "Demandred, beväpnad med en mäktig sa'angreal, ropade efter Lews Therin och slog ner allt i sin väg. Gawyn bar Bloodknives ringar och angrep honom, men sårades dödligt. Galad duellerade med honom och förlorade sin högra arm."
+   },
+   {
+    "rubrik": "Egwene och Taim",
+    "text": "Egwene mötte M'Hael och Sharas kanaliserare. Mot hans balefire upptäckte hon Flame of Tar Valon. Hon dödade Taim och släppte sedan lös all sin kraft, vilket dödade fienderna kring henne och henne själv. Kristallen hon lämnade efter sig lagade sprickorna som balefire rivit upp."
+   },
+   {
+    "rubrik": "Svek och förluster",
+    "text": "Siuan och Gareth Bryne dog när Mats kommandoplats anfölls. Seanchan drog sig tillfälligt ur striden, och Elayne togs till fånga av Mellar. Birgitte dödades."
+   },
+   {
+    "rubrik": "Hornet och hjältarna",
+    "text": "Olver, som gömt sig med Horn of Valere, blåste i det. Hjältarna red igen, och Birgitte återvände bland dem och sköt Mellar."
+   },
+   {
+    "rubrik": "Floden och Seanchan",
+    "text": "Mora hade dämts upp. När Grady bröt dammen störtade floden fram och klöv fiendens här i två. Mat skickade Artur Hawkwing till Fortuona, och Seanchan återvände till striden."
+   },
+   {
+    "rubrik": "Lan och Demandred",
+    "text": "Lan red mot Demandred, lät sig träffas för att komma nära och högg huvudet av honom. Trollocs bröts, och Sharas trupper flydde genom portar."
+   }
+  ],
+  "utfall": "Seger för Ljuset. Demandred och Taim var döda och trollocs fullständigt slagna. Förlusterna var mycket stora: Egwene, Gawyn, Siuan och Bryne var bland de döda.",
+  "betydelse": "Slaget avgjorde Tarmon Gai'don på marken medan Rand mötte Den Mörke. Mat visade sig vara tidens främste fältherre, och Dragon's Peace kunde börja gälla. Min upphöjdes till Blodet sedan hon räddat Fortuona från en Sharansk kanaliserare.",
+  "kallor": [
+   {
+    "titel": "A Memory of Light, kapitel 37 (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/A_Memory_of_Light/Chapter_37"
+   },
+   {
+    "titel": "A Memory of Light, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Memory_of_Light/chapter-recaps/"
+   },
+   {
+    "titel": "Memory of Light, kapitel 40 och 43 (Thonky)",
+    "url": "https://www.thonky.com/wot/memory-of-light-chapter-43"
+   }
+  ]
+ },
+ {
+  "id": "shayol-ghul",
+  "namn": "Battle of Thakan'dar",
+  "sv": "Striden vid Shayol Ghul",
+  "andranamn": "Thakan'dar och Pit of Doom",
+  "datum": "Våren 1000 NE",
+  "bok": 14,
+  "kapitel": "A Memory of Light, kapitel 23–49 och epilogen",
+  "plats": "shayol-ghul",
+  "radie": 110,
+  "ingress": "Medan härarna strider i dalen Thakan'dar går Rand in i Pit of Doom med Moiraine och Nynaeve för att möta Den Mörke.",
+  "bakgrund": "Rand hade bestämt att han själv skulle möta Den Mörke vid Shayol Ghul. Ituralde fick befälet över fronten där, med Aiel, Tear och Illian, för att hindra Skuggan från att nå grottan. Moiraine, som räddats ur Tower of Ghenjei, och Nynaeve följde med Rand in.",
+  "parter": [
+   {
+    "sida": "Ljusets styrkor",
+    "befal": [
+     "Rand al'Thor",
+     "Moiraine Damodred",
+     "Nynaeve al'Meara",
+     "Rodel Ituralde",
+     "Aviendha"
+    ],
+    "styrka": "Aiel, Tairens, Illianer, Cadsuanes kanaliserare och Asha'man"
+   },
+   {
+    "sida": "Skuggan",
+    "befal": [
+     "Den Mörke",
+     "Moridin",
+     "Graendal (Hessalam)"
+    ],
+    "styrka": "Trollocs, Samma N'Sei, Darkhounds och Darkfriends"
+   }
+  ],
+  "forlopp": [
+   {
+    "rubrik": "In i berget",
+    "text": "Rand klättrade upp till grottan med Moiraine och Nynaeve. Thom ställde sig vid ingången och vaktade den. Han dödade bland annat en Darkfriend som utgav sig för att vara Cadsuane."
+   },
+   {
+    "rubrik": "Dalen Thakan'dar",
+    "text": "Ituraldes styrkor höll dalen mot Skuggans arméer. Aviendha organiserade cirklar av kanaliserare. Graendal tog Rhuarc under tvång, och Aviendha tvingades döda honom."
+   },
+   {
+    "rubrik": "Kampen i vargdrömmen",
+    "text": "Perrin skyddade Rand i Tel'aran'rhiod. Han dödade till slut Slayer och bröt nacken av Lanfear, som nu kallade sig Cyndane."
+   },
+   {
+    "rubrik": "Mat och Fain",
+    "text": "Padan Fain, nu Shaisam, anföll båda sidor med Mashadars dimma. Mat dödade honom med hans egen dolk."
+   },
+   {
+    "rubrik": "Callandor och Moridin",
+    "text": "Moridin fick Rand att tappa Callandor och tog själv svärdet. Moiraine och Nynaeve använde svärdets brist till att ta kontroll över honom i en länk med Rand."
+   },
+   {
+    "rubrik": "Fängelset lagas",
+    "text": "Graendals tvång studsade tillbaka och band henne vid Aviendha. Rand grep Den Mörke, drog in honom i mönstret och smidde fängelset på nytt, utan de gamla sprickorna."
+   }
+  ],
+  "utfall": "Den Mörkes fängelse återställdes helt. Rand dog i sin egen kropp men vaknade i Moridins och red i hemlighet därifrån, utan att kunna kanalisera.",
+  "betydelse": "Tarmon Gai'don var vunnen och en ny tid kunde börja. Tam tände Rands bål, men Rands närmaste anade sanningen. Dragon's Peace skulle hålla freden mellan nationerna.",
+  "kallor": [
+   {
+    "titel": "A Memory of Light, kapitelsammanfattningar (Dragonmount)",
+    "url": "https://dragonmount.com/Books/Memory_of_Light/chapter-recaps/"
+   },
+   {
+    "titel": "Tarmon Gai'don (Wheel of Time Wiki)",
+    "url": "https://wot.fandom.com/wiki/Tarmon_Gai%27don"
+   }
+  ]
+ }
+]

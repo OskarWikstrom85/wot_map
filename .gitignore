@@ -1,0 +1,7 @@
+out/
+package/
+logs/
+export/
+*.tgz
+__pycache__/
+.DS_Store
