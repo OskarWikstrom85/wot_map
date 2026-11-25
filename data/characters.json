@@ -40,18 +40,29 @@
    },
    {
     "bok": 4,
-    "text": "Går in i Rhuidean och blir Car'a'carn, hövding för alla Aiel."
+    "text": "Går in i Rhuidean och blir Car'a'carn, hövding för alla Aiel.",
+    "plats": "rhuidean"
+   },
+   {
+    "bok": 4,
+    "text": "Samlar klanhövdingarna i Alcair Dal och avslöjar Aiels sanna historia. Couladin och Shaido bryter med honom.",
+    "plats": "alcair-dal"
    },
    {
     "bok": 5,
-    "text": "Dödar den förlorade Rahvin i Caemlyn.",
-    "plats": "caemlyn"
+    "text": "Leder Aiel ut ur öknen genom Jangai Pass och hittar Taien bränt av Shaido.",
+    "plats": "taien"
    },
    {
     "bok": 5,
     "text": "Kastar blixtar och eld mot Shaido från ett utsiktstorn i andra slaget om Cairhien.",
     "plats": "cairhien",
     "slag": "cairhien"
+   },
+   {
+    "bok": 5,
+    "text": "Dödar den förlorade Rahvin i Caemlyn.",
+    "plats": "caemlyn"
    },
    {
     "bok": 6,
@@ -235,7 +246,8 @@
    },
    {
     "bok": 4,
-    "text": "Studerar drömvandring hos Aiels visa kvinnor i Aieliska ödemarken."
+    "text": "Studerar drömvandring hos Aiels visa kvinnor i Aieliska ödemarken.",
+    "plats": "cold-rocks-hold"
    },
    {
     "bok": 5,
@@ -334,13 +346,13 @@
   "handelser": [
    {
     "bok": 1,
-    "text": "Tar en förbannad dolk från de övergivna skatterna i Shadar Logoth.",
-    "plats": "shadar-logoth"
+    "text": "Lämnar Two Rivers med Rand och Perrin över floden vid Taren Ferry.",
+    "plats": "taren-ferry"
    },
    {
     "bok": 1,
-    "text": "Lämnar Two Rivers med Rand och Perrin över floden vid Taren Ferry.",
-    "plats": "taren-ferry"
+    "text": "Tar en förbannad dolk från de övergivna skatterna i Shadar Logoth.",
+    "plats": "shadar-logoth"
    },
    {
     "bok": 2,
@@ -355,18 +367,19 @@
    },
    {
     "bok": 3,
+    "text": "Reser med Thom nedför Erinin till Aringill på väg till Caemlyn.",
+    "plats": "aringill"
+   },
+   {
+    "bok": 3,
     "text": "Spränger av misstag upp Stenen i Tear med fyrverkerier och befriar Egwene, Nynaeve och Elayne.",
     "plats": "tear",
     "slag": "stone-of-tear"
    },
    {
-    "bok": 3,
-    "text": "Reser med Thom nedför Erinin till Aringill på väg till Caemlyn.",
-    "plats": "aringill"
-   },
-   {
     "bok": 4,
-    "text": "Går genom den vridna dörrkarmen i Rhuidean och får medaljongen, spjutet ashandarei och främmande minnen."
+    "text": "Går genom den vridna dörrkarmen i Rhuidean och får medaljongen, spjutet ashandarei och främmande minnen.",
+    "plats": "rhuidean"
    },
    {
     "bok": 5,
@@ -390,12 +403,12 @@
    },
    {
     "bok": 13,
-    "text": "Befriar Moiraine ur Tower of Ghenjei men förlorar ett öga."
+    "text": "Rider genom Hinderstap, där byborna blir mördare varje natt.",
+    "plats": "hinderstap"
    },
    {
     "bok": 13,
-    "text": "Rider genom Hinderstap, där byborna blir mördare varje natt.",
-    "plats": "hinderstap"
+    "text": "Befriar Moiraine ur Tower of Ghenjei men förlorar ett öga."
    },
    {
     "bok": 14,
@@ -472,14 +485,14 @@
    },
    {
     "bok": 3,
-    "text": "Befriar Faile ur en drömfälla medan Stenen i Tear faller.",
-    "plats": "tear",
-    "slag": "stone-of-tear"
+    "text": "I Remen befriar han Aielkrigaren Gaul ur en bur, på väg till Tear med Moiraine, Lan, Loial och Faile.",
+    "plats": "remen"
    },
    {
     "bok": 3,
-    "text": "I Remen befriar han Aielkrigaren Gaul ur en bur, på väg till Tear med Moiraine, Lan, Loial och Faile.",
-    "plats": "remen"
+    "text": "Befriar Faile ur en drömfälla medan Stenen i Tear faller.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
    },
    {
     "bok": 4,
@@ -715,7 +728,8 @@
    },
    {
     "bok": 4,
-    "text": "Går genom en ter'angreal i Rhuidean och ser vad som väntar henne."
+    "text": "Går genom en ter'angreal i Rhuidean och ser vad som väntar henne.",
+    "plats": "rhuidean"
    },
    {
     "bok": 5,
@@ -1120,7 +1134,8 @@
    },
    {
     "bok": 4,
-    "text": "Kallas till Rhuidean, får veta att hon kan kanalisera och måste bli visa kvinnornas lärling."
+    "text": "Kallas till Rhuidean, får veta att hon kan kanalisera och måste bli visa kvinnornas lärling.",
+    "plats": "rhuidean"
    },
    {
     "bok": 5,
@@ -1140,7 +1155,8 @@
    },
    {
     "bok": 13,
-    "text": "Går genom glaskolonnerna i Rhuidean igen och ser en mörk framtid för sitt folk."
+    "text": "Går genom glaskolonnerna i Rhuidean igen och ser en mörk framtid för sitt folk.",
+    "plats": "rhuidean"
    },
    {
     "bok": 14,
@@ -2595,6 +2611,11 @@
     "text": "Leder Aiel som stormar Stenen i Tear.",
     "plats": "tear",
     "slag": "stone-of-tear"
+   },
+   {
+    "bok": 4,
+    "text": "Tar emot Rand vid Chaendaer och för honom till Rhuidean och Cold Rocks Hold.",
+    "plats": "cold-rocks-hold"
    },
    {
     "bok": 5,

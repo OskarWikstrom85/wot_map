@@ -14,7 +14,7 @@ from scipy import ndimage as ndi
 ROOT = '/home/claude/wot-map/out/'
 S = int(sys.argv[1])
 CS, P = 1000, 110                      # kärnstorlek och marginal i källpixlar
-LAND, FOREST, MTN_OUT, MTN_IN, WATER, BLIGHT = range(6)
+LAND, FOREST, MTN_OUT, MTN_IN, WATER, BLIGHT, DESERT, DUNES, RIFT = range(9)   # 6–8: Aielöknen
 
 cls_all = np.load(ROOT + 'masks/cls.npy', mmap_mode='r')
 river_all = np.load(ROOT + 'masks/river.npy', mmap_mode='r')
@@ -218,6 +218,42 @@ def render_chunk(cx0, cy0):
     M = smoothstep(.02, .25, base)[..., None]
     foot = img * (.45 + .1 * st[..., None]) * (1 - .35 * base[..., None]) + C(60, 50, 30) * .2
     img = img * (1 - M) + foot * M
+
+    # ---------- Aielöknen: öken, Termools dyner och Great Rift ----------
+    if (cls >= DESERT).any():
+        dsrc = (cls == DESERT) | (cls == DUNES) | (cls == RIFT)
+        near = cv2.dilate(dsrc.astype(np.uint8), np.ones((81, 81), np.uint8)) > 0
+        dzone = dsrc | (mtn_mask & near)                 # berg omgivna av öken hör till öknen
+        dm = np.clip(up(dzone, 3.0), 0, 1)
+        dune = np.clip(up(cls == DUNES, 4.0), 0, 1)
+        dlow = fbm(220 * S, 3, 71); dmid = fbm(60 * S, 3, 72)
+        sand, rust, pale = C(192, 148, 88), C(170, 112, 64), C(212, 178, 118)
+        t_ = (.65 * smoothstep(.25, .85, dlow))[..., None]
+        dcol = sand * (1 - t_) + rust * t_
+        dcol = dcol * (1 - .08 * smoothstep(.2, .6, dmid)[..., None]) + pale * (.1 * smoothstep(.6, .25, dmid)[..., None])
+        # sprickig lera och grus
+        crack = np.abs(fbm(9 * S, 2, 73) - .5) < .018
+        dcol *= (1 - .07 * blur(crack.astype(np.float32), .5 * S))[..., None]
+        dcol *= (1 + .045 * st)[..., None] * (.92 + .14 * land_relief)[..., None]
+        # dyner: långa vågor vridna av brus
+        ph = (X * .82 + Y * .57) / (75 * S) + 4 * (fbm(260 * S, 2, 74) - .5)
+        saw = ph - np.floor(ph)                                   # asymmetriska dyner: lång lovart, brant lä
+        crest = np.exp(-((saw - .82) / .06) ** 2)
+        lee = smoothstep(.82, .9, saw) * (1 - smoothstep(.9, 1.0, saw))
+        dunecol = C(206, 164, 100) * (.93 + .12 * fbm(140 * S, 3, 75)[..., None])
+        dunecol = dunecol * (1 + .07 * crest[..., None] - .1 * lee[..., None])
+        dcol = dcol * (1 - dune[..., None]) + dunecol * dune[..., None]
+        img = img * (1 - dm[..., None]) + dcol * dm[..., None]
+        # bergsfötter i öknen: mörkare, rostig ton (i stället för grönaktig)
+        Md = (dm * M[..., 0])[..., None]
+        img = img * (1 - .42 * Md) + C(96, 56, 30) * (.2 * Md)
+        hal = (dm * np.clip(.35 * halo + .25 * halo_se, 0, .45))[..., None]
+        img = img * (1 - .5 * hal) + C(110, 64, 34) * (.25 * hal)
+        # Great Rift: djup mörk spricka med ljus kant
+        rift = np.clip(up(cls == RIFT, .8, .4), 0, 1)
+        rim = np.clip(blur(rift, 2.2 * S) * 2.2 - rift, 0, 1)
+        img = img * (1 - .35 * rim[..., None]) + C(236, 206, 150) * (.35 * rim[..., None])
+        img = img * (1 - rift[..., None]) + C(34, 20, 14) * rift[..., None]
 
     # ---------- skog och Blight (trädkronor) ----------
     def canopy(mask, spacing, rmin, rextra, seed, dark, light, mid, edge_dark):

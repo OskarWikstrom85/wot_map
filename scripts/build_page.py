@@ -9,7 +9,7 @@ ids = set()
 for r in rows:
     assert r['id'] not in ids, f"dubblett-id {r['id']}"; ids.add(r['id'])
     r['x'], r['y'] = float(r['x']), float(r['y'])
-    assert 0 <= r['x'] <= 1 and 0 <= r['y'] <= 1, f"koordinat utanför kartan: {r['id']}"
+    assert 0 <= r['x'] <= 1.4 and 0 <= r['y'] <= 1, f"koordinat utanför kartan: {r['id']}"   # x > 1: Aielöknen öster om källkartan
 data = json.dumps(rows, ensure_ascii=False).replace('</', '<\\/')
 nations = (root/'data/nations.json').read_text().replace('</', '<\\/')
 import json as _j

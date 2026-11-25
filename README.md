@@ -44,6 +44,21 @@ python3 scripts/details_overlay.py && python3 scripts/make_overlay_tiles.py  # n
 python3 scripts/nations.py                # nationsgränser -> data/nations.json
 ```
 
+### Aielöknen
+
+Källkartan slutar vid Spine of the World. Öknen öster om den (3 200 källpixlar, x > 1 i
+`locations.csv`) är egenritad efter böckernas och wikins beskrivningar och därför ungefärlig:
+
+```bash
+python3 scripts/extend_waste.py            # utökar maskerna i out/masks/ (läser källkartans i out/masks_west/)
+python3 scripts/render_chunks.py 2 0 84    # målar nya bitar (öken, dyner, Great Rift)
+python3 scripts/make_tiles_from_chunks.py site/tiles-malad
+python3 scripts/extend_details.py          # namn, Silk Path och ram i detaljlagret
+python3 scripts/make_overlay_tiles.py out/details.png site/tiles-detaljer
+python3 scripts/original_east.py           # originalkartan + platt öken i samma stil
+python3 scripts/make_tiles.py out/original_med_oknen.png site/tiles 4
+```
+
 `out/` (mellanresultat, ca 500 MB) och `package/` (Leaflet) ingår inte i repot och återskapas av skripten.
 
 ## Källor

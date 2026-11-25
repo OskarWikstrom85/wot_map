@@ -7,7 +7,7 @@ src, out = sys.argv[1], sys.argv[2]
 TS = 1024
 im = Image.open(src).convert("RGBA")
 W, H = im.size
-maxz = math.ceil(math.log2(max(W, H) / 512))
+maxz = int(sys.argv[3]) if len(sys.argv) > 3 else math.ceil(math.log2(max(W, H) / 512))   # 4 för kartan med Aielöknen
 count = 0
 for z in range(maxz, -1, -1):
     s = 2 ** (z - maxz)

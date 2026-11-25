@@ -10,7 +10,8 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 ROOT = '/home/claude/wot-map/out/'
 OUT = sys.argv[1]
-S, MW, MH, TS = 2, 8000, 6177, 1024
+S, TS = 2, 1024
+MH, MW = np.load(ROOT + 'masks/cls.npy', mmap_mode='r').shape   # 8000 px källkarta + Aielöknen
 W, H = MW * S, MH * S
 canvas = np.zeros((H, W, 3), np.uint8)
 for fn in glob.glob(ROOT + 'chunks/c_*.png'):
@@ -20,7 +21,7 @@ for fn in glob.glob(ROOT + 'chunks/c_*.png'):
 img = Image.fromarray(canvas); del canvas
 img.resize((W // 8, H // 8), Image.LANCZOS).save(ROOT + 'malad_oversikt.jpg', quality=88)
 
-maxz = math.ceil(math.log2(max(W, H) / 512))     # samma zoomnivåer som källkartans rutor
+maxz = 5                                          # samma zoomnivåer som källkartans rutor (z4 = 8000 px källkarta)
 count = 0
 lvl = img
 for z in range(maxz, -1, -1):

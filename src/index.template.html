@@ -276,7 +276,8 @@ body.malad{--sea:#4b4d33}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script>
 {
-  const W = 8000, H = 6177, NATIVE = 4;
+  // W är källkartans bredd: platsernas x anges som andel av den (öknen i öster har x > 1).
+  const W = 8000, H = 6177, WW = 11200, NATIVE = 4;   // WW: hela kartan inklusive Aielöknen
   const COLORS = {huvudstad:'#8b1e1e', stad:'#1f3b63', by:'#2f6b3a', landmärke:'#5b3f8c', ruin:'#4b4b4b'};
   const places = JSON.parse(document.getElementById('locations').textContent);
 
@@ -284,7 +285,7 @@ body.malad{--sea:#4b4d33}
   L.control.zoom({position: 'topright'}).addTo(map);
   const toLL = (px, py) => map.unproject([px, py], NATIVE);
   const fromLL = ll => map.project(ll, NATIVE);
-  const bounds = L.latLngBounds(toLL(0, H), toLL(W, 0));
+  const bounds = L.latLngBounds(toLL(0, H), toLL(WW, 0));
 
   const credit = 'Grund: <a href="https://atlasoficeandfireblog.wordpress.com/2020/01/13/a-new-wheel-of-time-map/">Adam Whitehead</a>';
   const LAYERS = {
@@ -409,7 +410,7 @@ body.malad{--sea:#4b4d33}
   map.on('click', e => {
     if (!picking) return;
     const pt = fromLL(e.latlng);
-    if (pt.x < 0 || pt.y < 0 || pt.x > W || pt.y > H) return;
+    if (pt.x < 0 || pt.y < 0 || pt.x > WW || pt.y > H) return;
     const x = (pt.x / W).toFixed(4), y = (pt.y / H).toFixed(4);
     lastRow = `ny-plats,Ny plats,stad,,${x},${y},`;
     coordText.textContent = `x ${x} · y ${y}  (px ${Math.round(pt.x)}, ${Math.round(pt.y)})`;

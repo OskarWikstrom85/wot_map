@@ -6,7 +6,7 @@ src, out = sys.argv[1], sys.argv[2]
 TS = 1024
 img = Image.open(src).convert('RGBA')
 W, H = img.size
-maxz = math.ceil(math.log2(max(W, H) / 512))
+maxz = 4                                  # z4 = källkartans 8000 px (kartan är bredare med Aielöknen)
 lvl, count = img, 0
 for z in range(maxz, -1, -1):
     if z < maxz:
