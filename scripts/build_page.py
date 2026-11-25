@@ -59,6 +59,7 @@ for _rid, _r in _resor.items():
         if _k and _s.get('satt') not in _HOPP:
             _ch = [_st[_k - 1]['plats']] + _s.get('via', []) + [_s['plats']]
             for _a, _b in zip(_ch, _ch[1:]):
+                if _a == _b: continue   # stannar kvar på samma plats
                 _key = f"{_a}>{_b}>{_s['satt']}"
                 if _key in _rutter: _used[_key] = _rutter[_key]
                 else: _errs.append(f"resa {_rid}: rutt saknas för {_key} (kör scripts/route_via.py)")

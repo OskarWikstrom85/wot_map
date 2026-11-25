@@ -114,6 +114,20 @@ Länk direkt till en dag: `#tid=<dag>` (dag 0 = 1 jan 998).
 - Datumen bygger på wikins årssidor (998–1000 NE) fram till Knife of Dreams; bok 12–14 saknar
   kronologi och är uppskattade. `scripts/data_tools/add_datum.py` sätter alla datum.
 
+## Spoilerskydd och granskning
+
+Karaktärernas `titel`, `ingress` och `om` beskriver bara det man vet när karaktären dyker upp. Senare
+titlar ligger i `titel_senare` (`[{bok, text}]`) och senare fakta som händelser, som döljs efter vald bok.
+Relationstexter beskriver alltid den andra personen (sidan visar "Namn – text"). Varje relation har `bok`
+(då texten stämmer) och kan ha `fore` (`[{bok, text}]`, texter som visas innan dess).
+
+```bash
+python3 scripts/check_data.py              # kontrollerar att händelser, resor, slag och datum stämmer med varandra
+python3 scripts/record_video.py two-rivers # spelar in slagsvideon igen (kräver att src/ serveras på localhost:8765)
+```
+
+Faktagranskningen i november 2026 finns i `scripts/data_tools/granskning_*.py`.
+
 ## Källor
 
 Originalkartan är Westlands-kartan av Adam Whitehead. Texterna om karaktärer och slag är egna sammanfattningar baserade på böckerna, Wheel of Time-wikin, Dragonmount och Reactor/Tor.com. Projektet är för privat bruk.

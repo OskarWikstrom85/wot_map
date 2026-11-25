@@ -13,8 +13,8 @@
    0.38854
   ],
   "radie": 230,
-  "ingress": "Aielkrigets avgörande slag, utkämpat i snön kring Tar Valon. Det är samma dagar som Rand föds på Dragonmounts sluttning.",
-  "bakgrund": "Aiel hade gett Cairhien en planta av livets träd, Avendesora. Kung Laman lät hugga ner trädet, kallat Avendoraldera, för att göra en tron av det. Janduin, ledare för Taardad-klanens Iron Mountain-sept, krävde hämnd. Bara fyra av tolv klaner följde honom: Taardad, Reyn, Nakai och Shaarad. Våren 976 NE gick de över Dragonwall med över 90 000 krigare. Cairhiens här slogs på flykten inom fyra månader, och delar av staden brändes, bland annat Topless Towers. Kriget drog sedan vidare genom Tear och Andor. Under tiden förföljde Aiel Laman norrut, tills de stod vid Tar Valons murar.",
+  "ingress": "Aielkrigets avgörande slag, utkämpat i snön kring Tar Valon. Samma dagar föds Draken på nytt på Dragonmounts sluttning.",
+  "bakgrund": "Aiel hade gett Cairhien en planta av livets träd, Avendesora. Kung Laman lät hugga ner trädet, kallat Avendoraldera, för att göra en tron av det. Janduin, klanhövding för Taardad och av Iron Mountain-septen, krävde hämnd. Bara fyra av tolv klaner följde honom: Taardad, Reyn, Nakai och Shaarad. Våren 976 NE gick de över Dragonwall med över 90 000 krigare. Cairhiens här slogs på flykten inom fyra månader, och delar av staden brändes, bland annat Topless Towers. Kriget drog sedan vidare västerut över Plains of Maredo och genom Braem Wood och Caralain Grass. Under tiden förföljde Aiel Laman norrut, tills de stod vid Tar Valons murar.",
   "parter": [
    {
     "sida": "Aiel",
@@ -50,7 +50,7 @@
    },
    {
     "rubrik": "Dag 3: Laman faller",
-    "text": "Janduins styrka hittade och förstörde Cairhiens läger. Laman och hans bröder dödades, och bara omkring 500 cairhieniner överlevde. Lamans huvud och hans svärd, smitt med den Enda kraften, fördes tillbaka till ödemarken. Samma dag stred Jungfrur mot andoraner nära Dragonmount. Där hittade Tam al'Thor, då soldat i Illians tjänst, ett nyfött barn i en död kvinnas famn."
+    "text": "Janduins styrka hittade och förstörde Cairhiens läger. Laman och hans bröder dödades, och bara omkring 500 cairhieniner överlevde. Lamans huvud och hans svärd, smitt med den Enda kraften, fördes tillbaka till ödemarken. Samma dag stred Jungfrur mot andoraner nära Dragonmount."
    },
    {
     "rubrik": "Dag 4 och förföljelsen",
@@ -58,7 +58,7 @@
    }
   ],
   "utfall": "Alliansen förklarade sig segrare. Befälhavarna insåg senare att Aiel bara hade velat döda Laman, och det målet hade de nått.",
-  "betydelse": "I Vita tornet fick Gitara Moroso samma dag en förutsägelse om att Draken just dragit sitt första andetag på Dragonmount. Hon dog direkt efteråt. Därmed började Aes Sedais sökande efter barnet, och Moiraine och Siuan drogs in i jakten. Tam tog med sig pojken hem till Two Rivers och gav honom namnet Rand. I Cairhien förlorade huset Damodred makten efter Lamans fall.",
+  "betydelse": "I Vita tornet fick Gitara Moroso samma dag en förutsägelse om att Draken just dragit sitt första andetag på Dragonmount. Hon dog direkt efteråt. Därmed började Aes Sedais sökande efter barnet, och Moiraine och Siuan drogs in i jakten. I Cairhien förlorade huset Damodred makten efter Lamans fall.",
   "kallor": [
    {
     "titel": "A History of the Wheel of Time, del 12: The Aiel War (The Wertzone)",
@@ -66,6 +66,10 @@
    }
   ],
   "senare": [
+   {
+    "bok": 1,
+    "text": "Nära Dragonmount hittade Tam al'Thor, då soldat i Illians tjänst, ett nyfött barn i en död kvinnas famn. Han tog med sig pojken hem till Two Rivers och gav honom namnet Rand."
+   },
    {
     "bok": 14,
     "text": "Den pojke som föddes under slaget är den som till slut möter Den Mörke i Shayol Ghul. Han lagar fängelset och överlever i en annan kropp."
@@ -120,7 +124,7 @@
   "forlopp": [
    {
     "rubrik": "In i staden",
-    "text": "Verin skickade in Rand, Mat, Perrin, Ingtar och Hurin i Falme. I Turaks hus hämtade de hornet och dolken. Turak kom tillbaka och utmanade Rand, som besegrade blademästaren i en duell med hjälp av tomrummet."
+    "text": "Rand, Mat, Perrin, Ingtar och Hurin tog sig in i Falme. I Turaks hus hämtade de hornet och dolken. Turak kom tillbaka och utmanade Rand, som besegrade blademästaren i en duell med hjälp av tomrummet."
    },
    {
     "rubrik": "Egwene befrias",
@@ -140,7 +144,7 @@
    }
   ],
   "utfall": "Seanchans förtrupp krossades och drevs ut ur Falme. Bornhald stupade. Hornet, dolken och Egwene räddades. Rand fick ett sår i sidan som aldrig läker helt.",
-  "betydelse": "Alla i Falme hade sett duellen, och shienarerna erkände Rand som Dragon Reborn. Ryktet spreds över världen. Mat är sedan dess bunden till hornet så länge han lever. Dain Bornhald gav Perrin skulden för sin fars död. Ännu ett sigill på den Mörkes fängelse hade brustit.",
+  "betydelse": "Alla i Falme hade sett duellen, och shienarerna erkände Rand som Dragon Reborn. Ryktet spreds över världen. Mat är sedan dess bunden till hornet så länge han lever. Ännu ett sigill på den Mörkes fängelse hade brustit.",
   "kallor": [
    {
     "titel": "The Great Hunt, kapitelsammanfattningar (Dragonmount)",
@@ -152,6 +156,10 @@
    }
   ],
   "senare": [
+   {
+    "bok": 3,
+    "text": "Dain Bornhald ger Perrin skulden för sin fars död och svär att hämnas."
+   },
    {
     "bok": 14,
     "text": "Mat är inte längre bunden till hornet efter att ha dött och återupplivats i Rhuidean. I Tarmon Gai'don blåser i stället pojken Olver i det, och Hjältarna rider igen. Birgitte är bland dem."
@@ -174,7 +182,7 @@
   ],
   "radie": 110,
   "ingress": "Perrin återvänder hem och samlar bönderna i Two Rivers till försvar mot tusentals trollocs. Han blir Perrin Goldeneyes.",
-  "bakgrund": "Perrin återvände genom Ways tillsammans med Faile, Loial och Gaul. Han fann Two Rivers ockuperat av Children of the Light under Dain Bornhald. Padan Fain följde med dem under namnet Ordeith. Perrins familj hade mördats, enligt ryktet av trollocs men i själva verket av Fain. Trollocs strömmade in i bygden genom Waygate vid Manetheren.",
+  "bakgrund": "Perrin återvände genom Ways tillsammans med Faile, Loial, Gaul och Jungfrurna Bain och Chiad. Han fann Two Rivers ockuperat av Children of the Light under Dain Bornhald. Padan Fain följde med dem under namnet Ordeith. Perrins familj hade mördats, enligt ryktet av trollocs men i själva verket av Fain. Trollocs strömmade in i bygden genom Waygate vid Manetheren.",
   "parter": [
    {
     "sida": "Two Rivers",
@@ -214,7 +222,7 @@
    },
    {
     "rubrik": "Byn befästs",
-    "text": "När Perrin kom tillbaka var Emond's Field befäst med pålar och palissader under en röd fana med ett vargshuvud. Folket började motvilligt kalla honom Lord Perrin."
+    "text": "När Perrin kom tillbaka var Emond's Field befäst med en palissad av vässade pålar och katapulter, och på ängen vajade en vit fana med ett rött vargshuvud. Folket hyllade honom som Goldeneyes, till Perrins egen förtret."
    },
    {
     "rubrik": "Första anfallet",
@@ -230,7 +238,7 @@
    }
   ],
   "utfall": "Seger för Two Rivers. Perrin tillrättavisade Bornhald, och Whitecloaks utvisades ur bygden. Ordeith drog vidare för att ställa till ofog på annat håll.",
-  "betydelse": "Two Rivers vaknade som Manetherens arvtagare. Perrin blev bygdens erkände ledare, Goldeneyes, och Faile fick hans löfte om giftermål. Senare kommer män från Two Rivers att följa honom i flera av seriens stora slag.",
+  "betydelse": "Two Rivers vaknade som Manetherens arvtagare. Perrin blev bygdens erkände ledare, Goldeneyes, och han och Faile hade gift sig strax innan hon red iväg.",
   "kallor": [
    {
     "titel": "The Shadow Rising, kapitelsammanfattningar (Dragonmount)",
@@ -509,7 +517,7 @@
    }
   ],
   "utfall": "Stenen föll till Aiel och Draken. Be'lal och Ba'alzamon, som visade sig vara Ishamael, var döda. Rand bar Callandor.",
-  "betydelse": "Dagen efter utropades Rand till Draken på Tears gator. Rhuarc förklarade att Aiel en gång kallades People of the Dragon. Med Stenen och Callandor i sin hand kunde ingen längre förneka att Dragon Reborn hade kommit. Det öppnade vägen till Rhuidean och Aiel i nästa bok.",
+  "betydelse": "Dagen efter utropades Rand till Draken på Tears gator. Rhuarc förklarade att Aiel en gång kallades People of the Dragon. Med Stenen och Callandor i sin hand kunde ingen längre förneka att Dragon Reborn hade kommit. Rhuarc visade drakmärket på sin arm, som klanhövdingar får i Rhuidean.",
   "kallor": [
    {
     "titel": "The Dragon Reborn, kapitelsammanfattningar (Dragonmount)",
@@ -583,7 +591,7 @@
    }
   ],
   "utfall": "Shaido krossades. Seanchan tog de visa kvinnorna som damane. Bara några hundra Shaido flydde med Therava tillbaka mot ödemarken, och Galina fördes med som slav.",
-  "betydelse": "Shaido upphörde i praktiken att vara ett hot i Westlands. Dragonsworn förlorade nästan hela sin styrka och Masema dödades kort därefter. Tylee befordrades och upphöjdes till Blodet. Perrin och Faile var återförenade, och Perrin stod nu i spetsen för en stor här.",
+  "betydelse": "Shaido upphörde i praktiken att vara ett hot i Westlands. Dragonsworn förlorade nästan hela sin styrka. Perrin och Faile var återförenade, och Perrin stod nu i spetsen för en stor här.",
   "kallor": [
    {
     "titel": "Battle of Malden (Wheel of Time Wiki)",
@@ -595,6 +603,10 @@
    }
   ],
   "senare": [
+   {
+    "bok": 12,
+    "text": "Masema dödas kort efter slaget. Tylee befordras och upphöjs till Blodet."
+   },
    {
     "bok": 14,
     "text": "Perrins här, med många före detta gai'shain, strider i Braem Wood i början av Tarmon Gai'don."
@@ -671,8 +683,7 @@
     "text": "Bara några månader senare väller trollocs in genom stadens Waygate i början av Tarmon Gai'don, och Caemlyn brinner."
    }
   ],
-  "dag": "1000-04-20",
-  "dag_osaker": true
+  "dag": "1000-04-17"
  },
  {
   "id": "tar-valon",
@@ -736,7 +747,7 @@
    }
   ],
   "utfall": "Anfallet slogs tillbaka. Över 30 to'raken förstördes och 10 damane befriades. Tornet förlorade 20 systrar och 3 noviser, och nästan 40 kvinnor fördes bort, bland dem Elaida.",
-  "betydelse": "Tornets Hall erkände Egwene som Amyrlin, och Aes Sedai enades igen. Med Verins böcker kunde Egwene avslöja och avrätta större delen av Black Ajah. Några Bloodknives stannade gömda i tornet och fortsatte mörda systrar.",
+  "betydelse": "Tornets Hall erkände Egwene som Amyrlin, och Aes Sedai enades igen. Med Verins böcker kunde Egwene avslöja och avrätta större delen av Black Ajah.",
   "kallor": [
    {
     "titel": "Battle of Tar Valon (Wheel of Time Wiki)",
@@ -748,6 +759,10 @@
    }
   ],
   "senare": [
+   {
+    "bok": 13,
+    "text": "Några Bloodknives stannar gömda i tornet och fortsätter mörda systrar."
+   },
    {
     "bok": 14,
     "text": "Egwene leder Aes Sedai in i Tarmon Gai'don. Hon upptäcker Flame of Tar Valon, motvävnaden mot balefire, och offrar sig för att besegra Taim och Sharas kanaliserare."
@@ -828,7 +843,7 @@
     "text": "I Tarmon Gai'don leder Ituralde fronten vid Shayol Ghul. Han och de andra stora fältherrarna visar sig ha stått under Graendals tvång."
    }
   ],
-  "dag": "1000-06-05",
+  "dag": "1000-06-25",
   "dag_osaker": true
  },
  {
@@ -836,7 +851,7 @@
   "namn": "Fall of Caemlyn",
   "sv": "Caemlyns fall och Andorfronten",
   "andranamn": "Med striderna i Braem Wood och vid Cairhien",
-  "datum": "Våren 1000 NE",
+  "datum": "Sommaren 1000 NE",
   "bok": 14,
   "kapitel": "A Memory of Light, prologen och kapitel 1–24",
   "plats": "caemlyn",
@@ -902,7 +917,7 @@
     "url": "https://dragonmount.com/Books/Memory_of_Light/chapter-recaps/"
    }
   ],
-  "dag": "1000-07-05",
+  "dag": "1000-07-09",
   "dag_osaker": true
  },
  {
@@ -910,7 +925,7 @@
   "namn": "Battle of the Field of Merrilor",
   "sv": "Slaget vid Merrilor",
   "andranamn": "Tarmon Gai'dons huvudslag",
-  "datum": "Våren 1000 NE",
+  "datum": "Sommaren 1000 NE",
   "bok": 14,
   "kapitel": "A Memory of Light, kapitel 29–43 (huvudsakligen kapitel 37, The Last Battle)",
   "plats": "field-of-merrilor",
@@ -969,7 +984,7 @@
    }
   ],
   "utfall": "Seger för Ljuset. Demandred och Taim var döda och trollocs fullständigt slagna. Förlusterna var mycket stora: Egwene, Gawyn, Siuan och Bryne var bland de döda.",
-  "betydelse": "Slaget avgjorde Tarmon Gai'don på marken medan Rand mötte Den Mörke. Mat visade sig vara tidens främste fältherre, och Dragon's Peace kunde börja gälla. Min upphöjdes till Blodet sedan hon räddat Fortuona från en Sharansk kanaliserare.",
+  "betydelse": "Slaget avgjorde Tarmon Gai'don på marken medan Rand mötte Den Mörke. Mat visade sig vara tidens främste fältherre, och Dragon's Peace kunde börja gälla. Min räddade Fortuona från en lönnmördare och blev hennes Truthspeaker.",
   "kallor": [
    {
     "titel": "A Memory of Light, kapitel 37 (Wheel of Time Wiki)",
@@ -992,7 +1007,7 @@
   "namn": "Battle of Thakan'dar",
   "sv": "Striden vid Shayol Ghul",
   "andranamn": "Thakan'dar och Pit of Doom",
-  "datum": "Våren 1000 NE",
+  "datum": "Sommaren 1000 NE",
   "bok": 14,
   "kapitel": "A Memory of Light, kapitel 23–49 och epilogen",
   "plats": "shayol-ghul",
@@ -1059,7 +1074,7 @@
     "url": "https://wot.fandom.com/wiki/Tarmon_Gai%27don"
    }
   ],
-  "dag": "1000-07-15",
+  "dag": "1000-07-20",
   "dag_osaker": true
  }
 ]

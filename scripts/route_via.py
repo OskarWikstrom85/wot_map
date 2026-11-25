@@ -93,6 +93,7 @@ def main():
             if s['satt'] in HOPP: continue
             chain = [prev['plats']] + s.get('via', []) + [s['plats']]
             for a, b in zip(chain, chain[1:]):
+                if a == b: continue
                 key = f"{a}>{b}>{s['satt']}"
                 if key not in rutter and key not in [k for k, *_ in need]: need.append((key, a, b, s['satt']))
     if not need: print('alla sträckor finns redan'); return

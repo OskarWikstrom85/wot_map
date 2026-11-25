@@ -661,8 +661,8 @@ function buildBattleSVG() {
   // Fanan på ängen
   const fl = group(m, 'wolfBanner');
   el('line', {x1: 1040, y1: 640, x2: 1040, y2: 560, stroke: '#2a1a0c', 'stroke-width': 4}, fl);
-  el('path', {d: 'M1040 560h54l-7 16 7 16h-54z', fill: '#a8221c', stroke: '#1a120b', 'stroke-width': 2}, fl);
-  const we = el('g', {transform: 'translate(1046,563) scale(1.35)', style: 'color:#f3e2b8'}, fl); we.innerHTML = EMB.wolf;
+  el('path', {d: 'M1040 560h54l-7 16 7 16h-54z', fill: '#f3ead2', stroke: '#1a120b', 'stroke-width': 2}, fl);
+  const we = el('g', {transform: 'translate(1046,563) scale(1.35)', style: 'color:#a8221c'}, fl); we.innerHTML = EMB.wolf;
   el('circle', {cx: 1040, cy: 557, r: 4.5, fill: '#e0c27a'}, fl);
   // 300 steg: Tam väntar tills trollocs är så här nära
   const rg = group(m, 'range');
@@ -710,7 +710,7 @@ function buildBattleSVG() {
 
 // ================= Enheter och kort =================
 const GROUPS = {
-  party: {name: 'Perrins sällskap', side: 'tr', emb: 'wolf', lead: 'Perrin Aybara', size: 'Fyra: Perrin, Faile, Loial och Gaul', text: 'Kommer till Two Rivers genom Ways. Perrin har hört rykten om att Whitecloaks letar efter honom och hans vänner.', chars: ['perrin', 'faile', 'loial']},
+  party: {name: 'Perrins sällskap', side: 'tr', emb: 'wolf', lead: 'Perrin Aybara', size: 'Sex: Perrin, Faile, Loial, Gaul, Bain och Chiad', text: 'Kommer till Two Rivers genom Ways. Perrin har hört rykten om att Whitecloaks letar efter honom och hans vänner.', chars: ['perrin', 'faile', 'loial']},
   trWay: {name: 'Trollocs vid Waygate', side: 'sh', emb: 'horn', lead: 'Myrddraal', size: 'Okänt', text: 'Skuggans varelser tar sig in i Two Rivers genom Waygate i Manetherens ruiner.'},
   wc: {name: 'Children of the Light', side: 'wc', emb: 'sun', lead: 'Dain Bornhald, Jaret Byar', size: 'Flera hundra (omkring 400 vid slutstriden)', text: 'Whitecloaks har slagit läger vid Watch Hill och letar efter Perrin. Med dem rider Ordeith, som egentligen är Padan Fain. Han mördade Perrins familj.'},
   hide: {name: 'Tam, Abell och Aes Sedai', side: 'aes', emb: 'flame', lead: "Tam al'Thor, Abell Cauthon", size: 'Två män, Verin och Alanna med sina väktare', text: 'Tam och Abell undkom Whitecloaks och gömmer sig tillsammans med Verin Mathwin och Alanna Mosvani.', chars: ['tam', 'verin']},
@@ -722,14 +722,14 @@ const GROUPS = {
   aesB: {name: 'Verin och Alanna', side: 'aes', emb: 'flame', lead: 'Verin Mathwin, Alanna Mosvani', size: 'Två Aes Sedai med väktarna Tomas och Ihvon', text: 'Hjälper försvaret med den Enda kraften, bland annat genom att tända katapultstenarna.', chars: ['verin']},
   wagons: {name: 'Vagnsspärrar', side: 'civ', emb: 'wagon', lead: '–', size: 'Vagnar och vakter', text: 'Där vägarna går genom pålringen spärras de med vagnar, och en vakt står bakom dem.'},
   stakes: {name: 'Pålringen', side: 'civ', emb: 'stake', lead: '–', size: 'Hela byn runt', text: 'En ring av vässade pålar runt byn.'},
-  perrinB: {name: 'Perrin och Faile', side: 'tr', emb: 'wolf', lead: 'Perrin Aybara', size: 'Perrin, Faile och de överlevande', text: 'Perrin kommer tillbaka sårad, finner byn befäst under en röd fana med vargshuvud och blir till sin förtret en hjälte. Alanna helar honom i Winespring Inn.', chars: ['perrin', 'faile']},
+  perrinB: {name: 'Perrin och Faile', side: 'tr', emb: 'wolf', lead: 'Perrin Aybara', size: 'Perrin, Faile och de överlevande', text: 'Perrin kommer tillbaka sårad, finner byn befäst under en vit fana med ett rött vargshuvud och blir till sin förtret en hjälte. Alanna helar honom i Winespring Inn.', chars: ['perrin', 'faile']},
   trA: {name: 'Trollocs', side: 'sh', emb: 'horn', lead: 'Tre Myrddraal', size: 'Omkring 500', text: 'Första anfallet mot Emond\'s Field. Var de kom ifrån anges inte i boken, så här kommer de schematiskt ur Westwood.'},
   fades: {name: 'Myrddraal', side: 'sh', emb: 'fade', lead: '–', size: 'Några stycken', text: 'De ögonlösa befälhavarna driver trollocs framför sig. En av dem fortsätter gå trots att den är full av pilar, som om den inte förstått att den är död.'},
   lg: {name: 'Loial och Gaul', side: 'tr', emb: 'oak', lead: 'Loial', size: 'Två', text: 'Ogiern och Aielkrigaren ger sig av för att stänga Waygate på nytt, så att inga fler trollocs kan komma in. När de kommer tillbaka är Gaul sårad.', chars: ['loial']},
   tink: {name: "Tuatha'an", side: 'tink', emb: 'wagonC', lead: 'Raen och Ila', size: 'Omkring tjugo män och kvinnor samt några barn', text: 'Det fredliga resandefolket söker skydd efter att ha drabbats av trollocs. Skyttarna tar dem först för fiender. Tinkern Aram tar senare upp ett svärd, precis som Min en gång såg.'},
   wcB: {name: 'Children of the Light', side: 'wc', emb: 'sun', lead: 'Dain Bornhald, Jaret Byar', size: 'Omkring 400', text: 'Får stanna innanför pålarna mot löftet att inte gripa Perrin förrän trollocs är borta. Inför slutstriden lovar Bornhald att strida mot att Perrin sedan låter sig gripas.'},
   msg: {name: 'Budbärare', side: 'man', emb: 'msg', lead: '–', size: 'En', text: 'En döende budbärare söderifrån hinner säga att hjälp är på väg.'},
-  faileT: {name: 'Faile', side: 'tr', emb: 'wolf', lead: 'Faile Bashere', size: 'En', text: 'Perrin skickar iväg henne med ett bud till drottning Morgase, egentligen för att få henne i säkerhet. Hon går med på det bara om han lovar att gifta sig med henne.', chars: ['faile']},
+  faileT: {name: 'Faile', side: 'tr', emb: 'wolf', lead: 'Faile Bashere', size: 'En', text: 'Perrin skickar iväg henne med ett bud till drottning Morgase, egentligen för att få henne i säkerhet. Hon går med på det bara om de gifter sig först – och de vigs genast inför Kvinnokretsen.', chars: ['faile']},
   trB: {name: 'Trollochären', side: 'sh', emb: 'horn', lead: 'Myrddraal', size: 'Tusentals', text: 'Spanarna rapporterar tusentals trollocs i norr och söder. De anfaller ur skogen runt byn och ropar "Isam!" tre gånger innan de stormar.'},
   women: {name: 'Kvinnorna i Emond\'s Field', side: 'tr', emb: 'people', lead: '–', size: 'Byns kvinnor', text: 'Står först beredda att fly med barnen till skogen. När striden går dåligt lämnar de barnen hos Tuatha\'an och går själva in i striden.'},
   deven: {name: 'Män från Deven Ride', side: 'man', emb: 'wolf', lead: '–', size: 'Okänt', text: 'Anfaller trollocs från söder.'},
@@ -967,7 +967,7 @@ const SCENES = [
     {say: 'Där vägarna passerar pålarna ställs vagnar på tvären, och vakter tar plats bakom dem.', dur: 1800, acts: [{show: ['wg0', 'wg1', 'wg2']}]},
     {say: 'Innanför pålarna byggs katapulter. Med hjälp av Verin och Alanna kommer stenarna att explodera i eld när de slår ner.', dur: 2000, acts: [{show: ['c1', 'c2', 'c3', 'aes']}]},
     {say: "Bågskyttarna tar plats bakom pålarna. Two Rivers långbågar når långt, och Tam al'Thor och Bran al'Vere håller ordning på dem.", dur: 4000, acts: [{show: ['bN', 'bNE', 'bE', 'bSE', 'bS', 'bSW', 'bW', 'bNW'], move: toBow}]},
-    {say: 'När Perrin kommer tillbaka sårad finner han byn befäst under en röd fana med vargshuvud. Folket har redan gjort honom till hjälte. Alanna helar honom i Winespring Inn.', dur: 4200, acts: [{show: ['perrinB', 'wolfBanner'], move: [['perrinB', [1500, 900], [1250, 760], [1120, 640]]]}, {show: ['heal']}]},
+    {say: 'När Perrin kommer tillbaka sårad finner han byn befäst under en vit fana med ett rött vargshuvud. Folket har redan gjort honom till hjälte. Alanna helar honom i Winespring Inn.', dur: 4200, acts: [{show: ['perrinB', 'wolfBanner'], move: [['perrinB', [1500, 900], [1250, 760], [1120, 640]]]}, {show: ['heal']}]},
     {say: 'Bain och Chiad kommer tillbaka från skogen: omkring 500 trollocs är på väg, drivna av Myrddraal. Försvaret ska prövas för första gången.', dur: 1800, acts: [{cam: [1000, 640, 2000], hide: ['heal'], show: ['scouts']}]}
    ]}
   ,
@@ -998,7 +998,7 @@ const SCENES = [
       {t: .66, clock: 'Dag 6'}, {t: .66, len: .3, show: ['tS2'], move: [['tS2', [1000, 1080]]]}, {t: .78, len: .2, volley: [['bS', 'bSE', 'bSW'], [[1000, 1080]]]}, {t: .9, hide: ['tS2']}]},
     {say: 'Efter sju dagar av ständiga anfall är försvararna utmattade. En döende budbärare söderifrån hinner säga: "Vi kommer."', dur: 3000, acts: [{clock: 'Dag 7', show: ['msg'], move: [['msg', [975, 1100], [983, 960]]]}, {t: .9, hide: ['msg']}]},
     {say: 'Loial och Gaul kommer tillbaka. Gaul är sårad. Waygate är stängd igen, men tusentals trollocs har redan hunnit samlas i bygden.', dur: 3200, acts: [{show: ['lg', 'aLGback'], move: [['lg', [-40, 590], [400, 600], [930, 632]]]}, {t: .95, hide: ['aLGback']}]},
-    {say: 'I vargdrömmen skjuter Perrin Slayer, men vet inte om han dödade honom. Lord Luc har lämnat byn, till synes sårad. Perrin skickar iväg Faile med bud till drottning Morgase – egentligen för att rädda henne. Hon går med på det bara om han lovar att gifta sig med henne.', dur: 3400, acts: [{show: ['faileT', 'aFaile'], move: [['faileT', [1030, 330], [1060, 120], [1095, -40]]]}, {t: .95, hide: ['faileT', 'aFaile']}]}
+    {say: 'I vargdrömmen skjuter Perrin Slayer, men vet inte om han dödade honom. Lord Luc har lämnat byn, till synes sårad. Perrin skickar iväg Faile med bud till drottning Morgase – egentligen för att rädda henne. Hon går med på det bara om de gifter sig först – och de vigs genast inför Kvinnokretsen.', dur: 3400, acts: [{show: ['faileT', 'aFaile'], move: [['faileT', [1030, 330], [1060, 120], [1095, -40]]]}, {t: .95, hide: ['faileT', 'aFaile']}]}
    ]},
   {k: 'Scen 6 · Inför slutstriden', t: 'Tusentals i norr och söder', d: 'Amadaine 22, 999 NE · The Shadow Rising, kapitel 56 (Goldeneyes)',
    init: [{map: 'battle', cam: [1000, 640, 1900], clock: 'Amadaine 22', show: ['bN', 'bNE', 'bE', 'bSE', 'bS', 'bSW', 'bW', 'bNW', 'c1', 'c2', 'c3', 'aes', 'wg0', 'wg1', 'wg2', 'perrinB', 'wolfBanner', 'tink', 'wcB', 'lg'], seq: 'stakes', move: () => [...toBow(), ['perrinB', [1120, 640]], ['tink', [900, 700]], ['wcB', [1250, 520]], ['lg', [930, 632]]]}],

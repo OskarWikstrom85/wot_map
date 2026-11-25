@@ -550,10 +550,13 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
   const groups = ['Alla', ...[...new Set(chars.flatMap(c => c.grupper))].sort((a, b) => a.localeCompare(b, 'sv'))];
   chipsEl.innerHTML = groups.map(g => `<button class="chip" data-g="${esc(g)}" aria-pressed="${g === group}">${esc(g)}</button>`).join('');
 
+  // Det som visas beror på hur långt man läst: senare titlar och relationstexter döljs tills dess
+  const titleOf = c => (c.titel_senare || []).reduce((t, x) => x.bok <= maxBook ? x.text : t, c.titel);
+  const relText = r => r.bok <= maxBook ? r.text : (r.fore || []).reduce((t, x) => x.bok <= maxBook ? x.text : t, null);
   function renderChars() {
     const t = norm(cq.value.trim());
-    const hits = chars.filter(c => (group === 'Alla' || c.grupper.includes(group)) && (!t || norm(c.namn + ' ' + c.titel).includes(t)));
-    clist.innerHTML = hits.length ? hits.map(c => `<li><button data-c="${c.id}" aria-current="${c.id === openId}">${mono(c)}<span><span class="nm">${esc(c.namn)}</span><span class="t">${esc(c.titel)}</span></span></button></li>`).join('')
+    const hits = chars.filter(c => (group === 'Alla' || c.grupper.includes(group)) && (!t || norm(c.namn + ' ' + titleOf(c)).includes(t)));
+    clist.innerHTML = hits.length ? hits.map(c => `<li><button data-c="${c.id}" aria-current="${c.id === openId}">${mono(c)}<span><span class="nm">${esc(c.namn)}</span><span class="t">${esc(titleOf(c))}</span></span></button></li>`).join('')
       : '<li class="empty">Ingen karaktär matchar.</li>';
   }
   const shortName = c => c.namn.split(' ')[0].replace(/^al'/, '');   // Rand al'Thor → Rand, al'Lan Mandragoran → Lan
@@ -566,7 +569,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
     const raised = c.uppvuxen && c.uppvuxen !== c.ursprung ? placeBtn(c.uppvuxen) : '';
     cart.innerHTML = `
       <button class="btn back" id="backList">&larr; Alla karaktärer</button>
-      <div class="art-head">${mono(c, 'big')}<div><h3>${esc(c.namn)}</h3><div class="ti">${esc(c.titel)}</div></div></div>
+      <div class="art-head">${mono(c, 'big')}<div><h3>${esc(c.namn)}</h3><div class="ti">${esc(titleOf(c))}</div></div></div>
       <dl class="facts">
         ${origin ? `<div><dt>Född</dt><dd>${origin}</dd></div>` : ''}
         ${raised ? `<div><dt>Uppvuxen</dt><dd>${raised}</dd></div>` : ''}
@@ -580,7 +583,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
       ${shown.length ? `<ol class="events">${shown.map(h => `<li><span class="bk">${h.bok ? 'Bok ' + h.bok : 'Före serien'}</span>${esc(h.text)}${h.plats && placeById[h.plats] ? ` <button class="linkbtn" data-place="${h.plats}">Visa på kartan</button>` : ''}${h.slag ? ` <button class="linkbtn" data-openbattle="${h.slag}">Läs om slaget</button>` : ''}</li>`).join('')}</ol>` : ''}
       ${hidden ? `<p class="hidden-note">${hidden} ${hidden === 1 ? 'händelse' : 'händelser'} från senare böcker är dolda.</p>` : ''}
       <h4>Relationer</h4>
-      <div class="rels">${c.relationer.filter(r => byId[r.id]).map(r => `<button class="rel" data-c="${r.id}">${mono(byId[r.id])}<span>${esc(byId[r.id].namn)} <small>${esc(r.text)}</small></span></button>`).join('')}</div>
+      <div class="rels">${c.relationer.filter(r => byId[r.id] && relText(r)).map(r => `<button class="rel" data-c="${r.id}">${mono(byId[r.id])}<span>${esc(byId[r.id].namn)} <small>${esc(relText(r))}</small></span></button>`).join('')}</div>
       <h4>Läs mer</h4>
       <a href="${wiki(c.namn)}" target="_blank" rel="noopener">${esc(c.namn)} på Wheel of Time-wikin</a>`;
     cart.scrollTop = 0;
@@ -618,7 +621,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
     renderChars();
   });
   cq.addEventListener('input', renderChars);
-  function setMaxBook(v) { maxBook = v; readTo.value = v; readToB.value = v; try { localStorage.setItem('wot-readto', v); } catch (e) {} if (openId && !lib.hidden) openChar(openId); renderBattles(); if (bOpenId && !blib.hidden) openBattle(bOpenId); syncBattleMarkers(); }
+  function setMaxBook(v) { maxBook = v; readTo.value = v; readToB.value = v; try { localStorage.setItem('wot-readto', v); } catch (e) {} renderChars(); if (openId && !lib.hidden) openChar(openId); renderBattles(); if (bOpenId && !blib.hidden) openBattle(bOpenId); syncBattleMarkers(); }
   readTo.addEventListener('change', () => setMaxBook(+readTo.value));
   document.addEventListener('keydown', e => { if (e.key !== 'Escape' || !document.getElementById('anim').hidden) return; if (!lib.hidden) closeLib(); if (!blib.hidden) closeBat(); });
   if (location.hash === '#karaktarer') setTimeout(() => openLib(), 200);

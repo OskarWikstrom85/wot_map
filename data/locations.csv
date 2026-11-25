@@ -26,12 +26,12 @@ lugard,Lugard,huvudstad,Murandy,0.58077,0.68157,Murandys huvudstad.
 far-madding,Far Madding,stad,,0.69700,0.71518,Stadsstat där Guardians hindrar all kanalisering.
 mayene,Mayene,stad,Mayene,0.93361,0.92190,Liten stadsstat känd för sina oljelampor och sin First.
 shayol-ghul,Shayol Ghul,landmärke,Blasted Lands,0.8287,0.0427,Berget i Blasted Lands där Den Mörkes fängelse är som tunnast. Här möter Rand Den Mörke i Pit of Doom i Tarmon Gai'don.
-malden,Malden,by,Altara,0.49762,0.75360,Altaransk stad som Shaido tog som läger. Här befriade Perrin Faile i slaget vid Malden.
-field-of-merrilor,Field of Merrilor,landmärke,Shienar,0.78187,0.25579,"Fältet vid floden Mora där Rand samlar världens härskare inför Tarmon Gai'don, och där huvudslaget till slut står."
+malden,Malden,stad,Altara,0.49762,0.75360,Altaransk stad som Shaido tog som läger. Här befriade Perrin Faile i slaget vid Malden.
+field-of-merrilor,Field of Merrilor,landmärke,Shienar/Arafel,0.78187,0.25579,"Fältet vid floden Mora där Rand samlar världens härskare inför Tarmon Gai'don, och där huvudslaget till slut står."
 eye-of-the-world,Eye of the World,landmärke,Blighten,0.88125,0.09713,"Källan av ren saidin djupt inne i Blighten, vaktad av den gröne mannen. Här slutar den första boken."
-tarwins-gap,Tarwin's Gap,landmärke,Shienar,0.94250,0.14408,Passet genom Mountains of Dhoom mellan Blighten och Shienar. Här rider Lan med Malkieri i Sista striden.
+tarwins-gap,Tarwin's Gap,landmärke,Malkier,0.94250,0.14408,"Passet där Mountains of Dhoom möter Spine of the World, en gång en del av Malkier. Här rider Lan med Malkieri i Sista striden."
 malkier,Malkier (Seven Towers),ruin,Malkier,0.89375,0.16480,"Lans förlorade kungarike, uppslukat av Blighten när han var spädbarn. Seven Towers var dess huvudstad."
-canluum,Canluum,stad,Kandor,0.70237,0.21855,Kandorisk stad där Moiraine och Lan möts för första gången i New Spring.
+canluum,Canluum,stad,Kandor,0.70237,0.21855,"Kandorisk stad nära Blighten. Strax utanför den, på vägen mot Chachin, möts Moiraine och Lan för första gången i New Spring."
 watch-hill,Watch Hill,by,Andor (Two Rivers),0.40187,0.53926,By i Two Rivers norr om Emond's Field. Därifrån kommer hjälpen i slutstriden om Two Rivers.
 taren-ferry,Taren Ferry,by,Andor (Two Rivers),0.40450,0.53133,Färjeläget vid Taren där sällskapet lämnar Two Rivers i den första boken.
 black-tower,Svarta tornet,landmärke,Andor,0.69125,0.58119,"Asha'mans högkvarter på en gård utanför Caemlyn, grundat av Rand och lett av Mazrim Taim."
@@ -42,13 +42,13 @@ stedding-tsofu,Stedding Tsofu,landmärke,Cairhien,0.80663,0.48065,Ogier-stedding
 haddon-mirk,Haddon Mirk,landmärke,Tear,0.82750,0.69937,"Stor, tät skog i Tear där upproriska High Lords och Dragonsworn håller till."
 salidar,Salidar,by,Altara,0.46063,0.77238,Övergiven by vid Eldar där de upproriska Aes Sedai samlas. Här blir Egwene Amyrlin.
 abila,Abila,stad,Amadicia,0.41500,0.70924,Stad i Amadicia där profeten Masema har sitt fäste.
-remen,Remen,stad,Altara,0.54963,0.70083,"Flodstad vid Manetherendrelle som Perrin, Faile och Loial passerar."
+remen,Remen,by,Altara,0.54963,0.70083,"By i Altara vid Manetherendrelle, där Lugard Road korsar floden. Här ansluter Faile till Perrin, Moiraine, Lan och Loial."
 hinderstap,Hinderstap,by,Murandy,0.58662,0.63575,By där invånarna förvandlas till mördare varje natt och allt återställs i gryningen.
-darluna,Darluna,stad,Tarabon,0.26787,0.43241,Tarabonsk stad där Rodel Ituralde lurar Seanchan i en fälla.
+darluna,Darluna,stad,Arad Doman,0.26787,0.43241,Stad i södra Arad Doman där Rodel Ituralde lurar Seanchan i en fälla.
 natrins-barrow,Natrin's Barrow,landmärke,Arad Doman,0.30250,0.34807,"Graendals palats i Arad Doman, som Rand förstör med balefire."
 stedding-shangtai,Stedding Shangtai,landmärke,Spine of the World,0.95088,0.76283,Loials hemstedding i Spine of the World.
 tremalking,Tremalking,landmärke,Sea Folk,0.10000,0.89526,Sea Folks ö där den jättelika stenhanden håller ett klot – en av Choedan Kal.
-taien,Taien,by,Aielöknen,0.98137,0.39566,Jindo Taardads fäste där Jangai Pass möter öknen. Shaido bränner det på väg mot Cairhien.
+taien,Taien,stad,Cairhien,0.98137,0.39566,Liten cairhiensk stad med hög mur i östra änden av Jangai Pass. Shaido skövlar den på väg mot Cairhien.
 chaendaer,Chaendaer,landmärke,Aielöknen,1.06812,0.52695,"Berget ovanför Rhuidean-dalen, där män och kvinnor väntar på att få gå ned till staden."
 rhuidean,Rhuidean,stad,Aielöknen,1.07625,0.54800,"Öknens enda stad, byggd av Jenn Aiel. Här går blivande hövdingar och visa kvinnor genom glaskolonnerna och ser sitt folks historia. Efter Rand fylls dalen av en sjö."
 cold-rocks-hold,Cold Rocks Hold,by,Aielöknen,1.12250,0.49377,Rhuarcs fäste för Nine Valleys sept av Taardad Aiel.
@@ -56,4 +56,4 @@ alcair-dal,Alcair Dal,landmärke,Aielöknen,1.13125,0.42415,Skålformad kanjon d
 termool,Termool,landmärke,Aielöknen,1.18125,0.78841,"De vattenlösa sanddynerna söder om öknen, där ingenting lever."
 great-rift,Great Rift,landmärke,Aielöknen,1.33462,0.48567,Den väldiga sprickan och Cliffs of Dawn som skiljer öknen från Shara.
 tower-of-ghenjei,Tower of Ghenjei,landmärke,Andor,0.49325,0.51983,"Ett glänsande, fönsterlöst torn av mörk metall. Genom det når man Aelfinn och Eelfinn – det är här Mat, Thom och Noal räddar Moiraine."
-jangai-pass,Jangai Pass,landmärke,Cairhien,0.95625,0.39987,Det södra passet genom Spine of the World mellan Cairhien och Aielöknen. Både Aielkriget och Shaidos tåg går här.
+jangai-pass,Jangai Pass,landmärke,Cairhien,0.95625,0.39987,"Det största passet genom Spine of the World, mellan Cairhien och Aielöknen. Både Aielkriget och Shaidos tåg går här."

@@ -67,7 +67,7 @@
    {
     "plats": "fal-dara",
     "bok": 2,
-    "datum": "998-05-11",
+    "datum": "998-06-09",
     "satt": "land",
     "text": "Trollocs anfaller Fal Dara, och Padan Fain stjäl dolken och Valeres horn."
    },
@@ -83,7 +83,7 @@
     "bok": 2,
     "datum": "998-11-21",
     "satt": "portalsten",
-    "text": "Verin för dem med en portalsten till Toman Head. Mat blåser i Valeres horn i slaget vid Falme."
+    "text": "Rand för dem med en portalsten till Toman Head. Mat blåser i Valeres horn i slaget vid Falme."
    },
    {
     "plats": "tar-valon",
@@ -104,7 +104,7 @@
     "bok": 3,
     "datum": "999-05-03",
     "satt": "land",
-    "text": "Lämnar brevet till Morgase och avslöjar en komplott mot Elayne."
+    "text": "Lämnar brevet till Morgase efter att ha hört Gaebril och Comar planera att döda flickorna i Tear."
    },
    {
     "plats": "tear",
@@ -114,7 +114,7 @@
     "via": [
      "aringill"
     ],
-    "text": "Med Thom nedför Erinin till Tear. Spränger av misstag upp Stenen med fyrverkerier."
+    "text": "Med Thom nedför Erinin till Tear. Spränger med flit ett hål i Stenen med fyrverkerier och tar sig in."
    },
    {
     "plats": "rhuidean",
@@ -133,7 +133,7 @@
    {
     "plats": "cairhien",
     "bok": 5,
-    "datum": "999-09-10",
+    "datum": "999-09-09",
     "satt": "land",
     "via": [
      "jangai-pass"
@@ -159,15 +159,15 @@
     "plats": "salidar",
     "bok": 6,
     "datum": "999-11-27",
-    "satt": "land",
+    "satt": "portal",
     "text": "Rider med Bandet till Salidar för att hämta Elayne till Rand."
    },
    {
     "plats": "ebou-dar",
-    "bok": 7,
+    "bok": 6,
     "datum": "999-12-04",
-    "satt": "land",
-    "text": "Följer med Elayne och Nynaeve till Ebou Dar och blir kvar när Seanchan tar staden."
+    "satt": "portal",
+    "text": "Når Ebou Dar med Elayne och Nynaeve för att söka Skålen av vindarna."
    },
    {
     "plats": "lugard",
@@ -178,8 +178,8 @@
    },
    {
     "plats": "hinderstap",
-    "bok": 13,
-    "datum": "1000-06-05",
+    "bok": 12,
+    "datum": "1000-05-15",
     "osaker": true,
     "satt": "land",
     "text": "Bandet slår läger vid Hinderstap, där byborna blir mördare varje natt."
@@ -293,7 +293,7 @@
    {
     "plats": "fal-dara",
     "bok": 2,
-    "datum": "998-05-11",
+    "datum": "998-06-09",
     "satt": "land",
     "text": "Amyrlin kommer, och Moiraine berättar att han är den återfödde draken."
    },
@@ -309,7 +309,7 @@
     "bok": 2,
     "datum": "998-11-21",
     "satt": "portalsten",
-    "text": "Verins portalsten tar dem till Toman Head. Han strider mot Ba'alzamon i himlen över Falme."
+    "text": "Han använder en portalsten för att ta dem till Toman Head. Han strider mot Ba'alzamon i himlen över Falme."
    },
    {
     "plats": "tear",
@@ -326,14 +326,14 @@
     "bok": 4,
     "datum": "999-06-08",
     "satt": "portalsten",
-    "text": "Genom en portalsten till Chaendaer. Går genom glaskolonnerna i Rhuidean och blir Car'a'carn."
+    "text": "Genom en portalsten till Chaendaer. Går genom glaskolonnerna i Rhuidean och får drakmärkena på armarna."
    },
    {
     "plats": "cold-rocks-hold",
     "bok": 4,
     "datum": "999-06-28",
     "satt": "land",
-    "text": "Gäst hos Rhuarc. De visa kvinnorna sätter Aviendha att vakta honom."
+    "text": "Gäst hos Rhuarc. Trollocs och draghkar anfaller samma natt, och Rand ger sig genast av mot Alcair Dal."
    },
    {
     "plats": "alcair-dal",
@@ -341,6 +341,14 @@
     "datum": "999-07-01",
     "satt": "land",
     "text": "Avslöjar Aiels sanna historia för klanhövdingarna. Couladin och Shaido bryter med honom."
+   },
+   {
+    "plats": "rhuidean",
+    "bok": 5,
+    "datum": "999-07-20",
+    "osaker": true,
+    "satt": "land",
+    "text": "Samlar klanerna kring Rhuidean innan de går mot Jangai Pass."
    },
    {
     "plats": "taien",
@@ -352,7 +360,7 @@
    {
     "plats": "cairhien",
     "bok": 5,
-    "datum": "999-09-10",
+    "datum": "999-09-09",
     "satt": "land",
     "via": [
      "jangai-pass"
@@ -390,7 +398,7 @@
    {
     "plats": "cairhien",
     "bok": 7,
-    "datum": "1000-01-09",
+    "datum": "1000-01-02",
     "satt": "portal",
     "text": "Padan Fain sticker honom med en dolk från Shadar Logoth."
    },
@@ -399,21 +407,44 @@
     "bok": 7,
     "datum": "1000-01-11",
     "satt": "portal",
-    "text": "Erövrar Illian och kröns med Lagerkronan."
+    "text": "Invaderar Illian med Asha'man och Basheres här och jagar Sammael."
    },
    {
     "plats": "shadar-logoth",
     "bok": 7,
-    "datum": "1000-01-12",
+    "datum": "1000-01-11",
     "satt": "portal",
     "text": "Jagar Sammael in i Shadar Logoth, där Mashadar tar honom."
    },
    {
+    "plats": "illian",
+    "bok": 7,
+    "datum": "1000-01-12",
+    "satt": "portal",
+    "text": "Återvänder till Illian och kröns med Lagerkronan."
+   },
+   {
+    "plats": "ebou-dar",
+    "bok": 8,
+    "datum": "1000-02-05",
+    "osaker": true,
+    "satt": "portal",
+    "text": "Leder ett fälttåg mot Seanchan i Altara, som slutar i kaos."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 9,
+    "datum": "1000-02-17",
+    "satt": "portal",
+    "text": "Elayne, Aviendha och Min binder honom som väktare."
+   },
+   {
     "plats": "far-madding",
     "bok": 9,
-    "datum": "1000-02-22",
+    "datum": "1000-02-19",
     "satt": "portal",
-    "text": "Jagar de förrädiska Asha'man i Far Madding, där ingen kan kanalisera."
+    "text": "Jagar de förrädiska Asha'man i Far Madding, där ingen kan kanalisera.",
+    "osaker": true
    },
    {
     "plats": "shadar-logoth",
@@ -439,6 +470,14 @@
     "text": "Förstör Graendals palats med balefire."
    },
    {
+    "plats": "falme",
+    "bok": 12,
+    "datum": "1000-05-28",
+    "osaker": true,
+    "satt": "portal",
+    "text": "Möter Tuon för att förhandla om fred, men de kommer inte överens."
+   },
+   {
     "plats": "dragonmount",
     "bok": 12,
     "datum": "1000-06-01",
@@ -447,20 +486,20 @@
     "text": "Står på Dragonmount och väljer att leva igen."
    },
    {
-    "plats": "maradon",
+    "plats": "tar-valon",
     "bok": 13,
-    "datum": "1000-06-05",
+    "datum": "1000-06-03",
     "osaker": true,
     "satt": "portal",
-    "text": "Räddar Maradon från trollocshären."
+    "text": "Besöker Egwene i Vita tornet och kallar till möte vid Merrilor."
    },
    {
-    "plats": "tar-valon",
+    "plats": "maradon",
     "bok": 13,
     "datum": "1000-06-25",
     "osaker": true,
     "satt": "portal",
-    "text": "Besöker Egwene i Vita tornet och kallar till möte vid Merrilor."
+    "text": "Räddar Maradon från trollocshären."
    },
    {
     "plats": "field-of-merrilor",
@@ -533,7 +572,7 @@
    {
     "plats": "fal-dara",
     "bok": 2,
-    "datum": "998-05-11",
+    "datum": "998-06-09",
     "satt": "land",
     "text": "Trollocs anfaller Fal Dara. Perrin följer med Ingtar för att jaga hornet."
    },
@@ -549,7 +588,7 @@
     "bok": 2,
     "datum": "998-11-21",
     "satt": "portalsten",
-    "text": "Verins portalsten tar dem till Toman Head. Strider vid Falme."
+    "text": "Rands portalsten tar dem till Toman Head. Strider vid Falme."
    },
    {
     "plats": "remen",
@@ -563,7 +602,7 @@
     "bok": 3,
     "datum": "999-05-02",
     "satt": "land",
-    "text": "Gyllene ögon i Illian, där Moiraine kartlägger Be'lals planer."
+    "text": "I Illian anfaller grå män dem på värdshuset, och Moiraine upptäcker att lord Brend är Sammael."
    },
    {
     "plats": "tear",
@@ -580,11 +619,18 @@
     "text": "Genom Ways hem till Two Rivers. Leder försvaret mot trollocs och Whitecloaks och blir Lord of Emond's Field."
    },
    {
+    "plats": "caemlyn",
+    "bok": 6,
+    "datum": "999-11-30",
+    "satt": "land",
+    "text": "Rider med Two Rivers-männen till Caemlyn och träffar Failes föräldrar."
+   },
+   {
     "plats": "cairhien",
     "bok": 6,
     "datum": "999-12-05",
-    "satt": "land",
-    "text": "Rider österut till Rand i Cairhien."
+    "satt": "portal",
+    "text": "Rand tar honom genom en portal till Cairhien."
    },
    {
     "plats": "dumais-wells",
@@ -594,11 +640,18 @@
     "text": "Leder räddningen av Rand vid Dumai's Wells."
    },
    {
+    "plats": "jehannah",
+    "bok": 7,
+    "datum": "1000-01-06",
+    "satt": "portal",
+    "text": "Rand skickar honom genom en portal till Ghealdan för att föra profeten Masema till sig."
+   },
+   {
     "plats": "abila",
     "bok": 8,
-    "datum": "1000-01-10",
-    "satt": "portal",
-    "text": "Sänds till Ghealdan för att föra Masema till Rand. Faile rövas bort av Shaido."
+    "datum": "1000-02-15",
+    "satt": "land",
+    "text": "Konfronterar profeten Masema i Abila. Strax efteråt rövas Faile bort av Shaido."
    },
    {
     "plats": "malden",
@@ -616,9 +669,17 @@
     "text": "Ställs inför rätta av Whitecloaks på Jehannah Road och smider hammaren Mah'alleinir."
    },
    {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "datum": "1000-07-10",
+    "osaker": true,
+    "satt": "portal",
+    "text": "Är med vid mötet vid Merrilor."
+   },
+   {
     "plats": "braem-wood",
     "bok": 14,
-    "datum": "1000-07-06",
+    "datum": "1000-07-11",
     "osaker": true,
     "satt": "portal",
     "text": "Strider mot trollocs i Braem Wood i början av Sista striden."
@@ -626,7 +687,7 @@
    {
     "plats": "field-of-merrilor",
     "bok": 14,
-    "datum": "1000-07-12",
+    "datum": "1000-07-14",
     "osaker": true,
     "satt": "portal",
     "text": "Vakar över Rand i Tel'aran'rhiod och jagar Slayer."
@@ -695,7 +756,7 @@
     "plats": "tar-valon",
     "bok": 2,
     "datum": "998-06-20",
-    "satt": "land",
+    "satt": "flod",
     "text": "Börjar som novis i Vita tornet."
    },
    {
@@ -748,7 +809,7 @@
     "plats": "salidar",
     "bok": 6,
     "datum": "999-11-23",
-    "satt": "land",
+    "satt": "portal",
     "text": "Kallas till Salidar och upphöjs till Amyrlin för de upproriska Aes Sedai."
    },
    {
@@ -760,9 +821,8 @@
    },
    {
     "plats": "tar-valon",
-    "bok": 10,
-    "datum": "1000-02-15",
-    "osaker": true,
+    "bok": 8,
+    "datum": "1000-02-24",
     "satt": "portal",
     "text": "Flyttar hela hären genom portaler och belägrar Tar Valon."
    },
@@ -846,7 +906,7 @@
     "bok": 3,
     "datum": "999-04-08",
     "satt": "land",
-    "text": "Upphöjs till Accepted och jagar Black Ajah."
+    "text": "Får i uppdrag av Amyrlin att jaga Black Ajah tillsammans med Egwene och Elayne."
    },
    {
     "plats": "tear",
@@ -866,25 +926,33 @@
     "plats": "salidar",
     "bok": 5,
     "datum": "999-09-17",
-    "satt": "land",
+    "satt": "flod",
     "via": [
      "jehannah"
     ],
-    "text": "Reser med Valan Lucas cirkus genom Amadicia och Ghealdan till rebellerna i Salidar."
+    "text": "Reser med Valan Lucas cirkus genom Amadicia och Ghealdan och sedan med båt nedför Eldar till rebellerna i Salidar."
    },
    {
     "plats": "ebou-dar",
-    "bok": 7,
+    "bok": 6,
     "datum": "999-12-04",
-    "satt": "land",
-    "text": "Söker Skålen av vindarna i Ebou Dar och gifter sig med Lan."
+    "satt": "portal",
+    "text": "Kommer till Ebou Dar för att söka Skålen av vindarna."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 8,
+    "datum": "1000-02-08",
+    "satt": "portal",
+    "text": "Återvänder med Elayne till Caemlyn."
    },
    {
     "plats": "far-madding",
     "bok": 9,
-    "datum": "1000-02-22",
+    "datum": "1000-02-19",
     "satt": "portal",
-    "text": "Följer Rand och Lan till Far Madding."
+    "text": "Följer Rand och Lan till Far Madding.",
+    "osaker": true
    },
    {
     "plats": "shadar-logoth",
@@ -892,6 +960,13 @@
     "datum": "1000-03-08",
     "satt": "portal",
     "text": "Delar Choedan Kal med Rand när saidin renas."
+   },
+   {
+    "plats": "maradon",
+    "bok": 11,
+    "datum": "1000-04-06",
+    "satt": "portal",
+    "text": "Tar Lan genom en portal till World's End i Saldaea."
    },
    {
     "plats": "tar-valon",
@@ -931,7 +1006,7 @@
     "bok": 2,
     "datum": "998-09-24",
     "satt": "ways",
-    "text": "Följer med till Falme för att rädda Egwene."
+    "text": "Följer med Liandrin till Falme. När Egwene blir damane stannar hon med Nynaeve och Min för att befria henne."
    },
    {
     "plats": "tar-valon",
@@ -958,30 +1033,38 @@
     "plats": "salidar",
     "bok": 5,
     "datum": "999-09-17",
-    "satt": "land",
+    "satt": "flod",
     "via": [
      "jehannah"
     ],
-    "text": "Reser med Valan Lucas cirkus till rebellerna i Salidar."
+    "text": "Reser med Valan Lucas cirkus och binder Birgitte som väktare, och tar sedan båt nedför Eldar till Salidar."
    },
    {
     "plats": "ebou-dar",
-    "bok": 7,
+    "bok": 6,
     "datum": "999-12-04",
-    "satt": "land",
-    "text": "Söker Skålen av vindarna i Ebou Dar och binder Birgitte som väktare."
+    "satt": "portal",
+    "text": "Kommer till Ebou Dar för att söka Skålen av vindarna."
    },
    {
     "plats": "caemlyn",
-    "bok": 9,
+    "bok": 8,
     "datum": "1000-02-08",
     "satt": "portal",
     "text": "Återvänder till Caemlyn och gör anspråk på Lejontronen."
    },
    {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "datum": "1000-07-10",
+    "osaker": true,
+    "satt": "portal",
+    "text": "Kommer till mötet vid Merrilor och blir överbefälhavare för Ljusets härar."
+   },
+   {
     "plats": "braem-wood",
     "bok": 14,
-    "datum": "1000-07-06",
+    "datum": "1000-07-11",
     "osaker": true,
     "satt": "portal",
     "text": "Leder Andors här mot trollocs i Braem Wood."
@@ -989,7 +1072,7 @@
    {
     "plats": "field-of-merrilor",
     "bok": 14,
-    "datum": "1000-07-12",
+    "datum": "1000-07-17",
     "osaker": true,
     "satt": "portal",
     "text": "Strider i Sista striden vid Merrilor."
@@ -1012,7 +1095,7 @@
    {
     "plats": "emonds-field",
     "bok": 1,
-    "datum": "998-03-20",
+    "datum": "998-03-22",
     "satt": "land",
     "text": "Hittar Rand, Mat och Perrin i Two Rivers och för dem därifrån på Winternight."
    },
@@ -1061,7 +1144,7 @@
    {
     "plats": "fal-dara",
     "bok": 2,
-    "datum": "998-05-11",
+    "datum": "998-06-08",
     "satt": "land",
     "text": "Amyrlin kommer, och Moiraine avslöjar för Rand att han är Draken."
    },
@@ -1084,7 +1167,7 @@
     "bok": 3,
     "datum": "999-05-02",
     "satt": "land",
-    "text": "Kartlägger Be'lals planer i Illian."
+    "text": "Upptäcker att lord Brend, Illians styresman, är Sammael."
    },
    {
     "plats": "tear",
@@ -1103,7 +1186,7 @@
    {
     "plats": "cairhien",
     "bok": 5,
-    "datum": "999-09-10",
+    "datum": "999-09-09",
     "borta": "999-09-21",
     "satt": "land",
     "via": [
@@ -1149,12 +1232,12 @@
     "plats": "canluum",
     "bok": 0,
     "satt": "land",
-    "text": "Möter Moiraine i Canluum och blir hennes väktare."
+    "text": "Träffar Moiraine i Kandor. Hon binder honom senare som väktare på en kulle utanför Chachin."
    },
    {
     "plats": "emonds-field",
     "bok": 1,
-    "datum": "998-03-20",
+    "datum": "998-03-22",
     "satt": "land",
     "text": "Följer Moiraine till Two Rivers."
    },
@@ -1203,7 +1286,7 @@
    {
     "plats": "fal-dara",
     "bok": 2,
-    "datum": "998-05-11",
+    "datum": "998-06-09",
     "satt": "land",
     "text": "Tränar Rand i svärd i Fal Dara."
    },
@@ -1245,7 +1328,7 @@
    {
     "plats": "cairhien",
     "bok": 5,
-    "datum": "999-09-10",
+    "datum": "999-09-09",
     "satt": "land",
     "via": [
      "taien",
@@ -1254,18 +1337,35 @@
     "text": "Förlorar Moiraine vid hamnen i Cairhien. Hon för över hans band till Myrelle."
    },
    {
+    "plats": "lugard",
+    "bok": 7,
+    "datum": "1000-01-04",
+    "osaker": true,
+    "satt": "land",
+    "text": "Hos Myrelle i rebellernas läger, där Egwene hittar honom."
+   },
+   {
     "plats": "ebou-dar",
     "bok": 7,
-    "datum": "1000-01-05",
-    "satt": "land",
-    "text": "Hittar Nynaeve i Ebou Dar och gifter sig med henne."
+    "datum": "1000-01-08",
+    "satt": "portal",
+    "text": "Hittar Nynaeve i Ebou Dar och gifter sig med henne.",
+    "osaker": true
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 8,
+    "datum": "1000-02-08",
+    "satt": "portal",
+    "text": "Följer Nynaeve till Caemlyn."
    },
    {
     "plats": "far-madding",
     "bok": 9,
-    "datum": "1000-02-22",
+    "datum": "1000-02-19",
     "satt": "portal",
-    "text": "Följer Rand till Far Madding."
+    "text": "Följer Rand till Far Madding.",
+    "osaker": true
    },
    {
     "plats": "shadar-logoth",
@@ -1277,9 +1377,9 @@
    {
     "plats": "maradon",
     "bok": 11,
-    "datum": "1000-04-07",
+    "datum": "1000-04-06",
     "satt": "portal",
-    "text": "Nynaeve sätter av honom i Saldaea. Han rider österut ensam mot Malkier."
+    "text": "Nynaeve tar honom till World's End i Saldaea. Han rider österut ensam mot Malkier."
    },
    {
     "plats": "tarwins-gap",
@@ -1323,7 +1423,7 @@
     "bok": 2,
     "datum": "998-09-24",
     "satt": "ways",
-    "text": "Följer med till Falme och hålls fången av Seanchan."
+    "text": "Följer med Liandrin till Falme, tas tillfånga av Seanchan men släpps och hjälper sedan Nynaeve och Elayne att befria Egwene."
    },
    {
     "plats": "tar-valon",
@@ -1350,6 +1450,13 @@
     "text": "Följer med rebellernas sändebud till Caemlyn och blir Rands älskade."
    },
    {
+    "plats": "cairhien",
+    "bok": 6,
+    "datum": "999-12-05",
+    "satt": "portal",
+    "text": "Följer Rand till Cairhien, där de tas tillfånga av Elaidas sändebud."
+   },
+   {
     "plats": "dumais-wells",
     "bok": 6,
     "datum": "1000-01-01",
@@ -1357,11 +1464,26 @@
     "text": "Tas tillfånga med Rand och räddas vid Dumai's Wells."
    },
    {
+    "plats": "cairhien",
+    "bok": 7,
+    "datum": "1000-01-02",
+    "satt": "portal",
+    "text": "Tillbaka i Cairhien med Rand."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 9,
+    "datum": "1000-02-17",
+    "satt": "portal",
+    "text": "Binder Rand som väktare tillsammans med Elayne och Aviendha."
+   },
+   {
     "plats": "far-madding",
     "bok": 9,
-    "datum": "1000-02-22",
+    "datum": "1000-02-19",
     "satt": "portal",
-    "text": "Följer Rand till Far Madding."
+    "text": "Följer Rand till Far Madding.",
+    "osaker": true
    },
    {
     "plats": "shadar-logoth",
@@ -1377,6 +1499,14 @@
     "osaker": true,
     "satt": "portal",
     "text": "Hos Rand i Arad Doman. Studerar Herid Fels böcker."
+   },
+   {
+    "plats": "tear",
+    "bok": 13,
+    "datum": "1000-06-10",
+    "osaker": true,
+    "satt": "portal",
+    "text": "Väntar på Rand i Tear och återförenas med honom."
    },
    {
     "plats": "field-of-merrilor",
@@ -1469,7 +1599,7 @@
     "plats": "salidar",
     "bok": 5,
     "datum": "999-09-17",
-    "satt": "land",
+    "satt": "flod",
     "via": [
      "jehannah"
     ],
@@ -1477,9 +1607,9 @@
    },
    {
     "plats": "ebou-dar",
-    "bok": 7,
+    "bok": 6,
     "datum": "999-12-04",
-    "satt": "land",
+    "satt": "portal",
     "text": "Följer Elayne och Nynaeve till Ebou Dar."
    },
    {
@@ -1535,7 +1665,7 @@
     "bok": 4,
     "datum": "999-06-28",
     "satt": "land",
-    "text": "Sätts att vakta Rand i Cold Rocks Hold."
+    "text": "Lär Rand aielsedvänjor på vägen till Cold Rocks Hold."
    },
    {
     "plats": "alcair-dal",
@@ -1547,7 +1677,7 @@
    {
     "plats": "cairhien",
     "bok": 5,
-    "datum": "999-09-10",
+    "datum": "999-09-09",
     "satt": "land",
     "via": [
      "taien",
@@ -1564,17 +1694,17 @@
    },
    {
     "plats": "ebou-dar",
-    "bok": 7,
+    "bok": 6,
     "datum": "999-12-04",
     "satt": "portal",
-    "text": "Följer Elayne till Ebou Dar och söker Skålen av vindarna."
+    "text": "Kommer till Ebou Dar för att söka Skålen av vindarna."
    },
    {
     "plats": "caemlyn",
-    "bok": 9,
+    "bok": 8,
     "datum": "1000-02-08",
     "satt": "portal",
-    "text": "Blir Elaynes förstasyster i Caemlyn."
+    "text": "Kommer till Caemlyn med Elayne."
    },
    {
     "plats": "rhuidean",
@@ -1624,25 +1754,39 @@
     "text": "Genom Ways till Two Rivers, där hon och Perrin gifter sig."
    },
    {
+    "plats": "caemlyn",
+    "bok": 6,
+    "datum": "999-11-30",
+    "satt": "land",
+    "text": "Rider med Two Rivers-männen till Caemlyn och träffar Failes föräldrar."
+   },
+   {
     "plats": "cairhien",
     "bok": 6,
     "datum": "999-12-05",
-    "satt": "land",
-    "text": "Följer Perrin till Cairhien."
+    "satt": "portal",
+    "text": "Följer Perrin genom Rands portal till Cairhien."
+   },
+   {
+    "plats": "jehannah",
+    "bok": 7,
+    "datum": "1000-01-06",
+    "satt": "portal",
+    "text": "Följer Perrin genom en portal till Ghealdan."
    },
    {
     "plats": "abila",
     "bok": 8,
-    "datum": "1000-01-10",
-    "satt": "portal",
-    "text": "Följer Perrin till Ghealdan och rövas bort av Shaido."
+    "datum": "1000-02-16",
+    "satt": "land",
+    "text": "Rövas bort av Shaido nära Abila."
    },
    {
     "plats": "malden",
-    "bok": 11,
-    "datum": "1000-02-20",
+    "bok": 10,
+    "datum": "1000-03-04",
     "satt": "land",
-    "text": "Gai'shain i Malden tills Perrin befriar henne."
+    "text": "Gai'shain hos Shaido, som slår läger kring Malden, tills Perrin befriar henne."
    },
    {
     "plats": "jehannah",
@@ -1653,12 +1797,20 @@
     "text": "I Perrins läger vid Jehannah Road."
    },
    {
-    "plats": "field-of-merrilor",
+    "plats": "shayol-ghul",
     "bok": 14,
-    "datum": "1000-07-12",
+    "datum": "1000-07-17",
     "osaker": true,
     "satt": "portal",
-    "text": "Bär Valeres horn genom Sista striden."
+    "text": "Försöker föra Valeres horn till Mat, men hamnar i Blighten nära Thakan'dar och ger hornet till Olver."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "datum": "1000-07-20",
+    "osaker": true,
+    "satt": "portal",
+    "text": "Perrin hittar henne bland de sårade efter slaget."
    }
   ]
  },
@@ -1678,8 +1830,15 @@
    },
    {
     "plats": "tar-valon",
-    "bok": 4,
+    "bok": 2,
     "datum": "998-06-20",
+    "satt": "land",
+    "text": "Återvänder till Tar Valon."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "datum": "999-06-24",
     "satt": "land",
     "text": "Avsätts och stillas av Elaida, men flyr ur tornet."
    },
@@ -1699,9 +1858,8 @@
    },
    {
     "plats": "tar-valon",
-    "bok": 10,
-    "datum": "1000-02-15",
-    "osaker": true,
+    "bok": 8,
+    "datum": "1000-02-24",
     "satt": "portal",
     "text": "Följer Egwenes här till belägringen av Tar Valon."
    },
@@ -1726,8 +1884,15 @@
    },
    {
     "plats": "tar-valon",
-    "bok": 4,
+    "bok": 2,
     "datum": "998-05-28",
+    "satt": "land",
+    "text": "Följer med Elayne till Tar Valon och tränar hos väktarna."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "datum": "999-06-24",
     "satt": "land",
     "text": "Leder Younglings i tornet när Siuan avsätts."
    },
@@ -1744,7 +1909,7 @@
     "datum": "1000-05-15",
     "osaker": true,
     "satt": "land",
-    "text": "Lämnar Elaida, går till Egwene och räddar henne från mördare."
+    "text": "Lämnar Younglings i Dorlan, går till rebellernas läger och hjälper till att rädda Egwene ur tornet under Seanchans anfall."
    },
    {
     "plats": "field-of-merrilor",
@@ -1767,18 +1932,25 @@
    },
    {
     "plats": "tar-valon",
-    "bok": 4,
+    "bok": 2,
     "datum": "998-05-28",
+    "satt": "land",
+    "text": "Följer med Elayne till Tar Valon och tränar hos väktarna."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "datum": "999-06-24",
     "satt": "land",
     "text": "Lämnar tornet efter Siuans fall."
    },
    {
     "plats": "amador",
     "bok": 5,
-    "datum": "999-07-15",
+    "datum": "999-08-18",
     "osaker": true,
     "satt": "land",
-    "text": "Blir Child of the Light i Amador."
+    "text": "Har gått med i Children of the Light i Amadicia och möter Nynaeve och Elayne i Sienda."
    },
    {
     "plats": "jehannah",
@@ -1791,7 +1963,7 @@
    {
     "plats": "caemlyn",
     "bok": 14,
-    "datum": "1000-07-05",
+    "datum": "1000-07-09",
     "osaker": true,
     "satt": "portal",
     "text": "Strider när Caemlyn faller."
@@ -1802,7 +1974,7 @@
     "datum": "1000-07-12",
     "osaker": true,
     "satt": "portal",
-    "text": "Duellerar mot Demandred och förlorar en hand."
+    "text": "Duellerar mot Demandred och förlorar sin svärdsarm vid armbågen."
    }
   ]
  },
@@ -1838,7 +2010,7 @@
    {
     "plats": "cairhien",
     "bok": 14,
-    "datum": "1000-07-08",
+    "datum": "1000-07-09",
     "osaker": true,
     "satt": "portal",
     "text": "Leder trupper i Sista striden."
@@ -1886,7 +2058,7 @@
    {
     "plats": "fal-dara",
     "bok": 2,
-    "datum": "998-05-11",
+    "datum": "998-06-09",
     "satt": "land",
     "text": "Trollocs anfaller Fal Dara."
    },
@@ -1902,7 +2074,7 @@
     "bok": 2,
     "datum": "998-11-21",
     "satt": "portalsten",
-    "text": "Verins portalsten tar dem till Toman Head."
+    "text": "Rands portalsten tar dem till Toman Head."
    },
    {
     "plats": "remen",
@@ -1945,15 +2117,7 @@
     "datum": "1000-06-20",
     "osaker": true,
     "satt": "ways",
-    "text": "Talar inför Ogiers stora möte och gifter sig med Erith."
-   },
-   {
-    "plats": "braem-wood",
-    "bok": 14,
-    "datum": "1000-07-06",
-    "osaker": true,
-    "satt": "portal",
-    "text": "Leder Ogier mot trollocs i Braem Wood."
+    "text": "Talar inför den stora Stump och ber Ogier att strida i Sista striden."
    },
    {
     "plats": "field-of-merrilor",
@@ -1985,7 +2149,7 @@
     "bok": 2,
     "datum": "998-11-21",
     "satt": "portalsten",
-    "text": "För sällskapet med en portalsten till Toman Head."
+    "text": "Följer med när Rand tar sällskapet med en portalsten till Toman Head."
    },
    {
     "plats": "tar-valon",
@@ -1997,7 +2161,7 @@
    {
     "plats": "emonds-field",
     "bok": 4,
-    "datum": "999-06-14",
+    "datum": "999-06-12",
     "osaker": true,
     "satt": "land",
     "text": "Kommer till Two Rivers och hjälper Perrin i hemlighet."
@@ -2038,17 +2202,17 @@
    },
    {
     "plats": "ebou-dar",
-    "bok": 7,
+    "bok": 6,
     "datum": "999-12-04",
-    "satt": "land",
+    "satt": "portal",
     "text": "Följer Elayne till Ebou Dar."
    },
    {
     "plats": "caemlyn",
-    "bok": 9,
+    "bok": 8,
     "datum": "1000-02-08",
     "satt": "portal",
-    "text": "Elaynes generalkapten i Caemlyn."
+    "text": "Kommer till Caemlyn med Elayne och blir hennes generalkapten."
    },
    {
     "plats": "field-of-merrilor",
@@ -2080,7 +2244,7 @@
     "bok": 11,
     "datum": "1000-04-27",
     "satt": "land",
-    "text": "Återvänder till Ebou Dar och blir kejsarinna."
+    "text": "Återvänder till Ebou Dar med Karede."
    },
    {
     "plats": "falme",
@@ -2199,7 +2363,7 @@
   "stopp": [
    {
     "plats": "caemlyn",
-    "bok": 4,
+    "bok": 3,
     "datum": "999-03-10",
     "borta": "999-09-21",
     "text": "Styr Andor som Lord Gaebril genom drottning Morgase."
@@ -2231,7 +2395,7 @@
     "bok": 12,
     "datum": "1000-05-25",
     "osaker": true,
-    "text": "Rand förstör hennes palats med balefire, men hon har redan flytt."
+    "text": "Rand förstör hennes palats med balefire."
    },
    {
     "plats": "field-of-merrilor",
@@ -2270,20 +2434,20 @@
     "plats": "fal-dara",
     "bok": 1,
     "datum": "998-05-11",
-    "satt": "land",
+    "satt": "ways",
     "text": "Fångas och sätts i Fal Daras fängelsehålor."
    },
    {
     "plats": "falme",
     "bok": 2,
     "datum": "998-07-03",
-    "satt": "land",
+    "satt": "ways",
     "text": "Flyr med hornet och dolken och lockar Rand till Falme."
    },
    {
     "plats": "emonds-field",
     "bok": 4,
-    "datum": "999-06-14",
+    "datum": "999-06-12",
     "osaker": true,
     "satt": "land",
     "text": "Återvänder som Ordeith med Children of the Light."
@@ -2323,10 +2487,10 @@
    },
    {
     "plats": "black-tower",
-    "bok": 13,
+    "bok": 7,
     "datum": "1000-01-02",
     "satt": "portal",
-    "text": "Tar makten i Svarta tornet."
+    "text": "Återvänder till Svarta tornet efter Dumai's Wells."
    },
    {
     "plats": "field-of-merrilor",
@@ -2369,9 +2533,8 @@
    },
    {
     "plats": "tar-valon",
-    "bok": 10,
-    "datum": "1000-02-15",
-    "osaker": true,
+    "bok": 8,
+    "datum": "1000-02-24",
     "satt": "portal",
     "text": "Belägrar Tar Valon med rebellernas här."
    },
@@ -2381,7 +2544,8 @@
     "datum": "1000-07-10",
     "osaker": true,
     "satt": "portal",
-    "text": "Hans planer förvrängs av Graendal."
+    "text": "Hans planer förvrängs av Graendal.",
+    "borta": "1000-07-18"
    }
   ]
  },
@@ -2390,20 +2554,14 @@
    {
     "plats": "caemlyn",
     "bok": 6,
-    "datum": "999-09-21",
-    "text": "Kommer till Caemlyn och blir Rands general."
-   },
-   {
-    "plats": "dumais-wells",
-    "bok": 6,
-    "datum": "1000-01-01",
-    "satt": "land",
-    "text": "Leder saldaeiskt rytteri vid Dumai's Wells."
+    "datum": "999-10-01",
+    "text": "Kommer till Caemlyn och blir Rands general.",
+    "osaker": true
    },
    {
     "plats": "maradon",
     "bok": 13,
-    "datum": "1000-06-05",
+    "datum": "1000-06-20",
     "osaker": true,
     "satt": "portal",
     "text": "Strider vid Maradon."
@@ -2411,7 +2569,7 @@
    {
     "plats": "caemlyn",
     "bok": 14,
-    "datum": "1000-07-06",
+    "datum": "1000-07-09",
     "osaker": true,
     "satt": "portal",
     "text": "Leder trupper när Caemlyn ska återtas."
@@ -2563,7 +2721,7 @@
    },
    {
     "plats": "tar-valon",
-    "bok": 1,
+    "bok": 2,
     "datum": "998-05-28",
     "satt": "land",
     "text": "Stillas i Tar Valon."
@@ -2580,7 +2738,7 @@
     "bok": 5,
     "datum": "999-09-01",
     "satt": "land",
-    "text": "Nynaeve helar honom i Salidar."
+    "text": "Kommer till Salidar med Siuan, Leane och Min."
    },
    {
     "plats": "black-tower",
@@ -2632,7 +2790,7 @@
    {
     "plats": "cairhien",
     "bok": 5,
-    "datum": "999-09-10",
+    "datum": "999-09-09",
     "satt": "land",
     "via": [
      "taien",
@@ -2683,10 +2841,10 @@
    },
    {
     "plats": "malden",
-    "bok": 11,
-    "datum": "1000-02-20",
+    "bok": 10,
+    "datum": "1000-03-04",
     "satt": "land",
-    "text": "Tillfångatas av Shaido och befrias vid Malden."
+    "text": "Tillfångatas av Shaido med Faile och hålls i lägret vid Malden tills Perrin befriar dem."
    },
    {
     "plats": "jehannah",
@@ -2709,7 +2867,7 @@
    {
     "plats": "tar-valon",
     "bok": 4,
-    "datum": "998-05-28",
+    "datum": "999-06-24",
     "borta": "1000-05-21",
     "satt": "land",
     "text": "Avsätter Siuan och blir Amyrlin."
@@ -2727,9 +2885,10 @@
    {
     "plats": "far-madding",
     "bok": 9,
-    "datum": "1000-02-23",
+    "datum": "1000-02-20",
     "satt": "portal",
-    "text": "Följer Rand till sin hemstad Far Madding."
+    "text": "Följer Rand till sin hemstad Far Madding.",
+    "osaker": true
    },
    {
     "plats": "shadar-logoth",
@@ -2744,7 +2903,7 @@
     "datum": "1000-05-15",
     "osaker": true,
     "satt": "portal",
-    "text": "Förvisas av Rand i Arad Doman."
+    "text": "Förvisas av Rand på lord Tellaens herrgård i Arad Doman."
    },
    {
     "plats": "shayol-ghul",
@@ -2766,17 +2925,25 @@
    },
    {
     "plats": "cairhien",
-    "bok": 6,
-    "datum": "999-12-05",
+    "bok": 5,
+    "datum": "999-09-25",
+    "satt": "land",
+    "text": "Rands förvaltare i Cairhien.",
+    "osaker": true
+   },
+   {
+    "plats": "jehannah",
+    "bok": 7,
+    "datum": "1000-01-06",
     "satt": "portal",
-    "text": "Rands förvaltare i Cairhien."
+    "text": "Följer Perrin genom en portal till Ghealdan."
    },
    {
     "plats": "abila",
     "bok": 8,
-    "datum": "1000-01-10",
-    "satt": "portal",
-    "text": "Följer Perrin till Ghealdan."
+    "datum": "1000-02-15",
+    "satt": "land",
+    "text": "Med Perrin hos profeten i Abila."
    },
    {
     "plats": "malden",
@@ -2791,7 +2958,7 @@
     "datum": "1000-06-15",
     "osaker": true,
     "satt": "land",
-    "text": "Möter Galad och gifter sig med honom."
+    "text": "Möter Galad och de dras till varandra."
    }
   ]
  }
