@@ -245,7 +245,8 @@
    },
    {
     "bok": 6,
-    "text": "Upphöjs till Amyrlin Seat av de upproriska Aes Sedai i Salidar."
+    "text": "Upphöjs till Amyrlin Seat av de upproriska Aes Sedai i Salidar.",
+    "plats": "salidar"
    },
    {
     "bok": 12,
@@ -337,6 +338,11 @@
     "plats": "shadar-logoth"
    },
    {
+    "bok": 1,
+    "text": "Lämnar Two Rivers med Rand och Perrin över floden vid Taren Ferry.",
+    "plats": "taren-ferry"
+   },
+   {
     "bok": 2,
     "text": "Blåser i Horn of Valere i slaget vid Falme.",
     "plats": "falme",
@@ -354,6 +360,11 @@
     "slag": "stone-of-tear"
    },
    {
+    "bok": 3,
+    "text": "Reser med Thom nedför Erinin till Aringill på väg till Caemlyn.",
+    "plats": "aringill"
+   },
+   {
     "bok": 4,
     "text": "Går genom den vridna dörrkarmen i Rhuidean och får medaljongen, spjutet ashandarei och främmande minnen."
    },
@@ -362,6 +373,11 @@
     "text": "Leder ett hopkommet rytteri till seger utanför Cairhien, dödar Couladin och bildar Band of the Red Hand.",
     "slag": "cairhien",
     "plats": "cairhien"
+   },
+   {
+    "bok": 6,
+    "text": "Band of the Red Hand slår läger vid Maerone.",
+    "plats": "maerone"
    },
    {
     "bok": 7,
@@ -375,6 +391,11 @@
    {
     "bok": 13,
     "text": "Befriar Moiraine ur Tower of Ghenjei men förlorar ett öga."
+   },
+   {
+    "bok": 13,
+    "text": "Rider genom Hinderstap, där byborna blir mördare varje natt.",
+    "plats": "hinderstap"
    },
    {
     "bok": 14,
@@ -456,6 +477,11 @@
     "slag": "stone-of-tear"
    },
    {
+    "bok": 3,
+    "text": "I Remen befriar han Aielkrigaren Gaul ur en bur, på väg till Tear med Moiraine, Lan, Loial och Faile.",
+    "plats": "remen"
+   },
+   {
     "bok": 4,
     "text": "Återvänder till Two Rivers, försvarar bygden mot trollocs och gifter sig med Faile Bashere.",
     "plats": "emonds-field",
@@ -472,6 +498,11 @@
     "text": "Faile tas till fånga av Shaido och han börjar jaga dem."
    },
    {
+    "bok": 8,
+    "text": "Reser till Abila för att få profeten Masema att följa med till Rand.",
+    "plats": "abila"
+   },
+   {
     "bok": 11,
     "text": "Befriar Faile i Malden.",
     "slag": "malden",
@@ -484,7 +515,7 @@
    {
     "bok": 14,
     "text": "Strider i Braem Wood i början av Tarmon Gai'don.",
-    "plats": "caemlyn",
+    "plats": "braem-wood",
     "slag": "caemlyn-fall"
    },
    {
@@ -589,7 +620,8 @@
    },
    {
     "bok": 6,
-    "text": "Helar Siuan och Leane, som fått förmågan att kanalisera avskuren, i Salidar."
+    "text": "Helar Siuan och Leane, som fått förmågan att kanalisera avskuren, i Salidar.",
+    "plats": "salidar"
    },
    {
     "bok": 7,
@@ -661,9 +693,19 @@
     "slag": "shining-walls"
    },
    {
+    "bok": 0,
+    "text": "Möter Lan i Canluum. Han blir senare hennes väktare.",
+    "plats": "canluum"
+   },
+   {
     "bok": 1,
     "text": "Kommer till Emond's Field med Lan och för bort de unga från byn.",
     "plats": "emonds-field"
+   },
+   {
+    "bok": 1,
+    "text": "Leder sällskapet genom Blighten till Eye of the World.",
+    "plats": "eye-of-the-world"
    },
    {
     "bok": 3,
@@ -738,7 +780,7 @@
    "Väktare",
    "Adel"
   ],
-  "ursprung": null,
+  "ursprung": "malkier",
   "uppvuxen": "fal-moran",
   "forsta_bok": 1,
   "ingress": "Moiraines väktare och den siste kungen av Malkier, landet som slukades av Blighten.",
@@ -749,6 +791,11 @@
     "text": "Strider i slaget vid De skinande murarna, strax innan han möter Moiraine.",
     "plats": "tar-valon",
     "slag": "shining-walls"
+   },
+   {
+    "bok": 0,
+    "text": "Möter Moiraine i Canluum och blir senare hennes väktare.",
+    "plats": "canluum"
    },
    {
     "bok": 1,
@@ -777,11 +824,13 @@
    },
    {
     "bok": 13,
-    "text": "Rider mot Tarwin's Gap, och Malkieri samlas under Gyllene tranan."
+    "text": "Rider mot Tarwin's Gap, och Malkieri samlas under Gyllene tranan.",
+    "plats": "tarwins-gap"
    },
    {
     "bok": 14,
-    "text": "Håller Tarwin's Gap med sina Malkieri tills Borderland-härarna kommer genom portar."
+    "text": "Håller Tarwin's Gap med sina Malkieri tills Borderland-härarna kommer genom portar.",
+    "plats": "tarwins-gap"
    },
    {
     "bok": 14,
@@ -1229,7 +1278,8 @@
    },
    {
     "bok": 6,
-    "text": "Helas av Nynaeve i Salidar och hjälper till att upphöja Egwene till Amyrlin."
+    "text": "Helas av Nynaeve i Salidar och hjälper till att upphöja Egwene till Amyrlin.",
+    "plats": "salidar"
    },
    {
     "bok": 12,
@@ -1507,8 +1557,8 @@
   "grupper": [
    "Ogier"
   ],
-  "ursprung": null,
-  "uppvuxen": null,
+  "ursprung": "stedding-shangtai",
+  "uppvuxen": "stedding-shangtai",
   "forsta_bok": 1,
   "ingress": "En ung Ogier från Stedding Shangtai som rymt för att se världen och skriva en bok om Draken.",
   "om": "Loial är lång, vänlig och ständigt orolig för att vara förhastad, men orädd när det gäller. Han kan hitta i Ways och följer Rand och Perrin genom de flesta av deras faror. Hans mor Covril och hans tilltänkta Erith jagar honom för att han ska gifta sig.",
@@ -1517,6 +1567,11 @@
     "bok": 1,
     "text": "Möter Rand i Caemlyn och leder sällskapet genom Ways till Fal Dara.",
     "plats": "caemlyn"
+   },
+   {
+    "bok": 1,
+    "text": "Följer med genom Blighten till Eye of the World.",
+    "plats": "eye-of-the-world"
    },
    {
     "bok": 4,
@@ -1537,7 +1592,7 @@
    {
     "bok": 14,
     "text": "Leder Ogier mot trollocs i Braem Wood.",
-    "plats": "caemlyn",
+    "plats": "braem-wood",
     "slag": "caemlyn-fall"
    },
    {
@@ -1980,7 +2035,8 @@
    },
    {
     "bok": 12,
-    "text": "Rand förstör hennes palats Natrin's Barrow med balefire, men hon har redan flytt."
+    "text": "Rand förstör hennes palats Natrin's Barrow med balefire, men hon har redan flytt.",
+    "plats": "natrins-barrow"
    },
    {
     "bok": 13,
@@ -2117,7 +2173,8 @@
    },
    {
     "bok": 13,
-    "text": "Tar makten över Svarta tornet och fängslar Logain."
+    "text": "Tar makten över Svarta tornet och fängslar Logain.",
+    "plats": "black-tower"
    },
    {
     "bok": 14,
@@ -2177,7 +2234,8 @@
    },
    {
     "bok": 6,
-    "text": "Blir general för rebellernas här och belägrar senare Tar Valon."
+    "text": "Blir general för rebellernas här och belägrar senare Tar Valon.",
+    "plats": "salidar"
    },
    {
     "bok": 12,
@@ -2299,8 +2357,8 @@
   "handelser": [
    {
     "bok": 11,
-    "text": "Leder en djärv motoffensiv mot Seanchan i Tarabon och Arad Doman.",
-    "plats": "bandar-eban"
+    "text": "Leder en djärv motoffensiv mot Seanchan i Tarabon och Arad Doman och lurar dem i en fälla vid Darluna.",
+    "plats": "darluna"
    },
    {
     "bok": 13,
@@ -2487,11 +2545,13 @@
    },
    {
     "bok": 6,
-    "text": "Nynaeve helar honom från stillningen."
+    "text": "Nynaeve helar honom från stillningen.",
+    "plats": "salidar"
    },
    {
     "bok": 13,
-    "text": "Fängslas av Taim i Svarta tornet."
+    "text": "Fängslas av Taim i Svarta tornet.",
+    "plats": "black-tower"
    },
    {
     "bok": 14,
