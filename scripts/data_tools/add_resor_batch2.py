@@ -85,7 +85,7 @@ R['egwene'] = {'stopp': [
  S('cairhien', 5, 'land', "Följer klanerna ut ur öknen till Cairhien.", ['taien', 'jangai-pass']),
  S('salidar', 6, 'land', "Kallas till Salidar och upphöjs till Amyrlin för de upproriska Aes Sedai."),
  S('lugard', 8, 'land', "Leder rebellernas här genom Murandy mot Tar Valon."),
- S('tar-valon', 10, 'portal', "Flyttar hela hären genom portaler och belägrar Tar Valon. Tas tillfånga i staden, men vinner tornet inifrån."),
+ S('tar-valon', 10, 'portal', "Flyttar hela hären genom portaler och belägrar Tar Valon."),
  S('field-of-merrilor', 14, 'portal', "Leder Vita tornets här i Sista striden och dör när hon förintar Taim med Flame of Tar Valon."),
 ]}
 R['nynaeve'] = {'stopp': [
@@ -117,7 +117,7 @@ R['elayne'] = {'stopp': [
  S('tanchico', 4, 'hav', "Med Sea Folk-skepp till Tanchico för att leta efter Black Ajah."),
  S('salidar', 5, 'land', "Reser med Valan Lucas cirkus till rebellerna i Salidar.", ['jehannah']),
  S('ebou-dar', 7, 'land', "Söker Skålen av vindarna i Ebou Dar och binder Birgitte som väktare."),
- S('caemlyn', 9, 'portal', "Återvänder till Caemlyn och gör anspråk på Lejontronen. Vinner tronföljden efter belägringen."),
+ S('caemlyn', 9, 'portal', "Återvänder till Caemlyn och gör anspråk på Lejontronen."),
  S('braem-wood', 14, 'portal', "Leder Andors här mot trollocs i Braem Wood."),
  S('field-of-merrilor', 14, 'portal', "Strider i Sista striden vid Merrilor."),
 ]}

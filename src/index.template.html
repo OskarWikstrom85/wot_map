@@ -500,6 +500,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
     clist.innerHTML = hits.length ? hits.map(c => `<li><button data-c="${c.id}" aria-current="${c.id === openId}">${mono(c)}<span><span class="nm">${esc(c.namn)}</span><span class="t">${esc(c.titel)}</span></span></button></li>`).join('')
       : '<li class="empty">Ingen karaktär matchar.</li>';
   }
+  const shortName = c => c.namn.split(' ')[0].replace(/^al'/, '');   // Rand al'Thor → Rand, al'Lan Mandragoran → Lan
   const placeBtn = id => placeById[id] ? `<button class="linkbtn" data-place="${id}">${esc(placeById[id].namn)}</button>` : '';
   function openChar(id) {
     const c = byId[id]; if (!c) return;
@@ -516,7 +517,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
         <div><dt>Första gången</dt><dd>Bok ${c.forsta_bok}: ${esc(BOOKS[c.forsta_bok])}</dd></div>
         <div><dt>Grupper</dt><dd>${c.grupper.map(esc).join(', ')}</dd></div>
       </dl>
-      ${RESOR[c.id] ? `<button class="btn lib-btn resa-btn" data-resa="${c.id}">Visa ${esc(c.namn.split(' ')[0])}s resa på kartan</button>` : ''}
+      ${RESOR[c.id] ? `<button class="btn lib-btn resa-btn" data-resa="${c.id}">Visa ${esc(shortName(c))}s resa på kartan</button>` : ''}
       <p class="lead">${esc(c.ingress)}</p>
       <p>${esc(c.om)}</p>
       <h4>Viktiga händelser</h4>
@@ -886,7 +887,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
     stopPlay(); resaId = id; resaBok = bok && RESOR[id].stopp.some(s => s.bok === bok) ? bok : 'alla'; resaCur = -1;
     const c = byId[id];
     document.getElementById('resaMono').innerHTML = mono(c);
-    document.getElementById('resaTitle').textContent = `${c.namn.split(' ')[0]}s resa`;
+    document.getElementById('resaTitle').textContent = `${shortName(c)}s resa`;
     resaEl.hidden = false; document.body.classList.add('resa-on'); jLayer.addTo(map);
     renderResa(); fitScope();
     try { history.replaceState(null, '', '#resa=' + id); } catch (e) {}
@@ -904,6 +905,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
   [readTo, readToB].forEach(el => el.addEventListener('change', () => { if (resaId) { stopPlay(); renderResa(); } }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && resaId && lib.hidden && blib.hidden) closeResa(); });
   if (location.hash.startsWith('#resa=')) setTimeout(() => openResa(location.hash.slice(6)), 300);
+  addEventListener('hashchange', () => { const h = location.hash; if (h.startsWith('#resa=') && h.slice(6) !== resaId) openResa(h.slice(6)); });
 
   const fromHash = () => { const id = location.hash.slice(1); if (markers[id]) go(id); };
   window.addEventListener('hashchange', fromHash);

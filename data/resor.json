@@ -642,7 +642,7 @@
     "plats": "tar-valon",
     "bok": 10,
     "satt": "portal",
-    "text": "Flyttar hela hären genom portaler och belägrar Tar Valon. Tas tillfånga i staden, men vinner tornet inifrån."
+    "text": "Flyttar hela hären genom portaler och belägrar Tar Valon."
    },
    {
     "plats": "field-of-merrilor",
@@ -822,7 +822,7 @@
     "plats": "caemlyn",
     "bok": 9,
     "satt": "portal",
-    "text": "Återvänder till Caemlyn och gör anspråk på Lejontronen. Vinner tronföljden efter belägringen."
+    "text": "Återvänder till Caemlyn och gör anspråk på Lejontronen."
    },
    {
     "plats": "braem-wood",
@@ -835,6 +835,1499 @@
     "bok": 14,
     "satt": "portal",
     "text": "Strider i Sista striden vid Merrilor."
+   }
+  ]
+ },
+ "moiraine": {
+  "stopp": [
+   {
+    "plats": "tar-valon",
+    "bok": 0,
+    "text": "Accepted i Vita tornet när hon och Siuan hör Gitaras förutsägelse om Drakens återfödelse."
+   },
+   {
+    "plats": "canluum",
+    "bok": 0,
+    "satt": "land",
+    "text": "Börjar söka efter barnet och möter Lan i Canluum."
+   },
+   {
+    "plats": "emonds-field",
+    "bok": 1,
+    "satt": "land",
+    "text": "Hittar Rand, Mat och Perrin i Two Rivers och för dem därifrån på Winternight."
+   },
+   {
+    "plats": "baerlon",
+    "bok": 1,
+    "satt": "land",
+    "text": "Sällskapet söker skydd i Baerlon."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 1,
+    "satt": "land",
+    "text": "Den döda staden, där Mashadar splittrar sällskapet."
+   },
+   {
+    "plats": "whitebridge",
+    "bok": 1,
+    "satt": "land",
+    "text": "Spårar de försvunna längs floden."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "satt": "land",
+    "text": "Återförenas med de andra i Caemlyn."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 1,
+    "satt": "ways",
+    "text": "Genom Ways till Shienar."
+   },
+   {
+    "plats": "eye-of-the-world",
+    "bok": 1,
+    "satt": "land",
+    "text": "Genom Blighten till Eye of the World."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 2,
+    "satt": "land",
+    "text": "Amyrlin kommer, och Moiraine avslöjar för Rand att han är Draken."
+   },
+   {
+    "plats": "falme",
+    "bok": 2,
+    "satt": "land",
+    "text": "Kommer till Toman Head efter slaget och tar hand om Rand."
+   },
+   {
+    "plats": "remen",
+    "bok": 3,
+    "satt": "land",
+    "text": "Följer Rands spår söderut med Perrin, Lan och Loial."
+   },
+   {
+    "plats": "illian",
+    "bok": 3,
+    "satt": "land",
+    "text": "Kartlägger Be'lals planer i Illian."
+   },
+   {
+    "plats": "tear",
+    "bok": 3,
+    "satt": "land",
+    "text": "Dödar Be'lal med balefire i Stenen i Tear."
+   },
+   {
+    "plats": "rhuidean",
+    "bok": 4,
+    "satt": "portalsten",
+    "text": "Går genom ter'angreal i Rhuidean och ser sitt eget öde."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 5,
+    "satt": "land",
+    "via": [
+     "taien",
+     "jangai-pass"
+    ],
+    "text": "Kastar sig över Lanfear vid hamnen i Cairhien och försvinner genom den röda dörrkarmen."
+   },
+   {
+    "plats": "tower-of-ghenjei",
+    "bok": 13,
+    "satt": "portal",
+    "text": "Räddas ur Eelfinns värld av Mat, Thom och Noal genom Tower of Ghenjei."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Dyker upp vid Merrilor och får ledarna att stå bakom Rand."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Följer Rand in i Shayol Ghul med Nynaeve."
+   }
+  ]
+ },
+ "lan": {
+  "stopp": [
+   {
+    "plats": "tar-valon",
+    "bok": 0,
+    "text": "Strider vid De skinande murarna under Aielkriget."
+   },
+   {
+    "plats": "canluum",
+    "bok": 0,
+    "satt": "land",
+    "text": "Möter Moiraine i Canluum och blir hennes väktare."
+   },
+   {
+    "plats": "emonds-field",
+    "bok": 1,
+    "satt": "land",
+    "text": "Följer Moiraine till Two Rivers."
+   },
+   {
+    "plats": "baerlon",
+    "bok": 1,
+    "satt": "land",
+    "text": "Sällskapet söker skydd i Baerlon."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 1,
+    "satt": "land",
+    "text": "Den döda staden, där Mashadar splittrar sällskapet."
+   },
+   {
+    "plats": "whitebridge",
+    "bok": 1,
+    "satt": "land",
+    "text": "Spårar de försvunna längs floden."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "satt": "land",
+    "text": "Återförenas med de andra i Caemlyn."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 1,
+    "satt": "ways",
+    "text": "Genom Ways till Shienar."
+   },
+   {
+    "plats": "eye-of-the-world",
+    "bok": 1,
+    "satt": "land",
+    "text": "Genom Blighten till Eye of the World."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 2,
+    "satt": "land",
+    "text": "Tränar Rand i svärd i Fal Dara."
+   },
+   {
+    "plats": "falme",
+    "bok": 2,
+    "satt": "land",
+    "text": "Följer Moiraine till Toman Head efter slaget."
+   },
+   {
+    "plats": "remen",
+    "bok": 3,
+    "satt": "land",
+    "text": "Följer Rands spår söderut med Moiraine och Perrin."
+   },
+   {
+    "plats": "illian",
+    "bok": 3,
+    "satt": "land",
+    "text": "Genom Illian på väg mot Tear."
+   },
+   {
+    "plats": "tear",
+    "bok": 3,
+    "satt": "land",
+    "text": "Strider när Stenen i Tear faller."
+   },
+   {
+    "plats": "rhuidean",
+    "bok": 4,
+    "satt": "portalsten",
+    "text": "Väntar vid Chaendaer när Moiraine och Rand går ned till Rhuidean."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 5,
+    "satt": "land",
+    "via": [
+     "taien",
+     "jangai-pass"
+    ],
+    "text": "Förlorar Moiraine vid hamnen i Cairhien. Hon för över hans band till Myrelle."
+   },
+   {
+    "plats": "ebou-dar",
+    "bok": 7,
+    "satt": "land",
+    "text": "Hittar Nynaeve i Ebou Dar och gifter sig med henne."
+   },
+   {
+    "plats": "far-madding",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Följer Rand till Far Madding."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Försvarar Rand och Nynaeve under reningen av saidin."
+   },
+   {
+    "plats": "maradon",
+    "bok": 11,
+    "satt": "portal",
+    "text": "Nynaeve sätter av honom i Saldaea. Han rider österut ensam mot Malkier."
+   },
+   {
+    "plats": "tarwins-gap",
+    "bok": 13,
+    "satt": "land",
+    "via": [
+     "chachin",
+     "fal-moran"
+    ],
+    "text": "Malkieri och gränslandets folk samlas under hans banér. Han rider in i Tarwin's Gap."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Dödar Demandred i en duell vid Merrilor."
+   }
+  ]
+ },
+ "min": {
+  "stopp": [
+   {
+    "plats": "baerlon",
+    "bok": 1,
+    "text": "Ser syner kring Rand och de andra på värdshuset i Baerlon."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 2,
+    "satt": "land",
+    "text": "Kommer till Tar Valon och blir vän med Egwene, Nynaeve och Elayne."
+   },
+   {
+    "plats": "falme",
+    "bok": 2,
+    "satt": "ways",
+    "text": "Följer med till Falme och hålls fången av Seanchan."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "satt": "land",
+    "text": "Flyr med Siuan och Leane när Siuan avsätts."
+   },
+   {
+    "plats": "salidar",
+    "bok": 5,
+    "satt": "land",
+    "via": [
+     "lugard"
+    ],
+    "text": "Tar sig med Siuan, Leane och Logain till rebellerna i Salidar."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 6,
+    "satt": "land",
+    "text": "Följer med rebellernas sändebud till Caemlyn och blir Rands älskade."
+   },
+   {
+    "plats": "dumais-wells",
+    "bok": 6,
+    "satt": "land",
+    "text": "Tas tillfånga med Rand och räddas vid Dumai's Wells."
+   },
+   {
+    "plats": "far-madding",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Följer Rand till Far Madding."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Vakar över Rand när saidin renas."
+   },
+   {
+    "plats": "bandar-eban",
+    "bok": 12,
+    "satt": "portal",
+    "text": "Hos Rand i Arad Doman. Studerar Herid Fels böcker."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Seanchans Doomseer vid Merrilor. Avslöjar förrädaren bland generalerna."
+   }
+  ]
+ },
+ "thom": {
+  "stopp": [
+   {
+    "plats": "emonds-field",
+    "bok": 1,
+    "text": "Gleeman på Winternight i Emond's Field."
+   },
+   {
+    "plats": "taren-ferry",
+    "bok": 1,
+    "satt": "land",
+    "text": "Följer med de unga ut ur Two Rivers."
+   },
+   {
+    "plats": "baerlon",
+    "bok": 1,
+    "satt": "land",
+    "text": "Sällskapet söker skydd i Baerlon."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 1,
+    "satt": "land",
+    "text": "Den döda staden, där Mashadar splittrar sällskapet."
+   },
+   {
+    "plats": "whitebridge",
+    "bok": 1,
+    "satt": "flod",
+    "text": "Nedför Arinelle på Spray. Offrar sig mot en Fade i Whitebridge."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 2,
+    "satt": "land",
+    "text": "Lever som gleeman i Cairhien och möter Rand igen."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 3,
+    "satt": "land",
+    "text": "Slår följe med Mat i Caemlyn."
+   },
+   {
+    "plats": "tear",
+    "bok": 3,
+    "satt": "flod",
+    "via": [
+     "aringill"
+    ],
+    "text": "Med Mat nedför Erinin till Tear."
+   },
+   {
+    "plats": "tanchico",
+    "bok": 4,
+    "satt": "hav",
+    "text": "Följer Nynaeve och Elayne till Tanchico."
+   },
+   {
+    "plats": "salidar",
+    "bok": 5,
+    "satt": "land",
+    "via": [
+     "jehannah"
+    ],
+    "text": "Reser med Valan Lucas cirkus till rebellerna i Salidar."
+   },
+   {
+    "plats": "ebou-dar",
+    "bok": 7,
+    "satt": "land",
+    "text": "Följer Elayne och Nynaeve till Ebou Dar."
+   },
+   {
+    "plats": "lugard",
+    "bok": 11,
+    "satt": "land",
+    "text": "Flyr med Mat och cirkusen norrut."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 13,
+    "satt": "land",
+    "text": "Kommer till Caemlyn med Mat."
+   },
+   {
+    "plats": "tower-of-ghenjei",
+    "bok": 13,
+    "satt": "land",
+    "text": "Går in i tornet med Mat och Noal och räddar Moiraine."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Vaktar ingången till Shayol Ghul när Rand går in."
+   }
+  ]
+ },
+ "aviendha": {
+  "stopp": [
+   {
+    "plats": "tear",
+    "bok": 3,
+    "text": "En av Far Dareis Mai som stormar Stenen i Tear."
+   },
+   {
+    "plats": "rhuidean",
+    "bok": 4,
+    "satt": "portalsten",
+    "text": "Kallas till Rhuidean för att bli visa kvinna."
+   },
+   {
+    "plats": "cold-rocks-hold",
+    "bok": 4,
+    "satt": "land",
+    "text": "Sätts att vakta Rand i Cold Rocks Hold."
+   },
+   {
+    "plats": "alcair-dal",
+    "bok": 4,
+    "satt": "land",
+    "text": "Med Rand när klanhövdingarna möts i Alcair Dal."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 5,
+    "satt": "land",
+    "via": [
+     "taien",
+     "jangai-pass"
+    ],
+    "text": "Följer klanerna ut ur öknen till Cairhien."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 5,
+    "satt": "portal",
+    "text": "Följer Rand genom portalen mot Rahvin."
+   },
+   {
+    "plats": "ebou-dar",
+    "bok": 7,
+    "satt": "portal",
+    "text": "Följer Elayne till Ebou Dar och söker Skålen av vindarna."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Blir Elaynes förstasyster i Caemlyn."
+   },
+   {
+    "plats": "rhuidean",
+    "bok": 13,
+    "satt": "portal",
+    "text": "Går genom glaskolonnerna igen och ser Aiels undergång."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Strider mot Graendal i Thakan'dar."
+   }
+  ]
+ },
+ "faile": {
+  "stopp": [
+   {
+    "plats": "remen",
+    "bok": 3,
+    "text": "Hornjägaren Zarine slår följe med Perrin i Remen."
+   },
+   {
+    "plats": "illian",
+    "bok": 3,
+    "satt": "land",
+    "text": "Följer med genom Illian."
+   },
+   {
+    "plats": "tear",
+    "bok": 3,
+    "satt": "land",
+    "text": "Kommer till Tear när Stenen faller."
+   },
+   {
+    "plats": "emonds-field",
+    "bok": 4,
+    "satt": "ways",
+    "text": "Genom Ways till Two Rivers, där hon och Perrin gifter sig."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 6,
+    "satt": "land",
+    "text": "Följer Perrin till Cairhien."
+   },
+   {
+    "plats": "abila",
+    "bok": 8,
+    "satt": "portal",
+    "text": "Följer Perrin till Ghealdan och rövas bort av Shaido."
+   },
+   {
+    "plats": "malden",
+    "bok": 11,
+    "satt": "land",
+    "text": "Gai'shain i Malden tills Perrin befriar henne."
+   },
+   {
+    "plats": "jehannah",
+    "bok": 13,
+    "satt": "land",
+    "text": "I Perrins läger vid Jehannah Road."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Bär Valeres horn genom Sista striden."
+   }
+  ]
+ },
+ "siuan": {
+  "stopp": [
+   {
+    "plats": "tar-valon",
+    "bok": 0,
+    "text": "Accepted när hon och Moiraine hör Gitaras förutsägelse."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 2,
+    "satt": "land",
+    "text": "Som Amyrlin besöker hon Fal Dara och träffar Rand."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "satt": "land",
+    "text": "Avsätts och stillas av Elaida, men flyr ur tornet."
+   },
+   {
+    "plats": "lugard",
+    "bok": 5,
+    "satt": "land",
+    "text": "Flyr med Leane, Min och Logain. Gareth Bryne hinner ifatt dem."
+   },
+   {
+    "plats": "salidar",
+    "bok": 5,
+    "satt": "land",
+    "text": "Samlar de upproriska Aes Sedai i Salidar."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 10,
+    "satt": "portal",
+    "text": "Följer Egwenes här till belägringen av Tar Valon."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Dör i Sista striden."
+   }
+  ]
+ },
+ "gawyn": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "text": "Möter Rand i palatsträdgården."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "satt": "land",
+    "text": "Leder Younglings i tornet när Siuan avsätts."
+   },
+   {
+    "plats": "dumais-wells",
+    "bok": 6,
+    "satt": "land",
+    "text": "Leder Younglings vid Dumai's Wells."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 12,
+    "satt": "land",
+    "text": "Lämnar Elaida, går till Egwene och räddar henne från mördare."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Möter Demandred med Bloodknife-ringarna och såras dödligt."
+   }
+  ]
+ },
+ "galad": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "text": "Möter Rand i palatsträdgården."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "satt": "land",
+    "text": "Lämnar tornet efter Siuans fall."
+   },
+   {
+    "plats": "amador",
+    "bok": 5,
+    "satt": "land",
+    "text": "Blir Child of the Light i Amador."
+   },
+   {
+    "plats": "jehannah",
+    "bok": 13,
+    "satt": "land",
+    "text": "Leder Children of the Light och dömer Perrin på Jehannah Road."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Strider när Caemlyn faller."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Duellerar mot Demandred och förlorar en hand."
+   }
+  ]
+ },
+ "tam": {
+  "stopp": [
+   {
+    "plats": "dragonmount",
+    "bok": 0,
+    "text": "Hittar ett nyfött barn på Dragonmounts sluttning under Aielkriget."
+   },
+   {
+    "plats": "emonds-field",
+    "bok": 1,
+    "satt": "land",
+    "text": "Såras av trollocs på Winternight."
+   },
+   {
+    "plats": "abila",
+    "bok": 8,
+    "satt": "portal",
+    "text": "Följer Perrin till Ghealdan med männen från Two Rivers."
+   },
+   {
+    "plats": "malden",
+    "bok": 11,
+    "satt": "land",
+    "text": "Leder bågskyttarna i slaget vid Malden."
+   },
+   {
+    "plats": "bandar-eban",
+    "bok": 12,
+    "satt": "portal",
+    "text": "Möter Rand, som nästan dödar honom."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Leder trupper i Sista striden."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Strider vid Merrilor."
+   }
+  ]
+ },
+ "loial": {
+  "stopp": [
+   {
+    "plats": "stedding-shangtai",
+    "bok": 1,
+    "text": "Har rymt från Stedding Shangtai för att se världen."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "satt": "land",
+    "text": "Möter Rand i Caemlyn."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 1,
+    "satt": "ways",
+    "text": "Leder sällskapet genom Ways till Shienar."
+   },
+   {
+    "plats": "eye-of-the-world",
+    "bok": 1,
+    "satt": "land",
+    "text": "Genom Blighten till Eye of the World."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 2,
+    "satt": "land",
+    "text": "Trollocs anfaller Fal Dara."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 2,
+    "satt": "portalsten",
+    "text": "Kastas med Rand och Hurin genom en portalsten."
+   },
+   {
+    "plats": "falme",
+    "bok": 2,
+    "satt": "portalsten",
+    "text": "Verins portalsten tar dem till Toman Head."
+   },
+   {
+    "plats": "remen",
+    "bok": 3,
+    "satt": "land",
+    "text": "Följer Rands spår med Perrin, Moiraine och Lan."
+   },
+   {
+    "plats": "illian",
+    "bok": 3,
+    "satt": "land",
+    "text": "Genom Illian."
+   },
+   {
+    "plats": "tear",
+    "bok": 3,
+    "satt": "land",
+    "text": "Kommer till Tear när Stenen faller."
+   },
+   {
+    "plats": "emonds-field",
+    "bok": 4,
+    "satt": "ways",
+    "text": "Leder Perrin genom Ways till Two Rivers och låser Waygate."
+   },
+   {
+    "plats": "dumais-wells",
+    "bok": 6,
+    "satt": "land",
+    "text": "Strider vid Dumai's Wells."
+   },
+   {
+    "plats": "stedding-shangtai",
+    "bok": 13,
+    "satt": "ways",
+    "text": "Talar inför Ogiers stora möte och gifter sig med Erith."
+   },
+   {
+    "plats": "braem-wood",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Leder Ogier mot trollocs i Braem Wood."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Strider vid Merrilor."
+   }
+  ]
+ },
+ "verin": {
+  "stopp": [
+   {
+    "plats": "fal-dara",
+    "bok": 2,
+    "text": "Kommer med Amyrlin till Fal Dara."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 2,
+    "satt": "land",
+    "text": "Följer jakten på hornet söderut."
+   },
+   {
+    "plats": "falme",
+    "bok": 2,
+    "satt": "portalsten",
+    "text": "För sällskapet med en portalsten till Toman Head."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 3,
+    "satt": "land",
+    "text": "Hjälper Egwene, Nynaeve och Elayne att jaga Black Ajah."
+   },
+   {
+    "plats": "emonds-field",
+    "bok": 4,
+    "satt": "land",
+    "text": "Kommer till Two Rivers och hjälper Perrin i hemlighet."
+   },
+   {
+    "plats": "dumais-wells",
+    "bok": 6,
+    "satt": "land",
+    "text": "Vid Dumai's Wells, där hon svär sig till Rand."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 12,
+    "satt": "land",
+    "text": "Avslöjar hela Black Ajah för Egwene och dör."
+   }
+  ]
+ },
+ "birgitte": {
+  "stopp": [
+   {
+    "plats": "falme",
+    "bok": 2,
+    "text": "Kallas tillbaka av Valeres horn och strider vid Falme."
+   },
+   {
+    "plats": "salidar",
+    "bok": 5,
+    "satt": "portal",
+    "text": "Slits ut ur Tel'aran'rhiod av Moghedien och binds som Elaynes väktare."
+   },
+   {
+    "plats": "ebou-dar",
+    "bok": 7,
+    "satt": "land",
+    "text": "Följer Elayne till Ebou Dar."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Elaynes generalkapten i Caemlyn."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Strider i Sista striden."
+   }
+  ]
+ },
+ "tuon": {
+  "stopp": [
+   {
+    "plats": "ebou-dar",
+    "bok": 9,
+    "text": "Dotter av de nio månarna i Ebou Dar. Mat rövar bort henne."
+   },
+   {
+    "plats": "lugard",
+    "bok": 11,
+    "satt": "land",
+    "text": "Reser med Mat och cirkusen och gifter sig med honom."
+   },
+   {
+    "plats": "ebou-dar",
+    "bok": 11,
+    "satt": "land",
+    "text": "Återvänder till Ebou Dar och blir kejsarinna."
+   },
+   {
+    "plats": "falme",
+    "bok": 12,
+    "satt": "portal",
+    "text": "Möter Rand men vägrar sluta fred."
+   },
+   {
+    "plats": "ebou-dar",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Mat räddar henne från mördare."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Seanchan går med i Sista striden."
+   }
+  ]
+ },
+ "ishamael": {
+  "stopp": [
+   {
+    "plats": "falme",
+    "bok": 2,
+    "text": "Strider mot Rand i himlen över Falme."
+   },
+   {
+    "plats": "tear",
+    "bok": 3,
+    "satt": "portal",
+    "text": "Rand dödar honom med Callandor i Stenens hjärta."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 7,
+    "satt": "portal",
+    "text": "Återkommen som Moridin. Hans och Rands balefire korsas."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Strider mot Rand i Shayol Ghul och dör i Rands gamla kropp."
+   }
+  ]
+ },
+ "lanfear": {
+  "stopp": [
+   {
+    "plats": "tear",
+    "bok": 4,
+    "text": "Avslöjar sig för Rand i Stenen i Tear."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 5,
+    "satt": "portal",
+    "text": "Anfaller Rand vid hamnen i Cairhien och försvinner med Moiraine."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Som Cyndane under reningen av saidin."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Perrin dödar henne i Thakan'dar."
+   }
+  ]
+ },
+ "demandred": {
+  "stopp": [
+   {
+    "plats": "shayol-ghul",
+    "bok": 6,
+    "text": "Tar emot Den Mörkes order i Shayol Ghul."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Leder Sharas arméer vid Merrilor och dödas av Lan."
+   }
+  ]
+ },
+ "rahvin": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 4,
+    "text": "Styr Andor som Lord Gaebril genom drottning Morgase."
+   }
+  ]
+ },
+ "sammael": {
+  "stopp": [
+   {
+    "plats": "illian",
+    "bok": 4,
+    "text": "Styr Illian som Lord Brend."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 7,
+    "satt": "portal",
+    "text": "Lockar Rand in i Shadar Logoth och slukas av Mashadar."
+   }
+  ]
+ },
+ "graendal": {
+  "stopp": [
+   {
+    "plats": "natrins-barrow",
+    "bok": 12,
+    "text": "Rand förstör hennes palats med balefire, men hon har redan flytt."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Förvränger generalernas omdöme vid Merrilor."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Blir Aviendhas slav i Thakan'dar."
+   }
+  ]
+ },
+ "fain": {
+  "stopp": [
+   {
+    "plats": "emonds-field",
+    "bok": 1,
+    "text": "Kommer som gårdfarihandlare strax före trollocanfallet."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 1,
+    "satt": "land",
+    "text": "Förföljer sällskapet in i Shadar Logoth och smälter samman med Mordeth."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 1,
+    "satt": "land",
+    "text": "Fångas och sätts i Fal Daras fängelsehålor."
+   },
+   {
+    "plats": "falme",
+    "bok": 2,
+    "satt": "land",
+    "text": "Flyr med hornet och dolken och lockar Rand till Falme."
+   },
+   {
+    "plats": "emonds-field",
+    "bok": 4,
+    "satt": "land",
+    "text": "Återvänder som Ordeith med Children of the Light."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 7,
+    "satt": "land",
+    "text": "Sticker Rand med en dolk från Shadar Logoth."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "land",
+    "text": "Möter Mat i Thakan'dar och dör."
+   }
+  ]
+ },
+ "taim": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 6,
+    "text": "Får amnesti i Caemlyn och blir M'Hael."
+   },
+   {
+    "plats": "dumais-wells",
+    "bok": 6,
+    "satt": "portal",
+    "text": "Leder Asha'man vid Dumai's Wells."
+   },
+   {
+    "plats": "black-tower",
+    "bok": 13,
+    "satt": "portal",
+    "text": "Tar makten i Svarta tornet."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Dödas av Egwene vid Merrilor."
+   }
+  ]
+ },
+ "bryne": {
+  "stopp": [
+   {
+    "plats": "tar-valon",
+    "bok": 0,
+    "text": "Leder Andors styrkor vid De skinande murarna."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "satt": "land",
+    "text": "Generalkapten i Caemlyn."
+   },
+   {
+    "plats": "lugard",
+    "bok": 5,
+    "satt": "land",
+    "text": "Kastas ut av Morgase och jagar Siuan och Leane, som han hinner ifatt."
+   },
+   {
+    "plats": "salidar",
+    "bok": 5,
+    "satt": "land",
+    "text": "Blir general för rebellernas här i Salidar."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 10,
+    "satt": "portal",
+    "text": "Belägrar Tar Valon med rebellernas här."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Hans planer förvrängs av Graendal."
+   }
+  ]
+ },
+ "bashere": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 6,
+    "text": "Kommer till Caemlyn och blir Rands general."
+   },
+   {
+    "plats": "dumais-wells",
+    "bok": 6,
+    "satt": "land",
+    "text": "Leder saldaeiskt rytteri vid Dumai's Wells."
+   },
+   {
+    "plats": "maradon",
+    "bok": 13,
+    "satt": "portal",
+    "text": "Strider vid Maradon."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Leder trupper när Caemlyn ska återtas."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Stupar vid Merrilor."
+   }
+  ]
+ },
+ "ituralde": {
+  "stopp": [
+   {
+    "plats": "darluna",
+    "bok": 11,
+    "text": "Lurar Seanchan i en fälla vid Darluna."
+   },
+   {
+    "plats": "maradon",
+    "bok": 13,
+    "satt": "portal",
+    "text": "Håller Maradon mot trollocshären."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Försvarar passet in till Thakan'dar."
+   }
+  ]
+ },
+ "agelmar": {
+  "stopp": [
+   {
+    "plats": "tar-valon",
+    "bok": 0,
+    "text": "Leder Shienars styrkor vid De skinande murarna."
+   },
+   {
+    "plats": "fal-dara",
+    "bok": 1,
+    "satt": "land",
+    "text": "Tar emot Moiraine och sällskapet i Fal Dara."
+   },
+   {
+    "plats": "tarwins-gap",
+    "bok": 14,
+    "satt": "land",
+    "text": "Leder gränslandets styrkor vid Tarwin's Gap."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Hans planer förvrängs av Graendal."
+   }
+  ]
+ },
+ "niall": {
+  "stopp": [
+   {
+    "plats": "tar-valon",
+    "bok": 0,
+    "text": "Leder Children of the Light vid De skinande murarna."
+   },
+   {
+    "plats": "amador",
+    "bok": 2,
+    "satt": "land",
+    "text": "Styr Children of the Light från Amador."
+   }
+  ]
+ },
+ "talmanes": {
+  "stopp": [
+   {
+    "plats": "cairhien",
+    "bok": 5,
+    "text": "Möter Mat utanför Cairhien."
+   },
+   {
+    "plats": "maerone",
+    "bok": 6,
+    "satt": "land",
+    "text": "Leder Bandet i lägret vid Maerone."
+   },
+   {
+    "plats": "salidar",
+    "bok": 6,
+    "satt": "land",
+    "text": "Följer Mat till Salidar."
+   },
+   {
+    "plats": "hinderstap",
+    "bok": 13,
+    "satt": "land",
+    "text": "Med Bandet vid Hinderstap."
+   },
+   {
+    "plats": "caemlyn",
+    "bok": 13,
+    "satt": "land",
+    "text": "Räddar drakarna när Caemlyn faller."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Leder Bandet vid Merrilor."
+   }
+  ]
+ },
+ "logain": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "text": "Visas upp som fånge i Caemlyn."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 1,
+    "satt": "land",
+    "text": "Stillas i Tar Valon."
+   },
+   {
+    "plats": "lugard",
+    "bok": 5,
+    "satt": "land",
+    "text": "Flyr med Siuan, Leane och Min."
+   },
+   {
+    "plats": "salidar",
+    "bok": 5,
+    "satt": "land",
+    "text": "Nynaeve helar honom i Salidar."
+   },
+   {
+    "plats": "black-tower",
+    "bok": 8,
+    "satt": "land",
+    "text": "Går med i Svarta tornet."
+   },
+   {
+    "plats": "field-of-merrilor",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Strider vid Merrilor och tar tillbaka sigillen."
+   }
+  ]
+ },
+ "rhuarc": {
+  "stopp": [
+   {
+    "plats": "tear",
+    "bok": 3,
+    "text": "Leder Aiel som stormar Stenen i Tear."
+   },
+   {
+    "plats": "rhuidean",
+    "bok": 4,
+    "satt": "portalsten",
+    "text": "Följer Rand genom portalstenen tillbaka till öknen."
+   },
+   {
+    "plats": "cold-rocks-hold",
+    "bok": 4,
+    "satt": "land",
+    "text": "Tar emot Rand i sitt fäste."
+   },
+   {
+    "plats": "alcair-dal",
+    "bok": 4,
+    "satt": "land",
+    "text": "Klanhövdingarnas möte i Alcair Dal."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 5,
+    "satt": "land",
+    "via": [
+     "taien",
+     "jangai-pass"
+    ],
+    "text": "Leder klanerna mot Shaido vid Cairhien."
+   },
+   {
+    "plats": "dumais-wells",
+    "bok": 6,
+    "satt": "portal",
+    "text": "Leder Aiel vid Dumai's Wells."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Tvingas av Graendal och dör i Thakan'dar."
+   }
+  ]
+ },
+ "morgase": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "text": "Drottning i Caemlyn."
+   },
+   {
+    "plats": "amador",
+    "bok": 6,
+    "satt": "land",
+    "text": "Flyr ur Caemlyn och blir Pedron Nialls gäst i Amador."
+   },
+   {
+    "plats": "abila",
+    "bok": 8,
+    "satt": "land",
+    "text": "Tjänar Faile under namnet Maighdin."
+   },
+   {
+    "plats": "malden",
+    "bok": 11,
+    "satt": "land",
+    "text": "Tillfångatas av Shaido och befrias vid Malden."
+   },
+   {
+    "plats": "jehannah",
+    "bok": 13,
+    "satt": "land",
+    "text": "Avslöjar vem hon är och gifter sig med Tallanvor."
+   }
+  ]
+ },
+ "elaida": {
+  "stopp": [
+   {
+    "plats": "caemlyn",
+    "bok": 1,
+    "text": "Morgases rådgivare i Caemlyn."
+   },
+   {
+    "plats": "tar-valon",
+    "bok": 4,
+    "satt": "land",
+    "text": "Avsätter Siuan och blir Amyrlin."
+   }
+  ]
+ },
+ "cadsuane": {
+  "stopp": [
+   {
+    "plats": "cairhien",
+    "bok": 7,
+    "text": "Kommer till Cairhien och blir Rands rådgivare."
+   },
+   {
+    "plats": "far-madding",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Följer Rand till sin hemstad Far Madding."
+   },
+   {
+    "plats": "shadar-logoth",
+    "bok": 9,
+    "satt": "portal",
+    "text": "Leder försvaret under reningen av saidin."
+   },
+   {
+    "plats": "bandar-eban",
+    "bok": 12,
+    "satt": "portal",
+    "text": "Förvisas av Rand i Arad Doman."
+   },
+   {
+    "plats": "shayol-ghul",
+    "bok": 14,
+    "satt": "portal",
+    "text": "Leder kanaliserare i Shayol Ghul och blir Amyrlin."
+   }
+  ]
+ },
+ "berelain": {
+  "stopp": [
+   {
+    "plats": "tear",
+    "bok": 4,
+    "text": "Gäst i Stenen i Tear."
+   },
+   {
+    "plats": "cairhien",
+    "bok": 6,
+    "satt": "portal",
+    "text": "Rands förvaltare i Cairhien."
+   },
+   {
+    "plats": "abila",
+    "bok": 8,
+    "satt": "portal",
+    "text": "Följer Perrin till Ghealdan."
+   },
+   {
+    "plats": "malden",
+    "bok": 11,
+    "satt": "land",
+    "text": "Hennes Winged Guards strider vid Malden."
+   },
+   {
+    "plats": "jehannah",
+    "bok": 13,
+    "satt": "land",
+    "text": "Möter Galad och gifter sig med honom."
    }
   ]
  }

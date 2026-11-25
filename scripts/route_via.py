@@ -47,6 +47,27 @@ def cost_for(satt, cls, roads, river, lake):
         c = np.where(cls == WATER, .3, 60).astype(np.float32); c[river] = 1
     return c
 
+def pull(sub, path):
+    """Strängdragning: ersätt trappstegen i 8-grannsvägen med raka linjer där det inte blir dyrare."""
+    P = np.array(path, np.float32)                                  # (y, x)
+    seg = np.hypot(*np.diff(P, axis=0).T)
+    c = sub[P[:, 0].astype(int), P[:, 1].astype(int)]
+    cum = np.concatenate([[0], np.cumsum(seg * (c[:-1] + c[1:]) / 2)])
+    def line_cost(i, j):
+        n = int(max(abs(P[j] - P[i]))) + 1
+        ys = np.linspace(P[i, 0], P[j, 0], n).round().astype(int); xs = np.linspace(P[i, 1], P[j, 1], n).round().astype(int)
+        cc = sub[ys, xs]
+        return np.hypot(*(P[j] - P[i])) * cc.mean(), cc.max()
+    out, i, n = [0], 0, len(P)
+    while i < n - 1:
+        best = i + 1
+        for j in range(min(n - 1, i + 600), i + 1, -3):
+            lc, mx = line_cost(i, j)
+            if mx < 50 and lc <= (cum[j] - cum[i]) * 1.04 + 1:
+                best = j; break
+        out.append(best); i = best
+    return [tuple(P[k]) for k in out]
+
 def route(cost, a, b):
     """a, b i halvupplösta px (x, y). Söker i en ruta runt sträckan för fart."""
     m = 500
@@ -54,8 +75,9 @@ def route(cost, a, b):
     y0, y1 = max(0, min(a[1], b[1]) - m), min(cost.shape[0], max(a[1], b[1]) + m)
     sub = cost[y0:y1, x0:x1]
     path, _ = route_through_array(sub, (a[1] - y0, a[0] - x0), (b[1] - y0, b[0] - x0), fully_connected=True, geometric=True)
-    pts = np.array([(x + x0, y + y0) for y, x in path], np.int32).reshape(-1, 1, 2)
-    pts = cv2.approxPolyDP(pts, 2.0, False).reshape(-1, 2)
+    path = pull(sub, path)
+    pts = np.array([(x + x0, y + y0) for y, x in path], np.float32).reshape(-1, 1, 2)
+    pts = cv2.approxPolyDP(pts, 1.5, False).reshape(-1, 2)
     return [[round(float(x) * F / W0, 5), round(float(y) * F / H0, 5)] for x, y in pts]
 
 def main():
