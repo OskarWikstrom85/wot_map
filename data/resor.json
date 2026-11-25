@@ -1,0 +1,37 @@
+{
+ "_om": "Karaktärernas resor. Se README (Resor). Varje stopp: plats (id i locations.csv), bok, text och – från andra stoppet – satt: land, flod, hav, ways, portalsten eller portal. Valfritt via: lista med plats-id som sträckan ska gå genom.",
+ "mat": {
+  "stopp": [
+   {"plats": "emonds-field", "bok": 1, "text": "Flyr på Winternight med Rand, Perrin, Egwene, Moiraine och Lan när trollocs anfaller byn."},
+   {"plats": "taren-ferry", "bok": 1, "satt": "land", "text": "Korsar Taren och lämnar Two Rivers för första gången."},
+   {"plats": "baerlon", "bok": 1, "satt": "land", "text": "Första staden. Sällskapet möter Min och hamnar i bråk med Children of the Light."},
+   {"plats": "shadar-logoth", "bok": 1, "satt": "land", "text": "Tar en guldprydd dolk ur den förbannade stadens skattkammare."},
+   {"plats": "whitebridge", "bok": 1, "satt": "flod", "text": "Nedför Arinelle på Bayle Domons båt Spray, tillsammans med Rand och Thom."},
+   {"plats": "four-kings", "bok": 1, "satt": "land", "text": "På flykt till fots med Rand. Dolken börjar förgifta honom."},
+   {"plats": "caemlyn", "bok": 1, "satt": "land", "text": "Når huvudstaden och väntar på de andra på The Queen's Blessing."},
+   {"plats": "fal-dara", "bok": 1, "satt": "ways", "text": "Genom Ways till Shienar, med Loial som vägvisare."},
+   {"plats": "eye-of-the-world", "bok": 1, "satt": "land", "text": "Följer med genom Blighten till Eye of the World."},
+   {"plats": "fal-dara", "bok": 2, "satt": "land", "text": "Trollocs anfaller Fal Dara, och Padan Fain stjäl dolken och Valeres horn."},
+   {"plats": "cairhien", "bok": 2, "satt": "land", "text": "Jagar Fain söderut med Ingtar och Perrin och sluter upp med Rand i Cairhien."},
+   {"plats": "falme", "bok": 2, "satt": "portalsten", "text": "Verin för dem med en portalsten till Toman Head. Mat blåser i Valeres horn i slaget vid Falme."},
+   {"plats": "tar-valon", "bok": 3, "satt": "land", "text": "Förs till Tar Valon, där Aes Sedai bryter dolkens grepp om honom."},
+   {"plats": "aringill", "bok": 3, "satt": "flod", "text": "Lämnar tornet med båt nedför Erinin, med Elaynes brev till drottning Morgase."},
+   {"plats": "caemlyn", "bok": 3, "satt": "land", "text": "Lämnar brevet, avslöjar en komplott mot Elayne och slår följe med Thom."},
+   {"plats": "tear", "bok": 3, "satt": "flod", "via": ["aringill"], "text": "Med Thom nedför Erinin till Tear. Spränger av misstag upp Stenen med fyrverkerier."},
+   {"plats": "rhuidean", "bok": 4, "satt": "portalsten", "text": "Genom en portalsten till Chaendaer. I Rhuidean går han genom den vridna dörrkarmen och får medaljongen, spjutet ashandarei och främmande minnen."},
+   {"plats": "taien", "bok": 5, "satt": "land", "text": "Följer Rand och klanerna ut ur öknen mot Jangai Pass."},
+   {"plats": "cairhien", "bok": 5, "satt": "land", "via": ["jangai-pass"], "text": "Leder ett hopkommet rytteri till seger utanför Cairhien, dödar Couladin och bildar Band of the Red Hand."},
+   {"plats": "caemlyn", "bok": 5, "satt": "portal", "text": "Genom Rands portal till Caemlyn, där Rand dödar Rahvin."},
+   {"plats": "maerone", "bok": 6, "satt": "portal", "text": "Tillbaka hos Bandet i lägret vid Maerone."},
+   {"plats": "salidar", "bok": 6, "satt": "land", "text": "Rider med Bandet till Salidar för att hämta Elayne till Rand."},
+   {"plats": "ebou-dar", "bok": 7, "satt": "land", "text": "Följer med Elayne och Nynaeve till Ebou Dar och blir kvar när Seanchan tar staden."},
+   {"plats": "lugard", "bok": 11, "satt": "land", "text": "Flyr norrut med Valan Lucas cirkus och Tuon och hittar till slut Bandet igen."},
+   {"plats": "hinderstap", "bok": 13, "satt": "land", "text": "Bandet slår läger vid Hinderstap, där byborna blir mördare varje natt."},
+   {"plats": "caemlyn", "bok": 13, "satt": "land", "text": "Dödar gholam i Caemlyn."},
+   {"plats": "tower-of-ghenjei", "bok": 13, "satt": "land", "text": "Går in i tornet med Thom och Noal och räddar Moiraine, men förlorar ett öga."},
+   {"plats": "ebou-dar", "bok": 14, "satt": "portal", "text": "Återvänder till Tuon och räddar henne från mördare."},
+   {"plats": "field-of-merrilor", "bok": 14, "satt": "portal", "text": "Tar över som fältherre för Ljusets härar och vinner slaget vid Merrilor."},
+   {"plats": "shayol-ghul", "bok": 14, "satt": "portal", "text": "Dödar Padan Fain i dalen Thakan'dar."}
+  ]
+ }
+}

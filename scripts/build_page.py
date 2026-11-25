@@ -40,9 +40,30 @@ for _b in _bat:
     for _x in _b.get('karaktarer', []):
         if _x not in _from_ev: _errs.append(f"slag {_b['id']}: {_x} listas men saknar händelse med slag={_b['id']}")
     _b['karaktarer'] = _from_ev
+# ---- Resor: stopp måste finnas som platser, böckerna gå framåt och varje landsträcka ha en rutt ----
+_resor = _j.load(open(root/'data/resor.json'))
+_rutter = _j.load(open(root/'data/rutter.json')) if (root/'data/rutter.json').exists() else {}
+_HOPP, _SATT = {'ways', 'portalsten', 'portal'}, {'land', 'flod', 'hav', 'ways', 'portalsten', 'portal'}
+_used = {}
+for _rid, _r in _resor.items():
+    if _rid.startswith('_'): continue
+    if _rid not in _cid: _errs.append(f"resa {_rid}: okänd karaktär")
+    _st = _r['stopp']
+    for _k, _s in enumerate(_st):
+        if _s['plats'] not in _places: _errs.append(f"resa {_rid} stopp {_k + 1}: okänd plats {_s['plats']}")
+        if _k and _s['bok'] < _st[_k - 1]['bok']: _errs.append(f"resa {_rid} stopp {_k + 1}: boken går bakåt")
+        if _k and _s.get('satt') not in _SATT: _errs.append(f"resa {_rid} stopp {_k + 1}: okänt sätt {_s.get('satt')}")
+        for _v in _s.get('via', []):
+            if _v not in _places: _errs.append(f"resa {_rid} stopp {_k + 1}: okänd via-plats {_v}")
+        if _k and _s.get('satt') not in _HOPP:
+            _ch = [_st[_k - 1]['plats']] + _s.get('via', []) + [_s['plats']]
+            for _a, _b in zip(_ch, _ch[1:]):
+                _key = f"{_a}>{_b}>{_s['satt']}"
+                if _key in _rutter: _used[_key] = _rutter[_key]
+                else: _errs.append(f"resa {_rid}: rutt saknas för {_key} (kör scripts/route_via.py)")
 if _errs:
     raise SystemExit('Länkfel:\n  ' + '\n  '.join(_errs))
 battles = _j.dumps(_bat, ensure_ascii=False).replace('</', '<\\/')
-out = tpl.replace('/*LEAFLET_CSS*/', css).replace('/*LOCATIONS*/', data).replace('/*NATIONS*/', nations).replace('/*CHARACTERS*/', (root/'data/characters.json').read_text().replace('</', '<\\/')).replace('/*BATTLES*/', battles)
+out = tpl.replace('/*LEAFLET_CSS*/', css).replace('/*LOCATIONS*/', data).replace('/*NATIONS*/', nations).replace('/*CHARACTERS*/', (root/'data/characters.json').read_text().replace('</', '<\\/')).replace('/*BATTLES*/', battles).replace('/*RESOR*/', _j.dumps(_resor, ensure_ascii=False).replace('</', '<\\/')).replace('/*RUTTER*/', _j.dumps(_used, separators=(',', ':')))
 (root/'site/index.html').write_text(out)
 print(f"{len(rows)} platser, {len(out)//1024} KB")

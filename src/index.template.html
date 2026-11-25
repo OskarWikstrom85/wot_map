@@ -129,6 +129,44 @@ body.malad{--sea:#4b4d33}
 .bmark svg{width:64%;height:64%}
 .bmark.on{animation:bpulse 1.4s ease-out 3}
 @keyframes bpulse{0%{box-shadow:0 0 0 0 rgb(246 231 184 / .9)}100%{box-shadow:0 0 0 22px rgb(246 231 184 / 0)}}
+
+/* Resor: en karaktärs väg genom böckerna */
+body.resa-on .panel{display:none}
+.resa{position:fixed;z-index:1000;top:14px;left:14px;width:340px;max-height:calc(100% - 28px);display:flex;flex-direction:column;
+  background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.resa[hidden]{display:none}
+.resa-head{flex:none;display:flex;gap:12px;align-items:center;padding:14px 14px 8px 16px}
+.resa-head h2{font:700 21px/1.1 Cinzel,Georgia,serif;margin:0}
+.resa-head .sub{margin:2px 0 0}
+.resa-head .x{margin-left:auto}
+.resa-books{flex:none;display:flex;flex-wrap:wrap;gap:5px;padding:4px 16px 8px}
+.resa-books .chip{min-height:30px;padding:0 9px}
+.resa-books .chip:disabled{opacity:.4;cursor:default}
+.resa-ctl{flex:none;display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:0 16px 10px;border-bottom:1px solid var(--line)}
+.resa-ctl .btn{min-height:40px}
+.resa-leg{display:flex;gap:10px;font-size:12.5px;color:var(--muted)}
+.resa-leg span{display:inline-flex;align-items:center;gap:4px}
+.resa-list{list-style:none;margin:0;padding:6px 10px 12px;overflow-y:auto}
+.resa-list .bh{font:700 12px "Alegreya Sans",sans-serif;color:var(--capital);text-transform:uppercase;letter-spacing:.05em;padding:10px 6px 2px}
+.resa-list button{all:unset;box-sizing:border-box;display:flex;gap:10px;align-items:flex-start;width:100%;padding:6px;border-radius:8px;cursor:pointer}
+.resa-list button:hover,.resa-list button:focus-visible,.resa-list button[aria-current=true]{background:var(--paper-2)}
+.resa-list .nm{display:block;font-weight:700}
+.resa-list .tx{display:block;font-size:14px;color:var(--muted);line-height:1.35}
+.resa-list .hw{font-size:12px;color:var(--muted);font-style:italic}
+.snum{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;color:#fff;font:700 11.5px/1 "Alegreya Sans",sans-serif;box-shadow:0 0 0 2px #f3e9cf,0 1px 3px rgb(0 0 0 / .5)}
+.resa-list li.dim{opacity:.45}
+.resa-note{padding:4px 16px 12px;margin:0}
+.jstop{position:absolute;transform:translate(-50%,-50%)}
+.jstop .snum{width:21px;height:21px;font-size:11px;cursor:pointer}
+.jstop.small .snum{width:9px;height:9px;font-size:0}
+.jstop.cur .snum{transform:scale(1.35);box-shadow:0 0 0 3px #fff,0 0 0 5px var(--capital),0 1px 4px rgb(0 0 0 / .6)}
+body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-on .leaflet-marker-pane{opacity:.4}
+.resa-btn{margin:2px 0 14px}
+@media(max-width:600px){
+  .resa{top:auto;bottom:0;left:0;right:0;width:auto;border-radius:14px 14px 0 0;max-height:48%}
+  .resa-head{padding-top:10px}.resa-books{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .resa-books .chip{flex:none}
+}
 @media(prefers-reduced-motion:reduce){.bmark.on{animation:none}}
 .mono{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#fff;font:700 15px/1 Cinzel,Georgia,serif;letter-spacing:.02em;box-shadow:inset 0 0 0 2px rgb(255 255 255 / .35)}
 .mono.big{width:84px;height:84px;font-size:30px}
@@ -215,6 +253,17 @@ body.malad{--sea:#4b4d33}
 </aside>
 
 
+<section class="resa" id="resa" hidden aria-labelledby="resaTitle">
+  <div class="resa-head"><span id="resaMono"></span><div><h2 id="resaTitle"></h2><p class="sub" id="resaSub"></p></div>
+    <button class="x" id="closeResa" aria-label="Stäng resan">&times;</button></div>
+  <div class="resa-books" id="resaBooks" role="group" aria-label="Visa bok"></div>
+  <div class="resa-ctl"><button class="btn" id="resaPlay" aria-pressed="false">&#9654; Spela upp</button>
+    <div class="resa-leg" aria-hidden="true">
+      <span><svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="currentColor" stroke-width="3.5"/></svg>land</span>
+      <span><svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="currentColor" stroke-width="3.5" stroke-dasharray="6 3"/></svg>båt</span>
+      <span><svg width="22" height="8"><line x1="1" y1="4" x2="22" y2="4" stroke="currentColor" stroke-width="3" stroke-dasharray="0.1 5" stroke-linecap="round"/></svg>hopp</span></div></div>
+  <ol class="resa-list" id="resaList"></ol>
+</section>
 <div class="lib" id="lib" hidden role="dialog" aria-modal="true" aria-labelledby="libTitle">
   <div class="lib-card">
     <header class="lib-head">
@@ -270,6 +319,8 @@ body.malad{--sea:#4b4d33}
 </div>
 
 <script type="application/json" id="locations">/*LOCATIONS*/</script>
+<script type="application/json" id="resor">/*RESOR*/</script>
+<script type="application/json" id="rutter">/*RUTTER*/</script>
 <script type="application/json" id="nations">/*NATIONS*/</script>
 <script type="application/json" id="characters">/*CHARACTERS*/</script>
 <script type="application/json" id="battles">/*BATTLES*/</script>
@@ -280,6 +331,8 @@ body.malad{--sea:#4b4d33}
   const W = 8000, H = 6177, WW = 11200, NATIVE = 4;   // WW: hela kartan inklusive Aielöknen
   const COLORS = {huvudstad:'#8b1e1e', stad:'#1f3b63', by:'#2f6b3a', landmärke:'#5b3f8c', ruin:'#4b4b4b'};
   const places = JSON.parse(document.getElementById('locations').textContent);
+  const RESOR = JSON.parse(document.getElementById('resor').textContent);
+  const RUTTER = JSON.parse(document.getElementById('rutter').textContent);
 
   const map = L.map('map', {crs: L.CRS.Simple, minZoom: 0, maxZoom: 7, zoomSnap: 0.25, zoomDelta: 0.5, wheelPxPerZoomLevel: 90, zoomControl: false});
   L.control.zoom({position: 'topright'}).addTo(map);
@@ -463,6 +516,7 @@ body.malad{--sea:#4b4d33}
         <div><dt>Första gången</dt><dd>Bok ${c.forsta_bok}: ${esc(BOOKS[c.forsta_bok])}</dd></div>
         <div><dt>Grupper</dt><dd>${c.grupper.map(esc).join(', ')}</dd></div>
       </dl>
+      ${RESOR[c.id] ? `<button class="btn lib-btn resa-btn" data-resa="${c.id}">Visa ${esc(c.namn.split(' ')[0])}s resa på kartan</button>` : ''}
       <p class="lead">${esc(c.ingress)}</p>
       <p>${esc(c.om)}</p>
       <h4>Viktiga händelser</h4>
@@ -497,6 +551,7 @@ body.malad{--sea:#4b4d33}
     const cb = e.target.closest('[data-c]'); if (cb) return openChar(cb.dataset.c);
     const pb = e.target.closest('[data-place]'); if (pb) { closeLib(); go(pb.dataset.place); return; }
     const ob = e.target.closest('[data-openbattle]'); if (ob) { openBat(ob.dataset.openbattle); return; }
+    const rb = e.target.closest('[data-resa]'); if (rb) { closeLib(); openResa(rb.dataset.resa); return; }
     if (e.target.closest('#backList')) lib.classList.remove('show-art');
   });
   chipsEl.addEventListener('click', e => {
@@ -694,6 +749,161 @@ body.malad{--sea:#4b4d33}
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !anim.hidden) closeAnim(); });
   if (location.hash === '#slag') setTimeout(() => openBat(), 200);
+
+
+  // ---------- Resor: en karaktärs väg genom böckerna ----------
+  // Data: data/resor.json (stopp) och data/rutter.json (framräknade vägar). Se README.
+  const HOPP = {ways: 'genom Ways', portalsten: 'med portalsten', portal: 'genom en portal'};
+  const SATT_TXT = {land: 'till fots eller till häst', flod: 'med båt', hav: 'med skepp', ...HOPP};
+  const bookCol = b => `hsl(${(215 - (b - 1) * 19 + 360) % 360} 66% 40%)`;
+  map.createPane('journey'); map.getPane('journey').style.zIndex = 655;
+  const jLayer = L.layerGroup();
+  const resaEl = document.getElementById('resa'), resaList = document.getElementById('resaList'), resaBooks = document.getElementById('resaBooks');
+  const resaPlay = document.getElementById('resaPlay');
+  let resaId = null, resaBok = 'alla', resaCur = -1, playing = false, playStep = null, legCache = {};
+  const placeLL = id => { const p = placeById[id]; return toLL(p.x * W, p.y * H); };
+  const narrow = () => matchMedia('(max-width:600px)').matches;
+  const fitPad = () => narrow() ? {paddingTopLeft: [20, 20], paddingBottomRight: [20, innerHeight * .5]} : {paddingTopLeft: [380, 30], paddingBottomRight: [40, 30]};
+
+  function arc(A, B) {                                  // hopp ritas som en båge
+    const a = fromLL(A), b = fromLL(B), d = a.distanceTo(b);
+    const m = L.point((a.x + b.x) / 2, (a.y + b.y) / 2), n = L.point(-(b.y - a.y) / d, (b.x - a.x) / d);
+    const c = m.add(n.multiplyBy(-d * .22)), out = [];
+    for (let t = 0; t <= 1.0001; t += 1 / 24) out.push(toLL((1 - t) ** 2 * a.x + 2 * (1 - t) * t * c.x + t * t * b.x, (1 - t) ** 2 * a.y + 2 * (1 - t) * t * c.y + t * t * b.y));
+    return out;
+  }
+  function legPoints(i) {
+    const key = resaId + ':' + i; if (legCache[key]) return legCache[key];
+    const st = RESOR[resaId].stopp, prev = st[i - 1], s = st[i];
+    let pts = [];
+    if (HOPP[s.satt]) pts = arc(placeLL(prev.plats), placeLL(s.plats));
+    else {
+      const chain = [prev.plats, ...(s.via || []), s.plats];
+      for (let k = 0; k < chain.length - 1; k++) {
+        const r = RUTTER[`${chain[k]}>${chain[k + 1]}>${s.satt}`];
+        const seg = r ? r.map(([x, y]) => toLL(x * W, y * H)) : [placeLL(chain[k]), placeLL(chain[k + 1])];
+        pts = pts.concat(k ? seg.slice(1) : seg);
+      }
+    }
+    return (legCache[key] = pts);
+  }
+  const inScope = s => resaBok === 'alla' || s.bok === resaBok;
+  const shown = s => s.bok <= maxBook && (resaBok === 'alla' || s.bok <= resaBok);
+  function legStyle(s, scope) {
+    const hop = !!HOPP[s.satt], col = scope ? bookCol(s.bok) : '#f1e6c6';
+    return {pane: 'journey', color: col, weight: hop ? 3 : (scope ? 4 : 3), opacity: scope ? 1 : .6, interactive: false,
+            dashArray: hop ? '0.1 8' : (s.satt === 'flod' || s.satt === 'hav' ? '9 6' : null), lineCap: 'round'};
+  }
+  function drawLeg(i, pts) {
+    const s = RESOR[resaId].stopp[i], scope = inScope(s), group = L.layerGroup();
+    if (!HOPP[s.satt]) L.polyline(pts, {pane: 'journey', color: '#1b140b', weight: scope ? 7 : 5, opacity: scope ? .45 : .18, interactive: false}).addTo(group);
+    L.polyline(pts, legStyle(s, scope)).addTo(group);
+    return group.addTo(jLayer);
+  }
+  function drawMap(limit = Infinity) {
+    jLayer.clearLayers();
+    const st = RESOR[resaId].stopp, seen = {};
+    st.forEach((s, i) => { if (i && i <= limit && shown(s)) drawLeg(i, legPoints(i)); });
+    st.forEach((s, i) => {
+      if (i > limit || !shown(s)) return;
+      const k = seen[s.plats] = (seen[s.plats] || 0) + 1, scope = inScope(s);
+      const icon = L.divIcon({className: '', iconSize: [0, 0], html: `<span class="jstop ${scope ? '' : 'small'} ${i === resaCur ? 'cur' : ''}" style="margin-left:${scope ? (k - 1) * 17 : 0}px"><span class="snum" style="background:${bookCol(s.bok)}">${i + 1}</span></span>`});
+      const m = L.marker(placeLL(s.plats), {icon, pane: 'journey', keyboard: false, zIndexOffset: scope ? 1000 + i : i});
+      m.bindTooltip(`${i + 1}. ${esc(placeById[s.plats].namn)} · bok ${s.bok}`, {direction: 'top', offset: [(k - 1) * 17, -13]});
+      m.on('click', () => selectStop(i));
+      m.addTo(jLayer);
+    });
+  }
+  function drawList() {
+    const st = RESOR[resaId].stopp, books = [...new Set(st.filter(s => s.bok <= maxBook).map(s => s.bok))];
+    if (resaBok !== 'alla' && !books.includes(resaBok)) resaBok = 'alla';
+    resaBooks.innerHTML = ['alla', ...books].map(b => `<button class="chip" data-bok="${b}" aria-pressed="${b === resaBok}">${b === 'alla' ? 'Hela resan' : 'Bok ' + b}</button>`).join('');
+    let html = '', last = null, hidden = 0;
+    st.forEach((s, i) => {
+      if (s.bok > maxBook) { hidden++; return; }
+      if (s.bok !== last) { html += `<li class="bh" data-bh="${s.bok}">Bok ${s.bok}: ${esc(BOOKS[s.bok])}</li>`; last = s.bok; }
+      html += `<li class="${inScope(s) ? '' : 'dim'}"><button data-i="${i}" aria-current="${i === resaCur}"><span class="snum" style="background:${bookCol(s.bok)}">${i + 1}</span><span><span class="nm">${esc(placeById[s.plats].namn)}</span><span class="tx">${esc(s.text)}</span>${i ? `<span class="hw">Dit ${esc(SATT_TXT[s.satt])}</span>` : ''}</span></button></li>`;
+    });
+    if (hidden) html += `<li class="hidden-note resa-note">${hidden} stopp från senare böcker är dolda.</li>`;
+    resaList.innerHTML = html;
+    const c = RESOR[resaId].stopp.filter(s => s.bok <= maxBook).length;
+    document.getElementById('resaSub').textContent = `${c} stopp · bok ${st[0].bok}–${Math.min(maxBook, st[st.length - 1].bok)}`;
+  }
+  function fitScope() {
+    const st = RESOR[resaId].stopp; let b = null;
+    st.forEach((s, i) => { if (!inScope(s) || s.bok > maxBook) return;
+      const pts = i ? legPoints(i) : [placeLL(s.plats)];
+      pts.forEach(p => b ? b.extend(p) : (b = L.latLngBounds(p, p))); });
+    if (b) map.flyToBounds(b.pad(.08), {...fitPad(), maxZoom: 4.5, duration: .7});
+  }
+  function selectStop(i, fly = true) {
+    resaCur = i;
+    resaList.querySelectorAll('[data-i]').forEach(x => x.setAttribute('aria-current', +x.dataset.i === i));
+    const el = resaList.querySelector(`[data-i="${i}"]`); if (el) el.scrollIntoView({block: 'nearest', behavior: 'smooth'});
+    drawMap(playing ? i : Infinity);
+    if (fly) map.flyTo(placeLL(RESOR[resaId].stopp[i].plats), Math.max(map.getZoom(), 3), {duration: .6});
+  }
+  function stopPlay() { playing = false; if (playStep) cancelAnimationFrame(playStep); playStep = null; resaPlay.setAttribute('aria-pressed', 'false'); resaPlay.innerHTML = '&#9654; Spela upp'; }
+  function play() {
+    const st = RESOR[resaId].stopp;
+    const idx = st.map((s, i) => i).filter(i => inScope(st[i]) && st[i].bok <= maxBook);
+    if (!idx.length) return;
+    let pos = idx.indexOf(resaCur); pos = pos < 0 || pos >= idx.length - 1 ? 0 : pos + 1;
+    playing = true; resaPlay.setAttribute('aria-pressed', 'true'); resaPlay.innerHTML = '&#10074;&#10074; Pausa';
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const next = () => {
+      if (!playing) return;
+      if (pos >= idx.length) { stopPlay(); resaCur = -1; drawMap(); return; }
+      const i = idx[pos];
+      resaCur = i - 1; drawMap(i - 1);
+      resaList.querySelectorAll('[data-i]').forEach(x => x.setAttribute('aria-current', +x.dataset.i === i));
+      const li = resaList.querySelector(`[data-i="${i}"]`); if (li) li.scrollIntoView({block: 'nearest', behavior: 'smooth'});
+      if (i === 0) { selectStop(0); pos++; setTimeout(next, 1400); return; }
+      const pts = legPoints(i);
+      map.flyToBounds(L.latLngBounds(pts).pad(.35), {...fitPad(), maxZoom: 4.5, duration: reduce ? 0 : .8});
+      setTimeout(() => {
+        if (!playing) return;
+        const line = L.polyline([pts[0]], legStyle(st[i], true)).addTo(jLayer);
+        const lens = [0]; for (let k = 1; k < pts.length; k++) lens.push(lens[k - 1] + fromLL(pts[k - 1]).distanceTo(fromLL(pts[k])));
+        const total = lens[lens.length - 1], dur = reduce ? 1 : Math.min(2600, 700 + total * 1.1), t0 = performance.now();
+        const step = now => {
+          if (!playing) return;
+          const d = Math.min(1, (now - t0) / dur) * total; let k = 1; while (k < lens.length - 1 && lens[k] < d) k++;
+          const f = (d - lens[k - 1]) / Math.max(1e-6, lens[k] - lens[k - 1]);
+          const a = fromLL(pts[k - 1]), b = fromLL(pts[k]);
+          line.setLatLngs([...pts.slice(0, k), toLL(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f)]);
+          if (d < total) playStep = requestAnimationFrame(step);
+          else { resaCur = i; drawMap(i); pos++; setTimeout(next, 1500); }
+        };
+        playStep = requestAnimationFrame(step);
+      }, reduce ? 0 : 850);
+    };
+    next();
+  }
+  function renderResa() { drawList(); drawMap(); }
+  function openResa(id, bok) {
+    if (!RESOR[id]) return;
+    stopPlay(); resaId = id; resaBok = bok && RESOR[id].stopp.some(s => s.bok === bok) ? bok : 'alla'; resaCur = -1;
+    const c = byId[id];
+    document.getElementById('resaMono').innerHTML = mono(c);
+    document.getElementById('resaTitle').textContent = `${c.namn.split(' ')[0]}s resa`;
+    resaEl.hidden = false; document.body.classList.add('resa-on'); jLayer.addTo(map);
+    renderResa(); fitScope();
+    try { history.replaceState(null, '', '#resa=' + id); } catch (e) {}
+  }
+  function closeResa() {
+    stopPlay(); resaEl.hidden = true; document.body.classList.remove('resa-on'); jLayer.remove(); resaId = null;
+    try { if (location.hash.startsWith('#resa=')) history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  }
+  document.getElementById('closeResa').addEventListener('click', closeResa);
+  resaBooks.addEventListener('click', e => { const b = e.target.closest('[data-bok]'); if (!b) return; stopPlay();
+    resaBok = b.dataset.bok === 'alla' ? 'alla' : +b.dataset.bok; resaCur = -1; renderResa(); fitScope();
+    const h = resaList.querySelector(`[data-bh="${resaBok}"]`); resaList.scrollTop = h ? h.offsetTop - resaList.offsetTop - 4 : 0; });
+  resaList.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; stopPlay(); selectStop(+b.dataset.i); });
+  resaPlay.addEventListener('click', () => playing ? stopPlay() : play());
+  [readTo, readToB].forEach(el => el.addEventListener('change', () => { if (resaId) { stopPlay(); renderResa(); } }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && resaId && lib.hidden && blib.hidden) closeResa(); });
+  if (location.hash.startsWith('#resa=')) setTimeout(() => openResa(location.hash.slice(6)), 300);
 
   const fromHash = () => { const id = location.hash.slice(1); if (markers[id]) go(id); };
   window.addEventListener('hashchange', fromHash);

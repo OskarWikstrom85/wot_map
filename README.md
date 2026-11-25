@@ -61,6 +61,41 @@ python3 scripts/make_tiles.py out/original_med_oknen.png site/tiles 4
 
 `out/` (mellanresultat, ca 500 MB) och `package/` (Leaflet) ingår inte i repot och återskapas av skripten.
 
+## Resor
+
+En karaktärs resa visas på kartan via knappen "Visa …s resa på kartan" i karaktärsbiblioteket,
+eller direkt med `#resa=<id>` i adressen (till exempel `#resa=mat`). Mats resa är förlagan.
+
+**Data** – `data/resor.json`, en post per karaktär (samma id som i `characters.json`):
+
+```json
+"mat": {"stopp": [
+  {"plats": "emonds-field", "bok": 1, "text": "Flyr på Winternight …"},
+  {"plats": "taren-ferry",  "bok": 1, "satt": "land", "text": "Korsar Taren …"},
+  {"plats": "tear",         "bok": 3, "satt": "flod", "via": ["aringill"], "text": "…"}
+]}
+```
+
+- `plats` – id i `locations.csv`. Saknas platsen läggs den till där först (med "Mät koordinat").
+- `bok` – i vilken bok stoppet sker. Böckerna får inte gå bakåt. Stopp efter läsgränsen döljs.
+- `satt` – hur karaktären tar sig dit från föregående stopp (inte på första stoppet):
+  `land` (till fots/häst), `flod` (båt på flod), `hav` (skepp), `ways`, `portalsten`, `portal`.
+  De tre sista är hopp och ritas som prickade bågar.
+- `via` – valfri lista med plats-id som sträckan ska passera, för att styra vägen.
+- `text` – en eller två meningar om vad som händer där.
+
+**Vägar** – sträckor till lands och vatten räknas fram automatiskt längs vägarna och floderna på
+originalkartan (`out/masks_west/roads.npy`, flodmasken) och sparas i `data/rutter.json`:
+
+```bash
+python3 scripts/route_via.py      # räknar sträckor som saknas
+python3 scripts/build_page.py     # stoppar om en plats, ett sätt eller en rutt saknas
+```
+
+**Visning** – varje bok har en egen färg. "Hela resan" visar allt till läsgränsen; väljer man en
+bok visas den i färg och tidigare böcker blekt, senare inte alls. "Spela upp" ritar sträcka för
+sträcka och följer med kameran.
+
 ## Källor
 
 Originalkartan är Westlands-kartan av Adam Whitehead. Texterna om karaktärer och slag är egna sammanfattningar baserade på böckerna, Wheel of Time-wikin, Dragonmount och Reactor/Tor.com. Projektet är för privat bruk.
