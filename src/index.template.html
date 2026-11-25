@@ -130,6 +130,39 @@ body.malad{--sea:#4b4d33}
 .bmark.on{animation:bpulse 1.4s ease-out 3}
 @keyframes bpulse{0%{box-shadow:0 0 0 0 rgb(246 231 184 / .9)}100%{box-shadow:0 0 0 22px rgb(246 231 184 / 0)}}
 
+
+/* Tidslinje: var alla befinner sig, dag för dag */
+.tl{position:fixed;z-index:1001;left:350px;right:70px;bottom:14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:10px 14px 12px}
+.tl[hidden]{display:none}
+.tl-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tl-top .btn{min-height:40px;padding:0 12px}
+.tl-play{min-width:48px;font-size:17px}
+.tl-now{flex:1;min-width:180px;padding:0 6px}
+.tl-date{font:700 18px/1.15 Cinzel,Georgia,serif}
+.tl-mom{font-size:14px;color:var(--muted);min-height:20px}
+.tl-mom b{color:var(--capital);font-weight:700}
+.tl-who button{min-height:36px;padding:0 10px;font-size:14px}
+.tl-track{position:relative;margin-top:10px;padding-top:16px}
+.tl-books{height:6px;margin-top:3px;border-radius:3px;overflow:hidden;display:flex;pointer-events:none}
+.tl-books span{height:100%}
+.tl-ticks{position:absolute;left:0;right:0;top:0;height:14px}
+.tl-ticks button{position:absolute;top:0;width:10px;height:14px;margin-left:-5px;padding:0;border:0;background:transparent;cursor:pointer}
+.tl-ticks button::after{content:"";position:absolute;left:2px;top:3px;width:6px;height:6px;transform:rotate(45deg);background:var(--capital);opacity:.75}
+.tl-ticks button.osaker::after{background:transparent;border:1.5px solid var(--capital)}
+.tl-ticks button:hover::after,.tl-ticks button:focus-visible::after{opacity:1;transform:rotate(45deg) scale(1.5)}
+#tlRange{position:relative;width:100%;margin:0;accent-color:var(--capital);height:20px;background:transparent}
+.tl-ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:2px}
+.tlm{width:28px;height:28px;font-size:11px;box-shadow:0 0 0 2px #f3e9cf,0 2px 5px rgb(0 0 0 / .55);cursor:pointer;transition:opacity .2s}
+.tlwrap{position:absolute;transform:translate(-50%,-50%)}
+.tlwrap.move .tlm{box-shadow:0 0 0 2px #fff8,0 2px 5px rgb(0 0 0 / .55);opacity:.9}
+body.tl-on .leaflet-overlay-pane,body.tl-on .leaflet-marker-pane{opacity:.45}
+@media(max-width:760px){.tl{left:10px;right:10px}}
+@media(max-width:600px){
+  body.tl-on .panel{display:none}
+  .tl{left:0;right:0;bottom:0;border-radius:14px 14px 0 0;padding:8px 10px 12px}
+  .tl-date{font-size:16px}.tl-who{order:5;width:100%}.tl-who button{flex:1}
+  .tl-top{padding-right:50px}#closeTl{position:absolute;top:8px;right:10px}
+}
 /* Resor: en karaktärs väg genom böckerna */
 body.resa-on .panel{display:none}
 .resa{position:fixed;z-index:1000;top:14px;left:14px;width:340px;max-height:calc(100% - 28px);display:flex;flex-direction:column;
@@ -238,6 +271,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
     <button class="btn lib-btn" id="openLib" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>Karaktärer</button>
     <button class="btn lib-btn" id="openBat" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l11 11M15 15l3 3M17 13l-4 4M20 20l-2-2"/><path d="M20 4L9 15M9 15l-3 3M7 13l4 4M4 20l2-2"/></svg>Slag</button>
     <label class="chk"><input type="checkbox" id="showBat" checked> Slag på kartan</label>
+    <button class="btn lib-btn" id="openTl" aria-controls="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Tidslinje</button>
   </div>
   <ul class="list" id="list"></ul>
   <div class="tools">
@@ -253,6 +287,23 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
 </aside>
 
 
+<section class="tl" id="tl" hidden aria-label="Tidslinje">
+  <div class="tl-top">
+    <button class="btn tl-play" id="tlPlay" aria-label="Spela upp" aria-pressed="false">&#9654;</button>
+    <button class="btn" id="tlPrev" aria-label="Föregående händelse">&#9664;&#9664;</button>
+    <button class="btn" id="tlNext" aria-label="Nästa händelse">&#9654;&#9654;</button>
+    <div class="tl-now"><div class="tl-date" id="tlDate"></div><div class="tl-mom" id="tlMom" aria-live="polite"></div></div>
+    <div class="seg tl-who" role="radiogroup" aria-label="Vilka som visas">
+      <button role="radio" data-who="huvud" aria-checked="true">Huvudpersoner</button>
+      <button role="radio" data-who="alla" aria-checked="false">Alla</button>
+      <button role="radio" data-who="skuggan" aria-checked="false">Skuggan</button>
+    </div>
+    <button class="x" id="closeTl" aria-label="Stäng tidslinjen">&times;</button>
+  </div>
+  <div class="tl-track"><div class="tl-ticks" id="tlTicks"></div>
+    <input type="range" id="tlRange" min="0" max="100" step="1" aria-label="Datum"><div class="tl-books" id="tlBooks" aria-hidden="true"></div></div>
+  <div class="tl-ends"><span id="tlStart"></span><span id="tlEnd"></span></div>
+</section>
 <section class="resa" id="resa" hidden aria-labelledby="resaTitle">
   <div class="resa-head"><span id="resaMono"></span><div><h2 id="resaTitle"></h2><p class="sub" id="resaSub"></p></div>
     <button class="x" id="closeResa" aria-label="Stäng resan">&times;</button></div>
@@ -321,6 +372,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
 <script type="application/json" id="locations">/*LOCATIONS*/</script>
 <script type="application/json" id="resor">/*RESOR*/</script>
 <script type="application/json" id="rutter">/*RUTTER*/</script>
+<script type="application/json" id="tidslinje">/*TIDSLINJE*/</script>
 <script type="application/json" id="nations">/*NATIONS*/</script>
 <script type="application/json" id="characters">/*CHARACTERS*/</script>
 <script type="application/json" id="battles">/*BATTLES*/</script>
@@ -377,7 +429,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
     if (!show && map.hasLayer(DETAILS)) DETAILS.remove();
   }
   namesBox.addEventListener('change', () => { try { localStorage.setItem('wot-names', namesBox.checked ? '1' : '0'); } catch (e) {} syncLabels(); });
-  const segBtns = document.querySelectorAll('.seg button');
+  const segBtns = document.querySelectorAll('[data-layer]');
   function setLayer(name) {
     if (name === current) return;
     LAYERS[current].remove(); LAYERS[name].addTo(map); current = name;
@@ -489,6 +541,10 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
   const mono = (c, cls = '') => `<span class="mono ${cls}" style="background:${c.farg}" aria-hidden="true">${esc(initials(c.namn))}</span>`;
   readTo.innerHTML = BOOKS.slice(1).map((b, i) => `<option value="${i + 1}">Bok ${i + 1}: ${esc(b)}</option>`).join('');
   let maxBook = 14, group = 'Alla', openId = null, lastFocus = null;
+  // Tidslinjen: dag 0 = 1 jan 998 (kalendern i data/resor.json: ÅÅÅÅ-MM-DD med NE-år)
+  const DAY0 = Date.UTC(998, 0, 1) / 864e5;
+  const dayOf = iso => { const [y, m, d] = iso.split('-').map(Number); const t = new Date(0); t.setUTCFullYear(y, m - 1, d); return t.getTime() / 864e5 - DAY0; };
+  const TL = {on: false, day: 0};
   try { const v = +localStorage.getItem('wot-readto'); if (v >= 1 && v <= 14) maxBook = v; } catch (e) {}
   readTo.value = maxBook;
   const groups = ['Alla', ...[...new Set(chars.flatMap(c => c.grupper))].sort((a, b) => a.localeCompare(b, 'sv'))];
@@ -604,7 +660,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
   map.on('zoomend', sizeBattles); sizeBattles();
   function syncBattleMarkers() {
     for (const b of battles) {
-      const on = showBat.checked && bVisible(b);
+      const on = showBat.checked && bVisible(b) && (!TL.on || (b.dag && dayOf(b.dag) <= TL.day));
       if (on && !map.hasLayer(bMarkers[b.id])) bMarkers[b.id].addTo(map);
       if (!on && map.hasLayer(bMarkers[b.id])) { bMarkers[b.id].remove(); bAreas[b.id].remove(); }
     }
@@ -773,9 +829,10 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
     for (let t = 0; t <= 1.0001; t += 1 / 24) out.push(toLL((1 - t) ** 2 * a.x + 2 * (1 - t) * t * c.x + t * t * b.x, (1 - t) ** 2 * a.y + 2 * (1 - t) * t * c.y + t * t * b.y));
     return out;
   }
-  function legPoints(i) {
-    const key = resaId + ':' + i; if (legCache[key]) return legCache[key];
-    const st = RESOR[resaId].stopp, prev = st[i - 1], s = st[i];
+  const legPoints = i => legPts(resaId, i);
+  function legPts(cid, i) {
+    const key = cid + ':' + i; if (legCache[key]) return legCache[key];
+    const st = RESOR[cid].stopp, prev = st[i - 1], s = st[i];
     let pts = [];
     if (HOPP[s.satt]) pts = arc(placeLL(prev.plats), placeLL(s.plats));
     else {
@@ -884,6 +941,7 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
   function renderResa() { drawList(); drawMap(); }
   function openResa(id, bok) {
     if (!RESOR[id]) return;
+    if (TL.on) closeTl();
     stopPlay(); resaId = id; resaBok = bok && RESOR[id].stopp.some(s => s.bok === bok) ? bok : 'alla'; resaCur = -1;
     const c = byId[id];
     document.getElementById('resaMono').innerHTML = mono(c);
@@ -906,6 +964,149 @@ body.resa-on .leaflet-overlay-pane,body.resa-on .leaflet-battles-pane,body.resa-
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && resaId && lib.hidden && blib.hidden) closeResa(); });
   if (location.hash.startsWith('#resa=')) setTimeout(() => openResa(location.hash.slice(6)), 300);
   addEventListener('hashchange', () => { const h = location.hash; if (h.startsWith('#resa=') && h.slice(6) !== resaId) openResa(h.slice(6)); });
+
+
+  // ---------- Tidslinje: var alla befinner sig, dag för dag ----------
+  // Varje resestopp har ett datum då karaktären kommer dit. Mellan två stopp står karaktären kvar tills
+  // den måste ge sig av (restid efter sträckans längd och färdsätt) och rör sig sedan längs rutten.
+  const TLD = JSON.parse(document.getElementById('tidslinje').textContent);
+  const MONTHS = ['Taisham', 'Jumara', 'Saban', 'Aine', 'Adar', 'Saven', 'Amadaine', 'Tammaz', 'Maigdhal', 'Choren', 'Shaldine', 'Nesan', 'Danu'];
+  const SPEED = {land: 45, flod: 90, hav: 180};             // källpixlar per dag (≈ 25, 50, 100 miles)
+  const HUVUD = ['rand', 'mat', 'perrin', 'egwene', 'nynaeve', 'elayne', 'moiraine', 'lan', 'min', 'aviendha', 'faile', 'thom', 'loial'];
+  const tlEl = document.getElementById('tl'), tlRange = document.getElementById('tlRange'), tlPlay = document.getElementById('tlPlay');
+  const T0 = dayOf(TLD.start), T1 = dayOf(TLD.slut);
+  const tlLayer = L.layerGroup();
+  map.createPane('timeline'); map.getPane('timeline').style.zIndex = 660;
+  let tlWho = 'huvud', tlTimer = null, tlMarkers = {};
+  function farede(day) {
+    const t = new Date((DAY0 + day) * 864e5), gy = t.getUTCFullYear(), m = t.getUTCMonth(), d = t.getUTCDate();
+    const doy = Math.round((Date.UTC(gy, m, d) - Date.UTC(gy, 0, 1)) / 864e5);
+    let ne = gy, o = doy + 10;
+    if (m === 11 && d >= 22) { ne = gy + 1; o = doy - 355; }
+    if (o === 181) return `Sunday (midsommar), ${ne} NE`;
+    if (o > 181) o--;
+    return `${MONTHS[Math.min(12, Math.floor(o / 28))]} ${o - Math.min(12, Math.floor(o / 28)) * 28 + 1}, ${ne} NE`;
+  }
+  const tlMax = () => Math.min(T1, dayOf(TLD.bocker[maxBook]));
+  const legLen = pts => { let L = 0; for (let k = 1; k < pts.length; k++) L += fromLL(pts[k - 1]).distanceTo(fromLL(pts[k])); return L; };
+  function along(pts, f) {
+    const P = pts.map(p => fromLL(p)), seg = []; let tot = 0;
+    for (let k = 1; k < P.length; k++) { seg.push(P[k - 1].distanceTo(P[k])); tot += seg[k - 1]; }
+    let d = f * tot, k = 0; while (k < seg.length - 1 && d > seg[k]) { d -= seg[k]; k++; }
+    const a = P[k], b = P[k + 1] || a, g = seg[k] ? d / seg[k] : 0;
+    return toLL(a.x + (b.x - a.x) * g, a.y + (b.y - a.y) * g);
+  }
+  // Var befinner sig karaktären cid dag t? → {ll, i (stopp), moving: nästa stopp | null} eller null
+  function whereAt(cid, t) {
+    const st = RESOR[cid].stopp, idx = [];
+    st.forEach((s, i) => { if (s.datum && s.bok <= maxBook) idx.push(i); });
+    if (!idx.length || t < dayOf(st[idx[0]].datum)) return null;
+    let k = 0; while (k < idx.length - 1 && dayOf(st[idx[k + 1]].datum) <= t) k++;
+    const i = idx[k], s = st[i], nxt = idx[k + 1];
+    if (nxt === undefined) return s.borta && t >= dayOf(s.borta) ? null : {ll: placeLL(s.plats), i, moving: null};
+    const n = st[nxt], arr = dayOf(n.datum);
+    if (s.borta && t >= dayOf(s.borta)) return null;
+    if (HOPP[n.satt] || nxt !== i + 1) return {ll: placeLL(s.plats), i, moving: null};
+    const pts = legPts(cid, nxt), need = Math.max(1, legLen(pts) / (SPEED[n.satt] || 45));
+    const dep = Math.max(dayOf(s.datum), arr - need);
+    if (t <= dep) return {ll: placeLL(s.plats), i, moving: null};
+    return {ll: along(pts, Math.min(1, (t - dep) / (arr - dep))), i, moving: nxt};
+  }
+  const tlWhoOk = c => tlWho === 'alla' || (tlWho === 'huvud' ? HUVUD.includes(c.id) : c.grupper.includes('Skuggan'));
+  function drawTl() {
+    const t = TL.day, groups = {};
+    for (const cid of Object.keys(RESOR)) {
+      if (cid.startsWith('_') || !byId[cid]) continue;
+      const c = byId[cid], w = tlWhoOk(c) ? whereAt(cid, t) : null;
+      let m = tlMarkers[cid];
+      if (!w) { if (m) { m.remove(); delete tlMarkers[cid]; } continue; }
+      const key = w.moving === null ? RESOR[cid].stopp[w.i].plats : cid;
+      (groups[key] = groups[key] || []).push(cid);
+      if (!m) {
+        m = tlMarkers[cid] = L.marker(w.ll, {pane: 'timeline', keyboard: false,
+          icon: L.divIcon({className: '', iconSize: [0, 0], html: `<span class="tlwrap">${mono(c, 'tlm')}</span>`})});
+        m.bindTooltip('', {direction: 'top', offset: [0, -16]});
+        m.on('click', () => openLib(cid));
+        m.addTo(tlLayer);
+      }
+      m.setLatLng(w.ll);
+      const s = RESOR[cid].stopp[w.i], here = placeById[s.plats].namn;
+      const txt = w.moving !== null ? `på väg från ${here} till ${placeById[RESOR[cid].stopp[w.moving].plats].namn}` : `i ${here}`;
+      m.setTooltipContent(`<b>${esc(c.namn)}</b> ${esc(txt)}${w.moving === null ? `<br><span style="font-size:13px">${esc(s.text)}</span>` : ''}`);
+      m._moving = w.moving !== null;
+    }
+    // flera på samma plats: lägg dem i en liten ring runt platsen
+    for (const ids of Object.values(groups)) ids.forEach((cid, k) => {
+      const el = tlMarkers[cid].getElement(); if (!el) return;
+      const n = ids.length, r = n > 1 ? Math.max(17, n * 30 / (2 * Math.PI)) : 0, a = -Math.PI / 2 + k * 2 * Math.PI / n;
+      const w = el.firstElementChild; w.style.marginLeft = `${Math.round(Math.cos(a) * r)}px`; w.style.marginTop = `${Math.round(Math.sin(a) * r)}px`;
+      w.classList.toggle('move', !!tlMarkers[cid]._moving);
+    });
+    syncBattleMarkers();
+    // datum, närmaste händelse och bok
+    document.getElementById('tlDate').textContent = farede(Math.floor(t));
+    const vis = TLD.ogonblick.filter(o => o.bok <= maxBook);
+    const near = vis.filter(o => Math.abs(dayOf(o.datum) - t) <= 3).sort((a, b) => Math.abs(dayOf(a.datum) - t) - Math.abs(dayOf(b.datum) - t))[0];
+    const bok = +(Object.entries(TLD.bocker).find(([b, end]) => +b <= maxBook && dayOf(end) >= t) || [maxBook])[0];
+    document.getElementById('tlMom').innerHTML = `Bok ${bok}: ${esc(BOOKS[bok])}${near ? ` · <b>${esc(near.namn)}</b>${near.osaker ? ' (ungefärligt datum)' : ''}` : ''}`;
+  }
+  function setDay(t, save = true) {
+    TL.day = Math.max(T0, Math.min(tlMax(), t)); tlRange.value = Math.round(TL.day); drawTl();
+    if (save) { try { localStorage.setItem('wot-tl', Math.round(TL.day)); history.replaceState(null, '', '#tid=' + Math.round(TL.day)); } catch (e) {} }
+  }
+  function buildTrack() {
+    const max = tlMax(), span = max - T0 || 1;
+    tlRange.min = T0; tlRange.max = max;
+    document.getElementById('tlTicks').innerHTML = TLD.ogonblick.filter(o => o.bok <= maxBook && dayOf(o.datum) <= max).map(o =>
+      `<button class="${o.osaker ? 'osaker' : ''}" style="left:${(dayOf(o.datum) - T0) / span * 100}%" data-day="${dayOf(o.datum)}" title="${esc(o.namn)} (bok ${o.bok})" aria-label="${esc(o.namn)}"></button>`).join('');
+    let prev = T0, bands = '';
+    for (let b = 1; b <= maxBook; b++) { const end = Math.min(max, dayOf(TLD.bocker[b])); if (end <= prev) continue;
+      bands += `<span style="width:${(end - prev) / span * 100}%;background:${bookCol(b)}" title="Bok ${b}"></span>`; prev = end; }
+    document.getElementById('tlBooks').innerHTML = bands;
+    document.getElementById('tlStart').textContent = farede(T0); document.getElementById('tlEnd').textContent = farede(max);
+  }
+  function tlStop() { if (tlTimer) cancelAnimationFrame(tlTimer); tlTimer = null; tlPlay.innerHTML = '&#9654;'; tlPlay.setAttribute('aria-pressed', 'false'); tlPlay.setAttribute('aria-label', 'Spela upp'); }
+  function tlStart() {
+    if (TL.day >= tlMax()) setDay(T0);
+    tlPlay.innerHTML = '&#10074;&#10074;'; tlPlay.setAttribute('aria-pressed', 'true'); tlPlay.setAttribute('aria-label', 'Pausa');
+    let last = performance.now();
+    const step = now => {
+      const dt = Math.min(.1, (now - last) / 1000); last = now;
+      const near = TLD.ogonblick.some(o => o.bok <= maxBook && Math.abs(dayOf(o.datum) - TL.day) < 1.5);
+      TL.day = Math.min(tlMax(), TL.day + dt * (near ? 2 : 8));          // 8 dagar/s, långsammare vid händelser
+      tlRange.value = Math.round(TL.day); drawTl();
+      if (TL.day >= tlMax()) { tlStop(); setDay(TL.day); return; }
+      tlTimer = requestAnimationFrame(step);
+    };
+    tlTimer = requestAnimationFrame(step);
+  }
+  function openTl(day) {
+    if (resaId) closeResa();
+    TL.on = true; tlEl.hidden = false; document.body.classList.add('tl-on'); tlLayer.addTo(map);
+    buildTrack();
+    let d = day; if (d === undefined) { try { d = +localStorage.getItem('wot-tl') || T0; } catch (e) { d = T0; } }
+    setDay(d);
+  }
+  function closeTl() {
+    tlStop(); TL.on = false; tlEl.hidden = true; document.body.classList.remove('tl-on'); tlLayer.clearLayers(); tlLayer.remove(); tlMarkers = {};
+    syncBattleMarkers();
+    try { if (location.hash.startsWith('#tid=')) history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  }
+  document.getElementById('openTl').addEventListener('click', () => TL.on ? closeTl() : openTl());
+  document.getElementById('closeTl').addEventListener('click', closeTl);
+  tlRange.addEventListener('input', () => { tlStop(); setDay(+tlRange.value); });
+  tlPlay.addEventListener('click', () => tlTimer ? tlStop() : tlStart());
+  const jump = dir => { tlStop(); const ds = TLD.ogonblick.filter(o => o.bok <= maxBook).map(o => dayOf(o.datum)).filter(d => d <= tlMax());
+    const t = Math.round(TL.day), d = dir > 0 ? ds.find(x => x > t) : [...ds].reverse().find(x => x < t); if (d !== undefined) setDay(d); };
+  document.getElementById('tlPrev').addEventListener('click', () => jump(-1));
+  document.getElementById('tlNext').addEventListener('click', () => jump(1));
+  document.getElementById('tlTicks').addEventListener('click', e => { const b = e.target.closest('[data-day]'); if (b) { tlStop(); setDay(+b.dataset.day); } });
+  tlEl.querySelectorAll('[data-who]').forEach(b => b.addEventListener('click', () => {
+    tlWho = b.dataset.who; tlEl.querySelectorAll('[data-who]').forEach(x => x.setAttribute('aria-checked', x === b)); drawTl(); }));
+  map.on('zoomend', () => { if (TL.on) drawTl(); });
+  [readTo, readToB].forEach(el => el.addEventListener('change', () => { if (TL.on) { tlStop(); buildTrack(); setDay(TL.day); } }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && TL.on && lib.hidden && blib.hidden) closeTl(); });
+  if (location.hash.startsWith('#tid=')) setTimeout(() => openTl(+location.hash.slice(5)), 300);
 
   const fromHash = () => { const id = location.hash.slice(1); if (markers[id]) go(id); };
   window.addEventListener('hashchange', fromHash);

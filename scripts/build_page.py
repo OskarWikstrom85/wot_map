@@ -55,6 +55,7 @@ for _rid, _r in _resor.items():
         if _k and _s.get('satt') not in _SATT: _errs.append(f"resa {_rid} stopp {_k + 1}: okänt sätt {_s.get('satt')}")
         for _v in _s.get('via', []):
             if _v not in _places: _errs.append(f"resa {_rid} stopp {_k + 1}: okänd via-plats {_v}")
+        if _s['bok'] >= 1 and 'datum' not in _s: _errs.append(f"resa {_rid} stopp {_k + 1}: datum saknas")
         if _k and _s.get('satt') not in _HOPP:
             _ch = [_st[_k - 1]['plats']] + _s.get('via', []) + [_s['plats']]
             for _a, _b in zip(_ch, _ch[1:]):
@@ -64,6 +65,6 @@ for _rid, _r in _resor.items():
 if _errs:
     raise SystemExit('Länkfel:\n  ' + '\n  '.join(_errs))
 battles = _j.dumps(_bat, ensure_ascii=False).replace('</', '<\\/')
-out = tpl.replace('/*LEAFLET_CSS*/', css).replace('/*LOCATIONS*/', data).replace('/*NATIONS*/', nations).replace('/*CHARACTERS*/', (root/'data/characters.json').read_text().replace('</', '<\\/')).replace('/*BATTLES*/', battles).replace('/*RESOR*/', _j.dumps(_resor, ensure_ascii=False).replace('</', '<\\/')).replace('/*RUTTER*/', _j.dumps(_used, separators=(',', ':')))
+out = tpl.replace('/*LEAFLET_CSS*/', css).replace('/*LOCATIONS*/', data).replace('/*NATIONS*/', nations).replace('/*CHARACTERS*/', (root/'data/characters.json').read_text().replace('</', '<\\/')).replace('/*BATTLES*/', battles).replace('/*RESOR*/', _j.dumps(_resor, ensure_ascii=False).replace('</', '<\\/')).replace('/*RUTTER*/', _j.dumps(_used, separators=(',', ':'))).replace('/*TIDSLINJE*/', (root/'data/tidslinje.json').read_text())
 (root/'site/index.html').write_text(out)
 print(f"{len(rows)} platser, {len(out)//1024} KB")

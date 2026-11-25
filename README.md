@@ -96,6 +96,24 @@ python3 scripts/build_page.py     # stoppar om en plats, ett sätt eller en rutt
 bok visas den i färg och tidigare böcker blekt, senare inte alls. "Spela upp" ritar sträcka för
 sträcka och följer med kameran.
 
+## Tidslinje
+
+Knappen "Tidslinje" visar var alla karaktärer befinner sig dag för dag, från Winternight 998 NE
+till Sista striden. Reglaget går dag för dag; romberna ovanför är nyckelögonblick (ihåliga =
+ungefärligt datum) och färgremsan visar böckerna. Läsgränsen begränsar hur långt reglaget går.
+Länk direkt till en dag: `#tid=<dag>` (dag 0 = 1 jan 998).
+
+- Varje stopp i `data/resor.json` har `datum` (ÅÅÅÅ-MM-DD med NE-år, Winternight = 998-03-23,
+  Taisham 1 = 22 dec) – dagen karaktären kommer dit. `osaker: true` markerar uppskattade datum
+  och `borta` ett datum då karaktären lämnar kartan (död eller försvunnen). Stopp i bok 0 saknar datum.
+- Mellan två stopp står karaktären kvar tills den måste ge sig av (restid efter rutten: ungefär
+  25 miles/dag till lands, 50 med båt på flod, 100 till sjöss) och rör sig sedan längs rutten.
+  Hopp (ways, portalsten, portal) sker samma dag som ankomsten.
+- `data/tidslinje.json`: nyckelögonblick, när varje bok slutar, start och slut.
+- Slagen får `dag` i `data/battles.json` och visas på kartan först från den dagen.
+- Datumen bygger på wikins årssidor (998–1000 NE) fram till Knife of Dreams; bok 12–14 saknar
+  kronologi och är uppskattade. `scripts/data_tools/add_datum.py` sätter alla datum.
+
 ## Källor
 
 Originalkartan är Westlands-kartan av Adam Whitehead. Texterna om karaktärer och slag är egna sammanfattningar baserade på böckerna, Wheel of Time-wikin, Dragonmount och Reactor/Tor.com. Projektet är för privat bruk.

@@ -156,7 +156,8 @@
     "bok": 14,
     "text": "Mat är inte längre bunden till hornet efter att ha dött och återupplivats i Rhuidean. I Tarmon Gai'don blåser i stället pojken Olver i det, och Hjältarna rider igen. Birgitte är bland dem."
    }
-  ]
+  ],
+  "dag": "998-11-21"
  },
  {
   "id": "two-rivers",
@@ -253,7 +254,8 @@
    "video": "slag/two-rivers.mp4",
    "namn": "slaget-om-two-rivers",
    "minuter": 7
-  }
+  },
+  "dag": "999-06-30"
  },
  {
   "id": "cairhien",
@@ -345,7 +347,8 @@
    "video": "slag/cairhien.mp4",
    "namn": "andra-slaget-om-cairhien",
    "minuter": 3
-  }
+  },
+  "dag": "999-09-10"
  },
  {
   "id": "dumais-wells",
@@ -434,7 +437,8 @@
     "bok": 14,
     "text": "Taim, som ledde Asha'man vid Dumai's Wells, visar sig vara Darkfriend. I Tarmon Gai'don strider han för Skuggan som M'Hael och dödas av Egwene."
    }
-  ]
+  ],
+  "dag": "1000-01-01"
  },
  {
   "id": "stone-of-tear",
@@ -521,7 +525,8 @@
     "bok": 14,
     "text": "Callandor visar sig ha en brist: kvinnor kan styra en man genom svärdet. I Shayol Ghul vänder Rand, Moiraine och Nynaeve den bristen mot Moridin."
    }
-  ]
+  ],
+  "dag": "999-05-19"
  },
  {
   "id": "malden",
@@ -594,7 +599,8 @@
     "bok": 14,
     "text": "Perrins här, med många före detta gai'shain, strider i Braem Wood i början av Tarmon Gai'don."
    }
-  ]
+  ],
+  "dag": "1000-04-10"
  },
  {
   "id": "caemlyn",
@@ -664,7 +670,9 @@
     "bok": 14,
     "text": "Bara några månader senare väller trollocs in genom stadens Waygate i början av Tarmon Gai'don, och Caemlyn brinner."
    }
-  ]
+  ],
+  "dag": "1000-04-20",
+  "dag_osaker": true
  },
  {
   "id": "tar-valon",
@@ -744,7 +752,9 @@
     "bok": 14,
     "text": "Egwene leder Aes Sedai in i Tarmon Gai'don. Hon upptäcker Flame of Tar Valon, motvävnaden mot balefire, och offrar sig för att besegra Taim och Sharas kanaliserare."
    }
-  ]
+  ],
+  "dag": "1000-05-21",
+  "dag_osaker": true
  },
  {
   "id": "maradon",
@@ -817,7 +827,9 @@
     "bok": 14,
     "text": "I Tarmon Gai'don leder Ituralde fronten vid Shayol Ghul. Han och de andra stora fältherrarna visar sig ha stått under Graendals tvång."
    }
-  ]
+  ],
+  "dag": "1000-06-05",
+  "dag_osaker": true
  },
  {
   "id": "caemlyn-fall",
@@ -889,7 +901,9 @@
     "titel": "A Memory of Light, kapitelsammanfattningar (Dragonmount)",
     "url": "https://dragonmount.com/Books/Memory_of_Light/chapter-recaps/"
    }
-  ]
+  ],
+  "dag": "1000-07-05",
+  "dag_osaker": true
  },
  {
   "id": "merrilor",
@@ -969,7 +983,9 @@
     "titel": "Memory of Light, kapitel 40 och 43 (Thonky)",
     "url": "https://www.thonky.com/wot/memory-of-light-chapter-43"
    }
-  ]
+  ],
+  "dag": "1000-07-18",
+  "dag_osaker": true
  },
  {
   "id": "shayol-ghul",
@@ -1042,6 +1058,8 @@
     "titel": "Tarmon Gai'don (Wheel of Time Wiki)",
     "url": "https://wot.fandom.com/wiki/Tarmon_Gai%27don"
    }
-  ]
+  ],
+  "dag": "1000-07-15",
+  "dag_osaker": true
  }
 ]

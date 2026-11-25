@@ -1,0 +1,263 @@
+{
+ "_om": "Tidslinjens nyckelögonblick och när varje bok slutar (samma datumformat som resorna). osaker = uppskattat.",
+ "start": "998-03-20",
+ "slut": "1000-07-24",
+ "bocker": {
+  "1": "998-05-18",
+  "2": "998-11-26",
+  "3": "999-05-20",
+  "4": "999-07-01",
+  "5": "999-09-21",
+  "6": "1000-01-01",
+  "7": "1000-01-11",
+  "8": "1000-02-15",
+  "9": "1000-03-08",
+  "10": "1000-03-30",
+  "11": "1000-04-27",
+  "12": "1000-06-01",
+  "13": "1000-07-04",
+  "14": "1000-07-24"
+ },
+ "ogonblick": [
+  {
+   "datum": "998-03-23",
+   "namn": "Winternight",
+   "bok": 1
+  },
+  {
+   "datum": "998-04-03",
+   "namn": "Shadar Logoth",
+   "bok": 1
+  },
+  {
+   "datum": "998-04-16",
+   "namn": "Thom offrar sig i Whitebridge",
+   "bok": 1
+  },
+  {
+   "datum": "998-05-05",
+   "namn": "Rand möter Elayne och Morgase",
+   "bok": 1
+  },
+  {
+   "datum": "998-05-09",
+   "namn": "Eye of the World",
+   "bok": 1
+  },
+  {
+   "datum": "998-06-09",
+   "namn": "Fal Dara anfalls, hornet stjäls",
+   "bok": 2
+  },
+  {
+   "datum": "998-06-17",
+   "namn": "Rand genom portalstenen",
+   "bok": 2
+  },
+  {
+   "datum": "998-06-25",
+   "namn": "Rand i Cairhien",
+   "bok": 2
+  },
+  {
+   "datum": "998-09-24",
+   "namn": "Egwene blir damane i Falme",
+   "bok": 2
+  },
+  {
+   "datum": "998-11-21",
+   "namn": "Slaget vid Falme",
+   "bok": 2
+  },
+  {
+   "datum": "999-03-13",
+   "namn": "Rand ger sig av ensam",
+   "bok": 3
+  },
+  {
+   "datum": "999-04-08",
+   "namn": "Mat helas i Tar Valon",
+   "bok": 3
+  },
+  {
+   "datum": "999-04-19",
+   "namn": "Perrin befriar Gaul i Remen",
+   "bok": 3
+  },
+  {
+   "datum": "999-05-19",
+   "namn": "Stenen i Tear faller",
+   "bok": 3
+  },
+  {
+   "datum": "999-06-08",
+   "namn": "Rand går in i Rhuidean",
+   "bok": 4
+  },
+  {
+   "datum": "999-06-24",
+   "namn": "Siuan avsätts",
+   "bok": 4
+  },
+  {
+   "datum": "999-06-30",
+   "namn": "Two Rivers och Tanchico",
+   "bok": 4
+  },
+  {
+   "datum": "999-07-01",
+   "namn": "Klanhövdingarna i Alcair Dal",
+   "bok": 4
+  },
+  {
+   "datum": "999-08-13",
+   "namn": "Aiel lämnar Rhuidean",
+   "bok": 5
+  },
+  {
+   "datum": "999-09-01",
+   "namn": "Rebellerna samlas i Salidar",
+   "bok": 5
+  },
+  {
+   "datum": "999-09-10",
+   "namn": "Andra slaget om Cairhien",
+   "bok": 5
+  },
+  {
+   "datum": "999-09-21",
+   "namn": "Rahvin dör, Moiraine försvinner",
+   "bok": 5
+  },
+  {
+   "datum": "999-10-28",
+   "namn": "Svarta tornet grundas",
+   "bok": 6
+  },
+  {
+   "datum": "999-11-24",
+   "namn": "Egwene blir Amyrlin",
+   "bok": 6
+  },
+  {
+   "datum": "999-12-15",
+   "namn": "Rand tillfångatas",
+   "bok": 6
+  },
+  {
+   "datum": "1000-01-01",
+   "namn": "Dumai's Wells",
+   "bok": 6
+  },
+  {
+   "datum": "1000-01-09",
+   "namn": "Seanchan tar Ebou Dar",
+   "bok": 7
+  },
+  {
+   "datum": "1000-01-11",
+   "namn": "Illian intas, Sammael dör",
+   "bok": 7
+  },
+  {
+   "datum": "1000-02-05",
+   "namn": "Rand mot Seanchan med Callandor",
+   "bok": 8
+  },
+  {
+   "datum": "1000-02-08",
+   "namn": "Elayne gör anspråk på tronen",
+   "bok": 8
+  },
+  {
+   "datum": "1000-02-15",
+   "namn": "Faile rövas bort",
+   "bok": 8
+  },
+  {
+   "datum": "1000-03-02",
+   "namn": "Mat rövar bort Tuon",
+   "bok": 9
+  },
+  {
+   "datum": "1000-03-08",
+   "namn": "Saidin renas",
+   "bok": 9
+  },
+  {
+   "datum": "1000-03-30",
+   "namn": "Egwene tillfångatas i Tar Valon",
+   "bok": 10
+  },
+  {
+   "datum": "1000-04-09",
+   "namn": "Rand förlorar handen",
+   "bok": 11
+  },
+  {
+   "datum": "1000-04-10",
+   "namn": "Slaget vid Malden",
+   "bok": 11
+  },
+  {
+   "datum": "1000-05-21",
+   "namn": "Seanchans räd mot Vita tornet",
+   "bok": 12,
+   "osaker": true
+  },
+  {
+   "datum": "1000-05-25",
+   "namn": "Natrin's Barrow",
+   "bok": 12,
+   "osaker": true
+  },
+  {
+   "datum": "1000-06-01",
+   "namn": "Rand på Dragonmount",
+   "bok": 12,
+   "osaker": true
+  },
+  {
+   "datum": "1000-06-05",
+   "namn": "Maradon",
+   "bok": 13,
+   "osaker": true
+  },
+  {
+   "datum": "1000-07-01",
+   "namn": "Tower of Ghenjei",
+   "bok": 13,
+   "osaker": true
+  },
+  {
+   "datum": "1000-07-03",
+   "namn": "Lan i Tarwin's Gap",
+   "bok": 13,
+   "osaker": true
+  },
+  {
+   "datum": "1000-07-05",
+   "namn": "Caemlyn faller",
+   "bok": 14,
+   "osaker": true
+  },
+  {
+   "datum": "1000-07-10",
+   "namn": "Mötet vid Merrilor",
+   "bok": 14,
+   "osaker": true
+  },
+  {
+   "datum": "1000-07-13",
+   "namn": "Rand går in i Shayol Ghul",
+   "bok": 14,
+   "osaker": true
+  },
+  {
+   "datum": "1000-07-18",
+   "namn": "Slaget vid Merrilor",
+   "bok": 14,
+   "osaker": true
+  }
+ ]
+}
