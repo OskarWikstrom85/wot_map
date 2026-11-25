@@ -144,6 +144,58 @@
    {
     "id": "perrin",
     "text": "barndomsvän"
+   },
+   {
+    "id": "ishamael",
+    "text": "ärkefiende, Ba'alzamon i hans drömmar"
+   },
+   {
+    "id": "lanfear",
+    "text": "besatt av honom"
+   },
+   {
+    "id": "demandred",
+    "text": "Förlorad som hatar honom"
+   },
+   {
+    "id": "rahvin",
+    "text": "dödade honom med balefire"
+   },
+   {
+    "id": "sammael",
+    "text": "fiende som dog i Shadar Logoth"
+   },
+   {
+    "id": "fain",
+    "text": "sårade honom med dolken från Shadar Logoth"
+   },
+   {
+    "id": "taim",
+    "text": "hans M'Hael, som förrådde honom"
+   },
+   {
+    "id": "bashere",
+    "text": "trogen general"
+   },
+   {
+    "id": "ituralde",
+    "text": "general som svor sig till honom"
+   },
+   {
+    "id": "rhuarc",
+    "text": "klanhövding som följer honom"
+   },
+   {
+    "id": "elaida",
+    "text": "lät röva bort honom"
+   },
+   {
+    "id": "cadsuane",
+    "text": "hans hårda rådgivare"
+   },
+   {
+    "id": "berelain",
+    "text": "hans förvaltare i Cairhien"
    }
   ]
  },
@@ -245,6 +297,22 @@
    {
     "id": "perrin",
     "text": "barndomsvän"
+   },
+   {
+    "id": "taim",
+    "text": "dödade henne i Sista striden"
+   },
+   {
+    "id": "bryne",
+    "text": "general för hennes här"
+   },
+   {
+    "id": "elaida",
+    "text": "Amyrlin hon satte sig emot"
+   },
+   {
+    "id": "cadsuane",
+    "text": "efterträder henne som Amyrlin"
    }
   ]
  },
@@ -345,6 +413,14 @@
    {
     "id": "tuon",
     "text": "hustru"
+   },
+   {
+    "id": "fain",
+    "text": "gav honom dolken från Shadar Logoth, dödade honom till sist"
+   },
+   {
+    "id": "talmanes",
+    "text": "närmaste man i Bandet"
    }
   ]
  },
@@ -450,6 +526,26 @@
    {
     "id": "verin",
     "text": "hjälpte honom i Two Rivers"
+   },
+   {
+    "id": "lanfear",
+    "text": "försökte tvinga honom, han dödade henne"
+   },
+   {
+    "id": "graendal",
+    "text": "skickade Slayer mot honom"
+   },
+   {
+    "id": "fain",
+    "text": "Ordeith, fiende i Two Rivers"
+   },
+   {
+    "id": "bashere",
+    "text": "svärfar"
+   },
+   {
+    "id": "berelain",
+    "text": "uppvaktade honom"
    }
   ]
  },
@@ -531,6 +627,14 @@
    {
     "id": "birgitte",
     "text": "vän"
+   },
+   {
+    "id": "talmanes",
+    "text": "helade honom"
+   },
+   {
+    "id": "logain",
+    "text": "helade honom från stillning"
    }
   ]
  },
@@ -618,6 +722,10 @@
    {
     "id": "mat",
     "text": "räddade henne"
+   },
+   {
+    "id": "lanfear",
+    "text": "föll genom dörrkarmen med henne"
    }
   ]
  },
@@ -694,6 +802,14 @@
    {
     "id": "rand",
     "text": "hans elev"
+   },
+   {
+    "id": "demandred",
+    "text": "dödade honom i en duell"
+   },
+   {
+    "id": "agelmar",
+    "text": "vän och vapenbroder"
    }
   ]
  },
@@ -800,6 +916,10 @@
    {
     "id": "min",
     "text": "delar Rand med henne"
+   },
+   {
+    "id": "morgase",
+    "text": "mor"
    }
   ]
  },
@@ -861,6 +981,10 @@
    {
     "id": "siuan",
     "text": "hjälpte henne att fly"
+   },
+   {
+    "id": "logain",
+    "text": "hon såg en ära kring honom"
    }
   ]
  },
@@ -992,6 +1116,14 @@
    {
     "id": "min",
     "text": "delar Rand med henne"
+   },
+   {
+    "id": "graendal",
+    "text": "gjorde henne till sin slav"
+   },
+   {
+    "id": "rhuarc",
+    "text": "hennes klanhövding, som hon tvingas döda"
    }
   ]
  },
@@ -1047,6 +1179,18 @@
    {
     "id": "perrin",
     "text": "make"
+   },
+   {
+    "id": "bashere",
+    "text": "far"
+   },
+   {
+    "id": "morgase",
+    "text": "tjänstekvinnan Maighdin"
+   },
+   {
+    "id": "berelain",
+    "text": "rival"
    }
   ]
  },
@@ -1116,6 +1260,14 @@
    {
     "id": "nynaeve",
     "text": "helade henne"
+   },
+   {
+    "id": "bryne",
+    "text": "hennes väktare och kärlek"
+   },
+   {
+    "id": "elaida",
+    "text": "avsatte henne"
    }
   ]
  },
@@ -1184,6 +1336,18 @@
    {
     "id": "rand",
     "text": "misstror honom"
+   },
+   {
+    "id": "demandred",
+    "text": "besegrade honom"
+   },
+   {
+    "id": "bryne",
+    "text": "hans lärare i svärd och krig"
+   },
+   {
+    "id": "morgase",
+    "text": "mor"
    }
   ]
  },
@@ -1249,6 +1413,22 @@
    {
     "id": "perrin",
     "text": "motståndare i rättegången"
+   },
+   {
+    "id": "demandred",
+    "text": "skadade honom i en duell"
+   },
+   {
+    "id": "niall",
+    "text": "hans Lord Captain Commander"
+   },
+   {
+    "id": "morgase",
+    "text": "styvmor"
+   },
+   {
+    "id": "berelain",
+    "text": "hustru"
    }
   ]
  },
@@ -1534,6 +1714,1099 @@
    {
     "id": "rand",
     "text": "motpart"
+   }
+  ]
+ },
+ {
+  "id": "ishamael",
+  "namn": "Ishamael",
+  "titel": "Förrådaren av hoppet, Ba'alzamon, sedan Moridin och Nae'blis",
+  "farg": "#2b1d2e",
+  "grupper": [
+   "Skuggan",
+   "Förlorade",
+   "Kanaliserare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 1,
+  "ingress": "Den främste av de Förlorade. Han hemsöker Rands drömmar som Ba'alzamon och återvänder efter sin död i en ny kropp som Moridin.",
+  "om": "Ishamael var en gång en lysande filosof som kom fram till att Den Mörke inte går att besegra och att allt bara upprepas i Hjulets cirkel. Han var aldrig helt fängslad och har i tusentals år styrt Skuggans planer. Som Moridin vill han inte bara vinna utan få slut på allting. Hans öde är tätt sammanflätat med Rands, och i slutet byter de bokstavligen kropp.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Visar sig för Rand, Mat och Perrin i drömmar och utger sig för att vara Den Mörke själv."
+   },
+   {
+    "bok": 2,
+    "text": "Strider mot Rand i himlen över Falme och får ett svårt sår, men överlever.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 3,
+    "text": "Rand dödar honom med Callandor i Stenens hjärta i Tear.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 7,
+    "text": "Har återvänt i en ny kropp som Moridin. Hans och Rands balefire korsas i Shadar Logoth och binder dem samman.",
+    "plats": "shadar-logoth"
+   },
+   {
+    "bok": 14,
+    "text": "Strider mot Rand i Shayol Ghul. När Rand förseglar Den Mörke byter de kropp, och Moridin dör i Rands gamla kropp.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "ärkefiende"
+   },
+   {
+    "id": "lanfear",
+    "text": "Cyndane, bunden till honom med en sinnesfälla"
+   }
+  ]
+ },
+ {
+  "id": "lanfear",
+  "namn": "Lanfear",
+  "titel": "Nattens dotter, även Selene och Cyndane",
+  "farg": "#4b2a5a",
+  "grupper": [
+   "Skuggan",
+   "Förlorade",
+   "Kanaliserare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 2,
+  "ingress": "Förlorad som en gång älskade Lews Therin och vill vinna Rand tillbaka, med eller utan hans vilja.",
+  "om": "Lanfear var en av sin tids mäktigaste kanaliserare och den som borrade hålet till Den Mörkes fängelse. Hon är besatt av Rand som Lews Therin återfödd och pendlar mellan att locka honom och att vilja förgöra dem han älskar. Hon behärskar Tel'aran'rhiod bättre än någon annan. Efter att ha fallit genom den röda dörrkarmen återvänder hon som Cyndane, bunden till Moridin.",
+  "handelser": [
+   {
+    "bok": 2,
+    "text": "Uppträder som den vackra Selene och följer Rand genom portalstenarna."
+   },
+   {
+    "bok": 4,
+    "text": "Avslöjar sig för Rand i Stenen i Tear som Lanfear.",
+    "plats": "tear"
+   },
+   {
+    "bok": 5,
+    "text": "Anfaller Rand vid hamnen i Cairhien. Moiraine kastar sig över henne och båda försvinner genom den röda dörrkarmen.",
+    "plats": "cairhien"
+   },
+   {
+    "bok": 9,
+    "text": "Har återvänt som Cyndane, bunden till Moridin med en sinnesfälla, och strider vid reningen av saidin.",
+    "plats": "shadar-logoth"
+   },
+   {
+    "bok": 14,
+    "text": "Försöker vinna Rand i Shayol Ghul och tvinga Perrin. Han bryter sig fri och bryter hennes nacke.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "ishamael",
+    "text": "Moridin, som håller henne i en sinnesfälla"
+   },
+   {
+    "id": "rand",
+    "text": "den hon vill äga"
+   },
+   {
+    "id": "moiraine",
+    "text": "drog henne genom dörrkarmen"
+   },
+   {
+    "id": "perrin",
+    "text": "dödar henne"
+   }
+  ]
+ },
+ {
+  "id": "demandred",
+  "namn": "Demandred",
+  "titel": "Förlorad, Bao the Wyld",
+  "farg": "#3a2620",
+  "grupper": [
+   "Skuggan",
+   "Förlorade",
+   "Kanaliserare",
+   "Befälhavare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 6,
+  "ingress": "Den Förlorade som hatar Lews Therin mest av alla. I Sista striden leder han Sharas arméer vid Merrilor.",
+  "om": "Demandred var en briljant general som alltid kom tvåa efter Lews Therin och till slut gick över till Skuggan av avund. Under större delen av serien är han osynlig och bygger i hemlighet upp en egen makt i Shara, där han blir Bao the Wyld. Vid Merrilor är han Skuggans farligaste fältherre, beväpnad med sa'angrealen Sakarnen.",
+  "handelser": [
+   {
+    "bok": 6,
+    "text": "Tar emot Den Mörkes order i Shayol Ghul: låt kaosets herre härska.",
+    "plats": "shayol-ghul"
+   },
+   {
+    "bok": 14,
+    "text": "Leder Sharas arméer vid Merrilor, besegrar Gawyn och skadar Galad, men dödas till sist av Lan i en duell.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "lan",
+    "text": "dödade honom i en duell"
+   },
+   {
+    "id": "galad",
+    "text": "tog hans arm i en duell"
+   },
+   {
+    "id": "gawyn",
+    "text": "sårade honom dödligt"
+   },
+   {
+    "id": "rand",
+    "text": "hatad rival"
+   },
+   {
+    "id": "taim",
+    "text": "underlydande vid Merrilor"
+   }
+  ]
+ },
+ {
+  "id": "rahvin",
+  "namn": "Rahvin",
+  "titel": "Förlorad, i Andor känd som Lord Gaebril",
+  "farg": "#5a2a2a",
+  "grupper": [
+   "Skuggan",
+   "Förlorade",
+   "Kanaliserare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 4,
+  "ingress": "Förlorad som tar Andor genom att förtrolla drottning Morgase och styra som hennes rådgivare Lord Gaebril.",
+  "om": "Rahvin är en kall maktpolitiker och mästare på Compulsion. Han gör Morgase till en viljelös docka och fyller hennes hov med sina egna män. Han är farlig just för att han aldrig tar onödiga risker, men när Rand till slut anfaller Caemlyn blir det hans fall.",
+  "handelser": [
+   {
+    "bok": 4,
+    "text": "Styr Andor genom Morgase med Compulsion, som hennes rådgivare Lord Gaebril.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 5,
+    "text": "Rand jagar honom genom Caemlyn och Tel'aran'rhiod och utplånar honom med balefire.",
+    "plats": "caemlyn"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "morgase",
+    "text": "förtrollade henne med Compulsion"
+   },
+   {
+    "id": "rand",
+    "text": "utplånade honom med balefire"
+   }
+  ]
+ },
+ {
+  "id": "sammael",
+  "namn": "Sammael",
+  "titel": "Förlorad, i Illian känd som Lord Brend",
+  "farg": "#4a3a24",
+  "grupper": [
+   "Skuggan",
+   "Förlorade",
+   "Kanaliserare",
+   "Befälhavare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 4,
+  "ingress": "Förlorad general som tar makten i Illian och utmanar Rand gång på gång.",
+  "om": "Sammael var en gång en idrottsstjärna och general som ständigt jämförde sig med Lews Therin. Han tar över Illian och sitter i Council of Nine som Lord Brend, och han försöker locka Rand in i ett krig han tror att han kan vinna. Hans hat mot Rand gör honom till slut vårdslös.",
+  "handelser": [
+   {
+    "bok": 4,
+    "text": "Har tagit makten i Illian och styr som Lord Brend.",
+    "plats": "illian"
+   },
+   {
+    "bok": 7,
+    "text": "Rand jagar honom in i Shadar Logoth, där Mashadar slukar honom.",
+    "plats": "shadar-logoth"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "fiende som jagade honom"
+   }
+  ]
+ },
+ {
+  "id": "graendal",
+  "namn": "Graendal",
+  "titel": "Förlorad, sedan Hessalam",
+  "farg": "#6a3a5a",
+  "grupper": [
+   "Skuggan",
+   "Förlorade",
+   "Kanaliserare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 4,
+  "ingress": "Förlorad som är mästare på Compulsion. I Sista striden förvränger hon omdömet hos de stora generalerna.",
+  "om": "Graendal omger sig med vackra människor som hon gjort till slavar med Compulsion. Hon är försiktig och intrigant, och hon ser till att andra tar riskerna. Efter Rands balefire mot hennes palats återuppstår hon vanställd som Hessalam. I Sista striden smyger hon in sina vävar i huvudet på de fyra stora generalerna så att deras planer leder Ljusets härar mot katastrof.",
+  "handelser": [
+   {
+    "bok": 4,
+    "text": "Deltar i de Förlorades möten om hur Rand ska hanteras."
+   },
+   {
+    "bok": 12,
+    "text": "Rand förstör hennes palats Natrin's Barrow med balefire, men hon har redan flytt."
+   },
+   {
+    "bok": 13,
+    "text": "Får Slayer och en drömspik av Moridin för att döda Perrin, men misslyckas."
+   },
+   {
+    "bok": 14,
+    "text": "Förvränger med Compulsion omdömet hos de stora generalerna vid Merrilor.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   },
+   {
+    "bok": 14,
+    "text": "Strider mot Aviendha i Shayol Ghul. Hennes eget Compulsion slår tillbaka och gör henne till Aviendhas viljelösa slav.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "aviendha",
+    "text": "blev hennes slav"
+   },
+   {
+    "id": "rhuarc",
+    "text": "tvingade honom med Compulsion"
+   },
+   {
+    "id": "bashere",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "bryne",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "ituralde",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "agelmar",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "perrin",
+    "text": "försökte döda honom med Slayer"
+   }
+  ]
+ },
+ {
+  "id": "fain",
+  "namn": "Padan Fain",
+  "titel": "Gårdfarihandlare, Ordeith, Mordeth",
+  "farg": "#3d4a2a",
+  "grupper": [
+   "Skuggan"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 1,
+  "ingress": "Gårdfarihandlaren från Emond's Field som blir något värre än Skuggan själv sedan han smälter samman med Mordeth i Shadar Logoth.",
+  "om": "Fain var en Darkfriend som tvingades jaga pojkarna från Two Rivers. I Shadar Logoth uppslukas han av Mordeths ondska och blir en tredje kraft som hatar både Ljuset och Skuggan. Han bär på dolken från Shadar Logoth och följer Rand, Mat och Perrin genom hela serien med ett enda mål: hämnd.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Kommer som gårdfarihandlare till Emond's Field strax före trollocanfallet.",
+    "plats": "emonds-field"
+   },
+   {
+    "bok": 2,
+    "text": "Stjäl Valeres horn och dolken från Shadar Logoth och lockar Rand till Falme.",
+    "plats": "falme",
+    "slag": "falme"
+   },
+   {
+    "bok": 4,
+    "text": "Kommer tillbaka till Two Rivers som Ordeith tillsammans med Children of the Light.",
+    "plats": "emonds-field",
+    "slag": "two-rivers"
+   },
+   {
+    "bok": 7,
+    "text": "Sticker Rand med en dolk från Shadar Logoth i Cairhien, ett sår som aldrig läker.",
+    "plats": "cairhien"
+   },
+   {
+    "bok": 14,
+    "text": "Möter Mat i Thakan'dar och dör där.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "mat",
+    "text": "dödar honom i Thakan'dar"
+   },
+   {
+    "id": "rand",
+    "text": "hatar honom"
+   },
+   {
+    "id": "perrin",
+    "text": "fiende i Two Rivers"
+   }
+  ]
+ },
+ {
+  "id": "taim",
+  "namn": "Mazrim Taim",
+  "titel": "Falsk drake, M'Hael i Svarta tornet",
+  "farg": "#2e2e2e",
+  "grupper": [
+   "Skuggan",
+   "Asha'man",
+   "Kanaliserare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 6,
+  "ingress": "Den falske draken som Rand sätter att leda Svarta tornet. Han bygger i hemlighet upp en här av Dreadlords åt Skuggan.",
+  "om": "Taim är en stolt och mäktig kanaliserare som en gång utropade sig själv till Draken. Rand ger honom amnesti och gör honom till M'Hael, ledare för Asha'man. Han är effektiv men aldrig lojal. Han tvingar män att vända sig till Skuggan och tar till slut över Svarta tornet helt.",
+  "handelser": [
+   {
+    "bok": 6,
+    "text": "Kommer till Caemlyn, får amnesti och blir ledare för Svarta tornet.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 6,
+    "text": "Leder Asha'man i slaget vid Dumai's Wells och tvingar Aes Sedai att knäböja.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 13,
+    "text": "Tar makten över Svarta tornet och fängslar Logain."
+   },
+   {
+    "bok": 14,
+    "text": "Strider för Demandred vid Merrilor och dödas av Egwenes Flame of Tar Valon.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "demandred",
+    "text": "hans befälhavare vid Merrilor"
+   },
+   {
+    "id": "rand",
+    "text": "förrådde honom"
+   },
+   {
+    "id": "logain",
+    "text": "fängslade honom"
+   },
+   {
+    "id": "egwene",
+    "text": "dödade honom"
+   },
+   {
+    "id": "bashere",
+    "text": "jagade honom"
+   }
+  ]
+ },
+ {
+  "id": "bryne",
+  "namn": "Gareth Bryne",
+  "titel": "Andors generalkapten, sedan rebellernas general",
+  "farg": "#5a6070",
+  "grupper": [
+   "Befälhavare",
+   "Väktare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 1,
+  "ingress": "En av sin tids stora generaler. Han lämnar Andor, leder Aes Sedai-rebellernas här och blir Siuans väktare.",
+  "om": "Bryne är ärlig, envis och lugn under press. Morgase kör iväg honom medan hon står under Rahvins inflytande, och han följer Siuan för att hon har brutit en ed till honom. Så blir han general för de Aes Sedai som valt Egwene. Hans kärlek till Siuan växer långsamt fram och slutar med att hon binder honom som sin väktare.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Tar befälet över Andors styrkor i slaget vid De skinande murarna.",
+    "plats": "tar-valon",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 1,
+    "text": "Är generalkapten i Caemlyn när Rand förs inför drottningen.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 6,
+    "text": "Blir general för rebellernas här och belägrar senare Tar Valon."
+   },
+   {
+    "bok": 12,
+    "text": "Går in i Tar Valon under Seanchans räd för att rädda Egwene, och Siuan binder honom som väktare.",
+    "plats": "tar-valon",
+    "slag": "tar-valon"
+   },
+   {
+    "bok": 14,
+    "text": "Hans planer vid Merrilor förvrängs av Graendal tills Mat tar över befälet.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "graendal",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "siuan",
+    "text": "hans Aes Sedai och kärlek"
+   },
+   {
+    "id": "morgase",
+    "text": "drottningen han tjänade"
+   },
+   {
+    "id": "egwene",
+    "text": "Amyrlin han tjänar"
+   },
+   {
+    "id": "gawyn",
+    "text": "hans elev"
+   }
+  ]
+ },
+ {
+  "id": "bashere",
+  "namn": "Davram Bashere",
+  "titel": "Saldaeisk marskalk och Failes far",
+  "farg": "#5a4a2e",
+  "grupper": [
+   "Befälhavare",
+   "Adel"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 6,
+  "ingress": "Saldaeisk general med böjd näsa och tjocka mustascher. Han svär sig till Rand och strider i nästan alla de stora slagen.",
+  "om": "Bashere är snabbtänkt, frispråkig och van vid krig mot Blighten. Han kommer till Andor för att jaga den falske draken Taim men blir istället Rands general. Som Failes far blir han Perrins svärfar. I Sista striden får Graendal honom att fatta katastrofala beslut, och han stupar vid Merrilor.",
+  "handelser": [
+   {
+    "bok": 6,
+    "text": "Kommer till Caemlyn, där han jagat Mazrim Taim, och blir Rands general.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 6,
+    "text": "Leder saldaeiskt rytteri i slaget vid Dumai's Wells.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 13,
+    "text": "Strider vid Maradon i sitt hemland.",
+    "plats": "maradon",
+    "slag": "maradon"
+   },
+   {
+    "bok": 14,
+    "text": "Leder trupper när Caemlyn faller och Andor ska återtas.",
+    "plats": "caemlyn",
+    "slag": "caemlyn-fall"
+   },
+   {
+    "bok": 14,
+    "text": "Hans beslut förvrängs av Graendal. Han stupar i en rytteriattack vid Merrilor.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "graendal",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "taim",
+    "text": "den falske draken han jagade"
+   },
+   {
+    "id": "faile",
+    "text": "hans dotter"
+   },
+   {
+    "id": "perrin",
+    "text": "svärson"
+   },
+   {
+    "id": "rand",
+    "text": "Draken han tjänar"
+   }
+  ]
+ },
+ {
+  "id": "ituralde",
+  "namn": "Rodel Ituralde",
+  "titel": "Domanisk general, en av de stora generalerna",
+  "farg": "#3f5a6a",
+  "grupper": [
+   "Befälhavare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 11,
+  "ingress": "Domanisk general som anses vara en av de bästa i världen. Han slår Seanchan och försvarar sedan Maradon mot Skuggan.",
+  "om": "Ituralde är liten till växten men har ett enormt rykte. Han leder en djärv kampanj mot Seanchan i Tarabon och Arad Doman och svär sig sedan till Rand. Vid Maradon håller han staden mot en väldig trollochär tills Rand kommer. I Sista striden försvarar han ingången till Thakan'dar.",
+  "handelser": [
+   {
+    "bok": 11,
+    "text": "Leder en djärv motoffensiv mot Seanchan i Tarabon och Arad Doman.",
+    "plats": "bandar-eban"
+   },
+   {
+    "bok": 13,
+    "text": "Håller Maradon mot en väldig trollochär tills Rand kommer.",
+    "plats": "maradon",
+    "slag": "maradon"
+   },
+   {
+    "bok": 14,
+    "text": "Försvarar passet in till Thakan'dar och Shayol Ghul.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "graendal",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "rand",
+    "text": "Draken han svor sig till"
+   }
+  ]
+ },
+ {
+  "id": "agelmar",
+  "namn": "Agelmar Jagad",
+  "titel": "Herre över Fal Dara",
+  "farg": "#6a5a3a",
+  "grupper": [
+   "Befälhavare",
+   "Adel"
+  ],
+  "ursprung": "fal-dara",
+  "uppvuxen": "fal-dara",
+  "forsta_bok": 1,
+  "ingress": "Shienarisk lord och general som tar emot sällskapet i Fal Dara och leder gränslandets försvar i Sista striden.",
+  "om": "Agelmar är den gamla shienariska krigarkulturen personifierad: hövlig, stark och alltid beredd att dö vid Blightens gräns. Han är vän till Lan och har stridit tillsammans med honom sedan Aielkriget. I Sista striden leder han styrkorna vid Tarwin's Gap, men Graendal vrider hans omdöme.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Leder Shienars styrkor i slaget vid De skinande murarna.",
+    "plats": "tar-valon",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 1,
+    "text": "Tar emot Moiraine, Lan och sällskapet i Fal Dara.",
+    "plats": "fal-dara"
+   },
+   {
+    "bok": 14,
+    "text": "Leder gränslandets styrkor, men hans planer förvrängs av Graendal.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "graendal",
+    "text": "förvrängde hans omdöme"
+   },
+   {
+    "id": "lan",
+    "text": "vän och vapenbroder"
+   }
+  ]
+ },
+ {
+  "id": "niall",
+  "namn": "Pedron Niall",
+  "titel": "Lord Captain Commander för Children of the Light",
+  "farg": "#c8c0a8",
+  "grupper": [
+   "Children of the Light",
+   "Ledare",
+   "Befälhavare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 2,
+  "ingress": "Den gamle ledaren för Children of the Light. Han vill ena världen mot Skuggan, på sina egna villkor.",
+  "om": "Niall är en skarp och erfaren strateg som tror att Draken bara är en marionett åt Aes Sedai. Från Amador skickar han sina legioner och sina rykten ut över världen. När Morgase flyr till Amadicia gör han henne till sin gäst och fånge, men han mördas innan hans planer hinner bära frukt.",
+  "handelser": [
+   {
+    "bok": 0,
+    "text": "Leder Children of the Light i slaget vid De skinande murarna.",
+    "plats": "tar-valon",
+    "slag": "shining-walls"
+   },
+   {
+    "bok": 2,
+    "text": "Skickar Geofram Bornhalds legion mot Toman Head.",
+    "plats": "amador"
+   },
+   {
+    "bok": 6,
+    "text": "Tar emot Morgase i Amador och lovar att hjälpa henne att ta tillbaka Andor.",
+    "plats": "amador"
+   },
+   {
+    "bok": 7,
+    "text": "Mördas av Abdel Omerna i Amador.",
+    "plats": "amador"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "morgase",
+    "text": "hans gäst och gisslan"
+   },
+   {
+    "id": "galad",
+    "text": "ung Child of the Light"
+   }
+  ]
+ },
+ {
+  "id": "talmanes",
+  "namn": "Talmanes Delovinde",
+  "titel": "Löjtnant i Band of the Red Hand",
+  "farg": "#7a3030",
+  "grupper": [
+   "Befälhavare",
+   "Adel"
+  ],
+  "ursprung": null,
+  "uppvuxen": "cairhien",
+  "forsta_bok": 5,
+  "ingress": "Cairhienisk adelsman som blir Mats närmaste man i Band of the Red Hand.",
+  "om": "Talmanes ler sällan och säger lite, men han är en av seriens mest pålitliga befälhavare. Han följer Mat från första stund utanför Cairhien och leder Bandet när Mat är borta. När Caemlyn faller räddar han Aludras drakar, svårt sårad av en Thakan'dar-klinga.",
+  "handelser": [
+   {
+    "bok": 5,
+    "text": "Möter Mat utanför Cairhien och följer honom in i slaget.",
+    "plats": "cairhien",
+    "slag": "cairhien"
+   },
+   {
+    "bok": 14,
+    "text": "Räddar drakarna ur det brinnande Caemlyn och får namnet Dreadbane, svårt sårad.",
+    "plats": "caemlyn",
+    "slag": "caemlyn-fall"
+   },
+   {
+    "bok": 14,
+    "text": "Leder Bandet igen vid Merrilor, där drakarna skjuter genom portaler.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "mat",
+    "text": "hans befälhavare"
+   },
+   {
+    "id": "nynaeve",
+    "text": "helade honom"
+   }
+  ]
+ },
+ {
+  "id": "logain",
+  "namn": "Logain Ablar",
+  "titel": "Falsk drake, sedan Asha'man",
+  "farg": "#4a6a3a",
+  "grupper": [
+   "Asha'man",
+   "Kanaliserare",
+   "Ledare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 1,
+  "ingress": "Den falske draken som förs i bur genom Caemlyn. Han helas, blir Asha'man och leder till slut Svarta tornet.",
+  "om": "Logain var en äkta kanaliserare som utropade sig till Draken och fångades och stillades av Aes Sedai. Min ser en ära omkring honom redan när han visas upp som fånge. Nynaeve helar honom, och han tar sig till Svarta tornet. Där fängslas han av Taim, men han befrias och gör sin insats i Sista striden.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Visas upp som fånge i Caemlyn på väg till Tar Valon.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 6,
+    "text": "Nynaeve helar honom från stillningen."
+   },
+   {
+    "bok": 13,
+    "text": "Fängslas av Taim i Svarta tornet."
+   },
+   {
+    "bok": 14,
+    "text": "Befrias, strider mot Demandred vid Merrilor och tar tillbaka sigillen till Den Mörkes fängelse.",
+    "plats": "field-of-merrilor",
+    "slag": "merrilor"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "taim",
+    "text": "fängslade honom"
+   },
+   {
+    "id": "nynaeve",
+    "text": "helade honom"
+   },
+   {
+    "id": "min",
+    "text": "såg hans ära"
+   }
+  ]
+ },
+ {
+  "id": "rhuarc",
+  "namn": "Rhuarc",
+  "titel": "Klanhövding för Taardad Aiel",
+  "farg": "#a0603a",
+  "grupper": [
+   "Aiel",
+   "Ledare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 3,
+  "ingress": "Klok och lugn klanhövding som var först att erkänna Rand som He Who Comes With the Dawn.",
+  "om": "Rhuarc leder Aiel som stormar Stenen i Tear och blir sedan Rands mest pålitliga Aielhövding. Han är gift med visa kvinnan Amys och ser både de gamla sederna och behovet av förändring. Hans död i Sista striden är en av de grymmaste: Graendal tvingar honom att strida mot sitt eget folk.",
+  "handelser": [
+   {
+    "bok": 3,
+    "text": "Leder Aiel som stormar Stenen i Tear.",
+    "plats": "tear",
+    "slag": "stone-of-tear"
+   },
+   {
+    "bok": 5,
+    "text": "Leder klanerna mot Shaido i det andra slaget om Cairhien.",
+    "plats": "cairhien",
+    "slag": "cairhien"
+   },
+   {
+    "bok": 6,
+    "text": "Leder Aiel i räddningen av Rand vid Dumai's Wells.",
+    "plats": "dumais-wells",
+    "slag": "dumais-wells"
+   },
+   {
+    "bok": 14,
+    "text": "Graendal tvingar honom med Compulsion, och Aviendha dödar honom i Shayol Ghul innan hon känner igen honom.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "graendal",
+    "text": "tvingade honom med Compulsion"
+   },
+   {
+    "id": "rand",
+    "text": "Car'a'carn han följer"
+   },
+   {
+    "id": "aviendha",
+    "text": "kvinna från hans klan"
+   }
+  ]
+ },
+ {
+  "id": "morgase",
+  "namn": "Morgase Trakand",
+  "titel": "Drottning av Andor",
+  "farg": "#a83a3a",
+  "grupper": [
+   "Adel",
+   "Ledare"
+  ],
+  "ursprung": "caemlyn",
+  "uppvuxen": "caemlyn",
+  "forsta_bok": 1,
+  "ingress": "Andors drottning och mor till Elayne och Gawyn. Hon förlorar sin tron till Rahvin och sitt namn på flykten.",
+  "om": "Morgase är en stolt och kunnig drottning som Rahvin bryter ned med Compulsion. Hon flyr ur Caemlyn och hamnar som gäst och fånge hos Pedron Niall i Amador. Efter Seanchans ankomst tjänar hon Faile under namnet Maighdin och lär sig ett helt annat sorts liv. Till slut gifter hon sig med Tallanvor och lämnar tronen åt Elayne.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Tar emot Rand i palatset i Caemlyn efter att han fallit ned i trädgården.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 4,
+    "text": "Står under Rahvins Compulsion, som han i rollen av Lord Gaebril.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 6,
+    "text": "Har flytt till Amador, där Pedron Niall håller henne som gäst.",
+    "plats": "amador"
+   },
+   {
+    "bok": 11,
+    "text": "Tillfångatas av Shaido tillsammans med Faile och befrias i slaget vid Malden.",
+    "plats": "malden",
+    "slag": "malden"
+   },
+   {
+    "bok": 13,
+    "text": "Avslöjar vem hon är och gifter sig med Tallanvor."
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rahvin",
+    "text": "Lord Gaebril, som förtrollade henne"
+   },
+   {
+    "id": "bryne",
+    "text": "hennes generalkapten"
+   },
+   {
+    "id": "niall",
+    "text": "höll henne som gäst och gisslan"
+   },
+   {
+    "id": "elayne",
+    "text": "dotter"
+   },
+   {
+    "id": "gawyn",
+    "text": "son"
+   },
+   {
+    "id": "galad",
+    "text": "styvson"
+   },
+   {
+    "id": "faile",
+    "text": "tjänade henne som Maighdin"
+   },
+   {
+    "id": "elaida",
+    "text": "hennes rådgivare"
+   }
+  ]
+ },
+ {
+  "id": "elaida",
+  "namn": "Elaida do Avriny a'Roihan",
+  "titel": "Amyrlin, Röda ajah",
+  "farg": "#b03030",
+  "grupper": [
+   "Aes Sedai",
+   "Kanaliserare",
+   "Ledare"
+  ],
+  "ursprung": null,
+  "uppvuxen": null,
+  "forsta_bok": 1,
+  "ingress": "Röd Aes Sedai som avsätter Siuan och gör sig själv till Amyrlin. Hennes styre splittrar Vita tornet.",
+  "om": "Elaida har Förutsägelsens gåva och ser tidigt att Rand kommer att bringa smärta. Som Morgases rådgivare och sedan Amyrlin är hon säker på att hon ensam vet vad som måste göras. Hennes kupp mot Siuan klyver tornet i två, och hennes order att röva bort Rand leder till slaget vid Dumai's Wells.",
+  "handelser": [
+   {
+    "bok": 1,
+    "text": "Är Morgases rådgivare i Caemlyn och varnar för Rand.",
+    "plats": "caemlyn"
+   },
+   {
+    "bok": 4,
+    "text": "Avsätter Siuan och blir själv Amyrlin.",
+    "plats": "tar-valon"
+   },
+   {
+    "bok": 6,
+    "text": "Hennes order att röva bort Rand leder till slaget vid Dumai's Wells."
+   },
+   {
+    "bok": 12,
+    "text": "Rövas bort av Seanchan under deras räd mot Vita tornet.",
+    "plats": "tar-valon",
+    "slag": "tar-valon"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "morgase",
+    "text": "drottningen hon gav råd"
+   },
+   {
+    "id": "siuan",
+    "text": "avsatte henne"
+   },
+   {
+    "id": "egwene",
+    "text": "fånge och efterträdare"
+   },
+   {
+    "id": "rand",
+    "text": "lät röva bort honom"
+   }
+  ]
+ },
+ {
+  "id": "cadsuane",
+  "namn": "Cadsuane Melaidhrin",
+  "titel": "Legendarisk Aes Sedai, Gröna ajah",
+  "farg": "#2f6a4a",
+  "grupper": [
+   "Aes Sedai",
+   "Kanaliserare",
+   "Rådgivare"
+  ],
+  "ursprung": "far-madding",
+  "uppvuxen": "far-madding",
+  "forsta_bok": 7,
+  "ingress": "Den mest fruktade Aes Sedai i världen. Hon tar på sig att få Rand att lära sig skratta och gråta igen.",
+  "om": "Cadsuane har levt längre än nästan alla andra Aes Sedai och bryr sig inte om regler eller rang. Hon är hård mot Rand men ser tidigare än andra att han håller på att stelna i sin egen kyla. Hon följer honom till Far Madding och skyddar honom vid reningen av saidin. Rand förvisar henne en tid, men i slutet blir hon Amyrlin.",
+  "handelser": [
+   {
+    "bok": 7,
+    "text": "Kommer till Cairhien och tar på sig att bli Rands rådgivare.",
+    "plats": "cairhien"
+   },
+   {
+    "bok": 9,
+    "text": "Följer Rand till sin hemstad Far Madding.",
+    "plats": "far-madding"
+   },
+   {
+    "bok": 9,
+    "text": "Leder försvaret av Rand under reningen av saidin.",
+    "plats": "shadar-logoth"
+   },
+   {
+    "bok": 12,
+    "text": "Förvisas av Rand men kallas tillbaka."
+   },
+   {
+    "bok": 14,
+    "text": "Leder kanaliserare i Shayol Ghul och blir Amyrlin efter Egwene.",
+    "plats": "shayol-ghul",
+    "slag": "shayol-ghul"
+   }
+  ],
+  "relationer": [
+   {
+    "id": "rand",
+    "text": "den hon försöker forma"
+   },
+   {
+    "id": "egwene",
+    "text": "efterträder henne som Amyrlin"
+   }
+  ]
+ },
+ {
+  "id": "berelain",
+  "namn": "Berelain sur Paendrag",
+  "titel": "First of Mayene",
+  "farg": "#2a6a8a",
+  "grupper": [
+   "Adel",
+   "Ledare"
+  ],
+  "ursprung": "mayene",
+  "uppvuxen": "mayene",
+  "forsta_bok": 4,
+  "ingress": "Mayenes unga härskare. Hon är känd för sin skönhet och sitt politiska sinne och är Failes stora rival.",
+  "om": "Berelain styr en liten stadsstat mellan mäktiga grannar och har lärt sig använda allt hon har. Hon uppvaktar Rand i Tear och senare Perrin, vilket gör Faile rasande. Hon är ändå en kunnig och modig ledare, och Rand gör henne till förvaltare i Cairhien. Till slut gifter hon sig med Galad.",
+  "handelser": [
+   {
+    "bok": 4,
+    "text": "Är gäst i Stenen i Tear och uppvaktar Rand.",
+    "plats": "tear"
+   },
+   {
+    "bok": 6,
+    "text": "Blir Rands förvaltare i Cairhien.",
+    "plats": "cairhien"
+   },
+   {
+    "bok": 11,
+    "text": "Hennes Winged Guards strider med Perrin vid Malden.",
+    "plats": "malden",
+    "slag": "malden"
+   },
+   {
+    "bok": 13,
+    "text": "Gifter sig med Galad."
+   }
+  ],
+  "relationer": [
+   {
+    "id": "perrin",
+    "text": "uppvaktade honom"
+   },
+   {
+    "id": "faile",
+    "text": "rival"
+   },
+   {
+    "id": "galad",
+    "text": "make"
+   },
+   {
+    "id": "rand",
+    "text": "Draken som gjorde henne till förvaltare"
    }
   ]
  }
