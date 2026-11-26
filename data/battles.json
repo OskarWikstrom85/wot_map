@@ -165,7 +165,8 @@
     "text": "Mat är inte längre bunden till hornet efter att ha dött och återupplivats i Rhuidean. I Tarmon Gai'don blåser i stället pojken Olver i det, och Hjältarna rider igen. Birgitte är bland dem."
    }
   ],
-  "dag": "998-11-21"
+  "dag": "998-11-21",
+  "animation": "slag/falme.html"
  },
  {
   "id": "two-rivers",
@@ -446,7 +447,8 @@
     "text": "Taim, som ledde Asha'man vid Dumai's Wells, visar sig vara Darkfriend. I Tarmon Gai'don strider han för Skuggan som M'Hael och dödas av Egwene."
    }
   ],
-  "dag": "1000-01-01"
+  "dag": "1000-01-01",
+  "animation": "slag/dumais-wells.html"
  },
  {
   "id": "stone-of-tear",
@@ -534,7 +536,8 @@
     "text": "Callandor visar sig ha en brist: kvinnor kan styra en man genom svärdet. I Shayol Ghul vänder Rand, Moiraine och Nynaeve den bristen mot Moridin."
    }
   ],
-  "dag": "999-05-19"
+  "dag": "999-05-19",
+  "animation": "slag/stone-of-tear.html"
  },
  {
   "id": "malden",

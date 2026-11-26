@@ -1,0 +1,17 @@
+{
+ "charNames": {"rand": "Rand", "mat": "Mat", "moiraine": "Moiraine", "lan": "Lan", "egwene": "Egwene", "nynaeve": "Nynaeve", "elayne": "Elayne", "perrin": "Perrin", "faile": "Faile"},
+ "wiki": {"rand": "Rand_al'Thor", "mat": "Matrim_Cauthon", "moiraine": "Moiraine_Damodred", "lan": "Lan_Mandragoran", "egwene": "Egwene_al'Vere", "nynaeve": "Nynaeve_al'Meara", "elayne": "Elayne_Trakand", "perrin": "Perrin_Aybara", "faile": "Faile_Bashere"},
+ "replace": [
+  ["<title>Slaget om Two Rivers</title>", "<title>Stenens fall i Tear</title>"],
+  ["<h1 id=\"th\">Slaget om Two Rivers</h1>", "<h1 id=\"th\">Stenens fall i Tear</h1>"],
+  ["Byns och bygdens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.", "Stadens och fästningens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."],
+  ["offer('two-rivers.mp4', 'slaget-om-two-rivers.mp4')", "offer('stone-of-tear.mp4', 'stenens-fall-i-tear.mp4')"],
+  ["'slaget-om-two-rivers.html'", "'stenens-fall-i-tear.html'"]
+ ],
+ "storyboard": {
+  "title": "Stenens fall i Tear",
+  "lead": "The Dragon Reborn · Saven 999 NE",
+  "pick": [[4, 0.95], [3, 0.6], [0, 0.9], [1, 0.95], [4, 0.6], [1, 0.9], [1, 0.95]],
+  "note": "Stadens och fästningens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."
+ }
+}

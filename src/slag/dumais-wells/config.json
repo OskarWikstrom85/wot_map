@@ -1,0 +1,17 @@
+{
+ "charNames": {"rand": "Rand", "min": "Min", "perrin": "Perrin", "gawyn": "Gawyn"},
+ "wiki": {"rand": "Rand_al'Thor", "min": "Min_Farshaw", "perrin": "Perrin_Aybara", "gawyn": "Gawyn_Trakand"},
+ "replace": [
+  ["<title>Slaget om Two Rivers</title>", "<title>Slaget vid Dumai's Wells</title>"],
+  ["<h1 id=\"th\">Slaget om Two Rivers</h1>", "<h1 id=\"th\">Slaget vid Dumai's Wells</h1>"],
+  ["Byns och bygdens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.", "Slagfältets utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."],
+  ["offer('two-rivers.mp4', 'slaget-om-two-rivers.mp4')", "offer('dumais-wells.mp4', 'slaget-vid-dumais-wells.mp4')"],
+  ["'slaget-om-two-rivers.html'", "'slaget-vid-dumais-wells.html'"]
+ ],
+ "storyboard": {
+  "title": "Slaget vid Dumai's Wells",
+  "lead": "Lord of Chaos · Taisham 1000 NE",
+  "pick": [[1, 0.95], [1, 0.8], [2, 0.8], [1, 0.8], [1, 0.8], [0, 0.9]],
+  "note": "Slagfältets utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."
+ }
+}

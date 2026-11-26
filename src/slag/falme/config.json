@@ -1,0 +1,17 @@
+{
+ "charNames": {"rand": "Rand", "mat": "Mat", "perrin": "Perrin", "loial": "Loial", "verin": "Verin", "nynaeve": "Nynaeve", "elayne": "Elayne", "min": "Min", "egwene": "Egwene", "birgitte": "Birgitte"},
+ "wiki": {"rand": "Rand_al'Thor", "mat": "Matrim_Cauthon", "perrin": "Perrin_Aybara", "loial": "Loial", "verin": "Verin_Mathwin", "nynaeve": "Nynaeve_al'Meara", "elayne": "Elayne_Trakand", "min": "Min_Farshaw", "egwene": "Egwene_al'Vere", "birgitte": "Birgitte_Silverbow"},
+ "replace": [
+  ["<title>Slaget om Two Rivers</title>", "<title>Slaget vid Falme</title>"],
+  ["<h1 id=\"th\">Slaget om Two Rivers</h1>", "<h1 id=\"th\">Slaget vid Falme</h1>"],
+  ["Byns och bygdens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.", "Stadens och uddens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."],
+  ["offer('two-rivers.mp4', 'slaget-om-two-rivers.mp4')", "offer('falme.mp4', 'slaget-vid-falme.mp4')"],
+  ["'slaget-om-two-rivers.html'", "'slaget-vid-falme.html'"]
+ ],
+ "storyboard": {
+  "title": "Slaget vid Falme",
+  "lead": "The Great Hunt · Nesan 998 NE",
+  "pick": [[1, 0.95], [1, 0.95], [2, 0.7], [1, 0.9], [1, 0.95], [2, 0.6]],
+  "note": "Stadens och uddens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."
+ }
+}

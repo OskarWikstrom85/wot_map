@@ -25,13 +25,15 @@ Kräver Python 3 med Pillow, numpy, scipy, opencv och scikit-image, samt Playwri
 # Sidan (läser data/ och src/index.template.html, kontrollerar alla länkar mellan karaktärer, slag och platser)
 python3 scripts/build_page.py
 
-# Ett nytt slag från Two Rivers-mallen
-python3 scripts/make_battle_page.py cairhien
+# Ett nytt slag från Two Rivers-mallen (src/slag/<id>/: paint.js, svg.js, scenes.js, config.json)
+python3 scripts/make_battle_page.py cairhien   # likaså falme, stone-of-tear, dumais-wells
 
-# Slagsida med bildberättelse (kräver att src/slag serveras på localhost:8765)
-python3 scripts/build_export.py two-rivers
+# Slagsida med bildberättelse och video (kräver att src/ serveras på localhost:8765)
 python3 scripts/build_export.py cairhien
+python3 scripts/record_video.py cairhien
 ```
+
+Animerade slag: Falme, Stenen i Tear, Two Rivers, Cairhien och Dumai's Wells.
 
 Kartlagren (görs sällan, tar lång tid):
 
