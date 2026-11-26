@@ -1,0 +1,12 @@
+{
+ "charNames": {"egwene": "Egwene", "gawyn": "Gawyn", "siuan": "Siuan", "bryne": "Bryne", "elaida": "Elaida"},
+ "wiki": {"egwene": "Egwene_al'Vere", "gawyn": "Gawyn_Trakand", "siuan": "Siuan_Sanche", "bryne": "Gareth_Bryne", "elaida": "Elaida_do_Avriny_a'Roihan"},
+ "replace": [
+  ["<title>Slaget om Two Rivers</title>", "<title>Seanchans anfall mot Tar Valon</title>"],
+  ["<h1 id=\"th\">Slaget om Two Rivers</h1>", "<h1 id=\"th\">Seanchans anfall mot Tar Valon</h1>"],
+  ["Byns och bygdens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.", "Tornets och stadens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."],
+  ["offer('two-rivers.mp4', 'slaget-om-two-rivers.mp4')", "offer('tar-valon.mp4', 'seanchans-anfall-mot-tar-valon.mp4')"],
+  ["'slaget-om-two-rivers.html'", "'seanchans-anfall-mot-tar-valon.html'"]
+ ],
+ "storyboard": {"title": "Seanchans anfall mot Tar Valon", "lead": "The Gathering Storm · våren 1000 NE", "pick": [[2, 0.95], [1, 0.9], [1, 0.95], [1, 0.9], [0, 0.95]], "note": "Tornets och stadens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."}
+}

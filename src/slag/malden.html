@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slaget vid Malden</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+/* VOICE: a general's war table, quiet and grave
+   IDEA: Rome: Total War — painted campaign map, then a battle field seen from above, units under standards
+   COLOUR and TYPE: bronze and dark wood UI, parchment text, crimson for Two Rivers, black-rust for the Shadow, white-gold for the Children; Cinzel titles, Alegreya Sans text */
+:root{--wood:#1c1410;--wood-2:#2a1f17;--bronze:#a8843f;--gold:#e0c27a;--parch:#efe3c4;--ink:#efe3c4;--muted:#bba987;--tr:#a8221c;--shadow:#2b1d1a;--wc:#f3efe2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0d0a08;color:var(--ink);font:16px/1.45 "Alegreya Sans",system-ui,sans-serif;overflow:hidden}
+#stage{position:fixed;inset:0;overflow:hidden;background:#0d0a08}
+.world{position:absolute;left:0;top:0;width:2000px;height:1250px;transform-origin:0 0;transition:opacity .9s ease}
+.world canvas{position:absolute;inset:0;width:2000px;height:1250px}
+.world svg{position:absolute;inset:0;width:2000px;height:1250px;overflow:visible}
+.world.off{opacity:0;pointer-events:none}
+.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgb(0 0 0 / .55) 100%)}
+.lbl{font:700 22px Cinzel,Georgia,serif;fill:#f6ead0;stroke:#1d140c;stroke-width:5px;paint-order:stroke;letter-spacing:.06em}
+.lbl.s{font-size:15px;stroke-width:4px}.lbl.xs{font-size:12px;stroke-width:3.5px;font-family:"Alegreya Sans",sans-serif;font-weight:700;letter-spacing:.02em}
+.lbl.region{font-size:30px;fill:#f0dfb2;opacity:.85;letter-spacing:.3em}
+.unit{cursor:pointer}
+.unit .sel{fill:none;pointer-events:none;stroke:#f6e7b8;stroke-width:2.5;opacity:0}
+.unit.hl .sel{opacity:1;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{stroke-width:5;opacity:.5}}
+.fade{transition:opacity .7s ease}
+.hidden{opacity:0;pointer-events:none}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flame .45s ease-in-out infinite alternate}
+.flame.b{animation-duration:.6s;animation-delay:-.2s}.flame.c{animation-duration:.38s;animation-delay:-.1s}
+@keyframes flame{from{transform:scale(.85,.8)}to{transform:scale(1.08,1.15) skewX(-4deg)}}
+.glow{animation:glow 1.3s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.35}to{opacity:.6}}
+.smoke circle{transform-box:fill-box;transform-origin:center;animation:smoke 3.6s linear infinite;opacity:0}
+@keyframes smoke{0%{transform:translate(0,0) scale(.5);opacity:0}15%{opacity:.55}100%{transform:translate(26px,-70px) scale(1.9);opacity:0}}
+#rain line{stroke:#bcd2e0;stroke-width:1.4;opacity:.55;animation:fall .6s linear infinite}
+@keyframes fall{from{transform:translate(0,-60px)}to{transform:translate(-14px,60px)}}
+@media(prefers-reduced-motion:reduce){.unit.hl .sel,.flame,.glow,#rain line{animation:none}.smoke circle{animation:none;opacity:.35}}
+
+/* ---------- UI i Total War-anda ---------- */
+.plate{background:linear-gradient(#2c2119,#18110c);border:1px solid #5d4726;box-shadow:inset 0 0 0 1px #0c0806,inset 0 1px 0 #6b5634,0 8px 24px rgb(0 0 0 / .6);border-radius:4px}
+.plate::before{content:"";position:absolute;inset:3px;border:1px solid rgb(224 194 122 / .35);border-radius:2px;pointer-events:none}
+#title{position:fixed;top:14px;left:50%;transform:translateX(-50%);padding:10px 34px 12px;text-align:center;min-width:min(520px,80vw)}
+#title .k{font:600 12px Cinzel,Georgia,serif;letter-spacing:.32em;color:var(--bronze);text-transform:uppercase}
+#title h1{margin:2px 0 0;font:700 clamp(20px,2.6vw,30px)/1.1 Cinzel,Georgia,serif;color:var(--gold);letter-spacing:.04em;text-shadow:0 2px 0 #000}
+#title .d{font-size:14px;color:var(--muted);margin-top:2px}
+#advisor{position:fixed;left:16px;bottom:16px;width:min(430px,calc(100vw - 32px));display:flex;gap:14px;padding:14px 16px 14px 14px}
+#advisor .face{flex:none;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#7a2a20,#3a0f0b);border:2px solid var(--bronze);display:grid;place-items:center;box-shadow:inset 0 0 8px #000}
+#advisor .face svg{width:34px;height:34px;color:var(--gold)}
+#advisor .who{font:700 13px Cinzel,Georgia,serif;color:var(--bronze);letter-spacing:.12em;text-transform:uppercase}
+#advisor p{margin:3px 0 0;font-size:16.5px;color:var(--parch);min-height:5.6em}
+#cards{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;display:flex;gap:8px;padding:8px;max-width:calc(100vw - 940px);min-width:120px;overflow-x:auto}
+.card{position:relative;flex:none;width:78px;height:104px;border-radius:3px;border:1px solid #7a6033;background:linear-gradient(#3a2b1e,#1a120c);color:var(--parch);cursor:pointer;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;font:600 11px/1.15 "Alegreya Sans",sans-serif;text-align:center;box-shadow:inset 0 0 0 1px #000}
+.card .art{position:absolute;inset:4px 4px 30px;border-radius:2px;display:grid;place-items:center;overflow:hidden}
+.card .art svg{width:46px;height:46px}
+.card .nm{position:relative;padding:0 4px 6px}
+.card[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 0 14px rgb(224 194 122 / .5)}
+.card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.card.new{animation:cardIn .5s ease-out}
+@keyframes cardIn{from{transform:translateY(20px);opacity:0}}
+#info{position:fixed;left:50%;transform:translateX(-50%);bottom:142px;width:min(420px,calc(100vw - 32px));padding:14px 18px 16px}
+#info[hidden]{display:none}
+#info h2{margin:0;font:700 19px Cinzel,Georgia,serif;color:var(--gold)}
+#info .side{font-size:13px;color:var(--bronze);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+#info dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
+#info dt{color:var(--muted)}#info dd{margin:0}
+#info p{margin:10px 0 0;font-size:15px}
+#info .links{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+#info .links button{font:600 14px "Alegreya Sans",sans-serif;color:var(--wood);background:var(--gold);border:0;border-radius:3px;padding:5px 10px;cursor:pointer}
+#info .x{position:absolute;right:8px;top:6px;background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+#ctrl{position:fixed;right:16px;bottom:16px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;width:min(440px,calc(100vw - 32px))}
+#ctrl .row{display:flex;align-items:center;gap:8px}
+.cb{width:44px;height:40px;display:grid;place-items:center;border-radius:3px;border:1px solid #7a6033;background:linear-gradient(#4a3826,#251a11);color:var(--gold);cursor:pointer}
+.cb svg{width:18px;height:18px}
+.cb.big{width:56px}
+.cb:hover{border-color:var(--gold)}.cb:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.cb[disabled]{opacity:.4;cursor:default}
+.speed{margin-left:auto;display:flex;border:1px solid #7a6033;border-radius:3px;overflow:hidden}
+.speed button{font:600 13px "Alegreya Sans",sans-serif;min-width:38px;height:40px;border:0;background:#241a12;color:var(--muted);cursor:pointer}
+.speed button+button{border-left:1px solid #4d3b22}
+.speed button[aria-pressed=true]{background:var(--bronze);color:#1a120b}
+#scnRow{display:flex;gap:4px;align-items:center}
+.rl{flex:none;width:40px;font:700 10px Cinzel,Georgia,serif;color:var(--bronze);letter-spacing:.12em;text-transform:uppercase}
+#scnRow button{flex:1;height:30px;min-width:0;border:1px solid #5d4726;border-radius:2px;background:#241a12;color:var(--muted);font:700 12px Cinzel,Georgia,serif;cursor:pointer;padding:0}
+#scnRow button.done{background:#3d2e1c;color:var(--parch)}
+#scnRow button[aria-current=true]{background:var(--bronze);color:#1a120b;border-color:var(--gold)}
+#scnRow button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#pips{display:flex;gap:4px;align-items:center}
+#clock{position:fixed;left:16px;top:74px;padding:8px 16px;font:700 15px Cinzel,Georgia,serif;color:var(--gold);letter-spacing:.08em}
+#clock[hidden]{display:none}
+.boom{transform-box:fill-box;transform-origin:center;animation:boom .9s ease-out forwards}
+@keyframes boom{0%{transform:scale(.2);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.scn{display:flex;gap:3px;flex:1;align-items:center}
+.scn+.scn{margin-left:8px}
+.scn b{font:700 11px Cinzel,Georgia,serif;color:var(--bronze);margin-right:4px;white-space:nowrap}
+.pip{flex:1;height:22px;min-width:14px;border:0;padding:0;border-radius:3px;background:#3a2c1d;cursor:pointer;box-shadow:inset 0 0 0 1px #5d4726;font:700 11px Cinzel,Georgia,serif;color:var(--muted)}
+.pip:hover{box-shadow:inset 0 0 0 1px var(--gold)}
+.pip.done{background:#8a6c34;color:#f3e2b8}.pip.cur{background:var(--gold);color:#1a120b}
+.pip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#note{font-size:12.5px;color:var(--muted)}
+#compass{position:fixed;top:18px;right:20px;width:64px;height:64px;opacity:.9}
+#dl{position:fixed;right:94px;top:22px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding:0;background:none;border:0;box-shadow:none}
+#dl::before{display:none}
+#dl:not(.open) #dlVideo,#dl:not(.open) #dlHtml{display:none}
+#dl.open #dlVideo,#dl.open #dlHtml{background:#2a1f17;box-shadow:0 6px 18px rgb(0 0 0 / .55)}
+#dl[hidden]{display:none}
+#dl a,#dl button{display:flex;align-items:center;gap:8px;font:600 14px "Alegreya Sans",sans-serif;color:var(--gold);background:linear-gradient(#4a3826,#251a11);border:1px solid #7a6033;border-radius:3px;padding:7px 12px;cursor:pointer;text-decoration:none}
+#dl a:hover,#dl button:hover{border-color:var(--gold)}
+#dl svg{width:16px;height:16px}
+#info .links a{font:600 14px "Alegreya Sans",sans-serif;color:var(--wood);background:var(--gold);border-radius:3px;padding:5px 10px;text-decoration:none}
+body.video #ctrl,body.video #cards,body.video #info,body.video #dl{display:none!important}
+body.video #advisor{width:min(620px,46vw)}body.video #advisor p{font-size:20px;min-height:0}
+@media (max-width:1100px){#cards{left:16px;right:16px;transform:none;max-width:none;bottom:auto;top:110px;justify-content:flex-start}#info{bottom:auto;top:230px}}
+#dlToggle{display:grid!important;place-items:center;width:44px;height:40px;padding:0!important}#dlToggle svg{width:18px;height:18px}
+/* Mobil: panelerna staplas, kartan får ytan mellan dem (positioner sätts av layout()) */
+body.m #stage{left:0;right:0}
+body.m #title{top:8px;left:8px;right:8px;transform:none;min-width:0;padding:6px 52px 7px 12px;text-align:left}
+body.m #title .k{font-size:10px;letter-spacing:.2em}body.m #title h1{font-size:19px}body.m #title .d{display:none}
+body.m #compass{display:none}
+body.m #advisor{left:8px;right:8px;width:auto;bottom:auto;padding:8px 10px;gap:10px}
+body.m #advisor .face{width:30px;height:30px;border-width:1.5px}body.m #advisor .face svg{width:18px;height:18px}
+body.m #advisor .who{font-size:10px}body.m #advisor p{font-size:14.5px;line-height:1.35;min-height:0;margin-top:1px}
+body.m #clock{left:14px;padding:3px 10px;font-size:12px}
+body.m #cards{left:8px;right:8px;transform:none;max-width:none;min-width:0;top:auto;padding:5px;gap:5px;justify-content:flex-start}
+body.m .card{width:60px;height:66px}body.m .card .art{inset:3px 3px 24px}body.m .card .art svg{width:24px;height:24px}
+body.m .card .nm{font-size:9.5px;line-height:1.05;padding:0 2px 4px}
+body.m #ctrl{left:8px;right:8px;bottom:8px;width:auto;padding:8px 10px;gap:7px}
+body.m .cb{width:42px;height:34px}body.m .cb.big{width:50px}body.m .speed button{height:34px;min-width:34px}
+body.m #scnRow button{height:28px;font-size:12px}body.m .pip{height:26px}body.m #note{display:none}
+body.m #info{left:8px;right:8px;transform:none;width:auto;top:auto;max-height:42vh;overflow:auto;padding:10px 14px 12px}
+body.m #info h2{font-size:17px}body.m #info dl,body.m #info p{font-size:14px}
+body.m #dl{top:12px;right:12px}body.m #dlToggle{width:38px;height:34px}
+body.m #dlMsg{background:#1c1410;border-radius:3px;padding:0 4px}
+/* Liggande mobil (låg höjd): krönika nere till vänster, kontroller nere till höger, korten döljs (klicka på trupperna) */
+body.ms #title{padding:5px 22px 6px}body.ms #title .d{display:none}body.ms #title h1{font-size:18px}body.ms #title .k{font-size:10px}
+body.ms #compass,body.ms #note,body.ms #cards{display:none!important}
+body.ms #advisor{left:8px;bottom:8px;width:calc(50vw - 14px);padding:7px 10px;gap:8px}body.ms #advisor p{font-size:13.5px;line-height:1.3;min-height:0}body.ms #advisor .face{width:28px;height:28px}body.ms #advisor .face svg{width:17px;height:17px}body.ms #advisor .who{font-size:10px}
+body.ms #ctrl{right:8px;bottom:8px;width:calc(50vw - 14px);padding:7px 9px;gap:6px}
+body.ms .cb{height:30px;width:38px}body.ms .cb.big{width:44px}body.ms .speed button{height:30px;min-width:32px}body.ms #scnRow button{height:24px;font-size:11px}body.ms .pip{height:20px}
+body.ms #clock{top:10px;left:8px;padding:3px 9px;font-size:12px}
+body.ms #info{left:auto;right:8px;transform:none;top:8px;bottom:auto;width:min(360px,48vw);max-height:calc(100vh - 120px);overflow:auto;padding:10px 12px}
+body.ms #dl{top:8px;right:8px}body.ms #dlToggle{width:38px;height:32px}
+body.m .unit text{display:none}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+<style>
+html:not(.js) #stage,html:not(.js) .vignette,html:not(.js) #title,html:not(.js) #advisor,html:not(.js) #cards,html:not(.js) #ctrl,html:not(.js) #compass,html:not(.js) #clock,html:not(.js) #info,html:not(.js) #dl{display:none!important}
+html:not(.js),html:not(.js) body{overflow:auto!important;height:auto}
+html.js .sb{display:none}
+.sb{max-width:900px;margin:0 auto;padding:24px 16px 48px}
+.sb h1{font:700 30px/1.15 Cinzel,Georgia,serif;color:#e0c27a;margin:8px 0 4px;text-align:center}
+.sb .lead{color:#bba987;text-align:center;margin:0 0 20px}
+.sb .tip{background:#2a1f17;border:1px solid #7a6033;border-radius:6px;padding:12px 14px;color:#efe3c4;margin:0 0 26px;font-size:15px}
+.sb section{margin:0 0 34px}
+.sb .k{font:600 12px Cinzel,Georgia,serif;letter-spacing:.28em;color:#a8843f;text-transform:uppercase}
+.sb h2{font:700 22px Cinzel,Georgia,serif;color:#e0c27a;margin:2px 0 2px}
+.sb .d{color:#bba987;font-size:14px;margin:0 0 10px}
+.sb img{width:100%;height:auto;display:block;border:1px solid #5d4726;border-radius:4px;margin:0 0 12px}
+.sb ol{margin:0;padding-left:22px;color:#efe3c4}.sb li{margin:0 0 8px}
+</style>
+</head>
+<body>
+<!--STORYBOARD-->
+<div id="stage">
+  <div class="world" id="w-campaign"><canvas id="cv-campaign"></canvas><svg id="sv-campaign" viewBox="0 0 2000 1250"></svg></div>
+  <div class="world off" id="w-battle"><canvas id="cv-battle"></canvas><svg id="sv-battle" viewBox="0 0 2000 1250"></svg></div>
+</div>
+<div class="vignette"></div>
+<svg id="compass" viewBox="-32 -32 64 64" aria-hidden="true"><circle r="29" fill="#1c1410" stroke="#a8843f" stroke-width="2"/><circle r="24" fill="none" stroke="#5d4726"/><path d="M0-22L5 0 0 4-5 0Z" fill="#e0c27a"/><path d="M0 22L5 0 0-4-5 0Z" fill="#6b5634"/><text y="-9" x="0" font-size="9" text-anchor="middle" fill="#1c1410" font-family="Cinzel,Georgia,serif" font-weight="700" transform="translate(0,-15)">N</text></svg>
+
+<header id="title" class="plate"><div class="k" id="tk">Scen 1</div><h1 id="th">Slaget vid Malden</h1><div class="d" id="td"></div></header>
+
+<section id="advisor" class="plate" aria-live="polite">
+  <div class="face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c4-1 6-4 6-9 0-3 2-6 5-7-1 3 0 5 2 6s2 4 0 6-5 3-9 4z"/><path d="M8 17l-3 3"/></svg></div>
+  <div><div class="who" id="who">Krönikan</div><p id="say"></p></div>
+</section>
+
+<nav id="cards" class="plate" aria-label="Styrkor i scenen"></nav>
+<div id="clock" class="plate" hidden aria-live="polite"></div>
+<div id="dl" class="plate" hidden>
+  <button id="dlToggle" aria-label="Ladda ner" title="Ladda ner video eller HTML" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg></button>
+  <button id="dlVideo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>Ladda ner video</button>
+  <span id="dlMsg" role="status" style="font-size:13px;color:var(--muted);max-width:220px"></span>
+  <button id="dlHtml"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>Ladda ner HTML</button>
+</div>
+<section id="info" class="plate" hidden aria-live="polite"></section>
+
+<section id="ctrl" class="plate" aria-label="Uppspelning">
+  <div class="row">
+    <button class="cb" id="bPrev" aria-label="Föregående steg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+    <button class="cb big" id="bPlay" aria-label="Spela"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></button>
+    <button class="cb" id="bNext" aria-label="Nästa steg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+    <div class="speed" role="group" aria-label="Hastighet"><button data-s=".5" aria-pressed="false">½×</button><button data-s="1" aria-pressed="true">1×</button><button data-s="2" aria-pressed="false">2×</button></div>
+  </div>
+  <div id="scnRow" role="group" aria-label="Scener"></div>
+  <div id="pips"></div>
+  <div id="note">Stadens och slagfältets utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.</div>
+</section>
+
+<script>
+'use strict';
+// ================= Hjälpfunktioner =================
+const W = 2000, H = 1250, RES = 1.6;
+const NS = 'http://www.w3.org/2000/svg';
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function smoothPath(pts, closed = false) {
+  // Catmull-Rom -> Bézier
+  const p = closed ? [pts[pts.length - 1], ...pts, pts[0], pts[1]] : [pts[0], ...pts, pts[pts.length - 1]];
+  let d = `M${p[1][0]},${p[1][1]}`;
+  for (let i = 1; i < p.length - 2; i++) {
+    const [x0, y0] = p[i - 1], [x1, y1] = p[i], [x2, y2] = p[i + 1], [x3, y3] = p[i + 2];
+    d += `C${x1 + (x2 - x0) / 6},${y1 + (y2 - y0) / 6} ${x2 - (x3 - x1) / 6},${y2 - (y3 - y1) / 6} ${x2},${y2}`;
+  }
+  return d + (closed ? 'Z' : '');
+}
+function blob(cx, cy, rx, ry, seed, amp = .22, n = 28) {
+  const r = rng(seed), ph = [r() * 6.3, r() * 6.3, r() * 6.3], pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = i / n * Math.PI * 2;
+    const k = 1 + amp * (Math.sin(a * 2 + ph[0]) * .5 + Math.sin(a * 3 + ph[1]) * .3 + Math.sin(a * 5 + ph[2]) * .2);
+    pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]);
+  }
+  return pts;
+}
+function polyPath2D(pts) { return new Path2D(smoothPath(pts, true)); }
+
+// ================= Målade kartor (canvas) =================
+function setupCanvas(id) {
+  const c = document.getElementById(id); c.width = W * RES; c.height = H * RES;
+  const g = c.getContext('2d'); g.scale(RES, RES); return g;
+}
+function noise(g, cell, alpha, op, seed) {
+  const r = rng(seed), w = Math.ceil(W / cell) + 2, h = Math.ceil(H / cell) + 2;
+  const n = document.createElement('canvas'); n.width = w; n.height = h;
+  const ng = n.getContext('2d'), im = ng.createImageData(w, h);
+  for (let i = 0; i < w * h; i++) { const v = r() * 255; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; }
+  ng.putImageData(im, 0, 0);
+  g.save(); g.globalAlpha = alpha; g.globalCompositeOperation = op; g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+  g.drawImage(n, -cell, -cell, w * cell, h * cell); g.restore();
+}
+function grain(g, seed) { noise(g, 2.2, .10, 'overlay', seed); noise(g, 9, .16, 'soft-light', seed + 1); noise(g, 60, .30, 'soft-light', seed + 2); noise(g, 220, .35, 'soft-light', seed + 3); }
+function river(g, pts, w) {
+  const p = new Path2D(smoothPath(pts));
+  g.save(); g.lineCap = 'round'; g.lineJoin = 'round';
+  g.strokeStyle = 'rgba(58,52,30,.55)'; g.lineWidth = w + 10; g.stroke(p);
+  g.strokeStyle = '#4a6a70'; g.lineWidth = w; g.stroke(p);
+  g.strokeStyle = 'rgba(160,196,196,.45)'; g.lineWidth = Math.max(1.5, w * .22); g.setLineDash([w * 2, w * 1.4]); g.stroke(p);
+  g.restore();
+}
+function road(g, pts, w) {
+  const p = new Path2D(smoothPath(pts));
+  g.save(); g.lineCap = 'round'; g.lineJoin = 'round';
+  g.strokeStyle = 'rgba(60,44,24,.45)'; g.lineWidth = w + 4; g.stroke(p);
+  g.strokeStyle = '#b79c66'; g.lineWidth = w; g.stroke(p);
+  g.strokeStyle = 'rgba(240,220,170,.35)'; g.lineWidth = w * .35; g.stroke(p);
+  g.restore();
+}
+function forest(g, pts, seed, spacing, size, opts = {}) {
+  const r = rng(seed), path = polyPath2D(pts);
+  g.save(); g.fillStyle = opts.base || '#2c3d1b'; g.globalAlpha = .9; g.fill(path); g.restore();
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const trees = [];
+  for (let y = Math.min(...ys); y < Math.max(...ys); y += spacing) for (let x = Math.min(...xs); x < Math.max(...xs); x += spacing) {
+    const tx = x + (r() - .5) * spacing, ty = y + (r() - .5) * spacing;
+    if (g.isPointInPath(path, tx * RES, ty * RES)) trees.push([tx, ty, size * (.7 + r() * .6), r()]);
+  }
+  trees.sort((a, b) => a[1] - b[1]);
+  for (const [x, y, s] of trees) { g.fillStyle = 'rgba(10,14,4,.38)'; g.beginPath(); g.ellipse(x + s * .35, y + s * .3, s * 1.05, s * .8, 0, 0, 7); g.fill(); }
+  for (const [x, y, s, v] of trees) {
+    const gr = g.createRadialGradient(x - s * .35, y - s * .4, s * .1, x, y, s * 1.05);
+    const lt = opts.light || [112, 138, 62], dk = opts.dark || [38, 56, 22];
+    const k = .85 + v * .3;
+    gr.addColorStop(0, `rgb(${lt[0] * k | 0},${lt[1] * k | 0},${lt[2] * k | 0})`); gr.addColorStop(1, `rgb(${dk[0]},${dk[1]},${dk[2]})`);
+    g.fillStyle = gr; g.beginPath(); g.arc(x, y, s, 0, 7); g.fill();
+  }
+  return path;
+}
+function mountains(g, region, seed, spacing, hmin, hmax) {
+  const r = rng(seed), path = polyPath2D(region);
+  g.save(); g.fillStyle = '#6d6150'; g.fill(path); g.restore();
+  const xs = region.map(p => p[0]), ys = region.map(p => p[1]), peaks = [];
+  for (let y = Math.min(...ys) - 40; y < Math.max(...ys) + 40; y += spacing * .8) for (let x = Math.min(...xs); x < Math.max(...xs); x += spacing) {
+    const px = x + (r() - .5) * spacing, py = y + (r() - .5) * spacing * .8;
+    if (!g.isPointInPath(path, px * RES, py * RES)) continue;
+    const depth = Math.max(0, 1 - (px - Math.min(...xs)) / (Math.max(...xs) - Math.min(...xs)));
+    const h = lerp(hmin, hmax, .3 + .7 * depth) * (.45 + r() * .8);
+    peaks.push([px, py, h, h * (1.3 + r() * .6)]);
+  }
+  peaks.sort((a, b) => a[1] - b[1]);
+  for (const [x, y, h, w] of peaks) {
+    g.fillStyle = 'rgba(25,18,10,.35)'; g.beginPath(); g.ellipse(x + w * .25, y + 4, w * .62, h * .13, 0, 0, 7); g.fill();
+    const top = y - h, l = x - w / 2, rr = x + w / 2;
+    const shape = new Path2D(`M${l},${y} Q${x - w * .2},${y - h * .62} ${x - w * .05},${top + h * .04} Q${x},${top - h * .02} ${x + w * .05},${top + h * .04} Q${x + w * .2},${y - h * .62} ${rr},${y} Q${x},${y + h * .08} ${l},${y}Z`);
+    const gd = g.createLinearGradient(0, top, 0, y); gd.addColorStop(0, '#6c5f4c'); gd.addColorStop(1, '#3f3426');
+    g.fillStyle = gd; g.fill(shape);
+    g.save(); g.clip(shape);
+    const gl = g.createLinearGradient(0, top, 0, y); gl.addColorStop(0, '#d9c9a4'); gl.addColorStop(.5, '#a89270'); gl.addColorStop(1, '#7d6a4e');
+    g.fillStyle = gl; g.beginPath(); g.moveTo(l - 4, y + 6); g.lineTo(x - w * .02, top - 4); g.lineTo(x + w * .04, y + 8); g.closePath(); g.fill();
+    g.restore();
+    g.strokeStyle = 'rgba(30,22,14,.5)'; g.lineWidth = 1.2; g.stroke(shape);
+  }
+}
+// Åkrar som ett ordnat lapptäcke: rutnät i vägens riktning, häckar emellan, inga överlapp
+const FIELD_COLS = ['#a7a35c', '#8e9b50', '#bba968', '#7e8f47', '#c4b273', '#9aa65a', '#b39b5c', '#8a8a4a'];
+function farmland(g, cx, cy, ang, cols, rows, cw, ch, seed, opts = {}) {
+  const r = rng(seed), taken = opts.taken || [], avoid = opts.avoid;
+  const ca = Math.cos(ang), sa = Math.sin(ang), gap = opts.gap ?? Math.max(2, cw * .06);
+  for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+    if (r() < (opts.skip ?? .14)) continue;
+    const lx = (i - (cols - 1) / 2) * cw, ly = (j - (rows - 1) / 2) * ch;
+    const x = cx + lx * ca - ly * sa, y = cy + lx * sa + ly * ca;
+    if (avoid && avoid(x, y)) continue;
+    if (taken.some(([tx, ty, tr]) => Math.hypot(tx - x, ty - y) < tr + Math.min(cw, ch) * .55)) continue;
+    taken.push([x, y, Math.min(cw, ch) * .5]);
+    const w = cw - gap, h = ch - gap;
+    g.save(); g.translate(x, y); g.rotate(ang);
+    g.fillStyle = FIELD_COLS[(r() * FIELD_COLS.length) | 0]; g.globalAlpha = .9; g.fillRect(-w / 2, -h / 2, w, h);
+    // fåror, åt ena eller andra hållet
+    g.globalAlpha = .16; g.strokeStyle = '#3c3a1c'; g.lineWidth = Math.max(.6, cw / 60);
+    const step = Math.max(2.2, cw / 10), along = r() < .5;
+    g.beginPath();
+    if (along) for (let k = -w / 2 + step / 2; k < w / 2; k += step) { g.moveTo(k, -h / 2); g.lineTo(k, h / 2); }
+    else for (let k = -h / 2 + step / 2; k < h / 2; k += step) { g.moveTo(-w / 2, k); g.lineTo(w / 2, k); }
+    g.stroke();
+    // häck runt fältet
+    g.globalAlpha = .75; g.strokeStyle = '#3e4c22'; g.lineWidth = Math.max(1.2, gap * .7); g.strokeRect(-w / 2 - gap / 2, -h / 2 - gap / 2, w + gap, h + gap);
+    if (opts.bushes) {
+      g.globalAlpha = .85; g.fillStyle = '#34431c';
+      for (let t = 0; t < 2 * (w + h); t += opts.bushes) {
+        const q = t < w ? [-w / 2 + t, -h / 2 - gap / 2] : t < w + h ? [w / 2 + gap / 2, -h / 2 + (t - w)] : t < 2 * w + h ? [w / 2 - (t - w - h), h / 2 + gap / 2] : [-w / 2 - gap / 2, h / 2 - (t - 2 * w - h)];
+        if (r() < .55) { g.beginPath(); g.arc(q[0], q[1], gap * (.6 + r() * .6), 0, 7); g.fill(); }
+      }
+    }
+    g.restore();
+  }
+}
+// Fält i band längs en väg (på båda sidor)
+function roadFields(g, pts, from, to, depth, cw, ch, seed, opts) {
+  for (let k = from; k < to; k++) {
+    const [x1, y1] = pts[k], [x2, y2] = pts[k + 1], L = Math.hypot(x2 - x1, y2 - y1), ang = Math.atan2(y2 - y1, x2 - x1);
+    const n = Math.max(1, Math.round(L / cw)), nx = -Math.sin(ang), ny = Math.cos(ang);
+    for (const side of [-1, 1]) {
+      const off = opts.road + depth * ch / 2;
+      farmland(g, (x1 + x2) / 2 + nx * off * side, (y1 + y2) / 2 + ny * off * side, ang, n, depth, cw, ch, seed + k * 13 + (side > 0 ? 7 : 0), opts);
+    }
+  }
+}
+
+function houses(g, list) {
+  for (const [x, y, w, h, rot, big] of list) {
+    g.save(); g.translate(x, y); g.rotate(rot);
+    g.fillStyle = 'rgba(20,14,6,.45)'; g.fillRect(-w / 2 + w * .12, -h / 2 + h * .2, w, h);
+    g.fillStyle = big ? '#8d6a3f' : '#a8844c'; g.fillRect(-w / 2, -h / 2, w, h);
+    g.fillStyle = big ? '#6e5131' : '#82653a'; g.fillRect(-w / 2, 0, w, h / 2);
+    g.strokeStyle = 'rgba(60,40,18,.8)'; g.lineWidth = 1; g.beginPath(); g.moveTo(-w / 2, 0); g.lineTo(w / 2, 0); g.stroke();
+    g.strokeStyle = 'rgba(30,20,8,.6)'; g.strokeRect(-w / 2, -h / 2, w, h);
+    g.restore();
+  }
+}
+
+function hills(g, list, seed) {
+  const r = rng(seed);
+  for (const [x, y, rx, ry] of list) {
+    const pts = blob(x, y, rx, ry, (r() * 1e6) | 0, .18), p = polyPath2D(pts);
+    const gr = g.createRadialGradient(x - rx * .35, y - ry * .45, rx * .1, x, y, Math.max(rx, ry) * 1.1);
+    gr.addColorStop(0, 'rgba(236,224,160,.42)'); gr.addColorStop(.55, 'rgba(150,150,80,.12)'); gr.addColorStop(1, 'rgba(40,40,12,.38)');
+    g.fillStyle = gr; g.fill(p);
+    g.save(); g.strokeStyle = 'rgba(60,56,24,.28)'; g.lineWidth = 1.2;
+    for (const k of [.7, .42]) g.stroke(polyPath2D(pts.map(([px, py]) => [x + (px - x) * k - rx * .06 * (1 - k), y + (py - y) * k - ry * .08 * (1 - k)])));
+    g.restore();
+  }
+}
+function walledTown(g, cx, cy, rx, ry, seed, n, s) {
+  const wall = blob(cx, cy, rx, ry, seed, .08, 16), wp = polyPath2D(wall);
+  g.fillStyle = '#8a7a58'; g.fill(wp);
+  g.save(); g.clip(wp); const r = rng(seed + 1), hs = [];
+  for (let i = 0; i < n; i++) { const a = r() * 6.3, d = Math.sqrt(r()), x = cx + Math.cos(a) * rx * d, y = cy + Math.sin(a) * ry * d; hs.push([x, y, s * (.8 + r() * .5), s * (.6 + r() * .3), (r() - .5) * .4, r() < .06]); }
+  hs.sort((a, b) => a[1] - b[1]); houses(g, hs); g.restore();
+  g.strokeStyle = '#3a3226'; g.lineWidth = 12; g.stroke(wp); g.strokeStyle = '#cbbf9f'; g.lineWidth = 8; g.stroke(wp);
+  return wp;
+}
+function aqueduct(g, pts) {
+  const p = new Path2D(smoothPath(pts));
+  g.save(); g.lineCap = 'butt';
+  g.strokeStyle = 'rgba(20,14,8,.45)'; g.lineWidth = 18; g.translate(5, 7); g.stroke(p); g.translate(-5, -7);
+  g.strokeStyle = '#a59c86'; g.lineWidth = 14; g.stroke(p);
+  g.strokeStyle = '#4a6c78'; g.lineWidth = 4; g.stroke(p);
+  g.strokeStyle = 'rgba(40,34,26,.6)'; g.lineWidth = 14; g.setLineDash([2, 22]); g.stroke(p);
+  g.restore();
+}
+function camp(g, cx, cy, rx, ry, seed, n) {
+  // Shaidos läger: oregelbundna, låga aieltält
+  const r = rng(seed);
+  for (let i = 0; i < n; i++) { const a = r() * 6.3, d = Math.sqrt(r()), x = cx + Math.cos(a) * rx * d, y = cy + Math.sin(a) * ry * d, s = 7 + r() * 6;
+    g.fillStyle = 'rgba(20,14,8,.35)'; g.beginPath(); g.ellipse(x + 2, y + 3, s, s * .65, 0, 0, 7); g.fill();
+    g.fillStyle = ['#8a7048', '#7a6040', '#9a8058'][(r() * 3) | 0]; g.beginPath(); g.ellipse(x, y, s, s * .65, 0, 0, 7); g.fill();
+    g.strokeStyle = 'rgba(40,26,12,.6)'; g.lineWidth = .8; g.stroke(); }
+}
+// ---------- Kampanjkartan: Altara ----------
+const C = {malden: [900, 640], perrin: [1300, 260], seanchan: [500, 1100], soHabor: [1650, 520]};
+function paintCampaign() {
+  const g = setupCanvas('cv-campaign');
+  const bg = g.createLinearGradient(0, 0, W, H); bg.addColorStop(0, '#879250'); bg.addColorStop(1, '#7a864c');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H); noise(g, 140, .5, 'soft-light', 1501);
+  hills(g, [[1100, 380, 220, 100], [700, 380, 180, 90], [1400, 800, 200, 100], [500, 800, 200, 90], [1600, 250, 180, 80]], 1502);
+  forest(g, blob(1300, 520, 200, 110, 91, .3), 1503, 13, 8); forest(g, blob(400, 500, 180, 120, 92, .3), 1504, 13, 8); forest(g, blob(1200, 1050, 260, 120, 93, .3), 1505, 13, 8);
+  farmland(g, 900, 860, .05, 8, 5, 40, 28, 1506, {skip: .5, bushes: 6});
+  road(g, [[C.malden[0], C.malden[1]], [1100, 500], [1300, 300], [1500, 100], [1700, -30]], 5);
+  road(g, [[C.malden[0], C.malden[1]], [700, 850], [520, 1050], [400, 1280]], 5);
+  road(g, [[C.malden[0], C.malden[1]], [1300, 600], [C.soHabor[0], C.soHabor[1]], [2030, 500]], 5);
+  aqueduct(g, [[C.malden[0], C.malden[1]], [800, 450], [700, 300], [620, 150]]);
+  walledTown(g, ...C.malden, 60, 46, 1507, 70, 7);
+  camp(g, C.malden[0] - 140, C.malden[1] + 20, 90, 70, 1508, 140); camp(g, C.malden[0] + 160, C.malden[1] + 10, 110, 80, 1509, 180);
+  g.fillStyle = '#9c8862'; g.fillRect(C.soHabor[0] - 26, C.soHabor[1] - 20, 52, 40); g.strokeStyle = '#cfc4a8'; g.lineWidth = 3; g.strokeRect(C.soHabor[0] - 26, C.soHabor[1] - 20, 52, 40);
+  grain(g, 1510);
+}
+// ---------- Slagfältet: Malden ----------
+const B = {town: [1000, 760], ridge: [[200, 330], [500, 260], [800, 220], [1100, 230], [1400, 250], [1700, 300], [1900, 360]],
+  aq: [[980, 700], [900, 520], [760, 360], [620, 180], [500, -30]], campW: [600, 820], campE: [1460, 800], cellar: [1040, 790]};
+function paintBattle() {
+  const g = setupCanvas('cv-battle');
+  const bg = g.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#7e8a46'); bg.addColorStop(1, '#8a8e4e');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H); noise(g, 120, .5, 'soft-light', 1601);
+  // åsen i norr
+  const rp = new Path2D(smoothPath([[-30, -30], [2030, -30], [2030, 380], ...B.ridge.slice().reverse(), [-30, 360]], true));
+  const rg = g.createLinearGradient(0, 0, 0, 380); rg.addColorStop(0, 'rgba(60,56,24,.25)'); rg.addColorStop(1, 'rgba(236,224,160,.35)');
+  g.fillStyle = rg; g.fill(rp);
+  g.save(); g.strokeStyle = 'rgba(60,56,24,.45)'; g.lineWidth = 2.5; g.stroke(new Path2D(smoothPath(B.ridge))); g.restore();
+  forest(g, blob(300, 120, 220, 90, 94, .35), 1602, 24, 15); forest(g, blob(1650, 120, 260, 100, 95, .35), 1603, 24, 15);
+  hills(g, [[300, 1100, 240, 120], [1700, 1100, 260, 120]], 1604);
+  farmland(g, 1000, 1080, .04, 12, 4, 70, 50, 1605, {skip: .45, bushes: 8});
+  road(g, [[1000, 760], [1000, 500], [1050, 230], [1100, -30]], 12); road(g, [[1000, 760], [700, 1000], [400, 1280]], 12); road(g, [[1000, 760], [1400, 900], [2030, 1000]], 12);
+  aqueduct(g, B.aq);
+  camp(g, ...B.campW, 260, 180, 1606, 520); camp(g, ...B.campE, 300, 200, 1607, 700);
+  walledTown(g, ...B.town, 170, 130, 1608, 260, 15);
+  grain(g, 1609);
+}
+
+// ================= SVG-lager =================
+const SV = {campaign: document.getElementById('sv-campaign'), battle: document.getElementById('sv-battle')};
+const defs = el('defs', {}, SV.campaign);
+defs.innerHTML = `
+  <marker id="ah-g" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#7fd36a"/></marker>
+  <marker id="ah-r" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#e0553a"/></marker>
+  <marker id="ah-w" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#efe6cc"/></marker>`;
+// Emblem för fanor och kort
+const EMB = {
+  wolf: '<path d="M3 4l3 3 4-1 4 1 3-3-1 6 2 3-4 2-4 3-4-3-4-2 2-3z" fill="currentColor"/><circle cx="8" cy="10" r=".9" fill="#000"/><circle cx="12" cy="10" r=".9" fill="#000"/>',
+  bow: '<path d="M6 2c8 4 8 12 0 16" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 2v16M6 10h11M14 8l3 2-3 2" fill="none" stroke="currentColor" stroke-width="1.5"/>',
+  sun: '<circle cx="10" cy="10" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="1.6"><path d="M10 1v4M10 15v4M1 10h4M15 10h4M3.6 3.6l2.8 2.8M13.6 13.6l2.8 2.8M3.6 16.4l2.8-2.8M13.6 6.4l2.8-2.8"/></g>',
+  horn: '<path d="M3 16c1-6 3-10 7-12-2 4-2 7 0 9 2-2 2-5 0-9 4 2 6 6 7 12-3-2-5-2-7 0-2-2-4-2-7 0z" fill="currentColor"/>',
+  flame: '<path d="M10 2c3 4 6 6 6 10a6 6 0 0 1-12 0c0-3 2-4 3-7 1 2 1 3 2 4 1-2 1-4 1-7z" fill="currentColor"/>',
+  people: '<circle cx="6" cy="6" r="2.4" fill="currentColor"/><circle cx="14" cy="6" r="2.4" fill="currentColor"/><path d="M2 17c0-4 2-7 4-7s4 3 4 7zM10 17c0-4 2-7 4-7s4 3 4 7z" fill="currentColor"/>',
+  cata: '<path d="M2 16h16M4 16l3-8h6l3 8M7 8l8-6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="15.5" cy="2.5" r="2" fill="currentColor"/>',
+  gate: '<path d="M3 18V8a7 7 0 0 1 14 0v10" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M7 18v-8a3 3 0 0 1 6 0v8" fill="currentColor" opacity=".5"/>',
+  wagon: '<path d="M2 6h16v7H2z" fill="currentColor"/><circle cx="6" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+  stake: '<path d="M3 17l7-14M8 17l6-12M13 17l5-10" stroke="currentColor" stroke-width="2"/>',
+  eagle: '<path d="M10 3l2 3 6-2-3 5 3 1-6 2-2 6-2-6-6-2 3-1-3-5 6 2z" fill="currentColor"/>',
+  fade: '<path d="M10 2c-3 0-5 3-5 6v10h10V8c0-3-2-6-5-6z" fill="currentColor"/><path d="M7 8h6" stroke="#000" stroke-width="1.5"/>',
+  wagonC: '<path d="M2 12c2-6 14-6 16 0z" fill="currentColor"/><circle cx="6" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="15" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+  oak: '<circle cx="10" cy="8" r="6" fill="currentColor"/><path d="M10 12v6" stroke="currentColor" stroke-width="2.5"/>',
+  msg: '<path d="M3 5h14v10H3z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 5l7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.8"/>'
+};
+const SIDE = {
+  tr: {name: 'Two Rivers', flag: '#a8221c', fg: '#f3e2b8', troop: '#7a2a1c', card: 'linear-gradient(#7a1f19,#3a0d0a)'},
+  aes: {name: 'Aes Sedai', flag: '#f2efe6', fg: '#2f5f8e', troop: '#e8e2d2', card: 'linear-gradient(#5b7da3,#20354d)'},
+  wc: {name: 'Children of the Light', flag: '#f3efe2', fg: '#c79a2a', troop: '#ece7da', card: 'linear-gradient(#cbbf9c,#5d5641)'},
+  sh: {name: 'Skuggan', flag: '#1a1412', fg: '#c0502e', troop: '#3a2a22', card: 'linear-gradient(#4a2a20,#140c09)'},
+  civ: {name: 'Civila', flag: '#8a7a58', fg: '#f3e2b8', troop: '#b49a6a', card: 'linear-gradient(#7a6a4a,#2f281c)'},
+  tink: {name: "Tuatha'an", flag: '#d98a2b', fg: '#2a1a0c', troop: '#d6a13c', card: 'linear-gradient(#c7862f,#4a2c10)'},
+  man: {name: 'Two Rivers', flag: '#b0201a', fg: '#e8e8ea', troop: '#6e3a24', card: 'linear-gradient(#9b1d17,#3a0d0a)'}
+};
+
+// ---------- Enheter ----------
+const units = {};
+function makeUnit(map, u) {
+  const sv = SV[map], s = SIDE[u.side];
+  const g = el('g', {class: 'unit fade hidden', 'data-id': u.id, tabindex: 0, role: 'button', 'aria-label': u.name}, sv);
+  const body = el('g', {}, g);
+  if (u.kind === 'token') {
+    el('ellipse', {cx: 0, cy: 2, rx: 20, ry: 7, fill: 'rgba(0,0,0,.45)'}, body);
+    el('circle', {class: 'sel', r: 26}, g);
+    el('ellipse', {cx: 0, cy: 0, rx: 15, ry: 5.5, fill: s.troop, stroke: '#1a120b', 'stroke-width': 1.5}, body);
+  } else if (u.kind === 'cata') {
+    el('rect', {class: 'sel', x: -30, y: -26, width: 60, height: 52, rx: 6}, g);
+    const k = el('g', {transform: `rotate(${u.rot || 0}) scale(1.5)`}, body);
+    el('rect', {x: -14, y: -9, width: 28, height: 18, rx: 2, fill: '#5a4026', stroke: '#21160c', 'stroke-width': 1.5}, k);
+    el('line', {x1: -10, y1: 0, x2: 16, y2: -12, stroke: '#3a2816', 'stroke-width': 4, 'stroke-linecap': 'round'}, k);
+    el('circle', {cx: 17, cy: -13, r: 4, fill: '#8a8070'}, k);
+  } else if (u.kind === 'fade') {
+    el('circle', {class: 'sel', r: 18}, g);
+    el('ellipse', {cx: 3, cy: 4, rx: 10, ry: 5, fill: 'rgba(0,0,0,.45)'}, body);
+    el('path', {d: 'M0-14c-6 0-9 6-9 12v10h18V-2c0-6-3-12-9-12z', fill: '#0c0a0a', stroke: '#3a2a22', 'stroke-width': 1.5}, body);
+    el('path', {d: 'M-4-6h8', stroke: '#6a5a50', 'stroke-width': 1.6}, body);
+  } else if (u.kind === 'wagon') {
+    el('rect', {class: 'sel', x: -36, y: -20, width: 72, height: 40, rx: 4}, g);
+    const k = el('g', {transform: `rotate(${u.rot || 0}) scale(1.3)`}, body);
+    for (const dx of [-13, 13]) { el('rect', {x: dx - 11, y: -8, width: 22, height: 16, rx: 2, fill: '#7a5a33', stroke: '#2a1a0c', 'stroke-width': 1.5}, k); el('line', {x1: dx - 9, y1: 0, x2: dx + 9, y2: 0, stroke: '#4a3418', 'stroke-width': 1.2}, k); }
+  } else {
+    const cols = u.cols || 10, rows = u.rows || 3, sp = u.sp || 7;
+    const fw = cols * sp, fh = rows * sp;
+    const f = el('g', {class: 'form', transform: `rotate(${u.rot || 0})`}, body);
+    el('rect', {class: 'sel', x: -fw / 2 - 8, y: -fh / 2 - 8, width: fw + 16, height: fh + 16, rx: 5}, f);
+    el('rect', {x: -fw / 2 - 3, y: -fh / 2 - 3, width: fw + 6, height: fh + 6, rx: 3, fill: 'rgba(0,0,0,.28)'}, f);
+    const r = rng(u.id.length * 97 + cols);
+    for (let i = 0; i < rows; i++) for (let j = 0; j < cols; j++) {
+      const jit = u.loose ? sp * .55 : 1.6;
+      const x = -fw / 2 + sp / 2 + j * sp + (r() - .5) * jit, y = -fh / 2 + sp / 2 + i * sp + (r() - .5) * jit;
+      el('circle', {cx: x + .8, cy: y + .9, r: sp * .36, fill: 'rgba(0,0,0,.45)'}, f);
+      el('circle', {cx: x, cy: y, r: sp * (u.big ? .44 : .36), fill: s.troop, stroke: '#140d08', 'stroke-width': .7}, f);
+      if (u.hats) el('circle', {cx: x - .5, cy: y - .6, r: sp * .14, fill: u.hats}, f);
+    }
+  }
+  if (u.banner !== false) {
+    const sc = u.kind === 'token' ? 1.7 : 1.15, top = u.kind === 'token' ? -58 : -((u.rows || 3) * (u.sp || 7)) / 2 - 36;
+    const bn = el('g', {transform: `translate(0,${top}) scale(${sc})`}, g);
+    el('line', {x1: 0, y1: 0, x2: 0, y2: 30 / sc * (u.kind === 'token' ? 1.6 : 1) , stroke: '#2a1a0c', 'stroke-width': 2}, bn);
+    el('path', {d: 'M0 0h22l-3 7 3 7H0z', fill: s.flag, stroke: '#1a120b', 'stroke-width': 1.2}, bn);
+    const e = el('g', {transform: 'translate(2.5,1) scale(.6)', style: `color:${s.fg}`}, bn); e.innerHTML = EMB[u.emb] || '';
+    el('circle', {cx: 0, cy: -1.5, r: 2, fill: '#e0c27a'}, bn);
+  }
+  if (u.label) {
+    const t = el('text', {class: 'lbl xs', x: 0, y: u.kind === 'token' ? 26 : ((u.rows || 3) * (u.sp || 7)) / 2 + 20, 'text-anchor': 'middle'}, g); t.textContent = u.label;
+  }
+  const o = {...u, g, body, map, x: u.at[0], y: u.at[1], visible: false};
+  units[u.id] = o; place(o);
+  g.addEventListener('click', e => { e.stopPropagation(); selectGroup(u.group || u.id); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectGroup(u.group || u.id); } });
+  return o;
+}
+function place(u) { u.g.setAttribute('transform', `translate(${u.x},${u.y})`); }
+
+// ---------- Övriga SVG-element (etiketter, pilar, pålar, effekter) ----------
+const things = {};
+function label(map, id, x, y, text, cls = 'lbl', extra = {}) { const t = el('text', {class: cls + ' fade', x, y, 'text-anchor': 'middle', ...extra}, SV[map]); t.textContent = text; if (id) things[id] = t; return t; }
+function arrow(map, id, pts, kind = 'g', w = 12) {
+  const col = {g: 'rgba(110,200,90,.72)', r: 'rgba(220,70,45,.75)', w: 'rgba(240,232,210,.8)'}[kind];
+  const p = el('path', {d: smoothPath(pts), fill: 'none', stroke: col, 'stroke-width': w, 'stroke-linecap': 'round', 'marker-end': `url(#ah-${kind})`, class: 'fade hidden'}, SV[map]);
+  things[id] = p; p.dataset.arrow = 1; return p;
+}
+function group(map, id, cls = 'fade hidden') { const g = el('g', {class: cls}, SV[map]); things[id] = g; return g; }
+
+
+// ================= Enheter och kort =================
+Object.assign(EMB, {
+  spear: '<path d="M10 1l2 5h-1.2v12H9.2V6H8z" fill="currentColor"/>',
+  hawk: '<path d="M10 4l2 2 6-1-4 4 2 2-6-1-2 6-1-6-5 1 3-3-4-3 6 1z" fill="currentColor"/>',
+  leash: '<circle cx="6" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 9c2 2 3 3 4 5s2 3 4 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="2 1.4"/>',
+  drop: '<path d="M10 2c3 5 6 8 6 11a6 6 0 0 1-12 0c0-3 3-6 6-11z" fill="currentColor"/>',
+  bow: '<path d="M5 2c8 4 8 12 0 16" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 2v16M3 10h14" stroke="currentColor" stroke-width="1.4"/>'
+});
+Object.assign(SIDE, {
+  perrin: {name: 'Perrins här', flag: '#f3ead2', fg: '#a8221c', troop: '#6e3a24', card: 'linear-gradient(#9b1d17,#3a0d0a)'},
+  shaido: {name: 'Shaido', flag: '#2a1a14', fg: '#d0603a', troop: '#6e5638', card: 'linear-gradient(#4a2a1c,#140c09)'},
+  sean: {name: 'Seanchan', flag: '#1f3a6e', fg: '#e2b23a', troop: '#4a4462', card: 'linear-gradient(#2b4c8a,#0f1a33)'},
+  faile: {name: 'Faile och hennes följe', flag: '#e9e3d2', fg: '#6a3a6a', troop: '#d8cdb0', card: 'linear-gradient(#8a6a8a,#2a1a2a)'},
+  chan: {name: 'Perrins kanaliserare', flag: '#e9e3d2', fg: '#2f5f8e', troop: '#e2dccb', card: 'linear-gradient(#8fa5bd,#2a3c52)'}
+});
+function buildCampaignSVG() {
+  const m = 'campaign';
+  label(m, null, C.malden[0], C.malden[1] + 90, 'MALDEN');
+  label(m, null, 640, 120, 'Akvedukten', 'lbl xs');
+  label(m, null, C.soHabor[0], C.soHabor[1] + 46, 'So Habor', 'lbl xs');
+  label(m, null, 1000, 60, 'ALTARA', 'lbl region');
+  label(m, null, 420, 1240, '↓ mot Ebou Dar', 'lbl xs');
+  arrow(m, 'aPerrin', [[1700, -20], [1500, 100], [1300, 250]], 'g', 10);
+  arrow(m, 'aSean', [[400, 1280], [480, 1150], [540, 1060]], 'g', 10);
+  arrow(m, 'aFork', [[C.soHabor[0], C.soHabor[1]], [1450, 380], [1330, 290]], 'w', 7);
+  arrow(m, 'aKidnap', [[1900, 900], [1500, 760], [1100, 680]], 'r', 8);
+}
+function buildBattleSVG() {
+  const m = 'battle';
+  label(m, null, B.town[0], B.town[1] + 170, 'MALDEN', 'lbl region', {style: 'font-size:24px'});
+  label(m, null, 1000, 200, 'Åsen', 'lbl s');
+  label(m, null, 560, 120, 'Akvedukten', 'lbl xs');
+  label(m, null, B.campW[0], B.campW[1] + 200, 'Shaidos läger', 'lbl xs');
+  label(m, null, B.campE[0], B.campE[1] + 220, 'Shaidos läger', 'lbl xs');
+  const fork = group(m, 'fork');
+  for (const [x, y] of [[620, 180], [760, 360], [900, 520]]) el('circle', {cx: x, cy: y, r: 14, fill: 'rgba(120,200,120,.6)', class: 'glow'}, fork);
+  label(m, 'forkLbl', 520, 300, 'Forkroot i vattnet', 'lbl xs', {'text-anchor': 'end'});
+  const fog = group(m, 'fog');
+  for (const [x, y, rx, ry] of [[500, 290, 360, 120], [1000, 250, 420, 120], [1500, 290, 380, 120]]) el('ellipse', {cx: x, cy: y, rx, ry, fill: 'rgba(230,235,238,.6)'}, fog);
+  label(m, 'fogLbl', 1000, 120, 'Dimväggen', 'lbl s');
+  const cel = group(m, 'cellar');
+  el('rect', {x: B.cellar[0] - 26, y: B.cellar[1] - 18, width: 52, height: 36, fill: 'rgba(20,14,8,.7)', stroke: '#e0c27a', 'stroke-width': 2.5}, cel);
+  label(m, 'cellarLbl', B.cellar[0], B.cellar[1] + 40, 'Källaren', 'lbl xs');
+  const free = group(m, 'freed');
+  el('circle', {cx: B.cellar[0], cy: B.cellar[1], r: 40, fill: 'none', stroke: '#e0c27a', 'stroke-width': 3, 'stroke-dasharray': '8 6'}, free);
+  const clash = group(m, 'clash');
+  for (const [x, y] of [[700, 420], [1000, 400], [1300, 420], [1650, 560]]) el('circle', {cx: x, cy: y, r: 24, fill: 'rgba(140,20,10,.45)', stroke: '#ffcf6a', 'stroke-width': 2}, clash);
+  arrow(m, 'aInfil', [[560, 60], [700, 300], [880, 520], [980, 700]], 'w', 6);
+  arrow(m, 'aOut1', [[650, 700], [700, 500], [720, 400]], 'r', 12);
+  arrow(m, 'aOut2', [[1350, 680], [1250, 500], [1200, 410]], 'r', 12);
+  arrow(m, 'aFlank', [[1600, 700], [1750, 550], [1700, 400]], 'r', 10);
+  arrow(m, 'aSean', [[2020, 260], [1880, 420], [1760, 520]], 'g', 12);
+  arrow(m, 'aSean2', [[2020, 800], [1900, 650], [1780, 580]], 'g', 12);
+  arrow(m, 'aSortie', [[1050, 300], [1030, 500], [1030, 700]], 'g', 9);
+  arrow(m, 'aTherava', [[1200, 900], [1600, 1100], [2020, 1200]], 'r', 7);
+}
+const GROUPS = {
+  shaido: {name: 'Shaido', side: 'shaido', emb: 'spear', lead: 'Sevanna och visa kvinnan Therava', size: 'Omkring 25 000–30 000 Aiel väster om staden och 40 000 öster om den, med omkring 400 visa kvinnor', text: 'Efter Dumai\'s Wells spreds Shaido över landet genom portar som Sammael gav dem. Sevannas del av klanen tog Malden och övervintrade där.'},
+  perrin: {name: 'Perrins här', side: 'perrin', emb: 'wolf', lead: 'Perrin Aybara', size: 'Two Rivers-män, Mayener, Ghealdanin och Aiel', text: 'Perrin har följt Shaido i månader för att befria Faile.', chars: ['perrin', 'tam']},
+  chan: {name: 'Perrins kanaliserare', side: 'chan', emb: 'flame', lead: 'Edarra; Asha\'man Grady och Neald', size: 'Sex visa kvinnor, tre Aes Sedai och två Asha\'man', text: 'De slår mot Shaido medan Shaidos egna visa kvinnor är förgiftade av forkroot.'},
+  sean: {name: 'Seanchan', side: 'sean', emb: 'hawk', lead: 'Banner-General Tylee Khirgan', size: 'Omkring 15 000 soldater och 12 damane', text: 'Seanchan i Ebou Dar ville också få bort Shaido. Förbundet: Seanchan får Shaidos visa kvinnor som damane, gai\'shain släpps fria, och Seanchan lovar att inte koppla Perrins kanaliserare.'},
+  faile: {name: 'Faile och hennes följe', side: 'faile', emb: 'flame', lead: 'Faile Bashere', size: 'Faile, Alliandre, Maighdin och andra gai\'shain', text: 'Faile, Maighdin och flera andra rövades bort under förhandlingarna med profeten Masema. I Malden planerar de att fly.', chars: ['faile', 'morgase']},
+  infil: {name: 'Styrkan i akvedukten', side: 'perrin', emb: 'drop', lead: '–', size: 'En liten grupp, bland dem Aes Sedai Seonid', text: 'En liten styrka tar sig in i Malden genom akvedukten för att hjälpa Faile och de andra fångarna.'}
+};
+function buildUnits() {
+  makeUnit('campaign', {id: 'cShaido', group: 'shaido', side: 'shaido', kind: 'token', emb: 'spear', at: [C.malden[0] + 80, C.malden[1] - 40], name: 'Shaido', label: 'Shaido'});
+  makeUnit('campaign', {id: 'cFaile', group: 'faile', side: 'faile', kind: 'token', emb: 'flame', at: [1900, 900], name: 'Faile', label: 'Faile'});
+  makeUnit('campaign', {id: 'cPerrin', group: 'perrin', side: 'perrin', kind: 'token', emb: 'wolf', at: [1700, -40], name: 'Perrin', label: 'Perrin'});
+  makeUnit('campaign', {id: 'cSean', group: 'sean', side: 'sean', kind: 'token', emb: 'hawk', at: [400, 1300], name: 'Seanchan', label: 'Tylee'});
+  const sh = {side: 'shaido', group: 'shaido', sp: 9, big: true, loose: true, emb: 'spear', hats: '#3a2a1a', cols: 16, rows: 4};
+  makeUnit('battle', {...sh, id: 'sW', at: [620, 780]}); makeUnit('battle', {...sh, id: 'sE', at: [1420, 760], cols: 18, rows: 5});
+  makeUnit('battle', {...sh, id: 'sF', at: [1560, 900], cols: 12, rows: 3});
+  makeUnit('battle', {id: 'pTR', group: 'perrin', side: 'perrin', cols: 14, rows: 2, sp: 8, at: [1000, 250], emb: 'bow', name: 'Two Rivers', label: 'Perrin'});
+  makeUnit('battle', {id: 'pL', group: 'perrin', side: 'perrin', cols: 12, rows: 3, sp: 8, at: [600, 300], emb: 'wolf', name: 'Perrins här'});
+  makeUnit('battle', {id: 'pR', group: 'perrin', side: 'perrin', cols: 12, rows: 3, sp: 8, at: [1400, 300], emb: 'wolf', name: 'Perrins här'});
+  makeUnit('battle', {id: 'chan', group: 'chan', side: 'chan', cols: 6, rows: 2, sp: 9, at: [1000, 180], emb: 'flame', name: 'Kanaliserare', label: 'Edarra'});
+  const se = {side: 'sean', group: 'sean', sp: 9, emb: 'hawk', hats: '#c9a032', cols: 12, rows: 4};
+  makeUnit('battle', {...se, id: 'sean1', at: [2080, 240], rot: 90, label: 'Tylee'}); makeUnit('battle', {...se, id: 'sean2', at: [2080, 820], rot: 90});
+  makeUnit('battle', {id: 'infil', group: 'infil', side: 'perrin', cols: 4, rows: 1, sp: 10, at: [560, 40], emb: 'drop', name: 'Akveduktstyrkan'});
+  makeUnit('battle', {id: 'faile', group: 'faile', side: 'faile', cols: 4, rows: 1, sp: 10, at: [B.cellar[0], B.cellar[1] - 30], emb: 'flame', name: 'Faile och hennes följe', label: 'Faile'});
+}
+
+let fx = null;
+function volley(fromIds, targets, dur) {
+  if (!fx) fx = el('g', {}, SV.battle);
+  const r = Math.random, shots = [];
+  for (const id of fromIds) { const u = units[id]; if (!u) continue;
+    for (let i = 0; i < 9; i++) { const [tx, ty] = targets[(r() * targets.length) | 0];
+      shots.push({x0: u.x + (r() - .5) * 60, y0: u.y + (r() - .5) * 14, x1: tx + (r() - .5) * 110, y1: ty + (r() - .5) * 70, d: r() * .35}); } }
+  const lines = shots.map(() => el('line', {stroke: '#f3e7c4', 'stroke-width': 1.6, 'stroke-linecap': 'round', opacity: 0}, fx));
+  tween(dur, k => shots.forEach((s2, i) => {
+    const t = Math.max(0, Math.min(1, (k - s2.d) / .6)), ln = lines[i];
+    if (t <= 0 || t >= 1) { ln.setAttribute('opacity', 0); return; }
+    const x = lerp(s2.x0, s2.x1, t), y = lerp(s2.y0, s2.y1, t) - Math.sin(t * Math.PI) * 120;
+    const t2 = Math.max(0, t - .05), x2 = lerp(s2.x0, s2.x1, t2), y2 = lerp(s2.y0, s2.y1, t2) - Math.sin(t2 * Math.PI) * 120;
+    ln.setAttribute('x1', x2); ln.setAttribute('y1', y2); ln.setAttribute('x2', x); ln.setAttribute('y2', y); ln.setAttribute('opacity', .9);
+  }), () => lines.forEach(l => l.remove()));
+}
+function boom(points) {
+  if (!fx) fx = el('g', {}, SV.battle);
+  points.forEach(([x, y], i) => pending.push(setTimeout(() => {
+    const b = el('g', {}, fx);
+    el('circle', {cx: x, cy: y, r: 26, fill: 'rgba(255,150,40,.75)', class: 'boom'}, b);
+    el('circle', {cx: x, cy: y, r: 14, fill: '#fff1b0', class: 'boom'}, b);
+    setTimeout(() => b.remove(), 1000);
+  }, i * 160)));
+}
+const clock = document.getElementById('clock');
+const cardsEl = document.getElementById('cards'), infoEl = document.getElementById('info');
+let selected = null;
+function renderCards(fresh = []) {
+  requestAnimationFrame(() => typeof layout === 'function' && layout());
+  const vis = [...new Set(Object.values(units).filter(u => u.visible && u.map === curMap).map(u => u.group))];
+  if (things.stakes && curMap === 'battle' && things.stakes.dataset.shown === '1') vis.push('stakes');
+  cardsEl.innerHTML = vis.map(gid => { const gi = GROUPS[gid], s = SIDE[gi.side];
+    return `<button class="card${fresh.includes(gid) ? ' new' : ''}" data-g="${gid}" aria-pressed="${selected === gid}" title="${esc(gi.name)}"><span class="art" style="background:${s.card};color:${s.fg}"><svg viewBox="0 0 20 20">${EMB[gi.emb]}</svg></span><span class="nm">${esc(gi.name)}</span></button>`; }).join('');
+  cardsEl.style.display = vis.length ? '' : 'none';
+}
+cardsEl.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) selectGroup(b.dataset.g); });
+function selectGroup(gid) {
+  if (selected === gid) gid = null;
+  selected = gid;
+  for (const u of Object.values(units)) u.g.classList.toggle('hl', !!gid && u.group === gid);
+  cardsEl.querySelectorAll('.card').forEach(c => c.setAttribute('aria-pressed', c.dataset.g === gid));
+  if (!gid) { infoEl.hidden = true; return; }
+  const gi = GROUPS[gid], s = SIDE[gi.side];
+  infoEl.innerHTML = `<button class="x" aria-label="Stäng">&times;</button><div class="side" style="color:${gi.side === 'sh' ? '#e0553a' : 'var(--bronze)'}">${esc(s.name)}</div><h2>${esc(gi.name)}</h2>
+    <dl><dt>Ledare</dt><dd>${esc(gi.lead)}</dd><dt>Styrka</dt><dd>${esc(gi.size)}</dd></dl><p>${esc(gi.text)}</p>
+    ${gi.chars ? `<div class="links">${gi.chars.map(c => EMBED
+      ? `<button data-char="${c}">Läs om ${esc(CHAR_NAMES[c] || c)}</button>`
+      : `<a href="https://wot.fandom.com/wiki/${encodeURIComponent(WIKI[c] || c)}" target="_blank" rel="noopener">Läs om ${esc(CHAR_NAMES[c] || c)} (wiki)</a>`).join('')}</div>` : ''}`;
+  infoEl.hidden = false;
+}
+const CHAR_NAMES = {"perrin": "Perrin", "tam": "Tam", "faile": "Faile", "morgase": "Morgase"};
+const WIKI = {"perrin": "Perrin_Aybara", "tam": "Tam_al'Thor", "faile": "Faile_Bashere", "morgase": "Morgase_Trakand"};
+// Inbäddad i kartan (iframe) eller fristående export. #video = inspelningsläge utan kontroller.
+let EMBED = false; try { EMBED = window.parent !== window && !!window.parent.document; } catch (e) { EMBED = false; }
+const VIDEO = location.hash === '#video';
+infoEl.addEventListener('click', e => {
+  if (e.target.closest('.x')) return selectGroup(selected);
+  const b = e.target.closest('[data-char]');
+  if (b) { try { parent.postMessage({type: 'wot-open-char', id: b.dataset.char}, '*'); } catch (err) {} }
+});
+
+// ================= Kamera =================
+const stage = document.getElementById('stage');
+let cam = {x: 1000, y: 625, w: 2000}, camTarget = null, curMap = 'campaign';
+function applyCam() {
+  const vw = stage.clientWidth, vh = stage.clientHeight;
+  // Liggande skärm: kartan fyller ytan. Stående (mobil): hela bredden får synas, med mörka band ovanför och under.
+  const portrait = vh > vw, maxW = portrait ? W : Math.min(W, H * vw / vh);
+  const w = Math.min(cam.w, maxW), s = vw / w, h = vh / s;
+  const x = Math.max(w / 2, Math.min(W - w / 2, cam.x)), y = h >= H ? H / 2 : Math.max(h / 2, Math.min(H - h / 2, cam.y));
+  const tf = `translate(${vw / 2 - x * s}px,${vh / 2 - y * s}px) scale(${s})`;
+  document.getElementById('w-campaign').style.transform = tf; document.getElementById('w-battle').style.transform = tf;
+}
+// Mobil layout: titel, krönika och kontroller staplas; kartan placeras i ytan mellan dem.
+const ui = id => document.getElementById(id);
+function layout() {
+  const M = innerWidth <= 700 && !document.body.classList.contains('video');
+  document.body.classList.toggle('m', M);
+  document.body.classList.toggle('ms', !M && innerHeight <= 500 && !document.body.classList.contains('video'));
+  const st = stage.style, adv = ui('advisor'), cards = ui('cards'), info = ui('info'), ctl = ui('ctrl');
+  if (!M) { st.top = st.bottom = adv.style.top = cards.style.bottom = info.style.bottom = clock.style.top = ''; applyCam(); return; }
+  const titleB = ui('title').getBoundingClientRect().bottom;
+  adv.style.top = (titleB + 6) + 'px';
+  const advB = adv.getBoundingClientRect().bottom, ctlH = ctl.getBoundingClientRect().height;
+  cards.style.bottom = (8 + ctlH + 6) + 'px';
+  const cardsTop = cards.style.display === 'none' ? innerHeight - 8 - ctlH : cards.getBoundingClientRect().top;
+  st.top = (advB + 6) + 'px'; st.bottom = (innerHeight - cardsTop + 6) + 'px';
+  clock.style.top = (advB + 14) + 'px';
+  info.style.bottom = (innerHeight - cardsTop + 6) + 'px';
+  applyCam();
+}
+window.addEventListener('resize', () => requestAnimationFrame(layout));
+
+// ================= Animationsmotor =================
+let tweens = [], pending = [];
+function tween(dur, fn, done) { const t = {start: performance.now(), dur, fn, done}; tweens.push(t); if (dur <= 0) { fn(1); done && done(); tweens = tweens.filter(x => x !== t); } }
+function frame(now) {
+  for (const t of [...tweens]) { const k = Math.min(1, (now - t.start) / t.dur); t.fn(ease(k)); if (k >= 1) { tweens = tweens.filter(x => x !== t); t.done && t.done(); } }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+// Chrome ritar ibland inte om SVG-text som legat i ett dolt lager – knuffa texten när kartan byts
+function repaintText(map) {
+  const ts = SV[map].querySelectorAll('text');
+  ts.forEach(t => { t.style.fill = '#fff'; });
+  requestAnimationFrame(() => requestAnimationFrame(() => ts.forEach(t => { t.style.fill = ''; })));
+}
+function setShown(e, on) { e.classList.toggle('hidden', !on); }
+function drawArrow(p, dur) {
+  const L = p.getTotalLength(); p.style.strokeDasharray = `${L} ${L}`;
+  setShown(p, true);
+  if (dur <= 0) { p.style.strokeDashoffset = 0; return; }
+  p.style.strokeDashoffset = L; tween(dur, k => p.style.strokeDashoffset = L * (1 - k));
+}
+function pathPoint(pts, k) {
+  // längs en polyline
+  let tot = 0; const seg = []; for (let i = 1; i < pts.length; i++) { const l = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); seg.push(l); tot += l; }
+  let d = k * tot; for (let i = 0; i < seg.length; i++) { if (d <= seg[i] || i === seg.length - 1) { const t = seg[i] ? Math.min(1, d / seg[i]) : 1; return [lerp(pts[i][0], pts[i + 1][0], t), lerp(pts[i][1], pts[i + 1][1], t)]; } d -= seg[i]; }
+  return pts[pts.length - 1];
+}
+function run(acts, dur, fresh) {
+  for (const a of acts) {
+    if (a.clock !== undefined) { clock.textContent = a.clock; clock.hidden = !a.clock; }
+    if (a.volley && dur > 0) volley(a.volley[0], a.volley[1], dur);
+    if (a.boom && dur > 0) boom(a.boom);
+    if (a.bolt && dur > 0 && typeof bolt === 'function') bolt(a.bolt);
+    if (a.map && a.map !== curMap) setTimeout(() => repaintText(a.map), 950);
+    if (a.map) { curMap = a.map; document.getElementById('w-campaign').classList.toggle('off', a.map !== 'campaign'); document.getElementById('w-battle').classList.toggle('off', a.map !== 'battle'); }
+    if (a.cam) { const from = {...cam}, to = {x: a.cam[0], y: a.cam[1], w: a.cam[2]}; tween(dur, k => { cam = {x: lerp(from.x, to.x, k), y: lerp(from.y, to.y, k), w: lerp(from.w, to.w, k)}; applyCam(); }); }
+    for (const id of [].concat(a.show || [])) {
+      if (units[id]) { units[id].visible = true; setShown(units[id].g, true); fresh && fresh.push(units[id].group); }
+      else if (things[id]) { if (things[id].dataset.arrow) drawArrow(things[id], dur * .9); else setShown(things[id], true); }
+    }
+    for (const id of [].concat(a.hide || [])) {
+      if (units[id]) { units[id].visible = false; setShown(units[id].g, false); }
+      else if (things[id]) setShown(things[id], false);
+    }
+    for (const [id, ...pts] of a.move || []) {
+      const u = units[id], path = [[u.x, u.y], ...pts];
+      tween(dur, k => { const [x, y] = pathPoint(path, k); u.x = x; u.y = y; place(u); });
+    }
+    if (a.seq) { // visa barn i tur och ordning (pålarna)
+      const kids = [...things[a.seq].children]; things[a.seq].dataset.shown = '1';
+      if (!dur) kids.forEach(k => setShown(k, true));
+      else kids.forEach((k, i) => pending.push(setTimeout(() => setShown(k, true), (i / kids.length) * dur * .9)));
+      fresh && fresh.push(a.seq);
+    }
+  }
+}
+
+// ================= Manus =================
+const PERR = ['pTR', 'pL', 'pR', 'chan'];
+const SCENES = [
+  {k: 'Scen 1 · Kampanjkartan', t: 'Shaido i Malden', d: 'Vintern och våren 1000 NE · Knife of Dreams',
+   init: [{map: 'campaign', cam: [1000, 625, 2000], clock: 'Våren 1000 NE'}],
+   beats: [
+    {say: 'Efter Dumai\'s Wells spreds Shaido över landet genom portar som Sammael gav dem. Sevannas del av klanen tog den altaranska staden Malden. Till våren hade över 100 000 människor samlats där.', dur: 2600, acts: [{cam: [900, 640, 1100], show: ['cShaido']}]},
+    {say: 'Under förhandlingarna med profeten Masema hade Shaido rövat bort Faile, Maighdin och flera andra. Nu är de gai\'shain i Malden.', dur: 3600, acts: [{show: ['cFaile', 'aKidnap'], move: [['cFaile', [1500, 760], [1000, 660]]]}]},
+    {say: 'Perrin har följt efter dem i månader. Seanchan i Ebou Dar vill också få bort Shaido och skickar Banner-General Tylee Khirgan. Perrin och Tylee sluter förbund.', dur: 4200, acts: [{hide: ['aKidnap'], cam: [1000, 640, 2000], show: ['cPerrin', 'cSean', 'aPerrin', 'aSean'], move: [['cPerrin', [1500, 100], [1300, 260]], ['cSean', [480, 1150], [540, 1060]]]}]},
+    {say: 'Villkoren: Seanchan får ta Shaidos visa kvinnor som damane, gai\'shain släpps fria, och Seanchan lovar att inte koppla Perrins egna kanaliserare.', dur: 2400, acts: [{hide: ['aPerrin', 'aSean']}]},
+    {say: 'Med hjälp av ett brev från Suroth får de ut all forkroot från en manufaktur. Drogen ska hällas i Maldens akvedukt, så att Shaidos visa kvinnor inte kan kanalisera.', dur: 3000, acts: [{cam: [1400, 400, 1100], show: ['aFork']}]}
+   ]},
+  {k: 'Scen 2 · Malden', t: 'Akvedukten', d: 'Natten före slaget · Knife of Dreams',
+   init: [{map: 'battle', cam: [1000, 625, 2000], clock: 'Natten', show: ['sW', 'sE', 'sF', 'faile']}],
+   beats: [
+    {say: 'Malden är en stad med murar, som får sitt vatten genom en akvedukt från bergen. Shaidos läger ligger på båda sidor om staden. I norr reser sig en ås.', acts: [{cam: [1000, 625, 2000]}]},
+    {say: 'Forkroot hälls i akvedukten. En liten styrka tar sig in i Malden genom akvedukten för att hjälpa fångarna.', dur: 4000, acts: [{cam: [800, 400, 1300], show: ['fork', 'forkLbl', 'infil', 'aInfil'], move: [['infil', [700, 300], [880, 520], [980, 700]]]}]},
+    {say: 'Inne i staden planerar Faile och hennes följe att fly med hjälp av Galina, en svart syster som är Theravas slav. Men Galina tar Oath Rod och sviker dem, och de blir instängda i en källare.', dur: 2800, acts: [{hide: ['aInfil'], cam: [1040, 790, 700], show: ['cellar', 'cellarLbl'], move: [['faile', [B.cellar[0], B.cellar[1]]]]}]}
+   ]},
+  {k: 'Scen 3 · Åsen', t: 'Ur dimman', d: 'Slagets dag · Knife of Dreams',
+   init: [{map: 'battle', cam: [1000, 500, 2000], clock: 'Morgonen', show: ['sW', 'sE', 'sF', 'faile', 'cellar', 'fork', 'infil'], move: [['infil', [980, 700]], ['faile', [B.cellar[0], B.cellar[1]]]]}],
+   beats: [
+    {say: 'Tam al\'Thor kommer genom en port med Two Rivers bågskyttar. En vägg av dimma täcker Perrins här på åsen.', dur: 2600, acts: [{show: ['fog', 'fogLbl', ...PERR]}]},
+    {say: 'Perrins här kommer fram ur dimman och lockar ut Shaidos krigare ur lägren, uppför sluttningen.', dur: 4200, acts: [{hide: ['fogLbl'], show: ['aOut1', 'aOut2'], move: [['sW', [700, 500], [720, 430]], ['sE', [1250, 500], [1200, 440]]]}, {t: .6, hide: ['fog']}]},
+    {say: 'Bågskyttarna skjuter salva efter salva, och Perrins kanaliserare slår ner Shaido. Forkroot har gjort att de flesta av Shaidos visa kvinnor inte kan kanalisera.', dur: 3600, acts: [{hide: ['aOut1', 'aOut2'], show: ['clash'], boom: [[700, 430], [740, 470], [1200, 440], [1250, 470], [1000, 420]]}, {t: .45, boom: [[690, 450], [1180, 460], [760, 500], [1230, 500]]}]},
+    {say: 'Shaido skickar en styrka för att gå runt Perrins flank. Då anfaller Seanchan den bakifrån och från sidan. En del förintas, resten ger upp.', dur: 4400, acts: [{cam: [1600, 500, 1300], show: ['aFlank', 'sean1', 'sean2', 'aSean', 'aSean2'], move: [['sF', [1750, 550], [1720, 450]], ['sean1', [1880, 420], [1780, 440]], ['sean2', [1900, 650], [1800, 560]]]}, {t: .6, boom: [[1720, 450], [1760, 500]]}, {t: .85, hide: ['sF', 'aFlank', 'aSean', 'aSean2']}]}
+   ]},
+  {k: 'Scen 4 · Staden', t: 'Faile befrias', d: 'Slagets dag · Knife of Dreams',
+   init: [{map: 'battle', cam: [1000, 600, 1600], clock: 'Eftermiddagen', show: ['sW', 'sE', 'faile', 'cellar', 'cellarLbl', 'infil', ...PERR, 'sean1', 'sean2', 'clash'], move: [['infil', [980, 700]], ['faile', [B.cellar[0], B.cellar[1]]], ['sW', [720, 430]], ['sE', [1200, 440]], ['sean1', [1780, 440]], ['sean2', [1800, 560]]]}],
+   beats: [
+    {say: 'Perrin rider ner i staden för att hämta Faile. Aram, som Masema har vänt mot honom, försöker döda honom – men träffas själv av en pil från Shaido.', dur: 4000, acts: [{show: ['aSortie'], move: [['pTR', [1030, 500], [1030, 690]]]}]},
+    {say: 'Rolan och hans vänner, Shaido som har skyddat Faile, har hjälpt henne och de andra ut ur källaren. Perrin vet inte vem Rolan är och dödar honom. Faile och hennes följe är fria.', dur: 3000, acts: [{hide: ['aSortie', 'cellar', 'cellarLbl'], cam: [1040, 760, 700], show: ['freed']}]},
+    {say: 'Tylee meddelar att Shaido ger upp. Seanchan tar de visa kvinnorna som damane. Bara några hundra Shaido flyr med Therava tillbaka mot ödemarken, och de har Galina med sig som slav.', dur: 3600, acts: [{hide: ['freed', 'clash'], cam: [1300, 800, 1700], show: ['aTherava']}, {t: .2, hide: ['sW', 'sE']}]},
+    {say: 'Shaido är inte längre ett hot i Westlands, och profetens Dragonsworn har förlorat nästan hela sin styrka. Perrin och Faile är återförenade, och Perrin står nu i spetsen för en stor här.', dur: 3000, acts: [{hide: ['aTherava'], cam: [1000, 625, 2000]}]}
+   ]}
+];
+
+// ================= Uppspelning =================
+const say = document.getElementById('say'), tk = document.getElementById('tk'), th = document.getElementById('th'), td = document.getElementById('td');
+let si = 0, bi = -1, playing = false, timer = null, speed = 1;
+function resetAll() {
+  tweens = []; pending.forEach(clearTimeout); pending = [];
+  for (const u of Object.values(units)) { u.x = u.at[0]; u.y = u.at[1]; place(u); u.visible = false; setShown(u.g, false); }
+  for (const t of Object.values(things)) { if (t.dataset.arrow || t.classList.contains('fade')) setShown(t, false); }
+  if (things.stakes) { [...things.stakes.children].forEach(k => setShown(k, false)); things.stakes.dataset.shown = '0'; }
+  selected = null; infoEl.hidden = true; clock.hidden = true;
+  if (fx) fx.innerHTML = '';
+}
+function goTo(s, b, animate = true) {
+  clearTimeout(timer);
+  // Tidsresor: återskapa läget genom att spela upp allt tidigare direkt
+  resetAll();
+  const fresh = [];
+  for (let i = 0; i <= s; i++) {
+    const sc = SCENES[i];
+    if (i < s) continue;
+    runBeat({acts: sc.init}, 0);
+    for (let j = 0; j < b; j++) runBeat(sc.beats[j], 0);
+  }
+  si = s; bi = b;
+  const sc = SCENES[s], beat = sc.beats[b];
+  tk.textContent = sc.k; th.textContent = sc.t; td.textContent = sc.d;
+  runBeat(beat, animate ? (beat.dur || 1600) / speed : 0, fresh);
+  say.textContent = beat.say;
+  requestAnimationFrame(layout);
+  renderCards(fresh); renderPips();
+  document.getElementById('bPrev').disabled = s === 0 && b === 0;
+  document.getElementById('bNext').disabled = s === SCENES.length - 1 && b === sc.beats.length - 1;
+  if (playing) schedule();
+}
+function runBeat(beat, dur, fresh) {
+  for (const a0 of beat.acts) {
+    const a = {...a0, move: typeof a0.move === 'function' ? a0.move() : a0.move};
+    // t = när i steget handlingen börjar (0–1), len = hur stor del av steget den tar
+    const t = a.t || 0, len = a.len || (1 - t);
+    if (dur > 0 && t > 0) pending.push(setTimeout(() => { const f2 = []; run([a], dur * len, f2); renderCards(f2); }, dur * t));
+    else run([a], dur * len, fresh);
+  }
+}
+function schedule() {
+  // Animation och läsning löper samtidigt: steget varar så länge som den längsta av dem
+  const beat = SCENES[si].beats[bi], anim = (beat.dur || 1600) + 900, read = 1800 + beat.say.length * 32;
+  timer = setTimeout(() => { if (!next()) { setPlay(false); window.__done = true; } }, Math.max(anim, read) / speed);
+}
+function next() { const sc = SCENES[si]; if (bi < sc.beats.length - 1) { goTo(si, bi + 1); return true; } if (si < SCENES.length - 1) { goTo(si + 1, 0); return true; } return false; }
+function prev() { if (bi > 0) goTo(si, bi - 1, false); else if (si > 0) goTo(si - 1, SCENES[si - 1].beats.length - 1, false); }
+const bPlay = document.getElementById('bPlay');
+function setPlay(on) {
+  playing = on; bPlay.setAttribute('aria-label', on ? 'Pausa' : 'Spela');
+  bPlay.innerHTML = on ? '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>' : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>';
+  clearTimeout(timer); if (on) { if (si === SCENES.length - 1 && bi === SCENES[si].beats.length - 1) goTo(0, 0); else schedule(); }
+}
+bPlay.addEventListener('click', () => setPlay(!playing));
+document.getElementById('bNext').addEventListener('click', () => { next(); });
+document.getElementById('bPrev').addEventListener('click', prev);
+document.querySelectorAll('.speed button').forEach(b => b.addEventListener('click', () => { speed = +b.dataset.s; document.querySelectorAll('.speed button').forEach(x => x.setAttribute('aria-pressed', x === b)); if (playing) { clearTimeout(timer); schedule(); } }));
+const pips = document.getElementById('pips');
+const scnRow = document.getElementById('scnRow');
+function renderPips() {
+  scnRow.innerHTML = '<span class="rl">Scen</span>' + SCENES.map((sc, i) => `<button class="${i < si ? 'done' : ''}" aria-current="${i === si}" data-s="${i}" title="${esc(sc.t)}" aria-label="Scen ${i + 1}: ${esc(sc.t)}">${i + 1}</button>`).join('');
+  pips.innerHTML = `<span class="rl">Steg</span><div class="scn">${SCENES[si].beats.map((_, j) => `<button class="pip ${j < bi ? 'done' : ''} ${j === bi ? 'cur' : ''}" data-s="${si}" data-b="${j}" aria-label="Steg ${j + 1}">${j + 1}</button>`).join('')}</div>`;
+}
+scnRow.addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) goTo(+b.dataset.s, 0); });
+function renderPipsOld() {
+  pips.innerHTML = SCENES.map((sc, i) => `<div class="scn"><b>${i + 1}</b>${sc.beats.map((_, j) => `<button class="pip ${i < si || (i === si && j < bi) ? 'done' : ''} ${i === si && j === bi ? 'cur' : ''}" data-s="${i}" data-b="${j}" aria-label="Scen ${i + 1}, steg ${j + 1}"></button>`).join('')}</div>`).join('');
+}
+pips.addEventListener('click', e => { const p = e.target.closest('.pip'); if (p) goTo(+p.dataset.s, +p.dataset.b, false); });
+document.addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('.unit')) return;
+  if (e.key === ' ') { e.preventDefault(); setPlay(!playing); }
+  else if (e.key === 'ArrowRight') next(); else if (e.key === 'ArrowLeft') prev();
+  else if (e.key === 'Escape' && selected) selectGroup(selected);
+});
+document.getElementById('stage').addEventListener('click', () => { if (selected) selectGroup(selected); });
+
+// ================= Start =================
+paintCampaign(); paintBattle(); buildCampaignSVG(); buildBattleSVG(); buildUnits();
+// SVG-text ritas ibland inte om när webbtypsnitten laddats klart – tvinga en ny layout då
+const refreshText = () => { repaintText('campaign'); repaintText('battle'); };
+if (document.fonts) { document.fonts.ready.then(refreshText); document.fonts.addEventListener && document.fonts.addEventListener('loadingdone', refreshText); }
+setTimeout(refreshText, 400);
+setTimeout(() => {
+  applyCam();
+  const m = /^#scen(\d)$/.exec(location.hash), start = m ? Math.min(SCENES.length, +m[1]) - 1 : 0;
+  if (VIDEO) { document.body.classList.add('video'); goTo(0, 0); setPlay(true); return; }
+  goTo(start, 0);
+  // Fristående export: nedladdning via sidans downloads-förmåga (fallback: vanlig länk utanför Claude)
+  if (!EMBED && location.protocol !== 'file:') {
+    document.getElementById('dl').hidden = false;
+    const msg = document.getElementById('dlMsg'), dlBox = document.getElementById('dl'), tg = document.getElementById('dlToggle');
+    const setOpen = o => { dlBox.classList.toggle('open', o); tg.setAttribute('aria-expanded', o); };
+    tg.addEventListener('click', e => { e.stopPropagation(); setOpen(!dlBox.classList.contains('open')); });
+    document.addEventListener('click', e => { if (!dlBox.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    const cap = (async () => { try { return window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { return null; } })();
+    async function offer(url, filename) {
+      msg.textContent = 'Förbereder ' + filename + ' …';
+      try {
+        const blob = await (await fetch(url)).blob();
+        const d = await cap;
+        if (d) { await d.save({filename, data: blob}); msg.textContent = ''; }
+        else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); a.remove(); msg.textContent = ''; }
+      } catch (e) {
+        const c = e && e.code;
+        msg.textContent = c === 'declined' ? '' : c === 'rate_limited' ? 'Vänta en stund och försök igen.' : c === 'host_unavailable' ? 'Öppna sidan i en webbläsare för att spara filen.' : 'Nedladdningen gick inte här.';
+      }
+    }
+    document.getElementById('dlVideo').addEventListener('click', () => offer('malden.mp4', 'slaget-vid-malden.mp4'));
+    document.getElementById('dlHtml').addEventListener('click', () => offer(location.href.split('#')[0], 'slaget-vid-malden.html'));
+  }
+}, 30);
+</script>
+</body>
+</html>

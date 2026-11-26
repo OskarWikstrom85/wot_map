@@ -1,0 +1,12 @@
+{
+ "charNames": {"elayne": "Elayne", "birgitte": "Birgitte"},
+ "wiki": {"elayne": "Elayne_Trakand", "birgitte": "Birgitte_Silverbow"},
+ "replace": [
+  ["<title>Slaget om Two Rivers</title>", "<title>Belägringen av Caemlyn</title>"],
+  ["<h1 id=\"th\">Slaget om Two Rivers</h1>", "<h1 id=\"th\">Belägringen av Caemlyn</h1>"],
+  ["Byns och bygdens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta.", "Stadens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."],
+  ["offer('two-rivers.mp4', 'slaget-om-two-rivers.mp4')", "offer('caemlyn.mp4', 'belagringen-av-caemlyn.mp4')"],
+  ["'slaget-om-two-rivers.html'", "'belagringen-av-caemlyn.html'"]
+ ],
+ "storyboard": {"title": "Belägringen av Caemlyn", "lead": "Knife of Dreams · våren 1000 NE", "pick": [[2, 0.95], [1, 0.95], [1, 0.9], [2, 0.9], [1, 0.9], [1, 0.95]], "note": "Stadens utseende är en tolkning av böckernas beskrivningar, inte en exakt karta."}
+}

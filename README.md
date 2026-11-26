@@ -26,14 +26,14 @@ Kräver Python 3 med Pillow, numpy, scipy, opencv och scikit-image, samt Playwri
 python3 scripts/build_page.py
 
 # Ett nytt slag från Two Rivers-mallen (src/slag/<id>/: paint.js, svg.js, scenes.js, config.json)
-python3 scripts/make_battle_page.py cairhien   # likaså falme, stone-of-tear, dumais-wells
+python3 scripts/make_battle_page.py cairhien   # likaså övriga slag i src/slag/
 
 # Slagsida med bildberättelse och video (kräver att src/ serveras på localhost:8765)
 python3 scripts/build_export.py cairhien
 python3 scripts/record_video.py cairhien
 ```
 
-Animerade slag: Falme, Stenen i Tear, Two Rivers, Cairhien och Dumai's Wells.
+Animerade slag: De skinande murarna, Falme, Stenen i Tear, Two Rivers, Cairhien, Dumai's Wells, Malden, belägringen av Caemlyn och Seanchans anfall mot Tar Valon.
 
 Kartlagren (görs sällan, tar lång tid):
 

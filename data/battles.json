@@ -74,7 +74,8 @@
     "bok": 14,
     "text": "Den pojke som föddes under slaget är den som till slut möter Den Mörke i Shayol Ghul. Han lagar fängelset och överlever i en annan kropp."
    }
-  ]
+  ],
+  "animation": "slag/shining-walls.html"
  },
  {
   "id": "falme",
@@ -615,7 +616,8 @@
     "text": "Perrins här, med många före detta gai'shain, strider i Braem Wood i början av Tarmon Gai'don."
    }
   ],
-  "dag": "1000-04-10"
+  "dag": "1000-04-10",
+  "animation": "slag/malden.html"
  },
  {
   "id": "caemlyn",
@@ -686,7 +688,8 @@
     "text": "Bara några månader senare väller trollocs in genom stadens Waygate i början av Tarmon Gai'don, och Caemlyn brinner."
    }
   ],
-  "dag": "1000-04-17"
+  "dag": "1000-04-17",
+  "animation": "slag/caemlyn.html"
  },
  {
   "id": "tar-valon",
@@ -772,7 +775,8 @@
    }
   ],
   "dag": "1000-05-21",
-  "dag_osaker": true
+  "dag_osaker": true,
+  "animation": "slag/tar-valon.html"
  },
  {
   "id": "maradon",
